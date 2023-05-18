@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Root View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="RootViewController" customModule="Magus" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zcn-9Y-4eY">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashListening" translatesAutoresizingMaskIntoConstraints="NO" id="s6L-Wb-sc9">
+                                <rect key="frame" x="32" y="230" width="329" height="417"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashSunHeader" translatesAutoresizingMaskIntoConstraints="NO" id="mau-ti-PvO">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="170.33333333333334"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MagusLogoSplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="bAW-Un-kGf">
+                                <rect key="frame" x="73.666666666666686" y="647" width="246" height="129"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="246" id="uL8-iL-o1T"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashBetterWith" translatesAutoresizingMaskIntoConstraints="NO" id="SeD-jn-rxs">
+                                <rect key="frame" x="103.66666666666669" y="199" width="186" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="OUt-bg-6kY"/>
+                                    <constraint firstAttribute="width" constant="186" id="QHU-Vb-G7P"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="y4c-n7-fMa"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="s6L-Wb-sc9" firstAttribute="centerX" secondItem="y4c-n7-fMa" secondAttribute="centerX" id="4ZB-GG-rAu"/>
+                            <constraint firstItem="SeD-jn-rxs" firstAttribute="centerX" secondItem="s6L-Wb-sc9" secondAttribute="centerX" id="5za-gL-Fb5"/>
+                            <constraint firstAttribute="top" secondItem="mau-ti-PvO" secondAttribute="top" id="6wY-h3-Vg0"/>
+                            <constraint firstItem="bAW-Un-kGf" firstAttribute="height" secondItem="Zcn-9Y-4eY" secondAttribute="height" multiplier="0.151188" id="Cby-2E-Y1z"/>
+                            <constraint firstAttribute="trailing" secondItem="mau-ti-PvO" secondAttribute="trailing" id="Ep6-Kw-axn"/>
+                            <constraint firstItem="s6L-Wb-sc9" firstAttribute="firstBaseline" secondItem="SeD-jn-rxs" secondAttribute="baseline" constant="10" id="F6N-o3-w8l"/>
+                            <constraint firstItem="s6L-Wb-sc9" firstAttribute="height" secondItem="y4c-n7-fMa" secondAttribute="height" multiplier="0.549676" id="Ndq-3j-j2F"/>
+                            <constraint firstItem="bAW-Un-kGf" firstAttribute="top" secondItem="s6L-Wb-sc9" secondAttribute="bottom" id="Q09-OE-xTt"/>
+                            <constraint firstItem="bAW-Un-kGf" firstAttribute="centerX" secondItem="s6L-Wb-sc9" secondAttribute="centerX" id="WNB-Cg-vV7"/>
+                            <constraint firstItem="s6L-Wb-sc9" firstAttribute="leading" secondItem="y4c-n7-fMa" secondAttribute="leading" constant="32" id="YgK-LG-Nc9"/>
+                            <constraint firstItem="y4c-n7-fMa" firstAttribute="trailing" secondItem="s6L-Wb-sc9" secondAttribute="trailing" constant="32" id="bWe-WC-kOu"/>
+                            <constraint firstItem="mau-ti-PvO" firstAttribute="height" secondItem="Zcn-9Y-4eY" secondAttribute="height" multiplier="0.2" id="k9d-iL-Ona"/>
+                            <constraint firstItem="s6L-Wb-sc9" firstAttribute="centerY" secondItem="y4c-n7-fMa" secondAttribute="centerY" id="oec-f0-Gjk"/>
+                            <constraint firstItem="mau-ti-PvO" firstAttribute="leading" secondItem="Zcn-9Y-4eY" secondAttribute="leading" id="zyZ-RP-lbD"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="58" y="-2"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="MagusLogoSplashScreen" width="246" height="140"/>
+        <image name="SplashBetterWith" width="186" height="21"/>
+        <image name="SplashListening" width="363" height="509"/>
+        <image name="SplashSunHeader" width="428" height="153"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
