@@ -11,10 +11,10 @@ import RxCocoa
 
 class LoginViewModel {
     private let router: Router
-    private let userName = BehaviorRelay<String>(value: "")
+    let userName = BehaviorRelay<String>(value: "")
     var userNameObservable: Observable<String> { userName.asObservable() }
     
-    private let password = BehaviorRelay<String>(value: "")
+    let password = BehaviorRelay<String>(value: "")
     var passwordObservable: Observable<String> { password.asObservable() }
     
     init(dependencies: Dependencies = .standard) {
@@ -22,6 +22,7 @@ class LoginViewModel {
     }
     
     func loginAction() {
+        // TODO: API FOR SIGN UP
         DispatchQueue.main.async { [weak self] in
             self?.router.selectedRoute = .home
         }

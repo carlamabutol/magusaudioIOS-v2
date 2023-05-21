@@ -9,12 +9,14 @@ import Foundation
 import UIKit
 
 enum Route: Equatable {
+    case splashscreen
     case welcome
     case login
     case home
     
     static func == (lhs: Route, rhs: Route) -> Bool {
         switch lhs {
+        case .splashscreen: if case .splashscreen = rhs { return true }
         case .welcome: if case .welcome = rhs { return true }
         case .login: if case .login = rhs { return true }
         case .home: if case .home = rhs { return true }

@@ -18,11 +18,11 @@ struct LocalizedStrings {
     struct Login {
         static let loginTitleButton = "Login"
         static let forgotPassword = "Forgot Password?"
-        static let createAccount = "Create Account"
         static let welcomeBackTitle = "Welcome back!"
         static let signInStartListening = "Sign in to start listening."
         static let dontHaveAnAccount = "Don’t have an account? "
         static let signUp = "SIGN UP"
+        static let signIn = "SIGN IN"
     }
     
 }

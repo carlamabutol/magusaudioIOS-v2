@@ -9,12 +9,23 @@ import UIKit
 
 extension UIViewController {
     
-    static func instantiate(from storyboard: StoryboardString) -> UIViewController {
-        let storyboard = UIStoryboard(name: storyboard.rawValue, bundle: nil)
-        guard let viewController = storyboard.instantiateInitialViewController() as? Self else {
-            fatalError("UIViewController you are attempting to instantiate might noe be the inital view controller or the storyboard name might be incorrect")
-        }
-        return viewController
+    @discardableResult
+    func presentAlert(title: String = "", message: String? = nil) -> UIAlertController {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alertVC.addAction(UIAlertAction(title: "Okay", style: .default))
+        
+        return alertVC
+    }
+    
+    func hideKeyboardOnTap() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
 }

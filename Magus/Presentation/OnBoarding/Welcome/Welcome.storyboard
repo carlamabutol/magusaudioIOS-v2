@@ -29,7 +29,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bo9-5Z-ZGV">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bo9-5Z-ZGV" customClass="FormButton" customModule="Magus" customModuleProvider="target">
                                 <rect key="frame" x="45" y="678.66666666666663" width="303" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="IrO-Ad-1ef"/>
@@ -58,7 +58,7 @@
                     </view>
                     <connections>
                         <outlet property="createAccountLabel" destination="hNN-z6-Y6r" id="Oy3-Ys-MZQ"/>
-                        <outlet property="signInButton" destination="bo9-5Z-ZGV" id="Mby-LG-9kZ"/>
+                        <outlet property="signInButton" destination="bo9-5Z-ZGV" id="d2t-vD-v1U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
