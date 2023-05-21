@@ -7,11 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F827D97B2A10F08D0034B5AF /* String+Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F827D97A2A10F08D0034B5AF /* String+Storyboard.swift */; };
+		F806560C2A179B7B006D53F8 /* CommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F806560B2A179B7B006D53F8 /* CommonView.swift */; };
+		F80A38B82A18C09F0023D166 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80A38B72A18C09F0023D166 /* KeyboardManager.swift */; };
+		F81A48162A17725300D72E73 /* TextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F81A48152A17725300D72E73 /* TextFieldView.xib */; };
+		F81A48182A17736200D72E73 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81A48172A17736200D72E73 /* TextFieldView.swift */; };
+		F81ED0762A16160E0043E245 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E3D2A0BE84F004D28A1 /* RootViewModel.swift */; };
+		F81ED0772A16160E0043E245 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8512C3C2A13BDAF0041C14F /* WelcomeViewController.swift */; };
+		F81ED0782A16160E0043E245 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E3A2A0BE6CE004D28A1 /* Route.swift */; };
+		F81ED0792A16160E0043E245 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8512C412A13C3C60041C14F /* Colors.swift */; };
+		F81ED07B2A16160E0043E245 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F827D9862A10FAE30034B5AF /* MainTabBarViewController.swift */; };
+		F81ED07C2A16160E0043E245 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88A82E52A13CE8500D3E975 /* Font+Extension.swift */; };
+		F81ED07D2A16160E0043E245 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E352A0BE619004D28A1 /* LoginViewController.swift */; };
+		F81ED07E2A16160E0043E245 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F835B0032A06526200123A16 /* AppDelegate.swift */; };
+		F81ED07F2A16160E0043E245 /* CommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F848EF072A0BC9EC0097F104 /* CommonViewController.swift */; };
+		F81ED0802A16160E0043E245 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8512C3E2A13BDC90041C14F /* WelcomeViewModel.swift */; };
+		F81ED0812A16160E0043E245 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F835B01D2A0652D100123A16 /* RootViewController.swift */; };
+		F81ED0822A16160E0043E245 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E372A0BE623004D28A1 /* LoginViewModel.swift */; };
+		F81ED0832A16160E0043E245 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F848EF132A0BD46C0097F104 /* ViewController+Extension.swift */; };
+		F81ED0842A16160E0043E245 /* SharedDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F827D97C2A10F6BB0034B5AF /* SharedDependencies.swift */; };
+		F81ED0852A16160E0043E245 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88A830D2A13D22900D3E975 /* UIView+Extension.swift */; };
+		F81ED0862A16160E0043E245 /* String+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8512C332A13B9EA0041C14F /* String+Images.swift */; };
+		F81ED0872A16160E0043E245 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E2F2A0BDAB8004D28A1 /* LocalizedStrings.swift */; };
+		F81ED0882A16160E0043E245 /* Colors+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8512C432A13C4120041C14F /* Colors+Hex.swift */; };
+		F81ED0892A16160E0043E245 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F835B0052A06526200123A16 /* SceneDelegate.swift */; };
+		F81ED08A2A16160E0043E245 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = F827D97F2A10F7460034B5AF /* Router.swift */; };
+		F81ED08C2A16160E0043E245 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = F81ED0732A16160E0043E245 /* SDWebImage */; };
+		F81ED08D2A16160E0043E245 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F81ED0722A16160E0043E245 /* RxSwift */; };
+		F81ED08E2A16160E0043E245 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = F81ED0702A16160E0043E245 /* RxCocoa */; };
+		F81ED0902A16160E0043E245 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82E82A13CEDA00D3E975 /* Montserrat-LightItalic.ttf */; };
+		F81ED0912A16160E0043E245 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F835B00E2A06526300123A16 /* LaunchScreen.storyboard */; };
+		F81ED0922A16160E0043E245 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82EC2A13CEDA00D3E975 /* Montserrat-ThinItalic.ttf */; };
+		F81ED0932A16160E0043E245 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82F12A13CEDA00D3E975 /* Montserrat-BlackItalic.ttf */; };
+		F81ED0942A16160E0043E245 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F835B0092A06526200123A16 /* Main.storyboard */; };
+		F81ED0952A16160E0043E245 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82F42A13CEDA00D3E975 /* Montserrat-ExtraBold.ttf */; };
+		F81ED0962A16160E0043E245 /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F827D9842A10FAD70034B5AF /* MainTabBar.storyboard */; };
+		F81ED0972A16160E0043E245 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82F22A13CEDA00D3E975 /* Montserrat-SemiBold.ttf */; };
+		F81ED0982A16160E0043E245 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82F52A13CEDA00D3E975 /* Montserrat-Black.ttf */; };
+		F81ED0992A16160E0043E245 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82EF2A13CEDA00D3E975 /* Montserrat-Bold.ttf */; };
+		F81ED09A2A16160E0043E245 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8669E332A0BE604004D28A1 /* Login.storyboard */; };
+		F81ED09B2A16160E0043E245 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82EE2A13CEDA00D3E975 /* Montserrat-Thin.ttf */; };
+		F81ED09C2A16160E0043E245 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82F62A13CEDA00D3E975 /* Montserrat-Regular.ttf */; };
+		F81ED09D2A16160E0043E245 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8512C312A13B9EA0041C14F /* Assets.xcassets */; };
+		F81ED09E2A16160E0043E245 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82EB2A13CEDA00D3E975 /* Montserrat-Light.ttf */; };
+		F81ED09F2A16160E0043E245 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82F02A13CEDA00D3E975 /* Montserrat-MediumItalic.ttf */; };
+		F81ED0A02A16160E0043E245 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82F72A13CEDA00D3E975 /* Montserrat-Italic.ttf */; };
+		F81ED0A12A16160E0043E245 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82F92A13CEDA00D3E975 /* Montserrat-ExtraBoldItalic.ttf */; };
+		F81ED0A22A16160E0043E245 /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82ED2A13CEDA00D3E975 /* Montserrat-ExtraLight.ttf */; };
+		F81ED0A32A16160E0043E245 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82F82A13CEDA00D3E975 /* Montserrat-SemiBoldItalic.ttf */; };
+		F81ED0A42A16160E0043E245 /* RootViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F835B01B2A0652B400123A16 /* RootViewController.storyboard */; };
+		F81ED0A52A16160E0043E245 /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82F32A13CEDA00D3E975 /* Montserrat-ExtraLightItalic.ttf */; };
+		F81ED0A62A16160E0043E245 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82E92A13CEDA00D3E975 /* Montserrat-Medium.ttf */; };
+		F81ED0A72A16160E0043E245 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82EA2A13CEDA00D3E975 /* Montserrat-BoldItalic.ttf */; };
+		F81ED0A82A16160E0043E245 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8512C3A2A13BDA50041C14F /* Welcome.storyboard */; };
+		F81ED0B02A162B9C0043E245 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81ED0AF2A162B9C0043E245 /* SplashScreenViewController.swift */; };
+		F81ED0B22A162E5E0043E245 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F81ED0B12A162E5E0043E245 /* SplashScreen.storyboard */; };
+		F82552102A17940400ACD902 /* ReusableXibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F825520F2A17940400ACD902 /* ReusableXibView.swift */; };
 		F827D97D2A10F6BB0034B5AF /* SharedDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F827D97C2A10F6BB0034B5AF /* SharedDependencies.swift */; };
 		F827D9802A10F7460034B5AF /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = F827D97F2A10F7460034B5AF /* Router.swift */; };
 		F827D9852A10FAD70034B5AF /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F827D9842A10FAD70034B5AF /* MainTabBar.storyboard */; };
 		F827D9872A10FAE30034B5AF /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F827D9862A10FAE30034B5AF /* MainTabBarViewController.swift */; };
+		F82CA4F22A19B4A5007EDFAE /* ViewController+Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82CA4F12A19B4A4007EDFAE /* ViewController+Storyboard+Extension.swift */; };
 		F835B0042A06526200123A16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F835B0032A06526200123A16 /* AppDelegate.swift */; };
 		F835B0062A06526200123A16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F835B0052A06526200123A16 /* SceneDelegate.swift */; };
 		F835B00B2A06526200123A16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F835B0092A06526200123A16 /* Main.storyboard */; };
@@ -23,6 +78,8 @@
 		F848EF0D2A0BD3530097F104 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F848EF0C2A0BD3530097F104 /* RxSwift */; };
 		F848EF102A0BD3A60097F104 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = F848EF0F2A0BD3A60097F104 /* SDWebImage */; };
 		F848EF142A0BD46C0097F104 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F848EF132A0BD46C0097F104 /* ViewController+Extension.swift */; };
+		F8511DED2A17CFEA00EFFFB4 /* FormButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8511DEC2A17CFEA00EFFFB4 /* FormButton.xib */; };
+		F8511DF02A17D02000EFFFB4 /* FormButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8511DEF2A17D02000EFFFB4 /* FormButton.swift */; };
 		F8512C342A13B9EA0041C14F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8512C312A13B9EA0041C14F /* Assets.xcassets */; };
 		F8512C352A13B9EA0041C14F /* String+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8512C332A13B9EA0041C14F /* String+Images.swift */; };
 		F8512C3B2A13BDA50041C14F /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8512C3A2A13BDA50041C14F /* Welcome.storyboard */; };
@@ -36,6 +93,7 @@
 		F8669E382A0BE623004D28A1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E372A0BE623004D28A1 /* LoginViewModel.swift */; };
 		F8669E3B2A0BE6CE004D28A1 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E3A2A0BE6CE004D28A1 /* Route.swift */; };
 		F8669E3E2A0BE84F004D28A1 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E3D2A0BE84F004D28A1 /* RootViewModel.swift */; };
+		F86F797D2A18C3C200298581 /* TappableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86F797C2A18C3C200298581 /* TappableLabel.swift */; };
 		F88A82E62A13CE8500D3E975 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88A82E52A13CE8500D3E975 /* Font+Extension.swift */; };
 		F88A82FA2A13CEDA00D3E975 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82E82A13CEDA00D3E975 /* Montserrat-LightItalic.ttf */; };
 		F88A82FB2A13CEDA00D3E975 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82E92A13CEDA00D3E975 /* Montserrat-Medium.ttf */; };
@@ -56,14 +114,24 @@
 		F88A830A2A13CEDA00D3E975 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82F82A13CEDA00D3E975 /* Montserrat-SemiBoldItalic.ttf */; };
 		F88A830B2A13CEDA00D3E975 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82F92A13CEDA00D3E975 /* Montserrat-ExtraBoldItalic.ttf */; };
 		F88A830E2A13D22900D3E975 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88A830D2A13D22900D3E975 /* UIView+Extension.swift */; };
+		F8AFFD7A2A19AC6A00FDC40B /* TappableLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8AFFD792A19AC6A00FDC40B /* TappableLabel.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F827D97A2A10F08D0034B5AF /* String+Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Storyboard.swift"; sourceTree = "<group>"; };
+		F806560B2A179B7B006D53F8 /* CommonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonView.swift; sourceTree = "<group>"; };
+		F80A38B72A18C09F0023D166 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
+		F81A48152A17725300D72E73 /* TextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldView.xib; sourceTree = "<group>"; };
+		F81A48172A17736200D72E73 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		F81ED0AC2A16160E0043E245 /* Magus Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magus Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F81ED0AD2A16160E0043E245 /* Magus copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Magus copy-Info.plist"; path = "/Users/jom/Desktop/Desktop - iMac (Ji) /New Folder With Items/Mobile/Magus/Magus copy-Info.plist"; sourceTree = "<absolute>"; };
+		F81ED0AF2A162B9C0043E245 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
+		F81ED0B12A162E5E0043E245 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
+		F825520F2A17940400ACD902 /* ReusableXibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableXibView.swift; sourceTree = "<group>"; };
 		F827D97C2A10F6BB0034B5AF /* SharedDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDependencies.swift; sourceTree = "<group>"; };
 		F827D97F2A10F7460034B5AF /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		F827D9842A10FAD70034B5AF /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
 		F827D9862A10FAE30034B5AF /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		F82CA4F12A19B4A4007EDFAE /* ViewController+Storyboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Storyboard+Extension.swift"; sourceTree = "<group>"; };
 		F835B0002A06526200123A16 /* Magus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Magus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F835B0032A06526200123A16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F835B0052A06526200123A16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +142,8 @@
 		F835B01D2A0652D100123A16 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		F848EF072A0BC9EC0097F104 /* CommonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewController.swift; sourceTree = "<group>"; };
 		F848EF132A0BD46C0097F104 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		F8511DEC2A17CFEA00EFFFB4 /* FormButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormButton.xib; sourceTree = "<group>"; };
+		F8511DEF2A17D02000EFFFB4 /* FormButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButton.swift; sourceTree = "<group>"; };
 		F8512C312A13B9EA0041C14F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F8512C332A13B9EA0041C14F /* String+Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Images.swift"; sourceTree = "<group>"; };
 		F8512C3A2A13BDA50041C14F /* Welcome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
@@ -87,6 +157,7 @@
 		F8669E372A0BE623004D28A1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		F8669E3A2A0BE6CE004D28A1 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		F8669E3D2A0BE84F004D28A1 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		F86F797C2A18C3C200298581 /* TappableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableLabel.swift; sourceTree = "<group>"; };
 		F88A82E52A13CE8500D3E975 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		F88A82E82A13CEDA00D3E975 /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
 		F88A82E92A13CEDA00D3E975 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
@@ -107,9 +178,20 @@
 		F88A82F82A13CEDA00D3E975 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		F88A82F92A13CEDA00D3E975 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		F88A830D2A13D22900D3E975 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		F8AFFD792A19AC6A00FDC40B /* TappableLabel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TappableLabel.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F81ED08B2A16160E0043E245 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F81ED08C2A16160E0043E245 /* SDWebImage in Frameworks */,
+				F81ED08D2A16160E0043E245 /* RxSwift in Frameworks */,
+				F81ED08E2A16160E0043E245 /* RxCocoa in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F835AFFD2A06526200123A16 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -123,12 +205,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F827D9792A10F07C0034B5AF /* String+Storyboard */ = {
+		F80A38B62A18C0910023D166 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				F827D97A2A10F08D0034B5AF /* String+Storyboard.swift */,
+				F80A38B72A18C09F0023D166 /* KeyboardManager.swift */,
 			);
-			path = "String+Storyboard";
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		F81A48142A17723B00D72E73 /* TextFieldView */ = {
+			isa = PBXGroup;
+			children = (
+				F81A48152A17725300D72E73 /* TextFieldView.xib */,
+				F81A48172A17736200D72E73 /* TextFieldView.swift */,
+			);
+			path = TextFieldView;
+			sourceTree = "<group>";
+		};
+		F81ED0AE2A16264E0043E245 /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F81ED0AF2A162B9C0043E245 /* SplashScreenViewController.swift */,
+				F81ED0B12A162E5E0043E245 /* SplashScreen.storyboard */,
+			);
+			path = SplashScreen;
 			sourceTree = "<group>";
 		};
 		F827D97E2A10F7400034B5AF /* Router */ = {
@@ -169,6 +269,7 @@
 			children = (
 				F835B0022A06526200123A16 /* Magus */,
 				F835B0012A06526200123A16 /* Products */,
+				F81ED0AD2A16160E0043E245 /* Magus copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -176,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				F835B0002A06526200123A16 /* Magus.app */,
+				F81ED0AC2A16160E0043E245 /* Magus Dev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,16 +285,17 @@
 		F835B0022A06526200123A16 /* Magus */ = {
 			isa = PBXGroup;
 			children = (
+				F80A38B62A18C0910023D166 /* Helper */,
 				F8512C302A13B9EA0041C14F /* Resources */,
-				F8669E412A0BEC48004D28A1 /* Common */,
+				F8669E412A0BEC48004D28A1 /* Utilities */,
 				F8669E402A0BEC34004D28A1 /* Extensions */,
 				F8669E392A0BE6BB004D28A1 /* AppLifeCycle */,
 				F8669E2E2A0BDAA4004D28A1 /* LocalizedStrings */,
 				F835B0192A06528100123A16 /* Domain */,
 				F835B0172A06527000123A16 /* Presentation */,
 				F835B0182A06527700123A16 /* RootViewController */,
-				F835B0092A06526200123A16 /* Main.storyboard */,
 				F835B00E2A06526300123A16 /* LaunchScreen.storyboard */,
+				F835B0092A06526200123A16 /* Main.storyboard */,
 				F835B0112A06526300123A16 /* Info.plist */,
 			);
 			path = Magus;
@@ -201,6 +304,7 @@
 		F835B0172A06527000123A16 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				F83C49B02A19BC9800BC4429 /* CommonViews */,
 				F8512C362A13BB3A0041C14F /* OnBoarding */,
 				F827D9822A10FAB90034B5AF /* Authentication */,
 				F827D9812A10FAB40034B5AF /* Main */,
@@ -243,6 +347,16 @@
 			path = CommonViewController;
 			sourceTree = "<group>";
 		};
+		F83C49B02A19BC9800BC4429 /* CommonViews */ = {
+			isa = PBXGroup;
+			children = (
+				F8AFFD782A19AC5800FDC40B /* TappableLabel */,
+				F8511DEE2A17D00400EFFFB4 /* FormButton */,
+				F81A48142A17723B00D72E73 /* TextFieldView */,
+			);
+			path = CommonViews;
+			sourceTree = "<group>";
+		};
 		F848EF112A0BD3CA0097F104 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,8 +368,18 @@
 			isa = PBXGroup;
 			children = (
 				F848EF132A0BD46C0097F104 /* ViewController+Extension.swift */,
+				F82CA4F12A19B4A4007EDFAE /* ViewController+Storyboard+Extension.swift */,
 			);
 			path = "ViewController+Extension";
+			sourceTree = "<group>";
+		};
+		F8511DEE2A17D00400EFFFB4 /* FormButton */ = {
+			isa = PBXGroup;
+			children = (
+				F8511DEC2A17CFEA00EFFFB4 /* FormButton.xib */,
+				F8511DEF2A17D02000EFFFB4 /* FormButton.swift */,
+			);
+			path = FormButton;
 			sourceTree = "<group>";
 		};
 		F8512C302A13B9EA0041C14F /* Resources */ = {
@@ -279,6 +403,7 @@
 		F8512C362A13BB3A0041C14F /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
+				F81ED0AE2A16264E0043E245 /* SplashScreen */,
 				F8512C372A13BD780041C14F /* Welcome */,
 			);
 			path = OnBoarding;
@@ -338,18 +463,19 @@
 				F88A830C2A13D21200D3E975 /* UIView+Extensions */,
 				F88A82E42A13CE7A00D3E975 /* Font+Extension */,
 				F8512C402A13C3B80041C14F /* UIColor+Extension */,
-				F827D9792A10F07C0034B5AF /* String+Storyboard */,
 				F848EF122A0BD4560097F104 /* ViewController+Extension */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		F8669E412A0BEC48004D28A1 /* Common */ = {
+		F8669E412A0BEC48004D28A1 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				F835B01F2A0652D600123A16 /* CommonViewController */,
+				F825520F2A17940400ACD902 /* ReusableXibView.swift */,
+				F806560B2A179B7B006D53F8 /* CommonView.swift */,
 			);
-			path = Common;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		F88A82E42A13CE7A00D3E975 /* Font+Extension */ = {
@@ -393,9 +519,40 @@
 			path = "UIView+Extensions";
 			sourceTree = "<group>";
 		};
+		F8AFFD782A19AC5800FDC40B /* TappableLabel */ = {
+			isa = PBXGroup;
+			children = (
+				F86F797C2A18C3C200298581 /* TappableLabel.swift */,
+				F8AFFD792A19AC6A00FDC40B /* TappableLabel.xib */,
+			);
+			path = TappableLabel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		F81ED06F2A16160E0043E245 /* Magus Dev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F81ED0A92A16160E0043E245 /* Build configuration list for PBXNativeTarget "Magus Dev" */;
+			buildPhases = (
+				F81ED0752A16160E0043E245 /* Sources */,
+				F81ED08B2A16160E0043E245 /* Frameworks */,
+				F81ED08F2A16160E0043E245 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Magus Dev";
+			packageProductDependencies = (
+				F81ED0702A16160E0043E245 /* RxCocoa */,
+				F81ED0722A16160E0043E245 /* RxSwift */,
+				F81ED0732A16160E0043E245 /* SDWebImage */,
+			);
+			productName = Magus;
+			productReference = F81ED0AC2A16160E0043E245 /* Magus Dev.app */;
+			productType = "com.apple.product-type.application";
+		};
 		F835AFFF2A06526200123A16 /* Magus */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F835B0142A06526300123A16 /* Build configuration list for PBXNativeTarget "Magus" */;
@@ -451,11 +608,44 @@
 			projectRoot = "";
 			targets = (
 				F835AFFF2A06526200123A16 /* Magus */,
+				F81ED06F2A16160E0043E245 /* Magus Dev */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F81ED08F2A16160E0043E245 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F81ED0902A16160E0043E245 /* Montserrat-LightItalic.ttf in Resources */,
+				F81ED0912A16160E0043E245 /* LaunchScreen.storyboard in Resources */,
+				F81ED0922A16160E0043E245 /* Montserrat-ThinItalic.ttf in Resources */,
+				F81ED0932A16160E0043E245 /* Montserrat-BlackItalic.ttf in Resources */,
+				F81ED0942A16160E0043E245 /* Main.storyboard in Resources */,
+				F81ED0952A16160E0043E245 /* Montserrat-ExtraBold.ttf in Resources */,
+				F81ED0962A16160E0043E245 /* MainTabBar.storyboard in Resources */,
+				F81ED0972A16160E0043E245 /* Montserrat-SemiBold.ttf in Resources */,
+				F81ED0982A16160E0043E245 /* Montserrat-Black.ttf in Resources */,
+				F81ED0992A16160E0043E245 /* Montserrat-Bold.ttf in Resources */,
+				F81ED09A2A16160E0043E245 /* Login.storyboard in Resources */,
+				F81ED09B2A16160E0043E245 /* Montserrat-Thin.ttf in Resources */,
+				F81ED09C2A16160E0043E245 /* Montserrat-Regular.ttf in Resources */,
+				F81ED09D2A16160E0043E245 /* Assets.xcassets in Resources */,
+				F81ED09E2A16160E0043E245 /* Montserrat-Light.ttf in Resources */,
+				F81ED09F2A16160E0043E245 /* Montserrat-MediumItalic.ttf in Resources */,
+				F81ED0A02A16160E0043E245 /* Montserrat-Italic.ttf in Resources */,
+				F81ED0A12A16160E0043E245 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
+				F81ED0A22A16160E0043E245 /* Montserrat-ExtraLight.ttf in Resources */,
+				F81ED0A32A16160E0043E245 /* Montserrat-SemiBoldItalic.ttf in Resources */,
+				F81ED0A42A16160E0043E245 /* RootViewController.storyboard in Resources */,
+				F81ED0A52A16160E0043E245 /* Montserrat-ExtraLightItalic.ttf in Resources */,
+				F81ED0A62A16160E0043E245 /* Montserrat-Medium.ttf in Resources */,
+				F81ED0A72A16160E0043E245 /* Montserrat-BoldItalic.ttf in Resources */,
+				F81ED0A82A16160E0043E245 /* Welcome.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F835AFFE2A06526200123A16 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -473,24 +663,55 @@
 				F8669E342A0BE604004D28A1 /* Login.storyboard in Resources */,
 				F88A83002A13CEDA00D3E975 /* Montserrat-Thin.ttf in Resources */,
 				F88A83082A13CEDA00D3E975 /* Montserrat-Regular.ttf in Resources */,
+				F8AFFD7A2A19AC6A00FDC40B /* TappableLabel.xib in Resources */,
 				F8512C342A13B9EA0041C14F /* Assets.xcassets in Resources */,
 				F88A82FD2A13CEDA00D3E975 /* Montserrat-Light.ttf in Resources */,
 				F88A83022A13CEDA00D3E975 /* Montserrat-MediumItalic.ttf in Resources */,
 				F88A83092A13CEDA00D3E975 /* Montserrat-Italic.ttf in Resources */,
 				F88A830B2A13CEDA00D3E975 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
+				F81A48162A17725300D72E73 /* TextFieldView.xib in Resources */,
 				F88A82FF2A13CEDA00D3E975 /* Montserrat-ExtraLight.ttf in Resources */,
 				F88A830A2A13CEDA00D3E975 /* Montserrat-SemiBoldItalic.ttf in Resources */,
 				F835B01C2A0652B400123A16 /* RootViewController.storyboard in Resources */,
+				F81ED0B22A162E5E0043E245 /* SplashScreen.storyboard in Resources */,
 				F88A83052A13CEDA00D3E975 /* Montserrat-ExtraLightItalic.ttf in Resources */,
 				F88A82FB2A13CEDA00D3E975 /* Montserrat-Medium.ttf in Resources */,
 				F88A82FC2A13CEDA00D3E975 /* Montserrat-BoldItalic.ttf in Resources */,
 				F8512C3B2A13BDA50041C14F /* Welcome.storyboard in Resources */,
+				F8511DED2A17CFEA00EFFFB4 /* FormButton.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F81ED0752A16160E0043E245 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F81ED0762A16160E0043E245 /* RootViewModel.swift in Sources */,
+				F81ED0772A16160E0043E245 /* WelcomeViewController.swift in Sources */,
+				F81ED0782A16160E0043E245 /* Route.swift in Sources */,
+				F81ED0792A16160E0043E245 /* Colors.swift in Sources */,
+				F81ED07B2A16160E0043E245 /* MainTabBarViewController.swift in Sources */,
+				F81ED07C2A16160E0043E245 /* Font+Extension.swift in Sources */,
+				F81ED07D2A16160E0043E245 /* LoginViewController.swift in Sources */,
+				F81ED07E2A16160E0043E245 /* AppDelegate.swift in Sources */,
+				F81ED07F2A16160E0043E245 /* CommonViewController.swift in Sources */,
+				F81ED0802A16160E0043E245 /* WelcomeViewModel.swift in Sources */,
+				F81ED0812A16160E0043E245 /* RootViewController.swift in Sources */,
+				F81ED0822A16160E0043E245 /* LoginViewModel.swift in Sources */,
+				F81ED0832A16160E0043E245 /* ViewController+Extension.swift in Sources */,
+				F81ED0842A16160E0043E245 /* SharedDependencies.swift in Sources */,
+				F81ED0852A16160E0043E245 /* UIView+Extension.swift in Sources */,
+				F81ED0862A16160E0043E245 /* String+Images.swift in Sources */,
+				F81ED0872A16160E0043E245 /* LocalizedStrings.swift in Sources */,
+				F81ED0882A16160E0043E245 /* Colors+Hex.swift in Sources */,
+				F81ED0892A16160E0043E245 /* SceneDelegate.swift in Sources */,
+				F81ED08A2A16160E0043E245 /* Router.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F835AFFC2A06526200123A16 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -498,19 +719,26 @@
 				F8669E3E2A0BE84F004D28A1 /* RootViewModel.swift in Sources */,
 				F8512C3D2A13BDAF0041C14F /* WelcomeViewController.swift in Sources */,
 				F8669E3B2A0BE6CE004D28A1 /* Route.swift in Sources */,
+				F86F797D2A18C3C200298581 /* TappableLabel.swift in Sources */,
+				F8511DF02A17D02000EFFFB4 /* FormButton.swift in Sources */,
 				F8512C422A13C3C60041C14F /* Colors.swift in Sources */,
-				F827D97B2A10F08D0034B5AF /* String+Storyboard.swift in Sources */,
 				F827D9872A10FAE30034B5AF /* MainTabBarViewController.swift in Sources */,
 				F88A82E62A13CE8500D3E975 /* Font+Extension.swift in Sources */,
+				F80A38B82A18C09F0023D166 /* KeyboardManager.swift in Sources */,
 				F8669E362A0BE619004D28A1 /* LoginViewController.swift in Sources */,
 				F835B0042A06526200123A16 /* AppDelegate.swift in Sources */,
+				F82552102A17940400ACD902 /* ReusableXibView.swift in Sources */,
 				F848EF082A0BC9EC0097F104 /* CommonViewController.swift in Sources */,
+				F81A48182A17736200D72E73 /* TextFieldView.swift in Sources */,
 				F8512C3F2A13BDC90041C14F /* WelcomeViewModel.swift in Sources */,
 				F835B01E2A0652D100123A16 /* RootViewController.swift in Sources */,
 				F8669E382A0BE623004D28A1 /* LoginViewModel.swift in Sources */,
 				F848EF142A0BD46C0097F104 /* ViewController+Extension.swift in Sources */,
 				F827D97D2A10F6BB0034B5AF /* SharedDependencies.swift in Sources */,
+				F806560C2A179B7B006D53F8 /* CommonView.swift in Sources */,
 				F88A830E2A13D22900D3E975 /* UIView+Extension.swift in Sources */,
+				F81ED0B02A162B9C0043E245 /* SplashScreenViewController.swift in Sources */,
+				F82CA4F22A19B4A5007EDFAE /* ViewController+Storyboard+Extension.swift in Sources */,
 				F8512C352A13B9EA0041C14F /* String+Images.swift in Sources */,
 				F8669E302A0BDAB8004D28A1 /* LocalizedStrings.swift in Sources */,
 				F8512C442A13C4120041C14F /* Colors+Hex.swift in Sources */,
@@ -541,6 +769,72 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		F81ED0AA2A16160E0043E245 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2VQD652A6M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Magus copy-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Magus: Subliminal Audio";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.magus.subliminal.audio.dev;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F81ED0AB2A16160E0043E245 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2VQD652A6M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Magus copy-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Magus: Subliminal Audio";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.magus.subliminal.audio.dev;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		F835B0122A06526300123A16 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -668,16 +962,17 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Magus: Subliminal Audio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.magus.subliminal.audio.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.magus.subliminal.audio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -701,16 +996,17 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Magus: Subliminal Audio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.magus.subliminal.audio.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.magus.subliminal.audio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -724,6 +1020,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F81ED0A92A16160E0043E245 /* Build configuration list for PBXNativeTarget "Magus Dev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F81ED0AA2A16160E0043E245 /* Debug */,
+				F81ED0AB2A16160E0043E245 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F835AFFB2A06526200123A16 /* Build configuration list for PBXProject "Magus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -745,6 +1050,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F81ED0712A16160E0043E245 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		F81ED0742A16160E0043E245 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		F848EF092A0BD3530097F104 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -764,6 +1085,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F81ED0702A16160E0043E245 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F81ED0712A16160E0043E245 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		F81ED0722A16160E0043E245 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F81ED0712A16160E0043E245 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		F81ED0732A16160E0043E245 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F81ED0742A16160E0043E245 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
 		F848EF0A2A0BD3530097F104 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F848EF092A0BD3530097F104 /* XCRemoteSwiftPackageReference "RxSwift" */;

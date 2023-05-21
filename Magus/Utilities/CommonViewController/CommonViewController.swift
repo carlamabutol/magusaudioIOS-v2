@@ -13,6 +13,7 @@ class CommonViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.Background.primary
         setupView()
         setupBinding()
     }

@@ -18,14 +18,9 @@ class WelcomeViewController: CommonViewController {
             createAccountLabel.attributedText = Self.createAccountAttributedString()
         }
     }
-    
-    @IBOutlet private(set) var signInButton: UIButton! {
+    @IBOutlet var signInButton: FormButton! {
         didSet {
-            signInButton.backgroundColor = UIColor.white
             signInButton.setTitle(LocalizedStrings.Welcome.signInWithEmail, for: .normal)
-            signInButton.setTitleColor(.TextColor.welcomeBlue, for: .normal)
-            signInButton.titleLabel?.font = UIFont.Montserrat.bold1
-            signInButton.dropShadow(radius: 5, offsetY: 3)
         }
     }
     
@@ -57,14 +52,14 @@ extension WelcomeViewController {
     
     private static func createAccountAttributedString() -> NSMutableAttributedString {
         let title = LocalizedStrings.Welcome.newHere + LocalizedStrings.Welcome.createAccountForFree
-        let mutableString = NSMutableAttributedString(string: title, attributes: [.font: UIFont.Montserrat.body1!])
+        let mutableString = NSMutableAttributedString(string: title, attributes: [.font: UIFont.Montserrat.body1, .foregroundColor: UIColor.TextColor.primaryBlack])
         let range = mutableString.mutableString.range(of: LocalizedStrings.Welcome.createAccountForFree)
         mutableString.addAttributes(
             [
-                .foregroundColor: UIColor.TextColor.welcomeBlue,
-                .font: UIFont.Montserrat.semibold1!,
-                .underlineColor: UIColor.TextColor.welcomeBlue,
-                .underlineStyle: NSUnderlineStyle.thick
+                .foregroundColor: UIColor.TextColor.primaryBlue,
+                .font: UIFont.Montserrat.semibold1,
+                .underlineColor: UIColor.TextColor.primaryBlue,
+                .underlineStyle: NSUnderlineStyle.single.rawValue
             ], range: range)
         
         

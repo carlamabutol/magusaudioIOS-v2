@@ -41,6 +41,9 @@ class RootViewController: CommonViewController {
     
     private func navigate(to route: Route) {
         switch route {
+        case .splashscreen:
+            rootViewController?.dismiss(animated: false)
+            rootViewController = SplashScreenViewController.instantiate(from: .splashscreen)
         case .welcome:
             rootViewController?.dismiss(animated: false)
             rootViewController = WelcomeViewController.instantiate(from: .welcome)

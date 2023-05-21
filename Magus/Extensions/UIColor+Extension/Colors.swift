@@ -9,12 +9,18 @@ import UIKit
 
 extension UIColor {
     
-    struct Background {
+    enum Background {
         static let primary = UIColor(rgb: 0xF4FAFF)
     }
     
-    struct TextColor {
-        static let welcomeBlue = UIColor(rgb: 0x427AB3)
+    enum TextColor {
+        static let primaryBlack = UIColor(rgb: 0x2F3033)
+        static let primaryBlue = UIColor(rgb: 0x427AB3)
+        static let placeholderColor = UIColor(rgb: 0x69696978).withAlphaComponent(0.47)
+    }
+    
+    enum BorderColor {
+        static let formColor = UIColor(rgb: 0xCECECE)
     }
     
 }

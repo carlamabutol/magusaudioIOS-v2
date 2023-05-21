@@ -25,7 +25,7 @@ class Router {
     }
     
     init() {
-        selectedRouteRelay = BehaviorRelay(value: .welcome)
+        selectedRouteRelay = BehaviorRelay(value: .splashscreen)
         selectedRouterObservable = selectedRouteRelay.asObservable().observe(on: MainScheduler.asyncInstance)
     }
     
