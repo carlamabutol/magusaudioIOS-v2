@@ -24,6 +24,7 @@ class LoginViewController: CommonViewController {
     
     @IBOutlet var welcomeTitleLbl: UILabel! {
         didSet {
+            welcomeTitleLbl.numberOfLines = 2
             welcomeTitleLbl.font = UIFont.Montserrat.title
             welcomeTitleLbl.text = LocalizedStrings.Login.welcomeBackTitle
         }
@@ -44,13 +45,13 @@ class LoginViewController: CommonViewController {
     
     @IBOutlet var emailTextFieldView: TextFieldView! {
         didSet {
-            emailTextFieldView.configure(model: .init(placeholder: "Email", textObservable: viewModel.userName, keyboardType: .emailAddress))
+            emailTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.email, textObservable: viewModel.userName, keyboardType: .emailAddress))
         }
     }
     
     @IBOutlet var passwordTextFieldView: TextFieldView! {
         didSet {
-            passwordTextFieldView.configure(model: .init(placeholder: "Password", textObservable: viewModel.password, isSecureEntry: true))
+            passwordTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.password, textObservable: viewModel.password, isSecureEntry: true))
         }
     }
     
@@ -93,6 +94,7 @@ class LoginViewController: CommonViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(true, animated: false)
         registerForKeyboardNotifications()
         hideKeyboardOnTap()
     }
@@ -111,8 +113,8 @@ class LoginViewController: CommonViewController {
     
     private func gotoSignup() {
         // TODO: GO TO SIGN UP
-        let alert = presentAlert(title: "Tapped Sign Up")
-        present(alert, animated: true)
+        let vc = SignUpViewController.instantiate(from: .signUp)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func gotoForgotPassword() {
