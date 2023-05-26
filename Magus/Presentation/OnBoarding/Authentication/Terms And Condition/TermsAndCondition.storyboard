@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Terms And Condition View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="TermsAndConditionViewController" customModule="Magus" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MagusLogoSplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="4ED-zh-hkd">
+                                <rect key="frame" x="72.666666666666686" y="104" width="248" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="WXg-fs-Dfr"/>
+                                    <constraint firstAttribute="width" constant="248" id="qCV-Rg-CDS"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6IQ-T2-3gO">
+                                <rect key="frame" x="45" y="257" width="303" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GyM-fX-33l">
+                                <rect key="frame" x="45" y="712" width="303" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="efx-Sz-LWk"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcK-Ya-FrY">
+                                <rect key="frame" x="45" y="291" width="303" height="403"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ps3-wk-EVc">
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Ps3-wk-EVc" secondAttribute="bottom" id="2p5-qt-AQL"/>
+                                    <constraint firstItem="Ps3-wk-EVc" firstAttribute="leading" secondItem="vcK-Ya-FrY" secondAttribute="leading" id="8iC-3S-oYx"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ps3-wk-EVc" secondAttribute="trailing" id="aQZ-zD-9Q2"/>
+                                    <constraint firstItem="Ps3-wk-EVc" firstAttribute="top" secondItem="vcK-Ya-FrY" secondAttribute="top" id="kHI-RS-Dic"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="GyM-fX-33l" secondAttribute="bottom" constant="41" id="0AZ-Ud-MB3"/>
+                            <constraint firstItem="4ED-zh-hkd" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="45" id="2BF-Pc-Q0K"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="6IQ-T2-3gO" secondAttribute="trailing" constant="45" id="4QT-Ua-deB"/>
+                            <constraint firstItem="vcK-Ya-FrY" firstAttribute="top" secondItem="6IQ-T2-3gO" secondAttribute="bottom" constant="13" id="5qe-ms-k7F"/>
+                            <constraint firstItem="6IQ-T2-3gO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="45" id="DCA-Gk-hDH"/>
+                            <constraint firstItem="6IQ-T2-3gO" firstAttribute="centerX" secondItem="4ED-zh-hkd" secondAttribute="centerX" id="WJ3-RA-ac4"/>
+                            <constraint firstItem="6IQ-T2-3gO" firstAttribute="top" secondItem="4ED-zh-hkd" secondAttribute="bottom" constant="13" id="fJ0-jn-szM"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="leading" secondItem="vcK-Ya-FrY" secondAttribute="leading" constant="-45" id="hKI-1n-cqa"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="GyM-fX-33l" secondAttribute="trailing" constant="45" id="kT2-QS-MmC"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="vcK-Ya-FrY" secondAttribute="trailing" constant="45" id="mja-0e-yK6"/>
+                            <constraint firstItem="GyM-fX-33l" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="45" id="o4A-p9-hWk"/>
+                            <constraint firstItem="4ED-zh-hkd" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="oOt-2b-yJh"/>
+                            <constraint firstItem="vcK-Ya-FrY" firstAttribute="bottom" secondItem="GyM-fX-33l" secondAttribute="top" constant="-18" id="sru-bH-OU9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="acceptButton" destination="GyM-fX-33l" id="R2a-xg-BVq"/>
+                        <outlet property="descLabel" destination="Ps3-wk-EVc" id="z3X-Qr-9ap"/>
+                        <outlet property="titleLabel" destination="6IQ-T2-3gO" id="FKk-oU-xGr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="23.664122137404579" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="MagusLogoSplashScreen" width="246" height="140"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

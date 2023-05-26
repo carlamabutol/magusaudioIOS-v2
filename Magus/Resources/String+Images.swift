@@ -15,4 +15,6 @@ extension String {
     static let splashListening = "SplashListening"
     static let splashSunHeader = "SplashSunHeader"
     
+    static let checkIcon = "check"
+    
 }

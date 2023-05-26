@@ -21,4 +21,10 @@ class FormButton: UIButton {
         titleLabel?.font = UIFont.Montserrat.bold1
         applyShadow(radius: 5, offset: .init(width: 0, height: 4))
     }
+    
+    override var isEnabled: Bool {
+        didSet {
+            
+        }
+    }
 }

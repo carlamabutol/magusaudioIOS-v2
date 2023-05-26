@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7419C4592A209B0200DD86F2 /* TermsAndCondition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7419C4582A209B0200DD86F2 /* TermsAndCondition.storyboard */; };
+		7419C45B2A209F6700DD86F2 /* TermsAndConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419C45A2A209F6700DD86F2 /* TermsAndConditionViewController.swift */; };
 		F806560C2A179B7B006D53F8 /* CommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F806560B2A179B7B006D53F8 /* CommonView.swift */; };
 		F80A38B82A18C09F0023D166 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80A38B72A18C09F0023D166 /* KeyboardManager.swift */; };
 		F81A48162A17725300D72E73 /* TextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F81A48152A17725300D72E73 /* TextFieldView.xib */; };
@@ -67,6 +69,7 @@
 		F827D9852A10FAD70034B5AF /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F827D9842A10FAD70034B5AF /* MainTabBar.storyboard */; };
 		F827D9872A10FAE30034B5AF /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F827D9862A10FAE30034B5AF /* MainTabBarViewController.swift */; };
 		F82CA4F22A19B4A5007EDFAE /* ViewController+Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82CA4F12A19B4A4007EDFAE /* ViewController+Storyboard+Extension.swift */; };
+		F8315DE52A1CE9C100634DA1 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8315DE42A1CE9C100634DA1 /* SignUpViewModel.swift */; };
 		F835B0042A06526200123A16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F835B0032A06526200123A16 /* AppDelegate.swift */; };
 		F835B0062A06526200123A16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F835B0052A06526200123A16 /* SceneDelegate.swift */; };
 		F835B00B2A06526200123A16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F835B0092A06526200123A16 /* Main.storyboard */; };
@@ -115,9 +118,13 @@
 		F88A830B2A13CEDA00D3E975 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82F92A13CEDA00D3E975 /* Montserrat-ExtraBoldItalic.ttf */; };
 		F88A830E2A13D22900D3E975 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88A830D2A13D22900D3E975 /* UIView+Extension.swift */; };
 		F8AFFD7A2A19AC6A00FDC40B /* TappableLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8AFFD792A19AC6A00FDC40B /* TappableLabel.xib */; };
+		F8E4CCE92A19ED5F002C388C /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8E4CCE82A19ED5F002C388C /* SignUp.storyboard */; };
+		F8E4CCEB2A19ED74002C388C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4CCEA2A19ED74002C388C /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7419C4582A209B0200DD86F2 /* TermsAndCondition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TermsAndCondition.storyboard; sourceTree = "<group>"; };
+		7419C45A2A209F6700DD86F2 /* TermsAndConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionViewController.swift; sourceTree = "<group>"; };
 		F806560B2A179B7B006D53F8 /* CommonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonView.swift; sourceTree = "<group>"; };
 		F80A38B72A18C09F0023D166 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		F81A48152A17725300D72E73 /* TextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldView.xib; sourceTree = "<group>"; };
@@ -132,6 +139,7 @@
 		F827D9842A10FAD70034B5AF /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
 		F827D9862A10FAE30034B5AF /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		F82CA4F12A19B4A4007EDFAE /* ViewController+Storyboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Storyboard+Extension.swift"; sourceTree = "<group>"; };
+		F8315DE42A1CE9C100634DA1 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		F835B0002A06526200123A16 /* Magus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Magus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F835B0032A06526200123A16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F835B0052A06526200123A16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -179,6 +187,8 @@
 		F88A82F92A13CEDA00D3E975 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		F88A830D2A13D22900D3E975 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		F8AFFD792A19AC6A00FDC40B /* TappableLabel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TappableLabel.xib; sourceTree = "<group>"; };
+		F8E4CCE82A19ED5F002C388C /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
+		F8E4CCEA2A19ED74002C388C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +215,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7419C4572A209AEB00DD86F2 /* Terms And Condition */ = {
+			isa = PBXGroup;
+			children = (
+				7419C4582A209B0200DD86F2 /* TermsAndCondition.storyboard */,
+				7419C45A2A209F6700DD86F2 /* TermsAndConditionViewController.swift */,
+			);
+			path = "Terms And Condition";
+			sourceTree = "<group>";
+		};
 		F80A38B62A18C0910023D166 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +269,8 @@
 		F827D9822A10FAB90034B5AF /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				7419C4572A209AEB00DD86F2 /* Terms And Condition */,
+				F8E4CCE72A19ED51002C388C /* Sign Up */,
 				F8669E322A0BE5F5004D28A1 /* Login */,
 			);
 			path = Authentication;
@@ -306,7 +327,6 @@
 			children = (
 				F83C49B02A19BC9800BC4429 /* CommonViews */,
 				F8512C362A13BB3A0041C14F /* OnBoarding */,
-				F827D9822A10FAB90034B5AF /* Authentication */,
 				F827D9812A10FAB40034B5AF /* Main */,
 				F827D97E2A10F7400034B5AF /* Router */,
 			);
@@ -403,6 +423,7 @@
 		F8512C362A13BB3A0041C14F /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
+				F827D9822A10FAB90034B5AF /* Authentication */,
 				F81ED0AE2A16264E0043E245 /* SplashScreen */,
 				F8512C372A13BD780041C14F /* Welcome */,
 			);
@@ -526,6 +547,16 @@
 				F8AFFD792A19AC6A00FDC40B /* TappableLabel.xib */,
 			);
 			path = TappableLabel;
+			sourceTree = "<group>";
+		};
+		F8E4CCE72A19ED51002C388C /* Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+				F8E4CCE82A19ED5F002C388C /* SignUp.storyboard */,
+				F8E4CCEA2A19ED74002C388C /* SignUpViewController.swift */,
+				F8315DE42A1CE9C100634DA1 /* SignUpViewModel.swift */,
+			);
+			path = "Sign Up";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -663,7 +694,9 @@
 				F8669E342A0BE604004D28A1 /* Login.storyboard in Resources */,
 				F88A83002A13CEDA00D3E975 /* Montserrat-Thin.ttf in Resources */,
 				F88A83082A13CEDA00D3E975 /* Montserrat-Regular.ttf in Resources */,
+				7419C4592A209B0200DD86F2 /* TermsAndCondition.storyboard in Resources */,
 				F8AFFD7A2A19AC6A00FDC40B /* TappableLabel.xib in Resources */,
+				F8E4CCE92A19ED5F002C388C /* SignUp.storyboard in Resources */,
 				F8512C342A13B9EA0041C14F /* Assets.xcassets in Resources */,
 				F88A82FD2A13CEDA00D3E975 /* Montserrat-Light.ttf in Resources */,
 				F88A83022A13CEDA00D3E975 /* Montserrat-MediumItalic.ttf in Resources */,
@@ -724,6 +757,7 @@
 				F8512C422A13C3C60041C14F /* Colors.swift in Sources */,
 				F827D9872A10FAE30034B5AF /* MainTabBarViewController.swift in Sources */,
 				F88A82E62A13CE8500D3E975 /* Font+Extension.swift in Sources */,
+				7419C45B2A209F6700DD86F2 /* TermsAndConditionViewController.swift in Sources */,
 				F80A38B82A18C09F0023D166 /* KeyboardManager.swift in Sources */,
 				F8669E362A0BE619004D28A1 /* LoginViewController.swift in Sources */,
 				F835B0042A06526200123A16 /* AppDelegate.swift in Sources */,
@@ -732,11 +766,13 @@
 				F81A48182A17736200D72E73 /* TextFieldView.swift in Sources */,
 				F8512C3F2A13BDC90041C14F /* WelcomeViewModel.swift in Sources */,
 				F835B01E2A0652D100123A16 /* RootViewController.swift in Sources */,
+				F8E4CCEB2A19ED74002C388C /* SignUpViewController.swift in Sources */,
 				F8669E382A0BE623004D28A1 /* LoginViewModel.swift in Sources */,
 				F848EF142A0BD46C0097F104 /* ViewController+Extension.swift in Sources */,
 				F827D97D2A10F6BB0034B5AF /* SharedDependencies.swift in Sources */,
 				F806560C2A179B7B006D53F8 /* CommonView.swift in Sources */,
 				F88A830E2A13D22900D3E975 /* UIView+Extension.swift in Sources */,
+				F8315DE52A1CE9C100634DA1 /* SignUpViewModel.swift in Sources */,
 				F81ED0B02A162B9C0043E245 /* SplashScreenViewController.swift in Sources */,
 				F82CA4F22A19B4A5007EDFAE /* ViewController+Storyboard+Extension.swift in Sources */,
 				F8512C352A13B9EA0041C14F /* String+Images.swift in Sources */,

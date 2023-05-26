@@ -34,6 +34,7 @@ extension UIFont {
         // Regular
         static let body1 = UIFont.montSerratRegular(with: 13)
         static let body2 = UIFont.montSerratRegular(with: 10)
+        static let body3 = UIFont.montSerratRegular(with: 15)
         
         // Medium
         static let medium1 = UIFont.montSerratSemiBold(with: 13)
@@ -48,6 +49,7 @@ extension UIFont {
         
         // title
         static let title = UIFont.montSerratBold(with: 35)
+        static let title1 = UIFont.montSerratBold(with: 25)
         
     }
     

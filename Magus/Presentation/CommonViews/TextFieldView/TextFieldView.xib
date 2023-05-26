@@ -20,17 +20,17 @@
             <rect key="frame" x="0.0" y="0.0" width="363" height="130"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kxa-2p-ac2">
-                    <rect key="frame" x="0.0" y="59" width="363" height="37"/>
+                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kxa-2p-ac2">
+                    <rect key="frame" x="156" y="30.000000000000007" width="50" height="68.666666666666686"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QyD-mo-CyE">
-                            <rect key="frame" x="0.0" y="0.0" width="363" height="18.333333333333332"/>
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B3h-dh-CiP">
-                            <rect key="frame" x="0.0" y="18.333333333333329" width="363" height="18.666666666666671"/>
+                            <rect key="frame" x="0.0" y="50" width="50" height="18.666666666666671"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
@@ -40,12 +40,6 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-            <constraints>
-                <constraint firstItem="kxa-2p-ac2" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="1Mj-Bq-PuF"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="kxa-2p-ac2" secondAttribute="bottom" id="Pv5-Hv-SWm"/>
-                <constraint firstItem="kxa-2p-ac2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="k85-ui-4QD"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="kxa-2p-ac2" secondAttribute="trailing" id="vNv-Gy-ISa"/>
-            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-86.25954198473282" y="-512.67605633802816"/>
         </view>

@@ -46,9 +46,9 @@ class RootViewController: CommonViewController {
             rootViewController = SplashScreenViewController.instantiate(from: .splashscreen)
         case .welcome:
             rootViewController?.dismiss(animated: false)
-            rootViewController = WelcomeViewController.instantiate(from: .welcome)
+            rootViewController = UINavigationController(rootViewController: WelcomeViewController.instantiate(from: .welcome))
         case .login:
-            rootViewController = LoginViewController.instantiate(from: .login)
+            rootViewController = UINavigationController(rootViewController: LoginViewController.instantiate(from: .login))
         case .home:
             rootViewController?.dismiss(animated: false)
             rootViewController = UIViewController.instantiate(from: .mainTabBar)

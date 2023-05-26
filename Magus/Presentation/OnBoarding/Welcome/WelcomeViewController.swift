@@ -13,14 +13,23 @@ class WelcomeViewController: CommonViewController {
     
     private let viewModel = WelcomeViewModel()
     
-    @IBOutlet private(set) var createAccountLabel: UILabel! {
+    @IBOutlet private(set) var createAccountLabel: TappableLabel! {
         didSet {
-            createAccountLabel.attributedText = Self.createAccountAttributedString()
+            let attrb = Self.createAccountAttributedString()
+            createAccountLabel.isUserInteractionEnabled = true
+            createAccountLabel.attributedText = attrb
+            guard let range = attrb.string.range(of: LocalizedStrings.Welcome.createAccountForFree) else { return }
+            createAccountLabel.tappableRange = NSRange(range, in: attrb.string)
+            createAccountLabel.tappableHandler = { [weak self] in
+                self?.gotoSignup()
+            }
         }
     }
     @IBOutlet var signInButton: FormButton! {
         didSet {
             signInButton.setTitle(LocalizedStrings.Welcome.signInWithEmail, for: .normal)
+            signInButton.titleLabel?.textAlignment = .center
+            signInButton.titleLabel?.numberOfLines = 2
         }
     }
     
@@ -30,6 +39,7 @@ class WelcomeViewController: CommonViewController {
     
     override func setupView() {
         super.setupView()
+        navigationController?.setNavigationBarHidden(true, animated: true)
         view.backgroundColor = UIColor.Background.primary
     }
     
@@ -45,6 +55,13 @@ class WelcomeViewController: CommonViewController {
     @objc private func signInButtonAction() {
         viewModel.signInAction()
     }
+    
+    private func gotoSignup() {
+        // TODO: GO TO SIGN UP
+        let vc = SignUpViewController.instantiate(from: .signUp)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
     
 }
 
