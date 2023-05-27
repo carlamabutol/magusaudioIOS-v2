@@ -38,9 +38,10 @@ class TextFieldView: ReusableXibView {
     }
     
     fileprivate func removedAndInsertPlaceholderLbl(_ enteredText: String) {
-        stackView.removeArrangedSubview(placeholderLabel)
         if enteredText.isEmpty {
-            stackView.insertArrangedSubview(placeholderLabel, at: 0)
+            if stackView.arrangedSubviews.first != placeholderLabel {
+                stackView.insertArrangedSubview(placeholderLabel, at: 0)
+            }
         }
     }
     
@@ -56,6 +57,7 @@ class TextFieldView: ReusableXibView {
             .observe(on: MainScheduler.asyncInstance)
             .compactMap({ [weak self] enteredText in
                 self?.removedAndInsertPlaceholderLbl(enteredText)
+                print("entered - \(enteredText)")
                 return enteredText.isEmpty ? "" : self?.placeholder
             })
             .bind(to: placeholderLabel.rx.text)

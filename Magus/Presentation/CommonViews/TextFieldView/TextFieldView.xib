@@ -20,17 +20,17 @@
             <rect key="frame" x="0.0" y="0.0" width="363" height="130"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kxa-2p-ac2">
-                    <rect key="frame" x="156" y="30.000000000000007" width="50" height="68.666666666666686"/>
+                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kxa-2p-ac2">
+                    <rect key="frame" x="0.0" y="1" width="363" height="130"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QyD-mo-CyE">
-                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QyD-mo-CyE">
+                            <rect key="frame" x="0.0" y="0.0" width="363" height="111.33333333333333"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B3h-dh-CiP">
-                            <rect key="frame" x="0.0" y="50" width="50" height="18.666666666666671"/>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B3h-dh-CiP">
+                            <rect key="frame" x="0.0" y="111.33333333333333" width="363" height="18.666666666666671"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
@@ -40,6 +40,12 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="kxa-2p-ac2" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="ONk-gG-K0i"/>
+                <constraint firstItem="kxa-2p-ac2" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="YnE-Mh-4R0"/>
+                <constraint firstItem="kxa-2p-ac2" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="llI-Kv-WFj"/>
+                <constraint firstItem="kxa-2p-ac2" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="mQZ-Pw-XXl"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-86.25954198473282" y="-512.67605633802816"/>
         </view>
