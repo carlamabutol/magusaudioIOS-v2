@@ -16,5 +16,7 @@ extension String {
     static let splashSunHeader = "SplashSunHeader"
     
     static let checkIcon = "check"
+    static let eyeHide = "eyeHide"
+    static let eyeShow = "eyeShow"
     
 }

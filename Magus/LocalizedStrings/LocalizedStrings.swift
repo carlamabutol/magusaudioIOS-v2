@@ -13,7 +13,7 @@ struct LocalizedStrings {
         static let fullName = "Full Name"
         static let email = "Email"
         static let password = "Password"
-        static let confirmPassword = " Confirm Password"
+        static let confirmPassword = "Confirm Password"
     }
     
     enum Welcome {
@@ -52,6 +52,14 @@ struct LocalizedStrings {
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
         """
         static let accept = "Accept"
+    }
+    
+    enum ForgotPassword {
+        static let title = "Forgotten your password?"
+        static let description = "No worries! We'll help you reset it in a breeze."
+        static let submit = "Submit"
+        static let dontHaveAnAccount = "Don’t have an account? "
+        static let signUp = "SIGN UP"
     }
     
 }

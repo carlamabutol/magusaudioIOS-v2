@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7419C4592A209B0200DD86F2 /* TermsAndCondition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7419C4582A209B0200DD86F2 /* TermsAndCondition.storyboard */; };
 		7419C45B2A209F6700DD86F2 /* TermsAndConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419C45A2A209F6700DD86F2 /* TermsAndConditionViewController.swift */; };
+		7431D8122A24837C00F79E48 /* StandardNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7431D8112A24837C00F79E48 /* StandardNetworkService.swift */; };
+		7431D8152A2483E500F79E48 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7431D8142A2483E500F79E48 /* Alamofire */; };
 		F806560C2A179B7B006D53F8 /* CommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F806560B2A179B7B006D53F8 /* CommonView.swift */; };
 		F80A38B82A18C09F0023D166 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80A38B72A18C09F0023D166 /* KeyboardManager.swift */; };
 		F81A48162A17725300D72E73 /* TextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F81A48152A17725300D72E73 /* TextFieldView.xib */; };
@@ -118,6 +120,9 @@
 		F88A830B2A13CEDA00D3E975 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82F92A13CEDA00D3E975 /* Montserrat-ExtraBoldItalic.ttf */; };
 		F88A830E2A13D22900D3E975 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88A830D2A13D22900D3E975 /* UIView+Extension.swift */; };
 		F8AFFD7A2A19AC6A00FDC40B /* TappableLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8AFFD792A19AC6A00FDC40B /* TappableLabel.xib */; };
+		F8D3D38D2A223E7600AD7C2D /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8D3D38C2A223E7600AD7C2D /* ForgotPassword.storyboard */; };
+		F8D3D38F2A223E8000AD7C2D /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3D38E2A223E8000AD7C2D /* ForgotPasswordViewController.swift */; };
+		F8D3D3912A223E8800AD7C2D /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3D3902A223E8800AD7C2D /* ForgotPasswordViewModel.swift */; };
 		F8E4CCE92A19ED5F002C388C /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8E4CCE82A19ED5F002C388C /* SignUp.storyboard */; };
 		F8E4CCEB2A19ED74002C388C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4CCEA2A19ED74002C388C /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
@@ -125,6 +130,7 @@
 /* Begin PBXFileReference section */
 		7419C4582A209B0200DD86F2 /* TermsAndCondition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TermsAndCondition.storyboard; sourceTree = "<group>"; };
 		7419C45A2A209F6700DD86F2 /* TermsAndConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionViewController.swift; sourceTree = "<group>"; };
+		7431D8112A24837C00F79E48 /* StandardNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNetworkService.swift; sourceTree = "<group>"; };
 		F806560B2A179B7B006D53F8 /* CommonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonView.swift; sourceTree = "<group>"; };
 		F80A38B72A18C09F0023D166 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		F81A48152A17725300D72E73 /* TextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldView.xib; sourceTree = "<group>"; };
@@ -187,6 +193,9 @@
 		F88A82F92A13CEDA00D3E975 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		F88A830D2A13D22900D3E975 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		F8AFFD792A19AC6A00FDC40B /* TappableLabel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TappableLabel.xib; sourceTree = "<group>"; };
+		F8D3D38C2A223E7600AD7C2D /* ForgotPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPassword.storyboard; sourceTree = "<group>"; };
+		F8D3D38E2A223E8000AD7C2D /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		F8D3D3902A223E8800AD7C2D /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		F8E4CCE82A19ED5F002C388C /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		F8E4CCEA2A19ED74002C388C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -207,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F848EF102A0BD3A60097F104 /* SDWebImage in Frameworks */,
+				7431D8152A2483E500F79E48 /* Alamofire in Frameworks */,
 				F848EF0D2A0BD3530097F104 /* RxSwift in Frameworks */,
 				F848EF0B2A0BD3530097F104 /* RxCocoa in Frameworks */,
 			);
@@ -222,6 +232,14 @@
 				7419C45A2A209F6700DD86F2 /* TermsAndConditionViewController.swift */,
 			);
 			path = "Terms And Condition";
+			sourceTree = "<group>";
+		};
+		7431D8102A24836B00F79E48 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				7431D8112A24837C00F79E48 /* StandardNetworkService.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		F80A38B62A18C0910023D166 /* Helper */ = {
@@ -269,6 +287,7 @@
 		F827D9822A10FAB90034B5AF /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				F8D3D38B2A223E6A00AD7C2D /* Forgot Password */,
 				7419C4572A209AEB00DD86F2 /* Terms And Condition */,
 				F8E4CCE72A19ED51002C388C /* Sign Up */,
 				F8669E322A0BE5F5004D28A1 /* Login */,
@@ -306,6 +325,7 @@
 		F835B0022A06526200123A16 /* Magus */ = {
 			isa = PBXGroup;
 			children = (
+				7431D8102A24836B00F79E48 /* API */,
 				F80A38B62A18C0910023D166 /* Helper */,
 				F8512C302A13B9EA0041C14F /* Resources */,
 				F8669E412A0BEC48004D28A1 /* Utilities */,
@@ -549,6 +569,16 @@
 			path = TappableLabel;
 			sourceTree = "<group>";
 		};
+		F8D3D38B2A223E6A00AD7C2D /* Forgot Password */ = {
+			isa = PBXGroup;
+			children = (
+				F8D3D38C2A223E7600AD7C2D /* ForgotPassword.storyboard */,
+				F8D3D38E2A223E8000AD7C2D /* ForgotPasswordViewController.swift */,
+				F8D3D3902A223E8800AD7C2D /* ForgotPasswordViewModel.swift */,
+			);
+			path = "Forgot Password";
+			sourceTree = "<group>";
+		};
 		F8E4CCE72A19ED51002C388C /* Sign Up */ = {
 			isa = PBXGroup;
 			children = (
@@ -601,6 +631,7 @@
 				F848EF0A2A0BD3530097F104 /* RxCocoa */,
 				F848EF0C2A0BD3530097F104 /* RxSwift */,
 				F848EF0F2A0BD3A60097F104 /* SDWebImage */,
+				7431D8142A2483E500F79E48 /* Alamofire */,
 			);
 			productName = Magus;
 			productReference = F835B0002A06526200123A16 /* Magus.app */;
@@ -633,6 +664,7 @@
 			packageReferences = (
 				F848EF092A0BD3530097F104 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				F848EF0E2A0BD3A60097F104 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				7431D8132A2483E400F79E48 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = F835B0012A06526200123A16 /* Products */;
 			projectDirPath = "";
@@ -701,6 +733,7 @@
 				F88A82FD2A13CEDA00D3E975 /* Montserrat-Light.ttf in Resources */,
 				F88A83022A13CEDA00D3E975 /* Montserrat-MediumItalic.ttf in Resources */,
 				F88A83092A13CEDA00D3E975 /* Montserrat-Italic.ttf in Resources */,
+				F8D3D38D2A223E7600AD7C2D /* ForgotPassword.storyboard in Resources */,
 				F88A830B2A13CEDA00D3E975 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
 				F81A48162A17725300D72E73 /* TextFieldView.xib in Resources */,
 				F88A82FF2A13CEDA00D3E975 /* Montserrat-ExtraLight.ttf in Resources */,
@@ -749,11 +782,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8D3D38F2A223E8000AD7C2D /* ForgotPasswordViewController.swift in Sources */,
 				F8669E3E2A0BE84F004D28A1 /* RootViewModel.swift in Sources */,
 				F8512C3D2A13BDAF0041C14F /* WelcomeViewController.swift in Sources */,
 				F8669E3B2A0BE6CE004D28A1 /* Route.swift in Sources */,
 				F86F797D2A18C3C200298581 /* TappableLabel.swift in Sources */,
 				F8511DF02A17D02000EFFFB4 /* FormButton.swift in Sources */,
+				F8D3D3912A223E8800AD7C2D /* ForgotPasswordViewModel.swift in Sources */,
 				F8512C422A13C3C60041C14F /* Colors.swift in Sources */,
 				F827D9872A10FAE30034B5AF /* MainTabBarViewController.swift in Sources */,
 				F88A82E62A13CE8500D3E975 /* Font+Extension.swift in Sources */,
@@ -764,6 +799,7 @@
 				F82552102A17940400ACD902 /* ReusableXibView.swift in Sources */,
 				F848EF082A0BC9EC0097F104 /* CommonViewController.swift in Sources */,
 				F81A48182A17736200D72E73 /* TextFieldView.swift in Sources */,
+				7431D8122A24837C00F79E48 /* StandardNetworkService.swift in Sources */,
 				F8512C3F2A13BDC90041C14F /* WelcomeViewModel.swift in Sources */,
 				F835B01E2A0652D100123A16 /* RootViewController.swift in Sources */,
 				F8E4CCEB2A19ED74002C388C /* SignUpViewController.swift in Sources */,
@@ -1086,6 +1122,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7431D8132A2483E400F79E48 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		F81ED0712A16160E0043E245 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -1121,6 +1165,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7431D8142A2483E500F79E48 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7431D8132A2483E400F79E48 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		F81ED0702A16160E0043E245 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F81ED0712A16160E0043E245 /* XCRemoteSwiftPackageReference "RxSwift" */;
