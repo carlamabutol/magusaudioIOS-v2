@@ -19,6 +19,7 @@ enum StoryboardString: String {
     case login = "Login"
     case signUp = "SignUp"
     case termsAndCondition = "TermsAndCondition"
+    case forgotPassword = "ForgotPassword"
     
     case mainTabBar = "MainTabBar"
     

@@ -50,7 +50,7 @@
                                                         <subviews>
                                                             <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bEj-fJ-nqg" customClass="TextFieldView" customModule="Magus" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="313" height="44.666666666666664"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="44.5" id="s8s-3F-e5Y"/>
                                                                 </constraints>
@@ -64,7 +64,7 @@
                                                             </view>
                                                             <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xuU-ah-NM1" customClass="TextFieldView" customModule="Magus" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="55.666666666666629" width="313" height="44.333333333333343"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="44.5" id="s6Q-pW-4q5"/>
                                                                 </constraints>

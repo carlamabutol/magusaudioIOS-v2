@@ -39,6 +39,7 @@ class LoginViewController: CommonViewController {
     
     @IBOutlet var formContainerView: UIView! {
         didSet {
+            formContainerView.backgroundColor = .clear
             formContainerView.cornerBorderRadius(cornerRadius: 5, borderColor: UIColor.BorderColor.formColor, borderWidth: 0.5)
         }
     }
@@ -112,15 +113,13 @@ class LoginViewController: CommonViewController {
     }
     
     private func gotoSignup() {
-        // TODO: GO TO SIGN UP
         let vc = SignUpViewController.instantiate(from: .signUp)
         navigationController?.pushViewController(vc, animated: true)
     }
     
     private func gotoForgotPassword() {
-        // TODO: GO TO FORGOT PASSWORD
-        let alert = presentAlert(title: "Tapped Forgot Password")
-        present(alert, animated: true)
+        let vc = ForgotPasswordViewController.instantiate(from: .forgotPassword)
+        navigationController?.pushViewController(vc, animated: true)
     }
 
 }

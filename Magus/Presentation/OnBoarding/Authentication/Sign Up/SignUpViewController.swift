@@ -52,6 +52,12 @@ class SignUpViewController: CommonViewController {
             confirmPasswordTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.confirmPassword, textObservable: viewModel.confirmPasswordRelay))
         }
     }
+    @IBOutlet var textFieldContainerView: UIView! {
+        didSet {
+            textFieldContainerView.backgroundColor = .clear
+            textFieldContainerView.cornerBorderRadius(cornerRadius: 5, borderColor: UIColor.BorderColor.formColor, borderWidth: 0.5)
+        }
+    }
     
     @IBOutlet var termsAndConditionLabel: TappableLabel! {
         didSet {

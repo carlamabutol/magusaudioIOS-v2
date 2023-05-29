@@ -11,22 +11,29 @@ import RxSwift
 
 class TextFieldView: ReusableXibView {
     
-    @IBOutlet var stackView: UIStackView!
-    @IBOutlet var placeholderLabel: UILabel! {
+    @IBOutlet private (set)var stackView: UIStackView!
+    @IBOutlet private (set)var placeholderLabel: UILabel! {
         didSet {
             placeholderLabel.font = UIFont.Montserrat.body2
             placeholderLabel.textColor = UIColor.TextColor.placeholderColor
         }
     }
-    @IBOutlet var textField: UITextField! {
+    @IBOutlet private (set)var textField: UITextField! {
         didSet {
             textField.font = UIFont.Montserrat.medium2
             textField.textColor = UIColor.TextColor.primaryBlack
         }
     }
+    @IBOutlet private (set)var eyeButton: UIButton! {
+        didSet {
+            eyeButton.setImage(UIImage(named: .eyeHide), for: .normal)
+            eyeButton.isHidden = true
+            eyeButton.tintColor = .black
+        }
+    }
     
-    var textObservable: BehaviorRelay<String>!
-    var placeholder: String = ""
+    private var textObservable: BehaviorRelay<String>!
+    private var placeholder: String = ""
     
     func configure(model: TextFieldView.Model) {
         textField.attributedPlaceholder = Self.placeholderAttributedString(for: model.placeholder)
@@ -35,6 +42,9 @@ class TextFieldView: ReusableXibView {
         textObservable = model.textObservable
         placeholder = model.placeholder
         setupBinding()
+        if model.isSecureEntry {
+            eyeButtonBinding()
+        }
     }
     
     fileprivate func removedAndInsertPlaceholderLbl(_ enteredText: String) {
@@ -56,8 +66,6 @@ class TextFieldView: ReusableXibView {
             .asObservable()
             .observe(on: MainScheduler.asyncInstance)
             .compactMap({ [weak self] enteredText in
-                self?.removedAndInsertPlaceholderLbl(enteredText)
-                print("entered - \(enteredText)")
                 return enteredText.isEmpty ? "" : self?.placeholder
             })
             .bind(to: placeholderLabel.rx.text)
@@ -68,7 +76,25 @@ class TextFieldView: ReusableXibView {
             .asObservable()
             .observe(on: MainScheduler.asyncInstance)
             .map { text in return text.isEmpty }
-            .bind(to: placeholderLabel.rx.isHidden)
+            .subscribe(onNext: { [weak self] condition in
+                self?.placeholderLabel.isHidden = condition
+                self?.eyeButton.isHidden = condition
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func eyeButtonBinding() {
+        eyeButton.rx.tap
+            .map({ [weak self] _ in
+                guard let self else { return false }
+                return !self.textField.isSecureTextEntry
+            })
+            .subscribe(onNext: { [weak self] condition in
+                guard let self else { return }
+                self.textField.isSecureTextEntry = condition
+                let imageName: String = condition ? .eyeHide : .eyeShow
+                self.eyeButton.setImage(UIImage(named: imageName), for: .normal)
+            })
             .disposed(by: disposeBag)
     }
     
