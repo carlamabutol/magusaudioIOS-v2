@@ -43,13 +43,13 @@ class SignUpViewController: CommonViewController {
     
     @IBOutlet var passwordTextFieldView: TextFieldView! {
         didSet {
-            passwordTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.password, textObservable: viewModel.passwordRelay))
+            passwordTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.password, textObservable: viewModel.passwordRelay, isSecureEntry: true))
         }
     }
     
     @IBOutlet var confirmPasswordTextFieldView: TextFieldView! {
         didSet {
-            confirmPasswordTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.confirmPassword, textObservable: viewModel.confirmPasswordRelay))
+            confirmPasswordTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.confirmPassword, textObservable: viewModel.confirmPasswordRelay, isSecureEntry: true))
         }
     }
     @IBOutlet var textFieldContainerView: UIView! {
@@ -62,6 +62,7 @@ class SignUpViewController: CommonViewController {
     @IBOutlet var termsAndConditionLabel: TappableLabel! {
         didSet {
             let attrb = Self.termsAndConditionAttrbString()
+            termsAndConditionLabel.isUserInteractionEnabled = true
             termsAndConditionLabel.attributedText = attrb
             guard let range = attrb.string.range(of: LocalizedStrings.SignUp.termsAndCondition) else { return }
             termsAndConditionLabel.tappableRange = NSRange(range, in: attrb.string)
