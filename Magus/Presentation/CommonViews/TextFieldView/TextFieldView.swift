@@ -12,18 +12,28 @@ import RxSwift
 class TextFieldView: ReusableXibView {
     
     @IBOutlet private (set)var stackView: UIStackView!
+    
+    @IBOutlet var placeholderStackView: UIStackView!
     @IBOutlet private (set)var placeholderLabel: UILabel! {
         didSet {
             placeholderLabel.font = UIFont.Montserrat.body2
             placeholderLabel.textColor = UIColor.TextColor.placeholderColor
         }
     }
+    
+    @IBOutlet var wrongInputLabel: UILabel! {
+        didSet {
+            
+        }
+    }
+    
     @IBOutlet private (set)var textField: UITextField! {
         didSet {
             textField.font = UIFont.Montserrat.medium2
             textField.textColor = UIColor.TextColor.primaryBlack
         }
     }
+    
     @IBOutlet private (set)var eyeButton: UIButton! {
         didSet {
             eyeButton.setImage(UIImage(named: .eyeHide), for: .normal)
@@ -34,6 +44,8 @@ class TextFieldView: ReusableXibView {
     
     private var textObservable: BehaviorRelay<String>!
     private var placeholder: String = ""
+    private var errorMessage: Observable<String>?
+    private var isPassword: Bool = false
     
     func configure(model: TextFieldView.Model) {
         textField.attributedPlaceholder = Self.placeholderAttributedString(for: model.placeholder)
@@ -41,8 +53,9 @@ class TextFieldView: ReusableXibView {
         textField.isSecureTextEntry = model.isSecureEntry
         textObservable = model.textObservable
         placeholder = model.placeholder
+        isPassword = model.isSecureEntry
         setupBinding()
-        if model.isSecureEntry {
+        if isPassword {
             eyeButtonBinding()
         }
     }
@@ -76,10 +89,7 @@ class TextFieldView: ReusableXibView {
             .asObservable()
             .observe(on: MainScheduler.asyncInstance)
             .map { text in return text.isEmpty }
-            .subscribe(onNext: { [weak self] condition in
-                self?.placeholderLabel.isHidden = condition
-                self?.eyeButton.isHidden = condition
-            })
+            .bind(to: placeholderStackView.rx.isHidden)
             .disposed(by: disposeBag)
     }
     
@@ -95,6 +105,14 @@ class TextFieldView: ReusableXibView {
                 let imageName: String = condition ? .eyeHide : .eyeShow
                 self.eyeButton.setImage(UIImage(named: imageName), for: .normal)
             })
+            .disposed(by: disposeBag)
+        
+        textField.rx.text
+            .orEmpty
+            .asObservable()
+            .observe(on: MainScheduler.asyncInstance)
+            .map { text in return text.isEmpty }
+            .bind(to: eyeButton.rx.isHidden)
             .disposed(by: disposeBag)
     }
     
@@ -112,7 +130,7 @@ extension TextFieldView {
         let textObservable: BehaviorRelay<String>
         var isSecureEntry: Bool = false
         var keyboardType: UIKeyboardType = .default
-        
+        var errorMessage: Observable<String>?
         
     }
 }

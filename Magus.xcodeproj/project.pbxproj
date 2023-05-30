@@ -234,7 +234,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F848EF102A0BD3A60097F104 /* SDWebImage in Frameworks */,
-				7431D8152A2483E500F79E48 /* Alamofire in Frameworks */,
 				F848EF0D2A0BD3530097F104 /* RxSwift in Frameworks */,
 				F848EF0B2A0BD3530097F104 /* RxCocoa in Frameworks */,
 			);
@@ -391,6 +390,10 @@
 			children = (
 				746FA5F22A2602B1006CE52C /* Configuration */,
 				7431D8102A24836B00F79E48 /* API */,
+				F80A38B62A18C0910023D166 /* Helper */,
+				F8512C302A13B9EA0041C14F /* Resources */,
+				F8669E412A0BEC48004D28A1 /* Utilities */,
+				F8669E402A0BEC34004D28A1 /* Extensions */,
 				F8669E392A0BE6BB004D28A1 /* AppLifeCycle */,
 				F835B0192A06528100123A16 /* Domain */,
 				F8669E402A0BEC34004D28A1 /* Extensions */,
@@ -698,7 +701,6 @@
 				F848EF0A2A0BD3530097F104 /* RxCocoa */,
 				F848EF0C2A0BD3530097F104 /* RxSwift */,
 				F848EF0F2A0BD3A60097F104 /* SDWebImage */,
-				7431D8142A2483E500F79E48 /* Alamofire */,
 			);
 			productName = Magus;
 			productReference = F835B0002A06526200123A16 /* Magus.app */;
@@ -731,7 +733,6 @@
 			packageReferences = (
 				F848EF092A0BD3530097F104 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				F848EF0E2A0BD3A60097F104 /* XCRemoteSwiftPackageReference "SDWebImage" */,
-				7431D8132A2483E400F79E48 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = F835B0012A06526200123A16 /* Products */;
 			projectDirPath = "";
@@ -1198,14 +1199,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		7431D8132A2483E400F79E48 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 		F81ED0712A16160E0043E245 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -1241,11 +1234,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		7431D8142A2483E500F79E48 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7431D8132A2483E400F79E48 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
 		F81ED0702A16160E0043E245 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F81ED0712A16160E0043E245 /* XCRemoteSwiftPackageReference "RxSwift" */;
