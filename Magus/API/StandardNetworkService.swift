@@ -25,7 +25,7 @@ class StandardNetworkService {
     
 }
 
-extension StandardNetworkService: AuthenticationService {
+extension StandardNetworkService: NetworkService {
     
     func signIn(email: String, password: String) async throws -> SignInResponse {
         let url = baseURL

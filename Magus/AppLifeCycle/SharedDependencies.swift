@@ -9,12 +9,12 @@ import Foundation
 
 class SharedDependencies {
     let router: Router
-    let networkService: AuthenticationService
+    let networkService: NetworkService
     let presentation: Presentation
     
     private init(
         router: Router,
-        networkService: AuthenticationService
+        networkService: NetworkService
     ) {
         self.router = router
         self.networkService = networkService

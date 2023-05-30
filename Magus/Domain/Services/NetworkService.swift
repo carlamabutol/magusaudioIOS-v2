@@ -8,6 +8,6 @@
 import Foundation
 import RxSwift
 
-protocol AuthenticationService {
+protocol NetworkService {
     func signIn(email: String, password: String) async throws -> SignInResponse
 }

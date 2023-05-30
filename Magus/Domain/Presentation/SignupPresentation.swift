@@ -9,9 +9,9 @@ import Foundation
 
 final class SignInPresentation {
   
-    let networkService: AuthenticationService
+    let networkService: NetworkService
     
-    init(networkService: AuthenticationService) {
+    init(networkService: NetworkService) {
         self.networkService = networkService
     }
     

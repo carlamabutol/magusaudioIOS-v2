@@ -11,7 +11,7 @@ import RxCocoa
 
 class LoginViewModel {
     private let router: Router
-    private let networkService: AuthenticationService
+    private let networkService: NetworkService
     
     let userName = BehaviorRelay<String>(value: "")
     var userNameObservable: Observable<String> { userName.asObservable() }
@@ -51,7 +51,7 @@ class LoginViewModel {
 extension LoginViewModel {
     struct Dependencies {
         let router: Router
-        let networkService: AuthenticationService
+        let networkService: NetworkService
         
         static var standard: Dependencies {
             return .init(router: SharedDependencies.sharedDependencies.router, networkService: SharedDependencies.sharedDependencies.networkService)

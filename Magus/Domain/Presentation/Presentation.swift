@@ -11,10 +11,10 @@ class Presentation {
     
     let signUpPresentation: SignInPresentation
     
-    private let networkService: AuthenticationService
+    private let networkService: NetworkService
     private let router: Router
     
-    init(networkService: AuthenticationService, router: Router) {
+    init(networkService: NetworkService, router: Router) {
         self.networkService = networkService
         self.router = router
         
