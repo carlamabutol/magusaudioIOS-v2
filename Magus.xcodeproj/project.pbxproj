@@ -11,6 +11,15 @@
 		7419C45B2A209F6700DD86F2 /* TermsAndConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419C45A2A209F6700DD86F2 /* TermsAndConditionViewController.swift */; };
 		7431D8122A24837C00F79E48 /* StandardNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7431D8112A24837C00F79E48 /* StandardNetworkService.swift */; };
 		7431D8152A2483E500F79E48 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7431D8142A2483E500F79E48 /* Alamofire */; };
+		746FA5E92A25E9BE006CE52C /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746FA5E82A25E9BE006CE52C /* AuthenticationService.swift */; };
+		746FA5EB2A25EED0006CE52C /* EndpointResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746FA5EA2A25EED0006CE52C /* EndpointResponse.swift */; };
+		746FA5ED2A25F479006CE52C /* JSONAPIDictionaryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746FA5EC2A25F479006CE52C /* JSONAPIDictionaryResponse.swift */; };
+		746FA5EF2A25F9C4006CE52C /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746FA5EE2A25F9C4006CE52C /* NetworkServiceError.swift */; };
+		746FA5F12A25FE76006CE52C /* JSONAPIArrayResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746FA5F02A25FE76006CE52C /* JSONAPIArrayResponse.swift */; };
+		746FA5F42A2602BD006CE52C /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746FA5F32A2602BD006CE52C /* Configuration.swift */; };
+		746FA5F72A260488006CE52C /* SignInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746FA5F62A260488006CE52C /* SignInResponse.swift */; };
+		746FA5FA2A260D04006CE52C /* SignupPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746FA5F92A260D04006CE52C /* SignupPresentation.swift */; };
+		746FA5FC2A260D18006CE52C /* Presentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746FA5FB2A260D18006CE52C /* Presentation.swift */; };
 		F806560C2A179B7B006D53F8 /* CommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F806560B2A179B7B006D53F8 /* CommonView.swift */; };
 		F80A38B82A18C09F0023D166 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80A38B72A18C09F0023D166 /* KeyboardManager.swift */; };
 		F81A48162A17725300D72E73 /* TextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F81A48152A17725300D72E73 /* TextFieldView.xib */; };
@@ -131,6 +140,15 @@
 		7419C4582A209B0200DD86F2 /* TermsAndCondition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TermsAndCondition.storyboard; sourceTree = "<group>"; };
 		7419C45A2A209F6700DD86F2 /* TermsAndConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionViewController.swift; sourceTree = "<group>"; };
 		7431D8112A24837C00F79E48 /* StandardNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNetworkService.swift; sourceTree = "<group>"; };
+		746FA5E82A25E9BE006CE52C /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		746FA5EA2A25EED0006CE52C /* EndpointResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointResponse.swift; sourceTree = "<group>"; };
+		746FA5EC2A25F479006CE52C /* JSONAPIDictionaryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONAPIDictionaryResponse.swift; sourceTree = "<group>"; };
+		746FA5EE2A25F9C4006CE52C /* NetworkServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceError.swift; sourceTree = "<group>"; };
+		746FA5F02A25FE76006CE52C /* JSONAPIArrayResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONAPIArrayResponse.swift; sourceTree = "<group>"; };
+		746FA5F32A2602BD006CE52C /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		746FA5F62A260488006CE52C /* SignInResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponse.swift; sourceTree = "<group>"; };
+		746FA5F92A260D04006CE52C /* SignupPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPresentation.swift; sourceTree = "<group>"; };
+		746FA5FB2A260D18006CE52C /* Presentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentation.swift; sourceTree = "<group>"; };
 		F806560B2A179B7B006D53F8 /* CommonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonView.swift; sourceTree = "<group>"; };
 		F80A38B72A18C09F0023D166 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		F81A48152A17725300D72E73 /* TextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldView.xib; sourceTree = "<group>"; };
@@ -237,9 +255,55 @@
 		7431D8102A24836B00F79E48 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				746FA5F52A26047B006CE52C /* Response Models */,
 				7431D8112A24837C00F79E48 /* StandardNetworkService.swift */,
+				746FA5EA2A25EED0006CE52C /* EndpointResponse.swift */,
+				746FA5EC2A25F479006CE52C /* JSONAPIDictionaryResponse.swift */,
+				746FA5F02A25FE76006CE52C /* JSONAPIArrayResponse.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		746FA5E72A25E995006CE52C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				746FA5E82A25E9BE006CE52C /* AuthenticationService.swift */,
+				746FA5EE2A25F9C4006CE52C /* NetworkServiceError.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		746FA5F22A2602B1006CE52C /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				F835B0112A06526300123A16 /* Info.plist */,
+				746FA5F32A2602BD006CE52C /* Configuration.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		746FA5F52A26047B006CE52C /* Response Models */ = {
+			isa = PBXGroup;
+			children = (
+				746FA5F62A260488006CE52C /* SignInResponse.swift */,
+			);
+			path = "Response Models";
+			sourceTree = "<group>";
+		};
+		746FA5F82A260A34006CE52C /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				746FA5F92A260D04006CE52C /* SignupPresentation.swift */,
+				746FA5FB2A260D18006CE52C /* Presentation.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		74AD80312A25E7B600687CDF /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		F80A38B62A18C0910023D166 /* Helper */ = {
@@ -325,19 +389,18 @@
 		F835B0022A06526200123A16 /* Magus */ = {
 			isa = PBXGroup;
 			children = (
+				746FA5F22A2602B1006CE52C /* Configuration */,
 				7431D8102A24836B00F79E48 /* API */,
-				F80A38B62A18C0910023D166 /* Helper */,
-				F8512C302A13B9EA0041C14F /* Resources */,
-				F8669E412A0BEC48004D28A1 /* Utilities */,
-				F8669E402A0BEC34004D28A1 /* Extensions */,
 				F8669E392A0BE6BB004D28A1 /* AppLifeCycle */,
-				F8669E2E2A0BDAA4004D28A1 /* LocalizedStrings */,
 				F835B0192A06528100123A16 /* Domain */,
+				F8669E402A0BEC34004D28A1 /* Extensions */,
+				F80A38B62A18C0910023D166 /* Helper */,
+				F8669E2E2A0BDAA4004D28A1 /* LocalizedStrings */,
+				74AD80312A25E7B600687CDF /* New Group */,
 				F835B0172A06527000123A16 /* Presentation */,
+				F8512C302A13B9EA0041C14F /* Resources */,
 				F835B0182A06527700123A16 /* RootViewController */,
-				F835B00E2A06526300123A16 /* LaunchScreen.storyboard */,
-				F835B0092A06526200123A16 /* Main.storyboard */,
-				F835B0112A06526300123A16 /* Info.plist */,
+				F8669E412A0BEC48004D28A1 /* Utilities */,
 			);
 			path = Magus;
 			sourceTree = "<group>";
@@ -345,6 +408,7 @@
 		F835B0172A06527000123A16 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				F835B0092A06526200123A16 /* Main.storyboard */,
 				F83C49B02A19BC9800BC4429 /* CommonViews */,
 				F8512C362A13BB3A0041C14F /* OnBoarding */,
 				F827D9812A10FAB40034B5AF /* Main */,
@@ -366,6 +430,8 @@
 		F835B0192A06528100123A16 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				746FA5F82A260A34006CE52C /* Presentation */,
+				746FA5E72A25E995006CE52C /* Services */,
 				F848EF112A0BD3CA0097F104 /* Network */,
 				F835B01A2A06528500123A16 /* Model */,
 			);
@@ -425,6 +491,7 @@
 		F8512C302A13B9EA0041C14F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F835B00E2A06526300123A16 /* LaunchScreen.storyboard */,
 				F8512C312A13B9EA0041C14F /* Assets.xcassets */,
 				F8512C322A13B9EA0041C14F /* Font */,
 				F8512C332A13B9EA0041C14F /* String+Images.swift */,
@@ -788,6 +855,7 @@
 				F8669E3B2A0BE6CE004D28A1 /* Route.swift in Sources */,
 				F86F797D2A18C3C200298581 /* TappableLabel.swift in Sources */,
 				F8511DF02A17D02000EFFFB4 /* FormButton.swift in Sources */,
+				746FA5F42A2602BD006CE52C /* Configuration.swift in Sources */,
 				F8D3D3912A223E8800AD7C2D /* ForgotPasswordViewModel.swift in Sources */,
 				F8512C422A13C3C60041C14F /* Colors.swift in Sources */,
 				F827D9872A10FAE30034B5AF /* MainTabBarViewController.swift in Sources */,
@@ -799,9 +867,13 @@
 				F82552102A17940400ACD902 /* ReusableXibView.swift in Sources */,
 				F848EF082A0BC9EC0097F104 /* CommonViewController.swift in Sources */,
 				F81A48182A17736200D72E73 /* TextFieldView.swift in Sources */,
+				746FA5EF2A25F9C4006CE52C /* NetworkServiceError.swift in Sources */,
+				746FA5EB2A25EED0006CE52C /* EndpointResponse.swift in Sources */,
 				7431D8122A24837C00F79E48 /* StandardNetworkService.swift in Sources */,
 				F8512C3F2A13BDC90041C14F /* WelcomeViewModel.swift in Sources */,
+				746FA5F12A25FE76006CE52C /* JSONAPIArrayResponse.swift in Sources */,
 				F835B01E2A0652D100123A16 /* RootViewController.swift in Sources */,
+				746FA5E92A25E9BE006CE52C /* AuthenticationService.swift in Sources */,
 				F8E4CCEB2A19ED74002C388C /* SignUpViewController.swift in Sources */,
 				F8669E382A0BE623004D28A1 /* LoginViewModel.swift in Sources */,
 				F848EF142A0BD46C0097F104 /* ViewController+Extension.swift in Sources */,
@@ -810,12 +882,16 @@
 				F88A830E2A13D22900D3E975 /* UIView+Extension.swift in Sources */,
 				F8315DE52A1CE9C100634DA1 /* SignUpViewModel.swift in Sources */,
 				F81ED0B02A162B9C0043E245 /* SplashScreenViewController.swift in Sources */,
+				746FA5FA2A260D04006CE52C /* SignupPresentation.swift in Sources */,
 				F82CA4F22A19B4A5007EDFAE /* ViewController+Storyboard+Extension.swift in Sources */,
+				746FA5ED2A25F479006CE52C /* JSONAPIDictionaryResponse.swift in Sources */,
+				746FA5FC2A260D18006CE52C /* Presentation.swift in Sources */,
 				F8512C352A13B9EA0041C14F /* String+Images.swift in Sources */,
 				F8669E302A0BDAB8004D28A1 /* LocalizedStrings.swift in Sources */,
 				F8512C442A13C4120041C14F /* Colors+Hex.swift in Sources */,
 				F835B0062A06526200123A16 /* SceneDelegate.swift in Sources */,
 				F827D9802A10F7460034B5AF /* Router.swift in Sources */,
+				746FA5F72A260488006CE52C /* SignInResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1030,7 +1106,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2VQD652A6M;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Magus/Info.plist;
+				INFOPLIST_FILE = Magus/Configuration/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Magus: Subliminal Audio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1064,7 +1140,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2VQD652A6M;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Magus/Info.plist;
+				INFOPLIST_FILE = Magus/Configuration/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Magus: Subliminal Audio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
