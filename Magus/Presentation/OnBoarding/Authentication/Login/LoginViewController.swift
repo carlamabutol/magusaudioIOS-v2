@@ -95,7 +95,6 @@ class LoginViewController: CommonViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: false)
         registerForKeyboardNotifications()
         hideKeyboardOnTap()
     }

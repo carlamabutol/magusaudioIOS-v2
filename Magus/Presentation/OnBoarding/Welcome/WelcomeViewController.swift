@@ -39,6 +39,7 @@ class WelcomeViewController: CommonViewController {
     
     override func setupView() {
         super.setupView()
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationController?.setNavigationBarHidden(true, animated: true)
         view.backgroundColor = UIColor.Background.primary
     }
@@ -53,7 +54,8 @@ class WelcomeViewController: CommonViewController {
     }
     
     @objc private func signInButtonAction() {
-        viewModel.signInAction()
+        let vc = LoginViewController.instantiate(from: .login)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func gotoSignup() {
@@ -62,6 +64,15 @@ class WelcomeViewController: CommonViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
 
+    
+}
+
+extension WelcomeViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let viewControllers = navigationController?.viewControllers else { return false }
+        return viewControllers.count > 1
+    }
     
 }
 

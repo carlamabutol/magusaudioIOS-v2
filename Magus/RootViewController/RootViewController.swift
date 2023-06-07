@@ -44,11 +44,9 @@ class RootViewController: CommonViewController {
         case .splashscreen:
             rootViewController?.dismiss(animated: false)
             rootViewController = SplashScreenViewController.instantiate(from: .splashscreen)
-        case .welcome:
+        case .welcomeOnBoard:
             rootViewController?.dismiss(animated: false)
             rootViewController = UINavigationController(rootViewController: WelcomeViewController.instantiate(from: .welcome))
-        case .login:
-            rootViewController = UINavigationController(rootViewController: LoginViewController.instantiate(from: .login))
         case .home:
             rootViewController?.dismiss(animated: false)
             rootViewController = UIViewController.instantiate(from: .mainTabBar)
@@ -60,7 +58,6 @@ class RootViewController: CommonViewController {
         if let presentedViewController = childViewController.presentedViewController {
             presentedViewController.dismiss(animated: false)
         }
-        beginAppearanceTransition(false, animated: true)
         // Remove the current Root View Controller
         childViewController.willMove(toParent: nil)
         childViewController.view.removeFromSuperview()
@@ -69,7 +66,6 @@ class RootViewController: CommonViewController {
     
     private func addRootViewController(_ childViewController: UIViewController?) {
         guard let childViewController = childViewController else { return }
-        beginAppearanceTransition(true, animated: true)
         addChild(childViewController)
         view.addSubview(childViewController.view)
         NSLayoutConstraint.activate([
