@@ -18,8 +18,4 @@ class WelcomeViewModel: ViewModel {
         super.init()
     }
     
-    func signInAction() {
-        router.selectedRoute = .login
-    }
-    
 }
