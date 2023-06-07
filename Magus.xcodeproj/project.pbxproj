@@ -133,7 +133,6 @@
 		F81A48152A17725300D72E73 /* TextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldView.xib; sourceTree = "<group>"; };
 		F81A48172A17736200D72E73 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		F81ED0AC2A16160E0043E245 /* Magus Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magus Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F81ED0AD2A16160E0043E245 /* Magus copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Magus copy-Info.plist"; path = "/Users/jom/Desktop/Desktop - iMac (Ji) /New Folder With Items/Mobile/Magus/Magus copy-Info.plist"; sourceTree = "<absolute>"; };
 		F81ED0AF2A162B9C0043E245 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		F81ED0B12A162E5E0043E245 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		F825520F2A17940400ACD902 /* ReusableXibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableXibView.swift; sourceTree = "<group>"; };
@@ -230,6 +229,53 @@
 			path = "Terms And Condition";
 			sourceTree = "<group>";
 		};
+		7431D8102A24836B00F79E48 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				746FA5F52A26047B006CE52C /* Response Models */,
+				7431D8112A24837C00F79E48 /* StandardNetworkService.swift */,
+				746FA5EA2A25EED0006CE52C /* EndpointResponse.swift */,
+				746FA5EC2A25F479006CE52C /* JSONAPIDictionaryResponse.swift */,
+				746FA5F02A25FE76006CE52C /* JSONAPIArrayResponse.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		746FA5E72A25E995006CE52C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				746FA5E82A25E9BE006CE52C /* NetworkService.swift */,
+				746FA5EE2A25F9C4006CE52C /* NetworkServiceError.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		746FA5F22A2602B1006CE52C /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				F835B0112A06526300123A16 /* Info.plist */,
+				746FA5F32A2602BD006CE52C /* Configuration.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		746FA5F52A26047B006CE52C /* Response Models */ = {
+			isa = PBXGroup;
+			children = (
+				746FA5F62A260488006CE52C /* SignInResponse.swift */,
+			);
+			path = "Response Models";
+			sourceTree = "<group>";
+		};
+		746FA5F82A260A34006CE52C /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				746FA5F92A260D04006CE52C /* SignupPresentation.swift */,
+				746FA5FB2A260D18006CE52C /* Presentation.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		F80A38B62A18C0910023D166 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,7 +343,6 @@
 			children = (
 				F835B0022A06526200123A16 /* Magus */,
 				F835B0012A06526200123A16 /* Products */,
-				F81ED0AD2A16160E0043E245 /* Magus copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
