@@ -62,4 +62,17 @@ struct LocalizedStrings {
         static let signUp = "SIGN UP"
     }
     
+    enum MoodSelection {
+        static let title = "How are you feeling, User?"
+        static let continueButtonTitle = "Continue"
+    }
+    
+    enum TabBarTitle {
+        static let home = "Home"
+        static let search = "Search"
+        static let subs = "My Subs"
+        static let premium = "Go Premium"
+        static let profile = "Profile"
+    }
+    
 }

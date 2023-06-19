@@ -11,6 +11,7 @@ extension UIColor {
     
     enum Background {
         static let primary = UIColor(rgb: 0xF4FAFF)
+        static let moodBackgroundColor = UIColor(rgb: 0xEAEAEA)
     }
     
     enum TextColor {
@@ -23,4 +24,11 @@ extension UIColor {
         static let formColor = UIColor(rgb: 0xCECECE)
     }
     
+    enum ButtonColor {
+        static let primaryBlue = UIColor(rgb: 0x427AB3)
+    }
+    
+    enum TabItemTitleColor {
+        static let primaryColor = UIColor(rgb: 0x427AB3)
+    }
 }

@@ -21,7 +21,15 @@ enum StoryboardString: String {
     case termsAndCondition = "TermsAndCondition"
     case forgotPassword = "ForgotPassword"
     
+    case mood = "Mood"
+    
+    // Tabbar
     case mainTabBar = "MainTabBar"
+    case home = "Home"
+    case search = "Search"
+    case subs = "Subs"
+    case premium = "Premium"
+    case profile = "Profile"
     
 }
 

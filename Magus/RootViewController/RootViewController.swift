@@ -47,6 +47,9 @@ class RootViewController: CommonViewController {
         case .welcomeOnBoard:
             rootViewController?.dismiss(animated: false)
             rootViewController = UINavigationController(rootViewController: WelcomeViewController.instantiate(from: .welcome))
+        case .mood:
+            rootViewController?.dismiss(animated: false)
+            rootViewController = MoodViewController.instantiate(from: .mood)
         case .home:
             rootViewController?.dismiss(animated: false)
             rootViewController = UIViewController.instantiate(from: .mainTabBar)

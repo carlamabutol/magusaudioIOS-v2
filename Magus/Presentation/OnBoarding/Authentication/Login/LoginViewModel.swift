@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 
 class LoginViewModel {
+    private let store: Store
     private let router: Router
     private let networkService: NetworkService
     
@@ -20,28 +21,24 @@ class LoginViewModel {
     var passwordObservable: Observable<String> { password.asObservable() }
     
     init(dependencies: Dependencies = .standard) {
+        store = dependencies.store
         router = dependencies.router
         networkService = dependencies.networkService
     }
     
     func loginAction() {
+        router.selectedRoute = .mood
         if userName.value.count < 8, password.value.count < 8 {
-            print("Username or Password is less than 8 characters")
+            Logger.warning("Username or Password is less than 8 characters", topic: .other)
             return
         }
         Task {
             do {
                 let response = try await networkService.signIn(email: userName.value, password: password.value)
-//                print(response, to: &<#T##TextOutputStream#>)
-//                switch response {
-//                case .success(let response):
-                    print("SignIn Success Response: \(response)")
-//                    router.selectedRoute = .home
-//                case .error(let errorResponse):
-//                    print("SignIn Error Response: \(errorResponse)")
-//                }
+                store.appState.user = response.user
+                store.saveAppState()
             } catch {
-                print("SignIn Network Error: \(error.localizedDescription)")
+                Logger.error("SignIn Network Error: \(error.localizedDescription)", topic: .network)
             }
         }
     }
@@ -50,11 +47,14 @@ class LoginViewModel {
 
 extension LoginViewModel {
     struct Dependencies {
+        let store: Store
         let router: Router
         let networkService: NetworkService
         
         static var standard: Dependencies {
-            return .init(router: SharedDependencies.sharedDependencies.router, networkService: SharedDependencies.sharedDependencies.networkService)
+            return .init(store: SharedDependencies.sharedDependencies.store,
+                         router: SharedDependencies.sharedDependencies.router,
+                         networkService: SharedDependencies.sharedDependencies.networkService)
         }
     }
 }

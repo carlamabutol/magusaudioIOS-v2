@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -94,7 +94,7 @@
                                                 <state key="normal" title="Button"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvg-NC-Kt0" customClass="TappableLabel" customModule="Magus" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="718.66666666666663" width="353" height="20.333333333333371"/>
+                                                <rect key="frame" x="20" y="573.66666666666663" width="353" height="20.333333333333371"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -111,9 +111,9 @@
                                             <constraint firstItem="WhN-Ee-mCJ" firstAttribute="leading" secondItem="tF9-vq-klX" secondAttribute="leading" id="G0I-dg-fYt"/>
                                             <constraint firstItem="Cvg-NC-Kt0" firstAttribute="leading" secondItem="tF9-vq-klX" secondAttribute="leading" id="S1P-I9-Jac"/>
                                             <constraint firstItem="9t4-Bq-qWr" firstAttribute="trailing" secondItem="qq6-ht-j8R" secondAttribute="trailing" id="TRe-rB-Ggp"/>
-                                            <constraint firstItem="Cvg-NC-Kt0" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WhN-Ee-mCJ" secondAttribute="bottom" constant="15" id="XPQ-X8-NP6"/>
+                                            <constraint firstItem="Cvg-NC-Kt0" firstAttribute="top" secondItem="WhN-Ee-mCJ" secondAttribute="bottom" constant="15" id="XPQ-X8-NP6"/>
                                             <constraint firstItem="tF9-vq-klX" firstAttribute="trailing" secondItem="9t4-Bq-qWr" secondAttribute="trailing" id="bW4-Eh-YR7"/>
-                                            <constraint firstAttribute="bottom" secondItem="Cvg-NC-Kt0" secondAttribute="bottom" constant="20" id="cb2-bb-pBH"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Cvg-NC-Kt0" secondAttribute="bottom" constant="20" id="cb2-bb-pBH"/>
                                             <constraint firstItem="SIO-zL-8Wj" firstAttribute="top" secondItem="5E9-pH-AwM" secondAttribute="top" constant="45" id="djX-or-eLZ"/>
                                             <constraint firstItem="WhN-Ee-mCJ" firstAttribute="top" secondItem="hNu-a8-wU5" secondAttribute="bottom" constant="15" id="fiG-be-EmV"/>
                                             <constraint firstItem="9t4-Bq-qWr" firstAttribute="top" secondItem="qq6-ht-j8R" secondAttribute="bottom" constant="20" id="hZe-ap-8BE"/>

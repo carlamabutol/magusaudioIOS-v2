@@ -39,10 +39,42 @@ extension StandardNetworkService: NetworkService {
             "password": password
         ]
         
-        print("URL - \(url)")
         let task = requestManager.request(url, method: .post, parameters: parameters, encoder: JSONParameterEncoder.default, headers: getUnauthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
             .serializingDecodable(SignInResponse.self)
+        
+        return try await task.value
+    }
+    
+    func getAllMoods() async throws -> MoodResponse {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("v1")
+            .appendingPathComponent("moods")
+        
+        let task = requestManager.request(url, method: .get, headers: getUnauthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(MoodResponse.self)
+        
+        return try await task.value
+    }
+    
+    func updateSelectedMoods(userId: String, moodId: Int) async throws -> DefaultResponse {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("v1")
+            .appendingPathComponent("user")
+            .appendingPathComponent("update")
+            .appendingPathComponent("moods")
+        
+        let parameters: [String: Any] = [
+            "user_id": userId,
+            "moods": moodId
+        ]
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: getUnauthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(DefaultResponse.self)
         
         return try await task.value
     }

@@ -46,10 +46,12 @@ extension UIFont {
         // Bold
         static let bold1 = UIFont.montSerratBold(with: 16)
         static let bold2 = UIFont.montSerratBold(with: 13)
+        static let bold3 = UIFont.montSerratBold(with: 10)
         
         // title
         static let title = UIFont.montSerratBold(with: 35)
         static let title1 = UIFont.montSerratBold(with: 25)
+        static let title2 = UIFont.montSerratBold(with: 20)
         
     }
     

@@ -5,7 +5,7 @@
 //  Created by Jomz on 5/15/23.
 //
 
-import Foundation
+import UIKit
 
 extension String {
     
@@ -18,5 +18,35 @@ extension String {
     static let checkIcon = "check"
     static let eyeHide = "eyeHide"
     static let eyeShow = "eyeShow"
+    
+}
+
+extension UIImage {
+    
+    convenience init!(named name: ImageAsset) {
+        self.init(named: name.rawValue)
+    }
+    
+}
+
+enum ImageAsset: String {
+    
+    // MARK: Tab
+    
+    case tabHomeUnselected = "TabHome"
+    case tabHomeSelected = "TabHomeSelected"
+    
+    case tabSearchUnselected = "TabSearch"
+    case tabSearchSelected = "TabSearchSelected"
+    
+    case tabSoundUnselected = "TabSound"
+    case tabSoundSelected = "TabSoundSelected"
+    
+    case tabPremiumUnselected = "TabPremium"
+    case tabPremiumSelected = "TabPremiumSelected"
+    
+    case tabUserUnselected = "TabUser"
+    case tabUserSelected = "TabUserSelected"
+    
     
 }

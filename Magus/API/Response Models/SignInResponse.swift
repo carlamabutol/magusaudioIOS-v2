@@ -27,7 +27,7 @@ struct SignInErrorResponse: Decodable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - User
-struct User: Codable, Hashable {
+struct User: Codable, Equatable {
     let id: Int
     let name, userID, email: String
 //    let emailVerifiedAt: Int?

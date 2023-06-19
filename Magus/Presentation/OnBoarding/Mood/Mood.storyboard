@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Mood View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="MoodViewController" customModule="Magus" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mood" translatesAutoresizingMaskIntoConstraints="NO" id="WdU-di-XVK">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="348.33333333333331"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qv0-gl-Zgy">
+                                <rect key="frame" x="20" y="358.33333333333331" width="353" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="sBX-vL-CQZ">
+                                <rect key="frame" x="178" y="418.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sHj-oa-C3g">
+                                <rect key="frame" x="173.66666666666666" y="594.66666666666663" width="46" height="30"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iaH-SF-x8g">
+                                <rect key="frame" x="55.666666666666657" y="396.66666666666669" width="282" height="180.00000000000006"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="9GN-i9-aBT"/>
+                                    <constraint firstAttribute="width" constant="282" id="BDj-Na-jPv"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="u09-TI-Qvd">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="qv0-gl-Zgy" firstAttribute="top" secondItem="WdU-di-XVK" secondAttribute="bottom" constant="10" id="2vh-e3-IAg"/>
+                            <constraint firstItem="iaH-SF-x8g" firstAttribute="top" secondItem="qv0-gl-Zgy" secondAttribute="bottom" constant="18" id="5HX-Mj-GnM"/>
+                            <constraint firstItem="qv0-gl-Zgy" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="EyN-ar-UpU"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="WdU-di-XVK" secondAttribute="trailing" id="Igg-ko-GHN"/>
+                            <constraint firstItem="sHj-oa-C3g" firstAttribute="top" secondItem="iaH-SF-x8g" secondAttribute="bottom" constant="18" id="MeZ-ya-UW4"/>
+                            <constraint firstItem="sBX-vL-CQZ" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="Pmj-RP-KjO"/>
+                            <constraint firstItem="WdU-di-XVK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="TOb-mb-WjU"/>
+                            <constraint firstItem="iaH-SF-x8g" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="Tv8-gp-buw"/>
+                            <constraint firstItem="sHj-oa-C3g" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="UDO-wx-vQy"/>
+                            <constraint firstAttribute="top" secondItem="WdU-di-XVK" secondAttribute="top" id="a4G-vT-OmX"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="qv0-gl-Zgy" secondAttribute="trailing" constant="20" id="jc9-d3-mkg"/>
+                            <constraint firstItem="WdU-di-XVK" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.408649" id="vu9-Mh-Z5e"/>
+                            <constraint firstItem="sBX-vL-CQZ" firstAttribute="top" secondItem="qv0-gl-Zgy" secondAttribute="bottom" constant="40" id="vuQ-ba-B9F"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="continueButton" destination="sHj-oa-C3g" id="3Zy-LY-zlR"/>
+                        <outlet property="loadingIndicator" destination="sBX-vL-CQZ" id="4I4-LK-kix"/>
+                        <outlet property="moodCollectionView" destination="iaH-SF-x8g" id="qjp-bZ-q3V"/>
+                        <outlet property="titleLabel" destination="qv0-gl-Zgy" id="0Bx-fw-xIB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5.343511450381679" y="-2.1126760563380285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="mood" width="428" height="379"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
