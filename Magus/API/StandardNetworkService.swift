@@ -79,4 +79,17 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
+    func getCategorySubliminal() async throws -> JSONAPIArrayResponse<CategorySubliminalElement> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("v1")
+            .appendingPathComponent("category")
+        
+        let task = requestManager.request(url, method: .get, headers: getUnauthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<CategorySubliminalElement>.self)
+        
+        return try await task.value
+    }
+    
 }

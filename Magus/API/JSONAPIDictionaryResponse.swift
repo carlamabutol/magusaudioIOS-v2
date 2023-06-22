@@ -22,7 +22,6 @@ enum JSONAPIDictionaryResponse<Response: EndpointResponse>: Decodable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
-        print("HEY - \(values.contains(.success))")
         if values.contains(.data) {
             do {
                 let data = try values.decode(Response.self, forKey: .data)

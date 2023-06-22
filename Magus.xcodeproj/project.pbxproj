@@ -102,6 +102,7 @@
 		F827D9802A10F7460034B5AF /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = F827D97F2A10F7460034B5AF /* Router.swift */; };
 		F827D9852A10FAD70034B5AF /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F827D9842A10FAD70034B5AF /* MainTabBar.storyboard */; };
 		F827D9872A10FAE30034B5AF /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F827D9862A10FAE30034B5AF /* MainTabBarViewController.swift */; };
+		F82BDDF42A41EAE1002E29E5 /* CategoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82BDDF32A41EAE1002E29E5 /* CategoryResponse.swift */; };
 		F82CA4F22A19B4A5007EDFAE /* ViewController+Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82CA4F12A19B4A4007EDFAE /* ViewController+Storyboard+Extension.swift */; };
 		F8315DE52A1CE9C100634DA1 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8315DE42A1CE9C100634DA1 /* SignUpViewModel.swift */; };
 		F835B0042A06526200123A16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F835B0032A06526200123A16 /* AppDelegate.swift */; };
@@ -206,6 +207,7 @@
 		F827D97F2A10F7460034B5AF /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		F827D9842A10FAD70034B5AF /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
 		F827D9862A10FAE30034B5AF /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		F82BDDF32A41EAE1002E29E5 /* CategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryResponse.swift; sourceTree = "<group>"; };
 		F82CA4F12A19B4A4007EDFAE /* ViewController+Storyboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Storyboard+Extension.swift"; sourceTree = "<group>"; };
 		F8315DE42A1CE9C100634DA1 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		F835B0002A06526200123A16 /* Magus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Magus.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -347,6 +349,7 @@
 				746FA5F62A260488006CE52C /* SignInResponse.swift */,
 				740D63792A30CE030080DBE9 /* MoodResponse.swift */,
 				7467C1162A38AE3400DFF86D /* DefaultResponse.swift */,
+				F82BDDF32A41EAE1002E29E5 /* CategoryResponse.swift */,
 			);
 			path = "Response Models";
 			sourceTree = "<group>";
@@ -1020,6 +1023,7 @@
 				746FA5FA2A260D04006CE52C /* SignupPresentation.swift in Sources */,
 				F82CA4F22A19B4A5007EDFAE /* ViewController+Storyboard+Extension.swift in Sources */,
 				746FA5ED2A25F479006CE52C /* JSONAPIDictionaryResponse.swift in Sources */,
+				F82BDDF42A41EAE1002E29E5 /* CategoryResponse.swift in Sources */,
 				7490E4422A4092F200463582 /* AppState.swift in Sources */,
 				746FA5FC2A260D18006CE52C /* Presentation.swift in Sources */,
 				F8512C352A13B9EA0041C14F /* String+Images.swift in Sources */,

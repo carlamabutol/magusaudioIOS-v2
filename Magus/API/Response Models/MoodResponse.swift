@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct MoodResponse : EndpointResponse {
     typealias ErrorResponse = MoodResponseErrorResponse
     let code: Int
