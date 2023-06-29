@@ -17,8 +17,9 @@ class HomeViewController: CommonViewController {
     
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
-            collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: Self.item)
-            collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Self.header)
+            collectionView.register(HomeCustomCell.self, forCellWithReuseIdentifier: Self.item)
+            collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
+            collectionView.register(HeaderTitleView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderTitleView.identifier)
             setupCompositionalLayout()
             setupDataSource()
         }
@@ -33,21 +34,23 @@ class HomeViewController: CommonViewController {
     
     private func setupDataSource() {
         let dataSource = RxCollectionViewSectionedReloadDataSource<SectionViewModel>(configureCell: { dataSource, collectionView, indexPath, item in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Self.item, for: indexPath)
-            cell.backgroundColor = .randomColor()
+            let cell: HomeCustomCell!
+            switch indexPath.section {
+            case 0:
+                cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
+                
+                cell.configure(item: item)
+            case 1:
+                cell = collectionView.dequeueReusableCell(withReuseIdentifier: Self.item, for: indexPath) as! HomeCustomCell
+                cell.backgroundColor = .randomColor()
+            default:
+                cell = collectionView.dequeueReusableCell(withReuseIdentifier: Self.item, for: indexPath) as! HomeCustomCell
+                cell.backgroundColor = .randomColor()
+            }
             return cell
         }, configureSupplementaryView: { dataSource, collectionView, title, indexPath in
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Self.header, for: indexPath)
-            let label = UILabel()
-            label.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(label)
-            label.topAnchor.constraint(equalTo: view.topAnchor)
-            label.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-            label.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-            label.text = dataSource.sectionModels[indexPath.section].header
-            label.font = .boldSystemFont(ofSize: 20)
-            label.textColor = .black
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderTitleView.identifier, for: indexPath) as! HeaderTitleView
+            view.configure(title: dataSource.sectionModels[indexPath.section].header)
             return view
         })
         

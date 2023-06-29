@@ -20,11 +20,10 @@ struct CategorySubliminalErrorResponse: Decodable {
 struct CategorySubliminalElement: EndpointResponse {
     typealias ErrorResponse = CategorySubliminalErrorResponse
     let id: Int
-    let name, description: String
-    let deletePermission: Bool
+    let name: String
+    let description: String?
 
     enum CodingKeys: String, CodingKey {
         case id, name, description
-        case deletePermission = "delete_permission"
     }
 }

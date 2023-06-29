@@ -9,8 +9,8 @@ import Foundation
 import RxSwift
 
 protocol NetworkService {
-    func signIn(email: String, password: String) async throws -> SignInResponse
-    func getAllMoods() async throws -> MoodResponse
+    func signIn(email: String, password: String) async throws -> JSONAPIDictionaryResponse<SignInResponse>
+    func getAllMoods() async throws -> JSONAPIArrayResponse<Mood>
     func updateSelectedMoods(userId: String, moodId: Int) async throws -> DefaultResponse
     func getCategorySubliminal() async throws -> JSONAPIArrayResponse<CategorySubliminalElement>
 }

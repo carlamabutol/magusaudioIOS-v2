@@ -44,3 +44,11 @@ extension UIViewController {
     }
     
 }
+
+extension UIView {
+    
+    
+    static func instantiate() -> UINib? {
+        UINib(nibName: String(describing: type(of: self)), bundle: nil)
+    }
+}

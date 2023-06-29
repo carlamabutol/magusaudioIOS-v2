@@ -33,12 +33,23 @@ class MoodViewModel: ViewModel {
     
     func getMoodList() {
         Task {
-            let response = try await networkService.getAllMoods()
-            self.moodListRelay.accept(response.data.map { mood in
-                return MoodCell.Model(id: mood.id, title: mood.name, image: mood.image, selectedColor: mood.description, isSelected: false) { [weak self] in
-                    self?.didSelectMood(mood)
+            do {
+                let response = try await networkService.getAllMoods()
+                
+                switch response {
+                case .success(let array):
+                    print("ARRAY - \(array)")
+                    self.moodListRelay.accept(array.map { mood in
+                        return MoodCell.Model(id: mood.id, title: mood.name, image: mood.image, selectedColor: mood.description, isSelected: false) { [weak self] in
+                            self?.didSelectMood(mood)
+                        }
+                    })
+                case .error(let errorResponse):
+                    print("errorResponse - \(errorResponse.message)")
                 }
-            })
+            } catch {
+                print("Error Response - \(error.localizedDescription)")
+            }
         }
     }
     

@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 
 class Router {
+    private let credentialsService: AuthenticationService
     private let disposeBag = DisposeBag()
     private let selectedRouteRelay: BehaviorRelay<Route>
     let selectedRouterObservable: Observable<Route>
@@ -24,8 +25,10 @@ class Router {
         }
     }
     
-    init() {
-        selectedRouteRelay = BehaviorRelay(value: .splashscreen)
+    init(credentialsService: AuthenticationService) {
+        self.credentialsService = credentialsService
+        let initialRoute: Route = credentialsService.isLoggedIn ? .home : .welcomeOnBoard
+        selectedRouteRelay = BehaviorRelay(value: initialRoute)
         selectedRouterObservable = selectedRouteRelay.asObservable().observe(on: MainScheduler.asyncInstance)
     }
     

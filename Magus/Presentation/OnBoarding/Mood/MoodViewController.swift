@@ -64,8 +64,7 @@ class MoodViewController: CommonViewController {
     }
     
     private func setUpCollectionView() {
-        moodCollectionView.register(UINib(nibName: "MoodCell", bundle: nil), forCellWithReuseIdentifier: MoodCell.identifier)
-//        moodCollectionView.register(MoodCell.self, forCellWithReuseIdentifier: MoodCell.identifier)
+        moodCollectionView.register(MoodCell.instantiate(), forCellWithReuseIdentifier: MoodCell.identifier)
         moodCollectionView.delegate = self
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical

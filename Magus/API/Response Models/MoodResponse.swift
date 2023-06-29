@@ -17,16 +17,14 @@ struct MoodResponseErrorResponse: Decodable {
     let message: String
 }
 
-struct Mood: Codable, Equatable {
+struct Mood: EndpointResponse, Equatable, Encodable {
+    typealias ErrorResponse = MoodResponseErrorResponse
+    
     let id: Int
     let name, description: String
     let image: String
-    let deletePermission: Bool
-    let imageName: String
 
     enum CodingKeys: String, CodingKey {
         case id, name, description, image
-        case deletePermission = "delete_permission"
-        case imageName = "image_name"
     }
 }

@@ -13,9 +13,9 @@ import RxDataSources
 class HomeViewModel: ViewModel {
     
     let sections = BehaviorRelay<[SectionViewModel]>(value: [
-        SectionViewModel(header: "Category", items: ["Item 1", "Item 2", "Item 3"]),
-        SectionViewModel(header: "Recommendations", items: ["Item 1", "Item 2", "Item 3"]),
-        SectionViewModel(header: "Featured Playlists", items: ["Item 1", "Item 2", "Item 3"])
+        SectionViewModel(header: LocalizedStrings.HomeHeaderTitle.category, items: []),
+        SectionViewModel(header: LocalizedStrings.HomeHeaderTitle.recommendations, items: []),
+        SectionViewModel(header: LocalizedStrings.HomeHeaderTitle.featuredPlayList, items: [])
     ])
     
     private let networkService: NetworkService
@@ -33,6 +33,9 @@ class HomeViewModel: ViewModel {
                 switch response {
                 case .success(let array):
                     print("RESPONSE - \(array)")
+                    var newSection = sections.value
+                    newSection[0].items = array.map { CategoryCell.Model(id: $0.id, title: $0.name, imageUrl: .init(string: $0.description ?? "")) }
+                    sections.accept(newSection)
                 case .error(let errorResponse):
                     debugPrint("RESPONSE ERROR - \(errorResponse.message)")
                 }
@@ -48,12 +51,18 @@ class HomeViewModel: ViewModel {
 
 struct SectionViewModel {
     var header: String!
-    var items: [String]
+    var items: [ItemModel]
+}
+
+protocol ItemModel {
+    var id: Int { get set }
+    var title: String { get set }
+    var imageUrl: URL? { get set }
 }
 
 extension SectionViewModel: SectionModelType {
-    typealias Item = String
-    init(original: SectionViewModel, items: [String]) {
+    typealias Item = ItemModel
+    init(original: SectionViewModel, items: [ItemModel]) {
         self = original
         self.items = items
     }

@@ -9,7 +9,10 @@ import Foundation
 
 struct AppState: Codable, Equatable {
     
-    var userId: String?
+    var userId: String? {
+        return user?.userID
+    }
+    
     var user: User?
     var selectedMood: Mood?
     

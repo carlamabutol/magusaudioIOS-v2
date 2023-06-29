@@ -11,11 +11,17 @@ import Alamofire
 class StandardNetworkService {
     
     private let baseURL: URL
+    private let credentialsService: AuthenticationService
     private let requestManager: Session
-    private static let validStatusCodes = [Int](200 ..< 300) + [422]
+    private let getUserID: () -> String?
+    private static let validStatusCodes: [Int] = (200 ..< 300) + [422]
     
-    init(baseURL: URL) {
+    init(baseURL: URL,
+         credentialsService: AuthenticationService,
+         getUserID: @escaping () -> String?) {
         self.baseURL = baseURL
+        self.credentialsService = credentialsService
+        self.getUserID = getUserID
         self.requestManager = Alamofire.Session(configuration: .default)
     }
     
@@ -23,15 +29,23 @@ class StandardNetworkService {
         return HTTPHeaders(["Accept": "application/json"])
     }
     
+    private func getAuthenticatedHeaders() throws -> HTTPHeaders {
+        guard let userID = getUserID(), let token = credentialsService.tokenForID(userID) else {
+            throw NetworkServiceError.notAuthenticated
+        }
+        
+        var headers = getUnauthenticatedHeaders()
+        headers.add(HTTPHeader(name: "Authorization", value: "Bearer \(token)"))
+        return headers
+    }
+    
 }
 
 extension StandardNetworkService: NetworkService {
     
-    func signIn(email: String, password: String) async throws -> SignInResponse {
+    func signIn(email: String, password: String) async throws -> JSONAPIDictionaryResponse<SignInResponse> {
         let url = baseURL
             .appendingPathComponent("api")
-            .appendingPathComponent("v1")
-            .appendingPathComponent("user")
             .appendingPathComponent("login")
         
         let parameters: [String: String] = [
@@ -41,20 +55,19 @@ extension StandardNetworkService: NetworkService {
         
         let task = requestManager.request(url, method: .post, parameters: parameters, encoder: JSONParameterEncoder.default, headers: getUnauthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
-            .serializingDecodable(SignInResponse.self)
+            .serializingDecodable(JSONAPIDictionaryResponse<SignInResponse>.self)
         
         return try await task.value
     }
     
-    func getAllMoods() async throws -> MoodResponse {
+    func getAllMoods() async throws -> JSONAPIArrayResponse<Mood> {
         let url = baseURL
             .appendingPathComponent("api")
-            .appendingPathComponent("v1")
-            .appendingPathComponent("moods")
+            .appendingPathComponent("mood")
         
-        let task = requestManager.request(url, method: .get, headers: getUnauthenticatedHeaders())
+        let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
-            .serializingDecodable(MoodResponse.self)
+            .serializingDecodable(JSONAPIArrayResponse<Mood>.self)
         
         return try await task.value
     }
@@ -62,7 +75,6 @@ extension StandardNetworkService: NetworkService {
     func updateSelectedMoods(userId: String, moodId: Int) async throws -> DefaultResponse {
         let url = baseURL
             .appendingPathComponent("api")
-            .appendingPathComponent("v1")
             .appendingPathComponent("user")
             .appendingPathComponent("update")
             .appendingPathComponent("moods")
@@ -82,10 +94,9 @@ extension StandardNetworkService: NetworkService {
     func getCategorySubliminal() async throws -> JSONAPIArrayResponse<CategorySubliminalElement> {
         let url = baseURL
             .appendingPathComponent("api")
-            .appendingPathComponent("v1")
             .appendingPathComponent("category")
         
-        let task = requestManager.request(url, method: .get, headers: getUnauthenticatedHeaders())
+        let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
             .serializingDecodable(JSONAPIArrayResponse<CategorySubliminalElement>.self)
         

@@ -75,4 +75,9 @@ struct LocalizedStrings {
         static let profile = "Profile"
     }
     
+    enum HomeHeaderTitle {
+        static let category = "Category"
+        static let recommendations = "Recommendations"
+        static let featuredPlayList = "Featured Playlists"
+    }
 }
