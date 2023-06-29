@@ -80,4 +80,11 @@ struct LocalizedStrings {
         static let recommendations = "Recommendations"
         static let featuredPlayList = "Featured Playlists"
     }
+    
+    enum Premium {
+        static let title = "Upgrade plan to\nExperience More."
+        static let subTitle = "Unlock all Premium Features"
+        static let chooseYourPlan = "Choose your Plan"
+        static let continueBtn = "Continue"
+    }
 }

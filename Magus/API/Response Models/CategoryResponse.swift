@@ -22,8 +22,9 @@ struct CategorySubliminalElement: EndpointResponse {
     let id: Int
     let name: String
     let description: String?
+    let image: String?
 
     enum CodingKeys: String, CodingKey {
-        case id, name, description
+        case id, name, description, image
     }
 }

@@ -21,11 +21,14 @@ class CategoryCell: HomeCustomCell {
     lazy var categoryImageView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .darkGray
+        view.cornerRadius(with: 5)
         return view
     }()
     
     lazy var titleLabel: UILabel = {
         let view = UILabel()
+        view.numberOfLines = 2
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -65,10 +68,22 @@ class CategoryCell: HomeCustomCell {
     }
     
     override func configure(item: SectionViewModel.Item) {
-        titleLabel.text = item.title
+        setTextWithShadow(text: item.title)
         categoryImageView.sd_setImage(with: item.imageUrl, placeholderImage: nil, context: nil) { [weak self] _, _, url in
             
         }
+    }
+    
+    private func setTextWithShadow(text: String) {
+        let myShadow = NSShadow()
+        myShadow.shadowBlurRadius = 3
+        myShadow.shadowOffset = CGSize(width: 3, height: 3)
+        myShadow.shadowColor = UIColor.gray
+        let myAttribute = [NSAttributedString.Key.shadow: myShadow,
+                           NSAttributedString.Key.font: UIFont.Montserrat.semibold1,
+                           NSAttributedString.Key.foregroundColor: UIColor.white]
+        let myAttrString = NSAttributedString(string: text, attributes: myAttribute)
+        titleLabel.attributedText = myAttrString
     }
     
     override func prepareForReuse() {

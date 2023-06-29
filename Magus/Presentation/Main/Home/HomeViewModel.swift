@@ -34,7 +34,7 @@ class HomeViewModel: ViewModel {
                 case .success(let array):
                     print("RESPONSE - \(array)")
                     var newSection = sections.value
-                    newSection[0].items = array.map { CategoryCell.Model(id: $0.id, title: $0.name, imageUrl: .init(string: $0.description ?? "")) }
+                    newSection[0].items = array.map { CategoryCell.Model(id: $0.id, title: $0.name, imageUrl: .init(string: $0.image ?? "")) }
                     sections.accept(newSection)
                 case .error(let errorResponse):
                     debugPrint("RESPONSE ERROR - \(errorResponse.message)")

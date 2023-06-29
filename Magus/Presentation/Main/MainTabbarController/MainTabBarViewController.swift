@@ -52,19 +52,14 @@ extension MainTabBarViewController {
         switch tabItem {
         case .home:
             viewController = HomeViewController.instantiate(from: .home)
-            viewController.view.backgroundColor = .orange
         case .search:
             viewController = SearchViewController.instantiate(from: .search)
-            viewController.view.backgroundColor = .yellow
         case .sound:
             viewController = SubsViewController.instantiate(from: .subs)
-            viewController.view.backgroundColor = .green
         case .premium:
             viewController = PremiumViewController.instantiate(from: .premium)
-            viewController.view.backgroundColor = .brown
         case .user:
             viewController = ProfileViewController.instantiate(from: .profile)
-            viewController.view.backgroundColor = .cyan
         }
         viewController.tabBarItem = Self.createTabItem(item: tabItem)
         return viewController
