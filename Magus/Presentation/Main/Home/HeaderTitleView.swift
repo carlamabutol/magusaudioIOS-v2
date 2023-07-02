@@ -14,7 +14,7 @@ class HeaderTitleView: UICollectionReusableView {
     lazy var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .boldSystemFont(ofSize: 20)
+        label.font = .Montserrat.bold4
         label.textColor = .black
         return label
     }()
@@ -30,10 +30,12 @@ class HeaderTitleView: UICollectionReusableView {
     
     private func setupView() {
         self.addSubview(label)
-        label.topAnchor.constraint(equalTo: self.topAnchor)
-        label.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        label.leadingAnchor.constraint(equalTo: self.leadingAnchor)
-        label.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: self.topAnchor),
+            label.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            label.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
     }
     
     func configure(title: String) {

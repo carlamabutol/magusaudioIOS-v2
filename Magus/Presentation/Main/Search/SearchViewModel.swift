@@ -1,60 +1,70 @@
 //
-//  HomeViewModel.swift
+//  SearchViewModel.swift
 //  Magus
 //
-//  Created by Jomz on 6/19/23.
+//  Created by Jomz on 7/2/23.
 //
 
 import Foundation
 import RxSwift
-import RxRelay
-import RxDataSources
+import RxCocoa
 
-class HomeViewModel: ViewModel {
+class SearchViewModel: ViewModel {
+    
+    enum SearchSection {
+        case subliminal
+        case playlist
+        
+        var title: String {
+            switch self {
+            case .subliminal:
+                return LocalizedStrings.SearchHeaderTitle.subliminal
+            case .playlist:
+                return LocalizedStrings.SearchHeaderTitle.playlist
+            }
+        }
+    }
     
     let sections = BehaviorRelay<[SectionViewModel]>(value: [])
     
-    private let categoryRelay = BehaviorRelay<[CategoryCell.Model]>(value: [])
+    private let subliminalRelay = BehaviorRelay<[CategoryCell.Model]>(value: [])
     private let playlistRelay = BehaviorRelay<[CategoryCell.Model]>(value: [])
-    
     private let networkService: NetworkService
-    private var user: () -> User?
     
-    init(sharedDependencies: HomeViewModel.Dependencies = .standard) {
+    init(sharedDependencies: SearchViewModel.Dependencies = .standard) {
         networkService = sharedDependencies.networkService
-        user = sharedDependencies.user
         super.init()
-        Observable.combineLatest(categoryRelay, playlistRelay)
-            .subscribe { [weak self] categories, playlist in
+        Observable.combineLatest(subliminalRelay, playlistRelay)
+            .subscribe { [weak self] subliminals, playlist in
                 guard let self else { return }
                 var newSection = self.sections.value
                 if newSection.isEmpty {
-                    newSection.insert(.init(header: LocalizedStrings.HomeHeaderTitle.category, items: categories), at: 0)
+                    newSection.insert(.init(header: SearchSection.subliminal.title, items: subliminals), at: 0)
                 } else {
-                    newSection[0].items = categories
+                    newSection[0].items = subliminals
                 }
-                if let playListIndex = newSection.lastIndex(where: { $0.header == LocalizedStrings.HomeHeaderTitle.featuredPlayList }) {
+                if let playListIndex = newSection.lastIndex(where: { $0.header == SearchSection.playlist.title }) {
                     newSection[playListIndex].items = playlist
                 } else {
-                    newSection.append(.init(header: LocalizedStrings.HomeHeaderTitle.featuredPlayList, items: playlist))
+                    newSection.append(.init(header: SearchSection.playlist.title, items: playlist))
                 }
                 self.sections.accept(newSection)
             }
             .disposed(by: disposeBag)
     }
     
-    func getHomeDetails() {
-        getAllCategory()
+    func getDetails() {
+        getSubliminals()
         getFeaturedPlaylists()
     }
     
-    private func getAllCategory() {
+    private func getSubliminals() {
         Task {
             do {
-                let response = try await networkService.getCategorySubliminal()
+                let response = try await networkService.getSubliminals()
                 switch response {
-                case .success(let array):
-                    categoryRelay.accept(array.map { CategoryCell.Model(id: $0.id, title: $0.name, imageUrl: .init(string: $0.image ?? "")) })
+                case .success(let dict):
+                    subliminalRelay.accept(dict.data.map { CategoryCell.Model(id: $0.id, title: $0.title, imageUrl: .init(string: $0.cover )) })
                 case .error(let errorResponse):
                     debugPrint("RESPONSE ERROR - \(errorResponse.message)")
                 }
@@ -63,6 +73,7 @@ class HomeViewModel: ViewModel {
             }
             
         }
+        
     }
     
     private func getFeaturedPlaylists() {
@@ -82,20 +93,17 @@ class HomeViewModel: ViewModel {
         }
         
     }
-    
 }
 
-extension HomeViewModel {
+extension SearchViewModel {
     
     struct Dependencies {
-        let user: () -> User?
         let router: Router
         let networkService: NetworkService
         let authenticationUseCase: AuthenticationUseCase
         
         static var standard: Dependencies {
             return .init(
-                user: { SharedDependencies.sharedDependencies.store.appState.user },
                 router: SharedDependencies.sharedDependencies.router,
                 networkService: SharedDependencies.sharedDependencies.networkService,
                 authenticationUseCase: SharedDependencies.sharedDependencies.useCases.authenticationUseCase
@@ -103,23 +111,4 @@ extension HomeViewModel {
         }
     }
     
-}
-
-struct SectionViewModel {
-    var header: String!
-    var items: [ItemModel]
-}
-
-protocol ItemModel {
-    var id: Int { get set }
-    var title: String { get set }
-    var imageUrl: URL? { get set }
-}
-
-extension SectionViewModel: SectionModelType {
-    typealias Item = ItemModel
-    init(original: SectionViewModel, items: [ItemModel]) {
-        self = original
-        self.items = items
-    }
 }

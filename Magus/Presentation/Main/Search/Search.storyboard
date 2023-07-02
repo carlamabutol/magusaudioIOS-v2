@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="Search for title or a category " id="Pu6-h7-cr6">
-                                <rect key="frame" x="1" y="59" width="392" height="56"/>
+                                <rect key="frame" x="0.0" y="59" width="392" height="56"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>
@@ -57,6 +57,9 @@
                             <constraint firstItem="Ymg-Vk-MaG" firstAttribute="top" secondItem="Pu6-h7-cr6" secondAttribute="bottom" id="zMW-WX-IPK"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="Ymg-Vk-MaG" id="aqG-fq-Clx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

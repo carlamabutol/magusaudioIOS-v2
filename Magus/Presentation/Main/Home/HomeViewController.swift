@@ -20,6 +20,7 @@ class HomeViewController: CommonViewController {
             collectionView.register(HomeCustomCell.self, forCellWithReuseIdentifier: Self.item)
             collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
             collectionView.register(HeaderTitleView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderTitleView.identifier)
+            collectionView.register(FooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterView.identifier)
             setupCompositionalLayout()
             setupDataSource()
         }
@@ -29,7 +30,7 @@ class HomeViewController: CommonViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.getAllCategory()
+        viewModel.getHomeDetails()
     }
     
     private func setupDataSource() {
@@ -41,17 +42,24 @@ class HomeViewController: CommonViewController {
                 
                 cell.configure(item: item)
             case 1:
-                cell = collectionView.dequeueReusableCell(withReuseIdentifier: Self.item, for: indexPath) as! HomeCustomCell
-                cell.backgroundColor = .randomColor()
+                cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
+                
+                cell.configure(item: item)
             default:
-                cell = collectionView.dequeueReusableCell(withReuseIdentifier: Self.item, for: indexPath) as! HomeCustomCell
-                cell.backgroundColor = .randomColor()
+                cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
+                
+                cell.configure(item: item)
             }
             return cell
         }, configureSupplementaryView: { dataSource, collectionView, title, indexPath in
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderTitleView.identifier, for: indexPath) as! HeaderTitleView
-            view.configure(title: dataSource.sectionModels[indexPath.section].header)
-            return view
+            if title == UICollectionView.elementKindSectionHeader {
+                let view = collectionView.dequeueReusableSupplementaryView(ofKind: title, withReuseIdentifier: HeaderTitleView.identifier, for: indexPath) as! HeaderTitleView
+                view.configure(title: dataSource.sectionModels[indexPath.section].header)
+                return view
+            } else {
+                let view = collectionView.dequeueReusableSupplementaryView(ofKind: title, withReuseIdentifier: FooterView.identifier, for: indexPath) as! FooterView
+                return view
+            }
         })
         
         viewModel.sections.asObservable()
@@ -88,6 +96,7 @@ class HomeViewController: CommonViewController {
         section.orthogonalScrollingBehavior = .continuous
         section.boundarySupplementaryItems = [
             .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top),
+            .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom),
         ]
         return section
     }
@@ -105,6 +114,7 @@ class HomeViewController: CommonViewController {
         section.orthogonalScrollingBehavior = .continuous
         section.boundarySupplementaryItems = [
             .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top),
+            .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom),
         ]
         return section
     }

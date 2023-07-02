@@ -81,6 +81,11 @@ struct LocalizedStrings {
         static let featuredPlayList = "Featured Playlists"
     }
     
+    enum SearchHeaderTitle {
+        static let playlist = "Playlist"
+        static let subliminal = "Subliminal"
+    }
+    
     enum Premium {
         static let title = "Upgrade plan to\nExperience More."
         static let subTitle = "Unlock all Premium Features"

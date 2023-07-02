@@ -13,4 +13,6 @@ protocol NetworkService {
     func getAllMoods() async throws -> JSONAPIArrayResponse<Mood>
     func updateSelectedMoods(userId: String, moodId: Int) async throws -> DefaultResponse
     func getCategorySubliminal() async throws -> JSONAPIArrayResponse<CategorySubliminalElement>
+    func getFeaturedPlaylists() async throws -> JSONAPIArrayResponse<FeaturedPlaylistResponse>
+    func getSubliminals() async throws -> JSONAPIDictionaryResponse<SubliminalResponse>
 }

@@ -103,4 +103,28 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
+    func getFeaturedPlaylists() async throws -> JSONAPIArrayResponse<FeaturedPlaylistResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("playlist")
+        
+        let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<FeaturedPlaylistResponse>.self)
+        
+        return try await task.value
+    }
+    
+    func getSubliminals() async throws -> JSONAPIDictionaryResponse<SubliminalResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("subliminal")
+        
+        let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIDictionaryResponse<SubliminalResponse>.self)
+        
+        return try await task.value
+    }
+    
 }

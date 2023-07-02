@@ -57,8 +57,12 @@
 		7490E45D2A40A1A600463582 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7490E45C2A40A1A600463582 /* Profile.storyboard */; };
 		7490E45F2A40A1B300463582 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490E45E2A40A1B300463582 /* ProfileViewController.swift */; };
 		7490E4612A40A3A500463582 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490E4602A40A3A500463582 /* HomeViewModel.swift */; };
+		74B9177A2A51B5C200B598EB /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B917792A51B5C200B598EB /* SearchViewModel.swift */; };
+		74B9177C2A51C8A800B598EB /* SubliminalResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B9177B2A51C8A800B598EB /* SubliminalResponse.swift */; };
 		74DFB6AE2A386EAC00FD99CE /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 74DFB6AD2A386EAC00FD99CE /* RxDataSources */; };
 		74DFB6B12A38790C00FD99CE /* MoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DFB6B02A38790C00FD99CE /* MoodCell.swift */; };
+		74E3BAD32A5042AB00CB0005 /* FeaturedPlaylistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E3BAD22A5042AB00CB0005 /* FeaturedPlaylistResponse.swift */; };
+		74E3BAD52A504CD400CB0005 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E3BAD42A504CD400CB0005 /* FooterView.swift */; };
 		74F1DD1B2A4996AF008F4680 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F1DD1A2A4996AF008F4680 /* CategoryCell.xib */; };
 		74F1DD1D2A4996C6008F4680 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1DD1C2A4996C6008F4680 /* CategoryCell.swift */; };
 		F806560C2A179B7B006D53F8 /* CommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F806560B2A179B7B006D53F8 /* CommonView.swift */; };
@@ -227,7 +231,11 @@
 		7490E45C2A40A1A600463582 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		7490E45E2A40A1B300463582 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7490E4602A40A3A500463582 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		74B917792A51B5C200B598EB /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		74B9177B2A51C8A800B598EB /* SubliminalResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubliminalResponse.swift; sourceTree = "<group>"; };
 		74DFB6B02A38790C00FD99CE /* MoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCell.swift; sourceTree = "<group>"; };
+		74E3BAD22A5042AB00CB0005 /* FeaturedPlaylistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedPlaylistResponse.swift; sourceTree = "<group>"; };
+		74E3BAD42A504CD400CB0005 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		74F1DD1A2A4996AF008F4680 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
 		74F1DD1C2A4996C6008F4680 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		F806560B2A179B7B006D53F8 /* CommonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonView.swift; sourceTree = "<group>"; };
@@ -429,6 +437,8 @@
 				F82BDDF32A41EAE1002E29E5 /* CategoryResponse.swift */,
 				741CB6A92A4479B900975949 /* UserResponse.swift */,
 				741CB6AB2A4479D300975949 /* UserInfoResponse.swift */,
+				74E3BAD22A5042AB00CB0005 /* FeaturedPlaylistResponse.swift */,
+				74B9177B2A51C8A800B598EB /* SubliminalResponse.swift */,
 			);
 			path = "Response Models";
 			sourceTree = "<group>";
@@ -461,6 +471,7 @@
 				7490E44E2A40A0DF00463582 /* HomeViewController.swift */,
 				7490E4602A40A3A500463582 /* HomeViewModel.swift */,
 				7474B3192A49B7BE00086600 /* HeaderTitleView.swift */,
+				74E3BAD42A504CD400CB0005 /* FooterView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -470,6 +481,7 @@
 			children = (
 				7490E4502A40A10800463582 /* Search.storyboard */,
 				7490E4522A40A11400463582 /* SearchViewController.swift */,
+				74B917792A51B5C200B598EB /* SearchViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -1089,6 +1101,7 @@
 				F88A82E62A13CE8500D3E975 /* Font+Extension.swift in Sources */,
 				7419C45B2A209F6700DD86F2 /* TermsAndConditionViewController.swift in Sources */,
 				7490E4612A40A3A500463582 /* HomeViewModel.swift in Sources */,
+				74B9177A2A51B5C200B598EB /* SearchViewModel.swift in Sources */,
 				F80A38B82A18C09F0023D166 /* KeyboardManager.swift in Sources */,
 				7474B31C2A49BD5D00086600 /* HomeCustomCell.swift in Sources */,
 				F8669E362A0BE619004D28A1 /* LoginViewController.swift in Sources */,
@@ -1099,9 +1112,11 @@
 				7490E44F2A40A0DF00463582 /* HomeViewController.swift in Sources */,
 				746FA5EF2A25F9C4006CE52C /* NetworkServiceError.swift in Sources */,
 				74733B9D2A30B03D002FE613 /* MoodViewModel.swift in Sources */,
+				74B9177C2A51C8A800B598EB /* SubliminalResponse.swift in Sources */,
 				746FA5EB2A25EED0006CE52C /* EndpointResponse.swift in Sources */,
 				7490E4572A40A14C00463582 /* SubsViewController.swift in Sources */,
 				7431D8122A24837C00F79E48 /* StandardNetworkService.swift in Sources */,
+				74E3BAD32A5042AB00CB0005 /* FeaturedPlaylistResponse.swift in Sources */,
 				F8512C3F2A13BDC90041C14F /* WelcomeViewModel.swift in Sources */,
 				746FA5F12A25FE76006CE52C /* JSONAPIArrayResponse.swift in Sources */,
 				F835B01E2A0652D100123A16 /* RootViewController.swift in Sources */,
@@ -1120,6 +1135,7 @@
 				7474B31A2A49B7BE00086600 /* HeaderTitleView.swift in Sources */,
 				7490E4462A4096FC00463582 /* Logger.swift in Sources */,
 				F88A830E2A13D22900D3E975 /* UIView+Extension.swift in Sources */,
+				74E3BAD52A504CD400CB0005 /* FooterView.swift in Sources */,
 				F8315DE52A1CE9C100634DA1 /* SignUpViewModel.swift in Sources */,
 				741CB6B92A447F0A00975949 /* AuthenticationUseCase.swift in Sources */,
 				F81ED0B02A162B9C0043E245 /* SplashScreenViewController.swift in Sources */,
