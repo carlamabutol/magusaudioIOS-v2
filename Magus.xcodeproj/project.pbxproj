@@ -24,6 +24,8 @@
 		741CB6B42A447D6400975949 /* NetworkErrorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741CB6B32A447D6400975949 /* NetworkErrorUseCase.swift */; };
 		741CB6B72A447EAB00975949 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741CB6B62A447EAB00975949 /* UserUseCase.swift */; };
 		741CB6B92A447F0A00975949 /* AuthenticationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741CB6B82A447F0A00975949 /* AuthenticationUseCase.swift */; };
+		7429E7D52A530E6600E8E750 /* PremiumFeatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429E7D42A530E6600E8E750 /* PremiumFeatureCell.swift */; };
+		7429E7D82A53134900E8E750 /* PremiumFeatureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7429E7D72A53134900E8E750 /* PremiumFeatureCell.xib */; };
 		7431D8122A24837C00F79E48 /* StandardNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7431D8112A24837C00F79E48 /* StandardNetworkService.swift */; };
 		7467C1132A388B9300DFF86D /* MoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7467C1122A388B9300DFF86D /* MoodCell.xib */; };
 		7467C1172A38AE3400DFF86D /* DefaultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7467C1162A38AE3400DFF86D /* DefaultResponse.swift */; };
@@ -199,6 +201,8 @@
 		741CB6B32A447D6400975949 /* NetworkErrorUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorUseCase.swift; sourceTree = "<group>"; };
 		741CB6B62A447EAB00975949 /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
 		741CB6B82A447F0A00975949 /* AuthenticationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUseCase.swift; sourceTree = "<group>"; };
+		7429E7D42A530E6600E8E750 /* PremiumFeatureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumFeatureCell.swift; sourceTree = "<group>"; };
+		7429E7D72A53134900E8E750 /* PremiumFeatureCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PremiumFeatureCell.xib; sourceTree = "<group>"; };
 		7431D8112A24837C00F79E48 /* StandardNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNetworkService.swift; sourceTree = "<group>"; };
 		7467C1122A388B9300DFF86D /* MoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoodCell.xib; sourceTree = "<group>"; };
 		7467C1162A38AE3400DFF86D /* DefaultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResponse.swift; sourceTree = "<group>"; };
@@ -395,6 +399,15 @@
 			path = "Main Use Cases";
 			sourceTree = "<group>";
 		};
+		7429E7D62A530E7C00E8E750 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7429E7D42A530E6600E8E750 /* PremiumFeatureCell.swift */,
+				7429E7D72A53134900E8E750 /* PremiumFeatureCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		7431D8102A24836B00F79E48 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -498,6 +511,7 @@
 		7490E44A2A40A0BB00463582 /* Premium */ = {
 			isa = PBXGroup;
 			children = (
+				7429E7D62A530E7C00E8E750 /* Cell */,
 				7490E4582A40A17200463582 /* Premium.storyboard */,
 				7490E45A2A40A17A00463582 /* PremiumViewController.swift */,
 				740A26E92A4DCE2500D96A1D /* PremiumViewModel.swift */,
@@ -1007,6 +1021,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F88A82FA2A13CEDA00D3E975 /* Montserrat-LightItalic.ttf in Resources */,
+				7429E7D82A53134900E8E750 /* PremiumFeatureCell.xib in Resources */,
 				F835B0102A06526300123A16 /* LaunchScreen.storyboard in Resources */,
 				F88A82FE2A13CEDA00D3E975 /* Montserrat-ThinItalic.ttf in Resources */,
 				F88A83032A13CEDA00D3E975 /* Montserrat-BlackItalic.ttf in Resources */,
@@ -1161,6 +1176,7 @@
 				740D637A2A30CE030080DBE9 /* MoodResponse.swift in Sources */,
 				F827D9802A10F7460034B5AF /* Router.swift in Sources */,
 				741CB6A52A44795F00975949 /* UserInfo.swift in Sources */,
+				7429E7D52A530E6600E8E750 /* PremiumFeatureCell.swift in Sources */,
 				746FA5F72A260488006CE52C /* SignInResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

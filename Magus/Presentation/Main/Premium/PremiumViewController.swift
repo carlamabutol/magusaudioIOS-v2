@@ -25,7 +25,11 @@ class PremiumViewController: CommonViewController {
         }
     }
     
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet var tableView: UITableView! {
+        didSet {
+            
+        }
+    }
     
     @IBOutlet var chooseYourPlanLabel: UILabel! {
         didSet {
@@ -46,6 +50,10 @@ class PremiumViewController: CommonViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func setupBinding() {
+        
     }
     
 }

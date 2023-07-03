@@ -22,6 +22,7 @@ class CategoryCell: HomeCustomCell {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .darkGray
+        view.clipsToBounds = true
         view.cornerRadius(with: 5)
         return view
     }()

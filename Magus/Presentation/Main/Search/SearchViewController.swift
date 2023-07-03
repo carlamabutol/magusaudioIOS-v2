@@ -34,8 +34,8 @@ class SearchViewController: CommonViewController {
     private func setupDataSource() {
         let dataSource = RxCollectionViewSectionedReloadDataSource<SectionViewModel>(configureCell: { dataSource, collectionView, indexPath, item in
             let cell: HomeCustomCell!
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: Self.item, for: indexPath) as? HomeCustomCell
-            cell.backgroundColor = .randomColor()
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as? CategoryCell
+            cell.configure(item: item)
             return cell
         }, configureSupplementaryView: { dataSource, collectionView, title, indexPath in
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: title, withReuseIdentifier: HeaderTitleView.identifier, for: indexPath) as! HeaderTitleView
@@ -62,12 +62,12 @@ class SearchViewController: CommonViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.5))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 15, trailing: 0)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
         group.interItemSpacing = .fixed(15)
         
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
+        section.interGroupSpacing = 15
         section.boundarySupplementaryItems = [
             .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top),
         ]
