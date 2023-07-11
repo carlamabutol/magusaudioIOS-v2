@@ -40,6 +40,10 @@ extension UIView {
         firstResponder?.resignFirstResponder()
     }
     
+    func circle() {
+        layer.cornerRadius = frame.size.height / 2
+    }
+    
     func cornerRadius(with cornerRadius: CGFloat) {
         layer.cornerRadius = cornerRadius
     }

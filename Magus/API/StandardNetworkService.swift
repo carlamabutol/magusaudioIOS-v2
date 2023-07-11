@@ -127,4 +127,16 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
+    func getSubscriptions() async throws -> JSONAPIArrayResponse<SubscriptionResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("subscription")
+        
+        let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<SubscriptionResponse>.self)
+        
+        return try await task.value
+    }
+    
 }

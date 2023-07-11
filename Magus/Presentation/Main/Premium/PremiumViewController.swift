@@ -25,9 +25,15 @@ class PremiumViewController: CommonViewController {
         }
     }
     
-    @IBOutlet var tableView: UITableView! {
+    @IBOutlet var collectionView: UICollectionView! {
         didSet {
-            
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .horizontal
+            layout.minimumLineSpacing = 20
+            layout.sectionInset = .init(top: 0, left: 20, bottom: 0, right: 20)
+            collectionView
+                .setCollectionViewLayout(layout, animated: true)
+            collectionView.delegate = self
         }
     }
     
@@ -50,10 +56,20 @@ class PremiumViewController: CommonViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func setupBinding() {
         
+        viewModel.premiumFeatures.bind(to: collectionView.rx.items(cellIdentifier: PremiumFeatureCell.reuseId, cellType: PremiumFeatureCell.self)) { (row,item,cell) in
+            cell.configure(item: item)
+        }.disposed(by: disposeBag)
     }
     
+}
+
+extension PremiumViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: 130, height: collectionView.frame.height)
+    }
 }

@@ -15,4 +15,5 @@ protocol NetworkService {
     func getCategorySubliminal() async throws -> JSONAPIArrayResponse<CategorySubliminalElement>
     func getFeaturedPlaylists() async throws -> JSONAPIArrayResponse<FeaturedPlaylistResponse>
     func getSubliminals() async throws -> JSONAPIDictionaryResponse<SubliminalResponse>
+    func getSubscriptions() async throws -> JSONAPIArrayResponse<SubscriptionResponse>
 }
