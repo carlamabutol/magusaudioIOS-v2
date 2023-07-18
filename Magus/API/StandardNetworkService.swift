@@ -140,4 +140,22 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
+    func searchSubliminalAndPlaylist(search: String) async throws -> JSONAPIDictionaryResponse<SearchPlaylistAndSubliminalResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("search")
+            .appendingPathComponent("filter")
+        
+        let parameters: [String: String] = [
+            "subscription_id": "1",
+            "search": search
+        ]
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIDictionaryResponse<SearchPlaylistAndSubliminalResponse>.self)
+        
+        return try await task.value
+    }
+    
 }

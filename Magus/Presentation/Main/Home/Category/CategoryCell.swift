@@ -97,7 +97,7 @@ class CategoryCell: HomeCustomCell {
 extension CategoryCell {
     
     struct Model: ItemModel {
-        var id: Int
+        var id: String
         var title: String
         var imageUrl: URL?
     }

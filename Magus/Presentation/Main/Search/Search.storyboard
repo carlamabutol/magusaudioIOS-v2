@@ -59,6 +59,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="Ymg-Vk-MaG" id="aqG-fq-Clx"/>
+                        <outlet property="searchBar" destination="Pu6-h7-cr6" id="0cw-IC-gW2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

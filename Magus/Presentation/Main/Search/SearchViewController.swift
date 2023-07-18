@@ -15,6 +15,11 @@ class SearchViewController: CommonViewController {
     private let viewModel = SearchViewModel()
     var dataSource: RxCollectionViewSectionedReloadDataSource<SectionViewModel>!
     
+    @IBOutlet var searchBar: UISearchBar! {
+        didSet {
+            searchBar.delegate = self
+        }
+    }
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
             collectionView.register(HomeCustomCell.self, forCellWithReuseIdentifier: Self.item)
@@ -28,7 +33,6 @@ class SearchViewController: CommonViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.getDetails()
     }
     
     private func setupDataSource() {
@@ -72,5 +76,11 @@ class SearchViewController: CommonViewController {
             .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top),
         ]
         return section
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.searchRelay.accept(searchText)
     }
 }

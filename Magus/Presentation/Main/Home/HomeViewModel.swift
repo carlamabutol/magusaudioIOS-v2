@@ -54,7 +54,7 @@ class HomeViewModel: ViewModel {
                 let response = try await networkService.getCategorySubliminal()
                 switch response {
                 case .success(let array):
-                    categoryRelay.accept(array.map { CategoryCell.Model(id: $0.id, title: $0.name, imageUrl: .init(string: $0.image ?? "")) })
+                    categoryRelay.accept(array.map { CategoryCell.Model(id: String(describing: $0.id), title: $0.name, imageUrl: .init(string: $0.image ?? "")) })
                 case .error(let errorResponse):
                     debugPrint("RESPONSE ERROR - \(errorResponse.message)")
                 }
@@ -71,7 +71,7 @@ class HomeViewModel: ViewModel {
                 let response = try await networkService.getFeaturedPlaylists()
                 switch response {
                 case .success(let array):
-                    playlistRelay.accept(array.map { CategoryCell.Model(id: $0.id, title: $0.title, imageUrl: .init(string: $0.cover )) })
+                    playlistRelay.accept(array.map { CategoryCell.Model(id: String(describing: $0.id), title: $0.title, imageUrl: .init(string: $0.cover )) })
                 case .error(let errorResponse):
                     debugPrint("RESPONSE ERROR - \(errorResponse.message)")
                 }
@@ -111,7 +111,7 @@ struct SectionViewModel {
 }
 
 protocol ItemModel {
-    var id: Int { get set }
+    var id: String { get set }
     var title: String { get set }
     var imageUrl: URL? { get set }
 }

@@ -11,6 +11,8 @@ import RxCocoa
 
 class SearchViewModel: ViewModel {
     
+    static let SEARCH_DEBOUNCE_TIME: RxTimeInterval = .milliseconds(500)
+    
     enum SearchSection {
         case subliminal
         case playlist
@@ -30,6 +32,7 @@ class SearchViewModel: ViewModel {
     private let subliminalRelay = BehaviorRelay<[CategoryCell.Model]>(value: [])
     private let playlistRelay = BehaviorRelay<[CategoryCell.Model]>(value: [])
     private let networkService: NetworkService
+    let searchRelay = BehaviorRelay<String>(value: "")
     
     init(sharedDependencies: SearchViewModel.Dependencies = .standard) {
         networkService = sharedDependencies.networkService
@@ -51,21 +54,27 @@ class SearchViewModel: ViewModel {
                 self.sections.accept(newSection)
             }
             .disposed(by: disposeBag)
+        
+        searchRelay.asObservable()
+            .debounce(Self.SEARCH_DEBOUNCE_TIME, scheduler: MainScheduler.asyncInstance)
+            .distinctUntilChanged()
+            .subscribe { [weak self] search in
+                self?.search()
+            }
+            .disposed(by: disposeBag)
     }
     
-    func getDetails() {
-        getSubliminals()
-        getFeaturedPlaylists()
-    }
-    
-    private func getSubliminals() {
+    private func search() {
         Task {
             do {
-                let response = try await networkService.getSubliminals()
+                let response = try await networkService.searchSubliminalAndPlaylist(search: searchRelay.value)
                 switch response {
                 case .success(let dict):
-                    subliminalRelay.accept(dict.data.map { CategoryCell.Model(id: $0.id, title: $0.title, imageUrl: .init(string: $0.cover )) })
+                    subliminalRelay.accept(dict.subliminal.map { CategoryCell.Model(id: $0.subliminalId, title: $0.title, imageUrl: .init(string: $0.cover )) })
+                    playlistRelay.accept(dict.playlist.map { CategoryCell.Model(id: $0.playlistId, title: $0.title, imageUrl: .init(string: $0.cover )) })
+                    Logger.info("Search Request Success - \(dict)", topic: .presentation)
                 case .error(let errorResponse):
+                    Logger.error("Search Response Error", topic: .presentation)
                     debugPrint("RESPONSE ERROR - \(errorResponse.message)")
                 }
             } catch {
@@ -73,26 +82,8 @@ class SearchViewModel: ViewModel {
             }
             
         }
-        
     }
     
-    private func getFeaturedPlaylists() {
-        Task {
-            do {
-                let response = try await networkService.getFeaturedPlaylists()
-                switch response {
-                case .success(let array):
-                    playlistRelay.accept(array.map { CategoryCell.Model(id: $0.id, title: $0.title, imageUrl: .init(string: $0.cover )) })
-                case .error(let errorResponse):
-                    debugPrint("RESPONSE ERROR - \(errorResponse.message)")
-                }
-            } catch {
-                debugPrint("Network Error Response - \(error.localizedDescription)")
-            }
-            
-        }
-        
-    }
 }
 
 extension SearchViewModel {
