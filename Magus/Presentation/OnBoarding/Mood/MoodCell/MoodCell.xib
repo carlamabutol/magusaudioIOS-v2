@@ -16,22 +16,22 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tcd-O4-FrJ">
-                    <rect key="frame" x="0.0" y="59" width="400" height="83"/>
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="176"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GWR-6V-u6N">
-                            <rect key="frame" x="0.0" y="0.0" width="400" height="83"/>
+                            <rect key="frame" x="0.0" y="0.0" width="400" height="176"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ebj-Ku-e0P">
-                                    <rect key="frame" x="165" y="0.0" width="70.333333333333314" height="83"/>
+                                    <rect key="frame" x="165" y="0.0" width="70.333333333333314" height="176"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="qIU-I5-NE7">
-                                            <rect key="frame" x="0.0" y="0.0" width="24" height="83"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="24" height="176"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="24" id="RgJ-VD-ByE"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DdD-Rn-aJA">
-                                            <rect key="frame" x="29.000000000000004" y="0.0" width="41.333333333333343" height="83"/>
+                                            <rect key="frame" x="29.000000000000004" y="0.0" width="41.333333333333343" height="176"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>

@@ -52,7 +52,13 @@ extension UIView {
     
     
     static func instantiate() -> UINib? {
-        UINib(nibName: String(describing: type(of: self)), bundle: nil)
+        return UINib(nibName: String(describing: self), bundle: nil)
+    }
+}
+
+extension NSObject {
+    var theClassName: String {
+        return NSStringFromClass(type(of: self))
     }
 }
 
