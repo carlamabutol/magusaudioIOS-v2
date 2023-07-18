@@ -109,6 +109,13 @@ class LoginViewController: CommonViewController {
             .observe(on: MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] in self?.gotoForgotPassword() })
             .disposed(by: disposeBag)
+        
+        viewModel.alertModelObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] alertModel in
+                self?.showAlert(alertModel: alertModel)
+            }
+            .disposed(by: disposeBag)
     }
     
     private func gotoSignup() {
@@ -119,6 +126,12 @@ class LoginViewController: CommonViewController {
     private func gotoForgotPassword() {
         let vc = ForgotPasswordViewController.instantiate(from: .forgotPassword)
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func showAlert(alertModel: LoginAlertViewController.AlertModel) {
+        let alertVC = LoginAlertViewController.instantiate(from: .loginAlert) as! LoginAlertViewController
+        presentModally(alertVC, animated: true)
+        alertVC.configure(alertModel: alertModel)
     }
 
 }

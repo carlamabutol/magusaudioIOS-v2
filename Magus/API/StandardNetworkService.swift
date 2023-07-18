@@ -35,6 +35,7 @@ class StandardNetworkService {
         }
         
         var headers = getUnauthenticatedHeaders()
+        Logger.info("Authorization - \(token)", topic: .domain)
         headers.add(HTTPHeader(name: "Authorization", value: "Bearer \(token)"))
         return headers
     }

@@ -18,6 +18,12 @@ extension UIViewController {
         return alertVC
     }
     
+    func presentModally(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
+        viewController.modalTransitionStyle = .crossDissolve
+        viewController.modalPresentationStyle = .overFullScreen
+        present(viewController, animated: animated)
+    }
+    
     func hideKeyboardOnTap() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false

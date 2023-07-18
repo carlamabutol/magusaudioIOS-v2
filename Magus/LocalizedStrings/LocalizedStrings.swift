@@ -30,6 +30,7 @@ struct LocalizedStrings {
         static let dontHaveAnAccount = "Don’t have an account? "
         static let signUp = "SIGN UP"
         static let signIn = "SIGN IN"
+        static let signInError = "Username or Password is less than 8 characters"
     }
     
     enum SignUp {

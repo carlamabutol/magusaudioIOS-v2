@@ -21,6 +21,9 @@ class LoginViewModel {
     let password = BehaviorRelay<String>(value: "")
     var passwordObservable: Observable<String> { password.asObservable() }
     
+    let alertModel = PublishRelay<LoginAlertViewController.AlertModel?>()
+    var alertModelObservable: Observable<LoginAlertViewController.AlertModel> { alertModel.compactMap{ $0 }.asObservable() }
+    
     let alertRelay = PublishRelay<String>()
     
     init(dependencies: Dependencies = .standard) {
@@ -32,7 +35,8 @@ class LoginViewModel {
     
     func loginAction() {
         if userName.value.count < 8, password.value.count < 8 {
-            Logger.warning("Username or Password is less than 8 characters", topic: .other)
+            alertModel.accept(.init(message: LocalizedStrings.Login.signInError, image: nil))
+            Logger.warning(LocalizedStrings.Login.signInError, topic: .other)
             return
         }
         Task {
@@ -43,7 +47,7 @@ class LoginViewModel {
                     self?.router.selectedRoute = .mood
                 }
             case .failure(let error):
-                alertRelay.accept(error.errorMesasge)
+                alertModel.accept(.init(message: error.errorMesasge, image: nil))
                 Logger.error("SignIn Network Error: \(error.errorMesasge)", topic: .network)
             }
         }

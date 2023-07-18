@@ -26,6 +26,8 @@
 		741CB6B92A447F0A00975949 /* AuthenticationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741CB6B82A447F0A00975949 /* AuthenticationUseCase.swift */; };
 		7429E7D52A530E6600E8E750 /* PremiumFeatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429E7D42A530E6600E8E750 /* PremiumFeatureCell.swift */; };
 		7431D8122A24837C00F79E48 /* StandardNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7431D8112A24837C00F79E48 /* StandardNetworkService.swift */; };
+		745B623D2A66CD3500289F95 /* LoginAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 745B623C2A66CD3500289F95 /* LoginAlert.storyboard */; };
+		745B623F2A66CF4E00289F95 /* LoginAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745B623E2A66CF4E00289F95 /* LoginAlertViewController.swift */; };
 		7467C1132A388B9300DFF86D /* MoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7467C1122A388B9300DFF86D /* MoodCell.xib */; };
 		7467C1172A38AE3400DFF86D /* DefaultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7467C1162A38AE3400DFF86D /* DefaultResponse.swift */; };
 		746FA5E92A25E9BE006CE52C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746FA5E82A25E9BE006CE52C /* NetworkService.swift */; };
@@ -205,6 +207,8 @@
 		741CB6B82A447F0A00975949 /* AuthenticationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUseCase.swift; sourceTree = "<group>"; };
 		7429E7D42A530E6600E8E750 /* PremiumFeatureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumFeatureCell.swift; sourceTree = "<group>"; };
 		7431D8112A24837C00F79E48 /* StandardNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNetworkService.swift; sourceTree = "<group>"; };
+		745B623C2A66CD3500289F95 /* LoginAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginAlert.storyboard; sourceTree = "<group>"; };
+		745B623E2A66CF4E00289F95 /* LoginAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAlertViewController.swift; sourceTree = "<group>"; };
 		7467C1122A388B9300DFF86D /* MoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoodCell.xib; sourceTree = "<group>"; };
 		7467C1162A38AE3400DFF86D /* DefaultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResponse.swift; sourceTree = "<group>"; };
 		746FA5E82A25E9BE006CE52C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -345,6 +349,7 @@
 		740A26E82A4D7F6E00D96A1D /* Alert */ = {
 			isa = PBXGroup;
 			children = (
+				745B623B2A66CD2800289F95 /* LoginAlert */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -422,6 +427,15 @@
 				746FA5F02A25FE76006CE52C /* JSONAPIArrayResponse.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		745B623B2A66CD2800289F95 /* LoginAlert */ = {
+			isa = PBXGroup;
+			children = (
+				745B623C2A66CD3500289F95 /* LoginAlert.storyboard */,
+				745B623E2A66CF4E00289F95 /* LoginAlertViewController.swift */,
+			);
+			path = LoginAlert;
 			sourceTree = "<group>";
 		};
 		746FA5E72A25E995006CE52C /* Services */ = {
@@ -1065,6 +1079,7 @@
 				F88A830B2A13CEDA00D3E975 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
 				F81A48162A17725300D72E73 /* TextFieldView.xib in Resources */,
 				F88A82FF2A13CEDA00D3E975 /* Montserrat-ExtraLight.ttf in Resources */,
+				745B623D2A66CD3500289F95 /* LoginAlert.storyboard in Resources */,
 				F88A830A2A13CEDA00D3E975 /* Montserrat-SemiBoldItalic.ttf in Resources */,
 				7490E4552A40A14300463582 /* Subs.storyboard in Resources */,
 				7490E4592A40A17200463582 /* Premium.storyboard in Resources */,
@@ -1169,6 +1184,7 @@
 				F8315DE52A1CE9C100634DA1 /* SignUpViewModel.swift in Sources */,
 				741CB6B92A447F0A00975949 /* AuthenticationUseCase.swift in Sources */,
 				F81ED0B02A162B9C0043E245 /* SplashScreenViewController.swift in Sources */,
+				745B623F2A66CF4E00289F95 /* LoginAlertViewController.swift in Sources */,
 				74733B9B2A30B034002FE613 /* MoodViewController.swift in Sources */,
 				746FA5FA2A260D04006CE52C /* SignupPresentation.swift in Sources */,
 				F82CA4F22A19B4A5007EDFAE /* ViewController+Storyboard+Extension.swift in Sources */,

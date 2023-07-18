@@ -60,7 +60,7 @@ struct Log {
     var output: String {
         Self.dateFormatter.dateFormat = "dd-MM-yy HH:mm:ss.SSS"
         let date = Self.dateFormatter.string(from: timestamp)
-        return "LOGGDER: [\(date)] [\(level.rawValue)] \(topic.rawValue): \(message)"
+        return "LOGGER: [\(date)] [\(level.rawValue)] \(topic.rawValue): \(message)"
     }
     
     var userInfo: [String: Any] {

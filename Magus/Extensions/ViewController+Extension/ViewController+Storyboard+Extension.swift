@@ -31,6 +31,9 @@ enum StoryboardString: String {
     case premium = "Premium"
     case profile = "Profile"
     
+    // Alert
+    case loginAlert = "LoginAlert"
+    
 }
 
 extension UIViewController {
