@@ -20,7 +20,8 @@ struct UserInfoResponse: EndpointResponse {
     let subscriptionID: Int?
     let subscriptionStart, subscriptionEnd: String?
     let subscriptionStatus: Int?
-    let categoryID, moodsID: Int?
+    let categoryID: Int?
+    let moodsID: String?
     let coverName: String?
 
     enum CodingKeys: String, CodingKey {
