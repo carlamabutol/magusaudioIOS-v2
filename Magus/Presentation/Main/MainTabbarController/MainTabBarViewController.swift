@@ -17,6 +17,7 @@ class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         styleTabBar()
         setupBindings()
+        hideKeyboardOnTap()
     }
     
     private func styleTabBar() {
@@ -32,6 +33,10 @@ class MainTabBarViewController: UITabBarController {
             .bind(to: rx.viewControllers)
             .disposed(by: disposeBag)
         
+    }
+    
+    func setSelectedIndex(_ tabItem: MainTabViewModel.TabItem) {
+        selectedIndex = tabItem.orderIndex
     }
     
 }
@@ -53,13 +58,22 @@ extension MainTabBarViewController {
         case .home:
             viewController = HomeViewController.instantiate(from: .home)
         case .search:
-            viewController = SearchViewController.instantiate(from: .search)
+            let searchVC = SearchViewController.instantiate(from: .search) as! SearchViewController
+            searchVC.tabViewModel = viewModel
+            viewController = searchVC
         case .sound:
-            viewController = SubsViewController.instantiate(from: .subs)
+            let playerVC = SubsViewController.instantiate(from: .subs) as! SubsViewController
+            playerVC.tabViewModel = viewModel
+            viewController = playerVC
         case .premium:
             viewController = PremiumViewController.instantiate(from: .premium)
         case .user:
-            viewController = ProfileViewController.instantiate(from: .profile)
+            
+            let profileVC = ProfileViewController.instantiate(from: .profile) as! ProfileViewController
+            profileVC.tabViewModel = viewModel
+            let navVC = UINavigationController(rootViewController: profileVC)
+            navVC.navigationBar.isHidden = true
+            viewController = navVC
         }
         viewController.tabBarItem = Self.createTabItem(item: tabItem)
         return viewController
@@ -69,6 +83,7 @@ extension MainTabBarViewController {
         let tabItem = UITabBarItem(title: nil, image: UIImage(named: item.imageNameUnSelected)?.withRenderingMode(.alwaysOriginal), tag: item.orderIndex)
         tabItem.selectedImage = UIImage(named: item.imageNameSelected)?.withRenderingMode(.alwaysOriginal)
         tabItem.isAccessibilityElement = true
+        tabItem.tag = item.orderIndex
         tabItem.accessibilityIdentifier = item.title
         tabItem.accessibilityHint = item.title
         tabItem.title = item.title

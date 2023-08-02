@@ -8,10 +8,57 @@
 import Foundation
 import RxSwift
 import RxRelay
+import RxCocoa
 
 class MainTabViewModel: ViewModel {
     
     let tabItems: Observable<[TabItem]> = .just(MainTabViewModel.constructTabItems())
+    
+    private let selectedSubRelay = PublishRelay<Subliminal>()
+    var selectedSubliminalObservable: Observable<Subliminal> { selectedSubRelay.compactMap{ $0 }.asObservable() }
+    private var user: () -> User?
+    
+    init(sharedDependencies: MainTabViewModel.Dependencies = .standard) {
+        user = sharedDependencies.user
+        super.init()
+    }
+    
+    func profileImage() -> URL? {
+        guard let stringUrl = user()?.info.cover else { return nil }
+        return .init(string: stringUrl)
+    }
+    
+    func userEmail() -> String {
+        user()?.email ?? ""
+    }
+    
+    func userFullname() -> String {
+        user()?.name ?? ""
+    }
+    
+    func selectSubliminal(_ subliminal: Subliminal) {
+        selectedSubRelay.accept(subliminal)
+    }
+    
+}
+
+extension MainTabViewModel {
+    
+    struct Dependencies {
+        let user: () -> User?
+        let router: Router
+        let networkService: NetworkService
+        let authenticationUseCase: AuthenticationUseCase
+        
+        static var standard: Dependencies {
+            return .init(
+                user: { SharedDependencies.sharedDependencies.store.appState.user },
+                router: SharedDependencies.sharedDependencies.router,
+                networkService: SharedDependencies.sharedDependencies.networkService,
+                authenticationUseCase: SharedDependencies.sharedDependencies.useCases.authenticationUseCase
+            )
+        }
+    }
     
 }
 

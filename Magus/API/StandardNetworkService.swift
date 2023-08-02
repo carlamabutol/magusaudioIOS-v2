@@ -77,8 +77,8 @@ extension StandardNetworkService: NetworkService {
         let url = baseURL
             .appendingPathComponent("api")
             .appendingPathComponent("user")
+            .appendingPathComponent("mood")
             .appendingPathComponent("update")
-            .appendingPathComponent("moods")
         
         let parameters: [String: Any] = [
             "user_id": userId,

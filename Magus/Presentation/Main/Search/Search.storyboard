@@ -18,17 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Search for title or a category " id="Pu6-h7-cr6">
-                                <rect key="frame" x="0.0" y="59" width="392" height="56"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <scopeButtonTitles>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                </scopeButtonTitles>
-                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oIf-RB-Gd6" customClass="SearchView" customModule="Magus" customModuleProvider="target">
+                                <rect key="frame" x="20" y="79" width="353" height="56"/>
+                                <viewLayoutGuide key="safeArea" id="Vu9-CM-W3M"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="Saf-05-MLx"/>
+                                </constraints>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ymg-Vk-MaG">
-                                <rect key="frame" x="0.0" y="115" width="393" height="703"/>
+                                <rect key="frame" x="0.0" y="155" width="393" height="663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pNd-Os-oSp">
                                     <size key="itemSize" width="128" height="128"/>
@@ -51,15 +50,18 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="oIf-RB-Gd6" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="3Lu-yz-LYh"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Ymg-Vk-MaG" secondAttribute="trailing" id="H8j-MH-IaG"/>
+                            <constraint firstItem="Ymg-Vk-MaG" firstAttribute="top" secondItem="oIf-RB-Gd6" secondAttribute="bottom" constant="20" id="X06-Df-oeb"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="oIf-RB-Gd6" secondAttribute="trailing" constant="20" id="aeS-mt-gqq"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Ymg-Vk-MaG" secondAttribute="bottom" id="bO4-I8-WZu"/>
                             <constraint firstItem="Ymg-Vk-MaG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="s9S-8y-dJS"/>
-                            <constraint firstItem="Ymg-Vk-MaG" firstAttribute="top" secondItem="Pu6-h7-cr6" secondAttribute="bottom" id="zMW-WX-IPK"/>
+                            <constraint firstItem="oIf-RB-Gd6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="yQG-p0-PwM"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="Ymg-Vk-MaG" id="aqG-fq-Clx"/>
-                        <outlet property="searchBar" destination="Pu6-h7-cr6" id="0cw-IC-gW2"/>
+                        <outlet property="searchView" destination="oIf-RB-Gd6" id="s7b-fj-A6w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

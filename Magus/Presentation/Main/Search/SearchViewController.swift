@@ -12,20 +12,25 @@ class SearchViewController: CommonViewController {
     
     private static let header = "Header"
     private static let item = "Item"
+    var tabViewModel: MainTabViewModel!
     private let viewModel = SearchViewModel()
     var dataSource: RxCollectionViewSectionedReloadDataSource<SectionViewModel>!
     
-    @IBOutlet var searchBar: UISearchBar! {
+    @IBOutlet var searchView: SearchView! {
         didSet {
-            searchBar.delegate = self
+            searchView.cornerRadius(with: 10)
+            searchView.applyShadow(radius: 10)
         }
     }
+    
+    
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
             collectionView.register(HomeCustomCell.self, forCellWithReuseIdentifier: Self.item)
             collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
             collectionView.register(HeaderTitleView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderTitleView.identifier)
             collectionView.register(FooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterView.identifier)
+            collectionView.backgroundColor = .clear
             setupCompositionalLayout()
             setupDataSource()
         }
@@ -33,6 +38,23 @@ class SearchViewController: CommonViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func setupBinding() {
+        super.setupBinding()
+        searchView.textField.rx.text
+            .orEmpty
+            .subscribe { [weak self] text in
+                guard let self = self else { return }
+                self.viewModel.setSearchFilter(text)
+            }
+            .disposed(by: disposeBag)
+        
+        searchView.configure { [weak self] in
+            guard let self = self else { return }
+            self.viewModel.setSearchFilter("")
+        }
+        
     }
     
     private func setupDataSource() {
@@ -50,6 +72,13 @@ class SearchViewController: CommonViewController {
         viewModel.sections.asObservable()
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+        collectionView
+                .rx
+                .modelSelected(SectionViewModel.Item.self)
+                .subscribe(onNext: { (model) in
+                    //Your code
+                }).disposed(by: disposeBag)
         
         self.dataSource = dataSource
     }
@@ -76,11 +105,5 @@ class SearchViewController: CommonViewController {
             .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top),
         ]
         return section
-    }
-}
-
-extension SearchViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.searchRelay.accept(searchText)
     }
 }

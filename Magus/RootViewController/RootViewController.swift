@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class RootViewController: CommonViewController {
     
@@ -33,10 +34,12 @@ class RootViewController: CommonViewController {
     
     override func setupBinding() {
         super.setupBinding()
-        viewModel.selectedRoute.subscribe { [weak self] route in
-            self?.navigate(to: route)
-        }
-        .disposed(by: disposeBag)
+        viewModel.selectedRoute
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] route in
+                self?.navigate(to: route)
+            }
+            .disposed(by: disposeBag)
     }
     
     private func navigate(to route: Route) {

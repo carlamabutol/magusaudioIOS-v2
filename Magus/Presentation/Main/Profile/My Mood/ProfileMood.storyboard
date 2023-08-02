@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Profile Mood View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="ProfileMoodViewController" customModule="Magus" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8E-ds-kRq">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f9w-pr-oml">
+                                        <rect key="frame" x="0.0" y="20" width="393" height="564"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4oc-zx-fVO" customClass="DateTypeSelectionView" customModule="Magus" customModuleProvider="target">
+                                                <rect key="frame" x="40" y="0.0" width="313" height="35"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="lWE-fI-5VP"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OUe-UP-QNy" customClass="WeeklyView" customModule="Magus" customModuleProvider="target">
+                                                <rect key="frame" x="40" y="64" width="313" height="500"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="500" id="qSz-IG-yWO"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rnx-x4-fv2" customClass="WeeklyView" customModule="Magus" customModuleProvider="target">
+                                                <rect key="frame" x="40" y="64" width="313" height="500"/>
+                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="OUe-UP-QNy" firstAttribute="top" secondItem="4oc-zx-fVO" secondAttribute="bottom" constant="29" id="2i1-xH-ENJ"/>
+                                            <constraint firstItem="Rnx-x4-fv2" firstAttribute="leading" secondItem="OUe-UP-QNy" secondAttribute="leading" id="4J5-vU-Zjt"/>
+                                            <constraint firstAttribute="trailing" secondItem="4oc-zx-fVO" secondAttribute="trailing" constant="40" id="Eht-Zf-buf"/>
+                                            <constraint firstItem="OUe-UP-QNy" firstAttribute="bottom" secondItem="Rnx-x4-fv2" secondAttribute="bottom" id="IIe-6M-etF"/>
+                                            <constraint firstAttribute="bottom" secondItem="OUe-UP-QNy" secondAttribute="bottom" id="NUs-wo-urr"/>
+                                            <constraint firstItem="Rnx-x4-fv2" firstAttribute="top" secondItem="OUe-UP-QNy" secondAttribute="top" id="VuO-th-Mqz"/>
+                                            <constraint firstItem="OUe-UP-QNy" firstAttribute="trailing" secondItem="4oc-zx-fVO" secondAttribute="trailing" id="ZSL-qf-YR7"/>
+                                            <constraint firstItem="OUe-UP-QNy" firstAttribute="leading" secondItem="4oc-zx-fVO" secondAttribute="leading" id="beT-th-CmT"/>
+                                            <constraint firstItem="4oc-zx-fVO" firstAttribute="leading" secondItem="f9w-pr-oml" secondAttribute="leading" constant="40" id="d4L-6l-iZP"/>
+                                            <constraint firstItem="4oc-zx-fVO" firstAttribute="top" secondItem="f9w-pr-oml" secondAttribute="top" id="g9s-k5-7bF"/>
+                                            <constraint firstItem="Rnx-x4-fv2" firstAttribute="trailing" secondItem="OUe-UP-QNy" secondAttribute="trailing" id="iq2-Fa-oWj"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="f9w-pr-oml" secondAttribute="bottom" constant="20" id="1Vv-xj-QIn"/>
+                                    <constraint firstItem="f9w-pr-oml" firstAttribute="top" secondItem="h8E-ds-kRq" secondAttribute="top" constant="20" id="XwG-10-Q6p"/>
+                                    <constraint firstItem="f9w-pr-oml" firstAttribute="leading" secondItem="h8E-ds-kRq" secondAttribute="leading" id="lsK-Vs-Q1H"/>
+                                    <constraint firstItem="f9w-pr-oml" firstAttribute="width" secondItem="h8E-ds-kRq" secondAttribute="width" id="sed-uc-C41"/>
+                                    <constraint firstAttribute="trailing" secondItem="f9w-pr-oml" secondAttribute="trailing" id="wOS-wT-S5D"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="h8E-ds-kRq" secondAttribute="trailing" id="6gu-Bi-cMp"/>
+                            <constraint firstItem="h8E-ds-kRq" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="MqW-fJ-zpi"/>
+                            <constraint firstAttribute="bottom" secondItem="h8E-ds-kRq" secondAttribute="bottom" id="c8v-2t-On5"/>
+                            <constraint firstItem="h8E-ds-kRq" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="m6E-dQ-5vF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dateTypeSelectionView" destination="4oc-zx-fVO" id="6O4-pJ-Iyj"/>
+                        <outlet property="monthlyView" destination="Rnx-x4-fv2" id="GDU-xs-F4V"/>
+                        <outlet property="weeklyView" destination="OUe-UP-QNy" id="aov-K9-0bA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-31.297709923664122" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -18,21 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Search for title or a category " id="Tal-FJ-JBj">
-                                <rect key="frame" x="0.0" y="47" width="393" height="56"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <scopeButtonTitles>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                </scopeButtonTitles>
-                                <connections>
-                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="SXw-Fx-23Z"/>
-                                </connections>
-                            </searchBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a5a-BJ-Zos">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vPD-YQ-w7d" customClass="SearchView" customModule="Magus" customModuleProvider="target">
+                                <rect key="frame" x="20" y="79" width="353" height="56"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="NWk-Bq-Tgx"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a5a-BJ-Zos">
+                                <rect key="frame" x="0.0" y="155" width="393" height="663"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mz5-YJ-Cqm">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -55,19 +50,22 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="a5a-BJ-Zos" secondAttribute="trailing" id="BKU-yA-fDS"/>
-                            <constraint firstItem="a5a-BJ-Zos" firstAttribute="top" secondItem="Tal-FJ-JBj" secondAttribute="bottom" id="H00-eQ-btK"/>
+                            <constraint firstItem="vPD-YQ-w7d" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="GYu-Yo-5qi"/>
+                            <constraint firstItem="vPD-YQ-w7d" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" constant="-20" id="JDx-M9-nkb"/>
                             <constraint firstItem="a5a-BJ-Zos" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="LJ8-HY-bba"/>
+                            <constraint firstItem="a5a-BJ-Zos" firstAttribute="top" secondItem="vPD-YQ-w7d" secondAttribute="bottom" constant="20" id="LuT-si-z36"/>
+                            <constraint firstItem="vPD-YQ-w7d" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="TXC-HS-dp8"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="a5a-BJ-Zos" secondAttribute="bottom" id="cGn-pf-o4E"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="a5a-BJ-Zos" id="MZm-9b-h6P"/>
-                        <outlet property="searchBar" destination="Tal-FJ-JBj" id="T6s-Uq-KQW"/>
+                        <outlet property="searchView" destination="vPD-YQ-w7d" id="KjJ-K1-WFN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="-2"/>
+            <point key="canvasLocation" x="138.1679389312977" y="-2.1126760563380285"/>
         </scene>
     </scenes>
     <resources>

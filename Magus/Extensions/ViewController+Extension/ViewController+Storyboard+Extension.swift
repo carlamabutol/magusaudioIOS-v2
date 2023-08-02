@@ -31,8 +31,14 @@ enum StoryboardString: String {
     case premium = "Premium"
     case profile = "Profile"
     
+    // profile
+    case profileMood = "ProfileMood"
+    
     // Alert
     case loginAlert = "LoginAlert"
+    
+    // Edit Profile
+    case editProfile = "EditProfile"
     
 }
 
@@ -50,9 +56,16 @@ extension UIViewController {
 
 extension UIView {
     
-    
     static func instantiate() -> UINib? {
         return UINib(nibName: String(describing: self), bundle: nil)
+    }
+    
+    static func instantiateNibView() -> UIView? {
+        let nib = UINib(nibName: String(describing: self), bundle: nil)
+        guard let view = nib.instantiate(withOwner: nil, options: nil)[0] as? Self else {
+            fatalError("UIVIew you are attempting to instantiate might be incorrect")
+        }
+        return view
     }
 }
 

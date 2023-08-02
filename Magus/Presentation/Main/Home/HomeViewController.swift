@@ -25,12 +25,26 @@ class HomeViewController: CommonViewController {
             setupDataSource()
         }
     }
-    
-    @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet var searchView: SearchView! {
+        didSet {
+            searchView.textField.isUserInteractionEnabled = false
+            searchView.isUserInteractionEnabled = true
+            searchView.clipsToBounds = true
+            searchView.backgroundColor = .white
+            searchView.cornerRadius(with: 10)
+            searchView.applyShadow(radius: 10)
+            let tapGesutre = UITapGestureRecognizer(target: self, action: #selector(tapSearchView))
+            searchView.addGestureRecognizer(tapGesutre)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.getHomeDetails()
+    }
+    
+    @objc private func tapSearchView() {
+        tabBarController?.selectedIndex = 1
     }
     
     private func setupDataSource() {

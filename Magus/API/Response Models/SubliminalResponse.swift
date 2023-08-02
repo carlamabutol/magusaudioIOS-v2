@@ -23,7 +23,7 @@ struct Subliminal: EndpointResponse {
     let isFeatured, isVisible, categoryID: Int
     let subscriptionID, createdAt, updatedAt, guide: String
     let moodsID: String?
-    let info: [Info]
+    let info: [SubliminalInfo]
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -52,7 +52,7 @@ struct SubliminalErrorResponse: Decodable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - Info
-struct Info: Codable, Hashable {
+struct SubliminalInfo: Codable, Hashable {
     let id: Int
     let subliminalID, trackID: String
     let version, audioTypeID, volume: Int

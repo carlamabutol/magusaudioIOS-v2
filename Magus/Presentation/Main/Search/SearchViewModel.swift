@@ -32,7 +32,7 @@ class SearchViewModel: ViewModel {
     private let subliminalRelay = BehaviorRelay<[CategoryCell.Model]>(value: [])
     private let playlistRelay = BehaviorRelay<[CategoryCell.Model]>(value: [])
     private let networkService: NetworkService
-    let searchRelay = BehaviorRelay<String>(value: "")
+    private let searchRelay = BehaviorRelay<String>(value: "")
     
     init(sharedDependencies: SearchViewModel.Dependencies = .standard) {
         networkService = sharedDependencies.networkService
@@ -82,6 +82,10 @@ class SearchViewModel: ViewModel {
             }
             
         }
+    }
+    
+    func setSearchFilter(_ search: String) {
+        self.searchRelay.accept(search)
     }
     
 }

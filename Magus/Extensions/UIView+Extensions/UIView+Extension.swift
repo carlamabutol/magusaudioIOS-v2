@@ -56,15 +56,42 @@ extension UIView {
         layer.borderWidth = borderWidth
     }
     
-    func applyShadow(scale: Bool = true, color: UIColor = .black, radius: CGFloat, shadowOpacity: Float = 0.2, offset: CGSize = .init(width: 0, height: 2)) {
-        layer.cornerRadius = radius
-        layer.masksToBounds = false
-        layer.shadowColor = color.cgColor
+    func applyShadow(scale: Bool = true, color: UIColor = .black, radius: CGFloat = 0, shadowOpacity: Float = 0.2, offset: CGSize = .init(width: 3, height: 2)) {
+        layer.shadowRadius = radius
         layer.shadowOpacity = shadowOpacity
         layer.shadowOffset = offset
-        layer.shadowRadius = radius
-        layer.shouldRasterize = true
-        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+        layer.shadowColor = color.cgColor
+        layer.masksToBounds = false
     }
+    
+    func applyShadowLayer(radius: CGFloat = 5, shadowOpacity: Float = 0.2) {
+        let shadowLayer: CAShapeLayer = CAShapeLayer()
+        shadowLayer.path = UIBezierPath(roundedRect: self.bounds, cornerRadius: radius).cgPath
+        shadowLayer.shadowColor = UIColor.darkGray.cgColor
+        shadowLayer.shadowOffset = CGSize(width: 0, height: 2)
+        shadowLayer.shadowOpacity = shadowOpacity
+        shadowLayer.shadowRadius = radius
+        shadowLayer.shadowPath = shadowLayer.path
+        layer.insertSublayer(shadowLayer, at: 0)
+    }
+    
+    func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+         let mask = CAShapeLayer()
+         mask.path = path.cgPath
+         layer.mask = mask
+     }
+    
+    func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, shadowRadius: CGFloat = 1, scale: Bool = true, cornerRadius: CGFloat) {
+         let shadowLayer = CAShapeLayer()
+         shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
+         shadowLayer.fillColor = UIColor.white.cgColor
+         shadowLayer.shadowColor = color.cgColor
+         shadowLayer.shadowPath = shadowLayer.path
+         shadowLayer.shadowOffset = offSet
+         shadowLayer.shadowOpacity = opacity
+         shadowLayer.shadowRadius = shadowRadius
+         layer.insertSublayer(shadowLayer, at: 0)
+     }
     
 }

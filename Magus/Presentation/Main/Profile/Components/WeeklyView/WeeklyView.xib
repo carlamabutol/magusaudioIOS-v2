@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeeklyView" customModule="Magus" customModuleProvider="target">
+            <connections>
+                <outlet property="weeklyDateStackView" destination="ae5-kE-bpp" id="22m-9x-fMg"/>
+                <outlet property="weeklyInfoStackView" destination="dNw-cj-dtc" id="wNV-El-JaP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="jms-Mk-QMU">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dRk-53-Eyh">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ae5-kE-bpp">
+                            <rect key="frame" x="0.0" y="0.0" width="73" height="852"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="73" id="P2q-5Z-tHn"/>
+                            </constraints>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dNw-cj-dtc">
+                            <rect key="frame" x="73" y="0.0" width="320" height="852"/>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="dRk-53-Eyh" firstAttribute="leading" secondItem="jms-Mk-QMU" secondAttribute="leading" id="8ph-YK-GMT"/>
+                <constraint firstItem="dRk-53-Eyh" firstAttribute="top" secondItem="jms-Mk-QMU" secondAttribute="top" id="8rr-O2-dG1"/>
+                <constraint firstAttribute="bottom" secondItem="dRk-53-Eyh" secondAttribute="bottom" id="E36-MM-m2m"/>
+                <constraint firstAttribute="trailing" secondItem="dRk-53-Eyh" secondAttribute="trailing" id="a6o-vS-WaZ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-276" y="23"/>
+        </view>
+    </objects>
+</document>
