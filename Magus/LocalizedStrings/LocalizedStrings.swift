@@ -93,4 +93,22 @@ struct LocalizedStrings {
         static let chooseYourPlan = "Choose your Plan"
         static let continueBtn = "Continue"
     }
+    
+    enum EditProfile {
+        static let userDetailsTitle = "User Details"
+        static let accountPrivacy = "Account Privacy"
+        static let changePassword = "Change Password"
+        static let deletePassword = "Delete Account"
+        static let firstName = "First Name"
+        static let lastName = "Last Name"
+        static let email = "Email"
+        static let currentPassword = "Current Password"
+        static let enterNewPassword = "Enter New Password"
+        static let confirmPassword = "Confirm Password"
+        static let save = "Save"
+        static let contain8Characters = "Contain at least 8 characters"
+        static let includeOneUppercase = "Include at least one uppercase letter (A-Z)"
+        static let includeOneNumber = "Include at least one number (0-9)"
+        static let passwordMust = "Password must:"
+    }
 }

@@ -56,12 +56,12 @@ extension UIView {
         layer.borderWidth = borderWidth
     }
     
-    func applyShadow(scale: Bool = true, color: UIColor = .black, radius: CGFloat = 0, shadowOpacity: Float = 0.2, offset: CGSize = .init(width: 3, height: 2)) {
+    func applyShadow(scale: Bool = true, color: UIColor = .black, radius: CGFloat = 0, shadowOpacity: Float = 0.2, offset: CGSize = .init(width: 0, height: 2)) {
         layer.shadowRadius = radius
         layer.shadowOpacity = shadowOpacity
         layer.shadowOffset = offset
         layer.shadowColor = color.cgColor
-        layer.masksToBounds = false
+        layer.shouldRasterize = true
     }
     
     func applyShadowLayer(radius: CGFloat = 5, shadowOpacity: Float = 0.2) {

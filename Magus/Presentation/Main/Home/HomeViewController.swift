@@ -29,10 +29,9 @@ class HomeViewController: CommonViewController {
         didSet {
             searchView.textField.isUserInteractionEnabled = false
             searchView.isUserInteractionEnabled = true
-            searchView.clipsToBounds = true
             searchView.backgroundColor = .white
             searchView.cornerRadius(with: 10)
-            searchView.applyShadow(radius: 10)
+            searchView.applyShadow(radius: 5)
             let tapGesutre = UITapGestureRecognizer(target: self, action: #selector(tapSearchView))
             searchView.addGestureRecognizer(tapGesutre)
         }

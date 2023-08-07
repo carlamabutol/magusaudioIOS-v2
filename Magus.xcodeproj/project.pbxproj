@@ -26,11 +26,19 @@
 		741CB6B42A447D6400975949 /* NetworkErrorUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741CB6B32A447D6400975949 /* NetworkErrorUseCase.swift */; };
 		741CB6B72A447EAB00975949 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741CB6B62A447EAB00975949 /* UserUseCase.swift */; };
 		741CB6B92A447F0A00975949 /* AuthenticationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741CB6B82A447F0A00975949 /* AuthenticationUseCase.swift */; };
+		7424ED6E2A7E84A80011C52E /* DeleteAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7424ED6D2A7E84A80011C52E /* DeleteAccount.storyboard */; };
+		7424ED702A7E84B30011C52E /* DeleteAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7424ED6F2A7E84B30011C52E /* DeleteAccountViewController.swift */; };
+		7424ED722A7E94820011C52E /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7424ED712A7E94820011C52E /* ChangePasswordViewModel.swift */; };
 		7429E7D52A530E6600E8E750 /* PremiumFeatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429E7D42A530E6600E8E750 /* PremiumFeatureCell.swift */; };
 		7431D8122A24837C00F79E48 /* StandardNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7431D8112A24837C00F79E48 /* StandardNetworkService.swift */; };
+		74576BF92A7D59DB003D4211 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74576BF82A7D59DB003D4211 /* EditProfileViewModel.swift */; };
+		74576BFC2A7D5D40003D4211 /* FormTextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74576BFB2A7D5D40003D4211 /* FormTextFieldView.xib */; };
+		74576BFE2A7D5D91003D4211 /* FormTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74576BFD2A7D5D91003D4211 /* FormTextFieldView.swift */; };
 		745B623D2A66CD3500289F95 /* LoginAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 745B623C2A66CD3500289F95 /* LoginAlert.storyboard */; };
 		745B623F2A66CF4E00289F95 /* LoginAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745B623E2A66CF4E00289F95 /* LoginAlertViewController.swift */; };
 		745B62412A66DFB500289F95 /* SearchPlaylistAndSubliminalResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745B62402A66DFB500289F95 /* SearchPlaylistAndSubliminalResponse.swift */; };
+		7464B6242A7E8056007A4DFD /* ChangePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7464B6232A7E8056007A4DFD /* ChangePassword.storyboard */; };
+		7464B6262A7E8069007A4DFD /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7464B6252A7E8069007A4DFD /* ChangePasswordViewController.swift */; };
 		7467C1132A388B9300DFF86D /* MoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7467C1122A388B9300DFF86D /* MoodCell.xib */; };
 		7467C1172A38AE3400DFF86D /* DefaultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7467C1162A38AE3400DFF86D /* DefaultResponse.swift */; };
 		746FA5E92A25E9BE006CE52C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746FA5E82A25E9BE006CE52C /* NetworkService.swift */; };
@@ -48,7 +56,15 @@
 		74733B9D2A30B03D002FE613 /* MoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74733B9C2A30B03D002FE613 /* MoodViewModel.swift */; };
 		7474B31A2A49B7BE00086600 /* HeaderTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7474B3192A49B7BE00086600 /* HeaderTitleView.swift */; };
 		7474B31C2A49BD5D00086600 /* HomeCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7474B31B2A49BD5D00086600 /* HomeCustomCell.swift */; };
+		7480EDFA2A7CF01B000206B1 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7480EDF92A7CF01B000206B1 /* Calendar.storyboard */; };
+		7480EDFC2A7CF02E000206B1 /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7480EDFB2A7CF02E000206B1 /* MonthlyView.swift */; };
+		7480EDFE2A7D0411000206B1 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7480EDFD2A7D0411000206B1 /* CalendarViewController.swift */; };
 		748B40992A71589E00CA78CD /* DateTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748B40982A71589E00CA78CD /* DateTypeSelectionView.swift */; };
+		749002642A7BDFED007DACDF /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749002632A7BDFED007DACDF /* Day.swift */; };
+		749002662A7BDFF8007DACDF /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749002652A7BDFF8007DACDF /* WeekDay.swift */; };
+		749002682A7BE003007DACDF /* CalendarMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749002672A7BE003007DACDF /* CalendarMonth.swift */; };
+		7490026A2A7BE050007DACDF /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749002692A7BE050007DACDF /* Date+Extension.swift */; };
+		7490026C2A7BE32E007DACDF /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490026B2A7BE32E007DACDF /* Calendar+Extension.swift */; };
 		7490E4402A40574B00463582 /* MainTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490E43F2A40574B00463582 /* MainTabViewModel.swift */; };
 		7490E4422A4092F200463582 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490E4412A4092F200463582 /* AppState.swift */; };
 		7490E4442A40940300463582 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490E4432A40940300463582 /* Store.swift */; };
@@ -224,11 +240,19 @@
 		741CB6B32A447D6400975949 /* NetworkErrorUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorUseCase.swift; sourceTree = "<group>"; };
 		741CB6B62A447EAB00975949 /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
 		741CB6B82A447F0A00975949 /* AuthenticationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUseCase.swift; sourceTree = "<group>"; };
+		7424ED6D2A7E84A80011C52E /* DeleteAccount.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DeleteAccount.storyboard; sourceTree = "<group>"; };
+		7424ED6F2A7E84B30011C52E /* DeleteAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewController.swift; sourceTree = "<group>"; };
+		7424ED712A7E94820011C52E /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		7429E7D42A530E6600E8E750 /* PremiumFeatureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumFeatureCell.swift; sourceTree = "<group>"; };
 		7431D8112A24837C00F79E48 /* StandardNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNetworkService.swift; sourceTree = "<group>"; };
+		74576BF82A7D59DB003D4211 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		74576BFB2A7D5D40003D4211 /* FormTextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormTextFieldView.xib; sourceTree = "<group>"; };
+		74576BFD2A7D5D91003D4211 /* FormTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextFieldView.swift; sourceTree = "<group>"; };
 		745B623C2A66CD3500289F95 /* LoginAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginAlert.storyboard; sourceTree = "<group>"; };
 		745B623E2A66CF4E00289F95 /* LoginAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAlertViewController.swift; sourceTree = "<group>"; };
 		745B62402A66DFB500289F95 /* SearchPlaylistAndSubliminalResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaylistAndSubliminalResponse.swift; sourceTree = "<group>"; };
+		7464B6232A7E8056007A4DFD /* ChangePassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChangePassword.storyboard; sourceTree = "<group>"; };
+		7464B6252A7E8069007A4DFD /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		7467C1122A388B9300DFF86D /* MoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoodCell.xib; sourceTree = "<group>"; };
 		7467C1162A38AE3400DFF86D /* DefaultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResponse.swift; sourceTree = "<group>"; };
 		746FA5E82A25E9BE006CE52C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -245,7 +269,15 @@
 		74733B9C2A30B03D002FE613 /* MoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewModel.swift; sourceTree = "<group>"; };
 		7474B3192A49B7BE00086600 /* HeaderTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTitleView.swift; sourceTree = "<group>"; };
 		7474B31B2A49BD5D00086600 /* HomeCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCustomCell.swift; sourceTree = "<group>"; };
+		7480EDF92A7CF01B000206B1 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
+		7480EDFB2A7CF02E000206B1 /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
+		7480EDFD2A7D0411000206B1 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		748B40982A71589E00CA78CD /* DateTypeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTypeSelectionView.swift; sourceTree = "<group>"; };
+		749002632A7BDFED007DACDF /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		749002652A7BDFF8007DACDF /* WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
+		749002672A7BE003007DACDF /* CalendarMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonth.swift; sourceTree = "<group>"; };
+		749002692A7BE050007DACDF /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		7490026B2A7BE32E007DACDF /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
 		7490E43F2A40574B00463582 /* MainTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewModel.swift; sourceTree = "<group>"; };
 		7490E4412A4092F200463582 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7490E4432A40940300463582 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -474,6 +506,15 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		74576BFA2A7D5D20003D4211 /* FormTextField */ = {
+			isa = PBXGroup;
+			children = (
+				74576BFB2A7D5D40003D4211 /* FormTextFieldView.xib */,
+				74576BFD2A7D5D91003D4211 /* FormTextFieldView.swift */,
+			);
+			path = FormTextField;
+			sourceTree = "<group>";
+		};
 		745B623B2A66CD2800289F95 /* LoginAlert */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,6 +522,25 @@
 				745B623E2A66CF4E00289F95 /* LoginAlertViewController.swift */,
 			);
 			path = LoginAlert;
+			sourceTree = "<group>";
+		};
+		7464B6212A7E8024007A4DFD /* Change Password */ = {
+			isa = PBXGroup;
+			children = (
+				7464B6232A7E8056007A4DFD /* ChangePassword.storyboard */,
+				7464B6252A7E8069007A4DFD /* ChangePasswordViewController.swift */,
+				7424ED712A7E94820011C52E /* ChangePasswordViewModel.swift */,
+			);
+			path = "Change Password";
+			sourceTree = "<group>";
+		};
+		7464B6222A7E802B007A4DFD /* Delete Account */ = {
+			isa = PBXGroup;
+			children = (
+				7424ED6D2A7E84A80011C52E /* DeleteAccount.storyboard */,
+				7424ED6F2A7E84B30011C52E /* DeleteAccountViewController.swift */,
+			);
+			path = "Delete Account";
 			sourceTree = "<group>";
 		};
 		746FA5E72A25E995006CE52C /* Services */ = {
@@ -548,6 +608,16 @@
 				74D328892A71655B009B3C61 /* DateSelection */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		749002622A7BDFE4007DACDF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				749002632A7BDFED007DACDF /* Day.swift */,
+				749002652A7BDFF8007DACDF /* WeekDay.swift */,
+				749002672A7BE003007DACDF /* CalendarMonth.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		7490E4472A40A00E00463582 /* Home */ = {
@@ -633,13 +703,14 @@
 			path = SearchView;
 			sourceTree = "<group>";
 		};
-		74C0908A2A7206DC001B552E /* EditProfile */ = {
+		74C0908A2A7206DC001B552E /* Edit Profile */ = {
 			isa = PBXGroup;
 			children = (
 				74C0908B2A7206EA001B552E /* EditProfile.storyboard */,
 				74C0908D2A7206F4001B552E /* EditProfileViewController.swift */,
+				74576BF82A7D59DB003D4211 /* EditProfileViewModel.swift */,
 			);
-			path = EditProfile;
+			path = "Edit Profile";
 			sourceTree = "<group>";
 		};
 		74C0908F2A720844001B552E /* NavigationBar */ = {
@@ -654,6 +725,9 @@
 		74D1B9AE2A7AA6C1009E4F73 /* MonthlyView */ = {
 			isa = PBXGroup;
 			children = (
+				7480EDF92A7CF01B000206B1 /* Calendar.storyboard */,
+				7480EDFB2A7CF02E000206B1 /* MonthlyView.swift */,
+				7480EDFD2A7D0411000206B1 /* CalendarViewController.swift */,
 			);
 			path = MonthlyView;
 			sourceTree = "<group>";
@@ -724,7 +798,9 @@
 		F827D9812A10FAB40034B5AF /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				74C0908A2A7206DC001B552E /* EditProfile */,
+				7464B6222A7E802B007A4DFD /* Delete Account */,
+				7464B6212A7E8024007A4DFD /* Change Password */,
+				74C0908A2A7206DC001B552E /* Edit Profile */,
 				7490E44B2A40A0BF00463582 /* Profile */,
 				7490E44A2A40A0BB00463582 /* Premium */,
 				7490E4492A40A0AE00463582 /* Subs */,
@@ -776,6 +852,7 @@
 		F835B0022A06526200123A16 /* Magus */ = {
 			isa = PBXGroup;
 			children = (
+				749002622A7BDFE4007DACDF /* Model */,
 				746FA5F22A2602B1006CE52C /* Configuration */,
 				F8669E392A0BE6BB004D28A1 /* AppLifeCycle */,
 				7431D8102A24836B00F79E48 /* API */,
@@ -836,6 +913,7 @@
 		F83C49B02A19BC9800BC4429 /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
+				74576BFA2A7D5D20003D4211 /* FormTextField */,
 				74C0908F2A720844001B552E /* NavigationBar */,
 				74B529DA2A6FDA2E00F43BFC /* SearchView */,
 				F8AFFD782A19AC5800FDC40B /* TappableLabel */,
@@ -950,6 +1028,8 @@
 				F88A82E42A13CE7A00D3E975 /* Font+Extension */,
 				F8512C402A13C3B80041C14F /* UIColor+Extension */,
 				F848EF122A0BD4560097F104 /* ViewController+Extension */,
+				749002692A7BE050007DACDF /* Date+Extension.swift */,
+				7490026B2A7BE32E007DACDF /* Calendar+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1180,6 +1260,8 @@
 				F88A83082A13CEDA00D3E975 /* Montserrat-Regular.ttf in Resources */,
 				7419C4592A209B0200DD86F2 /* TermsAndCondition.storyboard in Resources */,
 				74B132422A766FF20056D740 /* ProfileMood.storyboard in Resources */,
+				7464B6242A7E8056007A4DFD /* ChangePassword.storyboard in Resources */,
+				74576BFC2A7D5D40003D4211 /* FormTextFieldView.xib in Resources */,
 				74F1DD1B2A4996AF008F4680 /* CategoryCell.xib in Resources */,
 				F8AFFD7A2A19AC6A00FDC40B /* TappableLabel.xib in Resources */,
 				74A6C5752A5DA9A100D9DAED /* PlanView.xib in Resources */,
@@ -1191,6 +1273,7 @@
 				F88A82FD2A13CEDA00D3E975 /* Montserrat-Light.ttf in Resources */,
 				F88A83022A13CEDA00D3E975 /* Montserrat-MediumItalic.ttf in Resources */,
 				74733B992A30B020002FE613 /* Mood.storyboard in Resources */,
+				7424ED6E2A7E84A80011C52E /* DeleteAccount.storyboard in Resources */,
 				7490E44D2A40A0D400463582 /* Home.storyboard in Resources */,
 				7490E4512A40A10800463582 /* Search.storyboard in Resources */,
 				F88A83092A13CEDA00D3E975 /* Montserrat-Italic.ttf in Resources */,
@@ -1203,6 +1286,7 @@
 				F88A830A2A13CEDA00D3E975 /* Montserrat-SemiBoldItalic.ttf in Resources */,
 				7490E4552A40A14300463582 /* Subs.storyboard in Resources */,
 				7490E4592A40A17200463582 /* Premium.storyboard in Resources */,
+				7480EDFA2A7CF01B000206B1 /* Calendar.storyboard in Resources */,
 				740C4D012A71F4DC00050D5A /* WeeklyView.xib in Resources */,
 				F835B01C2A0652B400123A16 /* RootViewController.storyboard in Resources */,
 				F81ED0B22A162E5E0043E245 /* SplashScreen.storyboard in Resources */,
@@ -1255,6 +1339,7 @@
 				F8512C3D2A13BDAF0041C14F /* WelcomeViewController.swift in Sources */,
 				741CB6A32A44791000975949 /* User.swift in Sources */,
 				7467C1172A38AE3400DFF86D /* DefaultResponse.swift in Sources */,
+				749002662A7BDFF8007DACDF /* WeekDay.swift in Sources */,
 				F8669E3B2A0BE6CE004D28A1 /* Route.swift in Sources */,
 				F86F797D2A18C3C200298581 /* TappableLabel.swift in Sources */,
 				741CB6A82A44799700975949 /* User+Init.swift in Sources */,
@@ -1262,8 +1347,10 @@
 				F8511DF02A17D02000EFFFB4 /* FormButton.swift in Sources */,
 				745B62412A66DFB500289F95 /* SearchPlaylistAndSubliminalResponse.swift in Sources */,
 				746FA5F42A2602BD006CE52C /* Configuration.swift in Sources */,
+				749002682A7BE003007DACDF /* CalendarMonth.swift in Sources */,
 				74C960A82A72312C00391DDA /* WeeklyDayDetailView.swift in Sources */,
 				7490E45F2A40A1B300463582 /* ProfileViewController.swift in Sources */,
+				7424ED702A7E84B30011C52E /* DeleteAccountViewController.swift in Sources */,
 				F8D3D3912A223E8800AD7C2D /* ForgotPasswordViewModel.swift in Sources */,
 				F8512C422A13C3C60041C14F /* Colors.swift in Sources */,
 				F827D9872A10FAE30034B5AF /* MainTabBarViewController.swift in Sources */,
@@ -1271,6 +1358,7 @@
 				7419C45B2A209F6700DD86F2 /* TermsAndConditionViewController.swift in Sources */,
 				7490E4612A40A3A500463582 /* HomeViewModel.swift in Sources */,
 				74B132442A76727D0056D740 /* ProfileMoodViewController.swift in Sources */,
+				7424ED722A7E94820011C52E /* ChangePasswordViewModel.swift in Sources */,
 				74B9177A2A51B5C200B598EB /* SearchViewModel.swift in Sources */,
 				F80A38B82A18C09F0023D166 /* KeyboardManager.swift in Sources */,
 				7474B31C2A49BD5D00086600 /* HomeCustomCell.swift in Sources */,
@@ -1296,6 +1384,7 @@
 				F835B01E2A0652D100123A16 /* RootViewController.swift in Sources */,
 				7490E4442A40940300463582 /* Store.swift in Sources */,
 				74DD402B2A6FDF48004BC382 /* SearchView.swift in Sources */,
+				7490026C2A7BE32E007DACDF /* Calendar+Extension.swift in Sources */,
 				7490E4402A40574B00463582 /* MainTabViewModel.swift in Sources */,
 				741CB6AE2A447AB600975949 /* UserInfo+Init.swift in Sources */,
 				741CB6B72A447EAB00975949 /* UserUseCase.swift in Sources */,
@@ -1304,14 +1393,17 @@
 				F8E4CCEB2A19ED74002C388C /* SignUpViewController.swift in Sources */,
 				F8669E382A0BE623004D28A1 /* LoginViewModel.swift in Sources */,
 				F848EF142A0BD46C0097F104 /* ViewController+Extension.swift in Sources */,
+				74576BFE2A7D5D91003D4211 /* FormTextFieldView.swift in Sources */,
 				741CB6AA2A4479B900975949 /* UserResponse.swift in Sources */,
 				F827D97D2A10F6BB0034B5AF /* SharedDependencies.swift in Sources */,
 				F806560C2A179B7B006D53F8 /* CommonView.swift in Sources */,
+				74576BF92A7D59DB003D4211 /* EditProfileViewModel.swift in Sources */,
 				7474B31A2A49B7BE00086600 /* HeaderTitleView.swift in Sources */,
 				7490E4462A4096FC00463582 /* Logger.swift in Sources */,
 				F88A830E2A13D22900D3E975 /* UIView+Extension.swift in Sources */,
 				74E3BAD52A504CD400CB0005 /* FooterView.swift in Sources */,
 				F8315DE52A1CE9C100634DA1 /* SignUpViewModel.swift in Sources */,
+				7480EDFC2A7CF02E000206B1 /* MonthlyView.swift in Sources */,
 				741CB6B92A447F0A00975949 /* AuthenticationUseCase.swift in Sources */,
 				F81ED0B02A162B9C0043E245 /* SplashScreenViewController.swift in Sources */,
 				745B623F2A66CF4E00289F95 /* LoginAlertViewController.swift in Sources */,
@@ -1325,21 +1417,25 @@
 				74DDE9E92A5A6B5F00EA0929 /* SubscriptionResponse.swift in Sources */,
 				7490E4422A4092F200463582 /* AppState.swift in Sources */,
 				746FA5FC2A260D18006CE52C /* Presentation.swift in Sources */,
+				7480EDFE2A7D0411000206B1 /* CalendarViewController.swift in Sources */,
 				741CB69D2A44763900975949 /* StandardCredentialsService.swift in Sources */,
 				74F1DD1D2A4996C6008F4680 /* CategoryCell.swift in Sources */,
 				F8512C352A13B9EA0041C14F /* String+Images.swift in Sources */,
 				F8669E302A0BDAB8004D28A1 /* LocalizedStrings.swift in Sources */,
+				7464B6262A7E8069007A4DFD /* ChangePasswordViewController.swift in Sources */,
 				740A26EA2A4DCE2500D96A1D /* PremiumViewModel.swift in Sources */,
 				741CB6AC2A4479D300975949 /* UserInfoResponse.swift in Sources */,
 				F8512C442A13C4120041C14F /* Colors+Hex.swift in Sources */,
 				740C4D032A71F52800050D5A /* WeeklyView.swift in Sources */,
 				741CB69B2A4475E900975949 /* AuthenticationService.swift in Sources */,
 				741CB6B42A447D6400975949 /* NetworkErrorUseCase.swift in Sources */,
+				749002642A7BDFED007DACDF /* Day.swift in Sources */,
 				F835B0062A06526200123A16 /* SceneDelegate.swift in Sources */,
 				7490E45B2A40A17A00463582 /* PremiumViewController.swift in Sources */,
 				740D637A2A30CE030080DBE9 /* MoodResponse.swift in Sources */,
 				F827D9802A10F7460034B5AF /* Router.swift in Sources */,
 				741CB6A52A44795F00975949 /* UserInfo.swift in Sources */,
+				7490026A2A7BE050007DACDF /* Date+Extension.swift in Sources */,
 				7429E7D52A530E6600E8E750 /* PremiumFeatureCell.swift in Sources */,
 				746FA5F72A260488006CE52C /* SignInResponse.swift in Sources */,
 			);

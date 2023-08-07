@@ -50,13 +50,18 @@ class ProfileViewController: CommonViewController {
             
         }
     }
+    @IBOutlet var containerProfileImageView: UIView! {
+        didSet {
+            containerProfileImageView.circle()
+            containerProfileImageView.applyShadow(radius: 5, shadowOpacity: 0.2, offset: .init(width: 0, height: 5))
+        }
+    }
     
     @IBOutlet var profileImageView: UIImageView! {
         didSet {
             profileImageView.sd_setImage(with: tabViewModel.profileImage())
-            profileImageView.clipsToBounds = true
-            profileImageView.applyShadow(shadowOpacity: 0.2, offset: .init(width: 0, height: 5))
             profileImageView.circle()
+            profileImageView.clipsToBounds = true
         }
     }
     @IBOutlet var editProfileButton: UIButton!
@@ -78,6 +83,11 @@ class ProfileViewController: CommonViewController {
         super.viewDidLoad()
         setupTabSelection()
         setupPageController()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        profileImageView.circle()
     }
     
     func selectedIndex(_ index: Int) {

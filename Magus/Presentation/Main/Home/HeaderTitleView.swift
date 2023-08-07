@@ -14,7 +14,7 @@ class HeaderTitleView: UICollectionReusableView {
     lazy var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .Montserrat.bold4
+        label.font = .Montserrat.bold17
         label.textColor = .black
         return label
     }()

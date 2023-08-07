@@ -39,6 +39,8 @@ enum StoryboardString: String {
     
     // Edit Profile
     case editProfile = "EditProfile"
+    case changePassword = "ChangePassword"
+    case deleteAccount = "DeleteAccount"
     
 }
 

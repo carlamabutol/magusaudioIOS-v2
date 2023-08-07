@@ -20,13 +20,23 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lfh-ZZ-LV2">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YKK-0Z-8w0">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J5R-3D-Ale">
                                         <rect key="frame" x="273" y="20" width="100" height="100"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YKK-0Z-8w0">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="e4Q-CY-ZDe"/>
-                                            <constraint firstAttribute="height" constant="100" id="eEm-6M-RaW"/>
+                                            <constraint firstAttribute="bottom" secondItem="YKK-0Z-8w0" secondAttribute="bottom" id="5zk-5f-RqP"/>
+                                            <constraint firstAttribute="width" constant="100" id="NV2-no-Vdq"/>
+                                            <constraint firstAttribute="trailing" secondItem="YKK-0Z-8w0" secondAttribute="trailing" id="QCR-It-TFp"/>
+                                            <constraint firstItem="YKK-0Z-8w0" firstAttribute="leading" secondItem="J5R-3D-Ale" secondAttribute="leading" id="qVg-l1-4hp"/>
+                                            <constraint firstItem="YKK-0Z-8w0" firstAttribute="top" secondItem="J5R-3D-Ale" secondAttribute="top" id="s5z-s1-6RJ"/>
+                                            <constraint firstAttribute="height" constant="100" id="xKl-az-DQc"/>
                                         </constraints>
-                                    </imageView>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="HNa-y7-oH1">
                                         <rect key="frame" x="20" y="20" width="233" height="98"/>
                                         <subviews>
@@ -90,17 +100,17 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="TEx-Ln-E1o" secondAttribute="bottom" id="0op-pf-6Cf"/>
-                                    <constraint firstItem="HNa-y7-oH1" firstAttribute="trailing" secondItem="YKK-0Z-8w0" secondAttribute="leading" constant="-20" id="4JQ-42-zCh"/>
+                                    <constraint firstAttribute="trailing" secondItem="J5R-3D-Ale" secondAttribute="trailing" constant="20" id="BSQ-0G-99m"/>
                                     <constraint firstItem="TEx-Ln-E1o" firstAttribute="top" secondItem="3CM-V0-vpx" secondAttribute="bottom" id="CKw-yf-HJM"/>
                                     <constraint firstItem="HNa-y7-oH1" firstAttribute="top" secondItem="lfh-ZZ-LV2" secondAttribute="top" constant="20" id="CQL-bx-Vd3"/>
+                                    <constraint firstItem="J5R-3D-Ale" firstAttribute="top" secondItem="lfh-ZZ-LV2" secondAttribute="top" constant="20" id="F7m-T1-KjY"/>
                                     <constraint firstItem="3CM-V0-vpx" firstAttribute="top" secondItem="OUf-pg-mSd" secondAttribute="bottom" constant="10" id="Gkz-nd-9Sd"/>
+                                    <constraint firstItem="HNa-y7-oH1" firstAttribute="trailing" secondItem="J5R-3D-Ale" secondAttribute="leading" constant="-20" id="Qix-pm-y29"/>
                                     <constraint firstItem="OUf-pg-mSd" firstAttribute="leading" secondItem="lfh-ZZ-LV2" secondAttribute="leading" constant="20" id="Saq-nm-c4w"/>
                                     <constraint firstAttribute="trailing" secondItem="3CM-V0-vpx" secondAttribute="trailing" constant="15" id="X7e-UG-ec0"/>
                                     <constraint firstAttribute="trailing" secondItem="OUf-pg-mSd" secondAttribute="trailing" constant="20" id="ZK4-DJ-Fav"/>
                                     <constraint firstItem="TEx-Ln-E1o" firstAttribute="leading" secondItem="lfh-ZZ-LV2" secondAttribute="leading" id="bfU-3Y-Buz"/>
                                     <constraint firstAttribute="trailing" secondItem="TEx-Ln-E1o" secondAttribute="trailing" id="dfP-dQ-F7z"/>
-                                    <constraint firstItem="YKK-0Z-8w0" firstAttribute="top" secondItem="HNa-y7-oH1" secondAttribute="top" id="iUA-qQ-pE3"/>
-                                    <constraint firstAttribute="trailing" secondItem="YKK-0Z-8w0" secondAttribute="trailing" constant="20" id="s2z-X7-Lgb"/>
                                     <constraint firstItem="3CM-V0-vpx" firstAttribute="leading" secondItem="lfh-ZZ-LV2" secondAttribute="leading" constant="15" id="ugs-zd-t9d"/>
                                     <constraint firstItem="HNa-y7-oH1" firstAttribute="leading" secondItem="lfh-ZZ-LV2" secondAttribute="leading" constant="20" id="wcm-AT-KlA"/>
                                     <constraint firstItem="OUf-pg-mSd" firstAttribute="top" secondItem="HNa-y7-oH1" secondAttribute="bottom" constant="20" id="xxv-5S-DL4"/>
@@ -117,6 +127,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="containerProfileImageView" destination="J5R-3D-Ale" id="BuK-sV-Ul2"/>
                         <outlet property="editProfileButton" destination="1yN-z9-yxo" id="Cca-3e-666"/>
                         <outlet property="emailLbl" destination="IIF-Xn-PBe" id="b8n-eC-mvI"/>
                         <outlet property="nameLbl" destination="m4n-Ox-KIW" id="hoj-9C-KSD"/>

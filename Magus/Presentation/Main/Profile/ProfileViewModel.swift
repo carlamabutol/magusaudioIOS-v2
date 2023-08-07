@@ -24,9 +24,69 @@ class ProfileViewModel: ViewModel {
     let tabSelections: [TabSelection] = [.mood, .sub, .settings]
     private let moodViewTypeRelay = BehaviorRelay<MoodViewType>(value: .weekly)
     var moodViewTypeObservable: Observable<MoodViewType> { moodViewTypeRelay.asObservable() }
+    var calendar = Calendar(identifier: .gregorian)
+    let calendarDatesRelay = BehaviorRelay<[CalendarMonth]>(value: [])
+    
+    override init() {
+        super.init()
+        generateDate()
+    }
     
     func selectMood(_ type: MoodViewType) {
         moodViewTypeRelay.accept(type)
+    }
+    
+    private func generateDate() {
+        let currentDate = Date()
+        let year = calendar.component(.year, from: currentDate)
+        let month = calendar.component(.month, from: currentDate)
+        let start = calendar.date(from: DateComponents(year: year - 1, month: 1, day: 1))!
+        let end = calendar.date(from: DateComponents(year: year, month: month, day: 31))!
+        let months = calendar.generateDates(inside: .init(start: start, end: end), matching: DateComponents(day: 1, hour: 0, minute: 0, second: 0)).map { date -> CalendarMonth in
+            let calendarDays: [Day] = getDays(monthDate: date)
+            let monthDays: [WeekDay] = getWeekdays2(days: calendarDays, month: date)
+            return CalendarMonth.init(month: date, days: calendarDays, monthDays: monthDays)
+        }
+        print("DATES - \(months[0].days.map({ $0.dayString }).chunked(into: 7)))")
+//        months.remove(at: 0)
+        guard let currentMonth = months.lastIndex(where: { $0.month.getDateFormat(with: "MMMM YYYY") == currentDate.getDateFormat(with: "MMMM YYYY") }) else { return }
+    }
+    
+    private func getDays(monthDate: Date) -> [Day] {
+        guard
+            let monthInterval = calendar.dateInterval(of: .month, for: monthDate),
+            let monthFirstWeek = calendar.dateInterval(of: .weekOfMonth, for: monthInterval.start),
+            let monthLastWeek = calendar.dateInterval(of: .month, for: monthInterval.end)
+        else { return [] }
+        return calendar.generateDates(
+            inside: DateInterval(start: monthFirstWeek.start, end: monthLastWeek.end),
+            matching: DateComponents(hour: 0, minute: 0, second: 0)
+        ).map({ Day(date: $0) })
+    }
+    
+    private func getWeekdays2(days: [Day], month: Date) -> [WeekDay] {
+        var weekDays: [WeekDay] = []
+        var weekDay: WeekDay!
+        for day in days {
+            let dayOfTheWeek = calendar.component(.weekday, from: day.date)
+            let dayMonth = calendar.component(.month, from: day.date)
+            let myMonth = calendar.component(.month, from: month)
+            if myMonth != dayMonth && weekDay == nil {
+                continue
+            }
+            if myMonth <= dayMonth {
+                if weekDay == nil {
+                    weekDay = WeekDay(startDate: day.date)
+                }
+                weekDay.dates.append(day.date)
+                if dayOfTheWeek == 7 {
+                    weekDay.endDate = day.date
+                    weekDays.append(weekDay)
+                    weekDay = nil
+                }
+            }
+        }
+        return weekDays
     }
     
 }
@@ -72,5 +132,12 @@ struct WeeklyData: Identifiable {
     
     var id: String {
         return day
+    }
+}
+extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
     }
 }

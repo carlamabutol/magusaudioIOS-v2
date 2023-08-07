@@ -1,40 +1,40 @@
 //
-//  TextFieldView.swift
+//  FormTextFieldView.swift
 //  Magus
 //
-//  Created by Jose Mari Pascual on 5/19/23.
+//  Created by Jomz on 8/5/23.
 //
 
 import UIKit
-import RxCocoa
 import RxSwift
+import RxRelay
 
-class TextFieldView: ReusableXibView {
+class FormTextFieldView: ReusableXibView {
     
-    @IBOutlet private (set)var stackView: UIStackView!
-    
-    @IBOutlet var placeholderStackView: UIStackView!
-    @IBOutlet private (set)var placeholderLabel: UILabel! {
+    @IBOutlet var stackView: UIStackView!
+    @IBOutlet var titleLbl: UILabel! {
         didSet {
-            placeholderLabel.font = UIFont.Montserrat.body2
-            placeholderLabel.textColor = UIColor.TextColor.placeholderColor
+            titleLbl.font = .Montserrat.body2
+            titleLbl.textColor = .TextColor.placeholderColor
         }
     }
     
-    @IBOutlet private (set)var textField: UITextField! {
+    @IBOutlet var textField: UITextField! {
         didSet {
-            textField.font = UIFont.Montserrat.medium2
-            textField.textColor = UIColor.TextColor.primaryBlack
+            textField.font = .Montserrat.medium2
+            textField.textColor = .TextColor.primaryBlack
         }
     }
-    
-    @IBOutlet private (set)var eyeButton: UIButton! {
+    @IBOutlet var eyeButton: UIButton! {
         didSet {
             eyeButton.setImage(UIImage(named: .eyeHide), for: .normal)
             eyeButton.isHidden = true
             eyeButton.tintColor = .black
         }
     }
+    @IBOutlet var horizontalStackView: UIStackView!
+    
+    @IBOutlet var eyeContainerView: UIView!
     
     private var textObservable: BehaviorRelay<String>!
     private var placeholder: String = ""
@@ -51,14 +51,8 @@ class TextFieldView: ReusableXibView {
         setupBinding()
         if isPassword {
             eyeButtonBinding()
-        }
-    }
-    
-    fileprivate func removedAndInsertPlaceholderLbl(_ enteredText: String) {
-        if enteredText.isEmpty {
-            if stackView.arrangedSubviews.first != placeholderLabel {
-                stackView.insertArrangedSubview(placeholderLabel, at: 0)
-            }
+        } else {
+            horizontalStackView.removeArrangedSubview(eyeContainerView)
         }
     }
     
@@ -75,7 +69,7 @@ class TextFieldView: ReusableXibView {
             .compactMap({ [weak self] enteredText in
                 return enteredText.isEmpty ? "" : self?.placeholder
             })
-            .bind(to: placeholderLabel.rx.text)
+            .bind(to: titleLbl.rx.text)
             .disposed(by: disposeBag)
         
         textField.rx.text
@@ -83,7 +77,7 @@ class TextFieldView: ReusableXibView {
             .asObservable()
             .observe(on: MainScheduler.asyncInstance)
             .map { text in return text.isEmpty }
-            .bind(to: placeholderStackView.rx.isHidden)
+            .bind(to: titleLbl.rx.isHidden)
             .disposed(by: disposeBag)
     }
     
@@ -114,17 +108,5 @@ class TextFieldView: ReusableXibView {
         .init(string: placeholder, attributes: [.font: UIFont.Montserrat.medium2,
                                                 .foregroundColor: UIColor.TextColor.placeholderColor])
     }
-    
 }
 
-extension TextFieldView {
-    
-    struct Model {
-        let placeholder: String
-        let textObservable: BehaviorRelay<String>
-        var isSecureEntry: Bool = false
-        var keyboardType: UIKeyboardType = .default
-        var errorMessage: Observable<String>?
-        
-    }
-}

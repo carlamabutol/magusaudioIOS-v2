@@ -18,8 +18,9 @@ class SearchViewController: CommonViewController {
     
     @IBOutlet var searchView: SearchView! {
         didSet {
+            searchView.backgroundColor = .white
             searchView.cornerRadius(with: 10)
-            searchView.applyShadow(radius: 10)
+            searchView.applyShadow(radius: 5)
         }
     }
     

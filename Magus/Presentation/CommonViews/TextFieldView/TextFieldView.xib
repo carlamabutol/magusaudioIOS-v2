@@ -66,7 +66,7 @@
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="kxa-2p-ac2" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="ONk-gG-K0i"/>
                 <constraint firstItem="kxa-2p-ac2" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="YnE-Mh-4R0"/>

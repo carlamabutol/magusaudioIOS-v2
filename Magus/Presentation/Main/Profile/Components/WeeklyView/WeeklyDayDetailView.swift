@@ -16,6 +16,7 @@ class WeeklyDayDetailView: ReusableXibView {
             
         }
     }
+    
     @IBOutlet var descriptionLbl: UILabel! {
         didSet {
             
