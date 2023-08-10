@@ -30,6 +30,8 @@
 		7424ED702A7E84B30011C52E /* DeleteAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7424ED6F2A7E84B30011C52E /* DeleteAccountViewController.swift */; };
 		7424ED722A7E94820011C52E /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7424ED712A7E94820011C52E /* ChangePasswordViewModel.swift */; };
 		7429E7D52A530E6600E8E750 /* PremiumFeatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429E7D42A530E6600E8E750 /* PremiumFeatureCell.swift */; };
+		742A81122A814C4400F897EE /* PasswordRequirementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 742A81112A814C4400F897EE /* PasswordRequirementView.xib */; };
+		742A81142A814C4E00F897EE /* PasswordRequirementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A81132A814C4E00F897EE /* PasswordRequirementView.swift */; };
 		7431D8122A24837C00F79E48 /* StandardNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7431D8112A24837C00F79E48 /* StandardNetworkService.swift */; };
 		74576BF92A7D59DB003D4211 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74576BF82A7D59DB003D4211 /* EditProfileViewModel.swift */; };
 		74576BFC2A7D5D40003D4211 /* FormTextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74576BFB2A7D5D40003D4211 /* FormTextFieldView.xib */; };
@@ -87,6 +89,11 @@
 		74B529DC2A6FDA4200F43BFC /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74B529DB2A6FDA4200F43BFC /* SearchView.xib */; };
 		74B9177A2A51B5C200B598EB /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B917792A51B5C200B598EB /* SearchViewModel.swift */; };
 		74B9177C2A51C8A800B598EB /* SubliminalResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B9177B2A51C8A800B598EB /* SubliminalResponse.swift */; };
+		74BAEAAF2A84CF81000BB1E4 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BAEAAE2A84CF81000BB1E4 /* AlertViewModel.swift */; };
+		74BAEAB22A84FAA6000BB1E4 /* MySubs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74BAEAB12A84FAA6000BB1E4 /* MySubs.storyboard */; };
+		74BAEAB42A84FAB1000BB1E4 /* MySubsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BAEAB32A84FAB1000BB1E4 /* MySubsViewController.swift */; };
+		74BAEAB72A8502DA000BB1E4 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74BAEAB62A8502DA000BB1E4 /* Settings.storyboard */; };
+		74BAEAB92A8502E4000BB1E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BAEAB82A8502E4000BB1E4 /* SettingsViewController.swift */; };
 		74C090892A71FC3E001B552E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C090882A71FC3E001B552E /* ProfileViewModel.swift */; };
 		74C0908C2A7206EA001B552E /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C0908B2A7206EA001B552E /* EditProfile.storyboard */; };
 		74C0908E2A7206F4001B552E /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C0908D2A7206F4001B552E /* EditProfileViewController.swift */; };
@@ -95,6 +102,8 @@
 		74C090952A720BB0001B552E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C090942A720BB0001B552E /* Helper.swift */; };
 		74C960A62A722F5D00391DDA /* WeeklyDayDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74C960A52A722F5D00391DDA /* WeeklyDayDetailView.xib */; };
 		74C960A82A72312C00391DDA /* WeeklyDayDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C960A72A72312C00391DDA /* WeeklyDayDetailView.swift */; };
+		74CFCCF92A82418400DF8D1C /* DefaultAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74CFCCF82A82418400DF8D1C /* DefaultAlert.storyboard */; };
+		74CFCCFB2A82460700DF8D1C /* DefaultAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CFCCFA2A82460700DF8D1C /* DefaultAlertViewController.swift */; };
 		74DD402B2A6FDF48004BC382 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DD402A2A6FDF48004BC382 /* SearchView.swift */; };
 		74DDE9E92A5A6B5F00EA0929 /* SubscriptionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DDE9E82A5A6B5F00EA0929 /* SubscriptionResponse.swift */; };
 		74DFB6AE2A386EAC00FD99CE /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 74DFB6AD2A386EAC00FD99CE /* RxDataSources */; };
@@ -244,6 +253,8 @@
 		7424ED6F2A7E84B30011C52E /* DeleteAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewController.swift; sourceTree = "<group>"; };
 		7424ED712A7E94820011C52E /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		7429E7D42A530E6600E8E750 /* PremiumFeatureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumFeatureCell.swift; sourceTree = "<group>"; };
+		742A81112A814C4400F897EE /* PasswordRequirementView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordRequirementView.xib; sourceTree = "<group>"; };
+		742A81132A814C4E00F897EE /* PasswordRequirementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRequirementView.swift; sourceTree = "<group>"; };
 		7431D8112A24837C00F79E48 /* StandardNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNetworkService.swift; sourceTree = "<group>"; };
 		74576BF82A7D59DB003D4211 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		74576BFB2A7D5D40003D4211 /* FormTextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormTextFieldView.xib; sourceTree = "<group>"; };
@@ -300,6 +311,11 @@
 		74B529DB2A6FDA4200F43BFC /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
 		74B917792A51B5C200B598EB /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		74B9177B2A51C8A800B598EB /* SubliminalResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubliminalResponse.swift; sourceTree = "<group>"; };
+		74BAEAAE2A84CF81000BB1E4 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
+		74BAEAB12A84FAA6000BB1E4 /* MySubs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MySubs.storyboard; sourceTree = "<group>"; };
+		74BAEAB32A84FAB1000BB1E4 /* MySubsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySubsViewController.swift; sourceTree = "<group>"; };
+		74BAEAB62A8502DA000BB1E4 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		74BAEAB82A8502E4000BB1E4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		74C090882A71FC3E001B552E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		74C0908B2A7206EA001B552E /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
 		74C0908D2A7206F4001B552E /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -308,6 +324,8 @@
 		74C090942A720BB0001B552E /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		74C960A52A722F5D00391DDA /* WeeklyDayDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeeklyDayDetailView.xib; sourceTree = "<group>"; };
 		74C960A72A72312C00391DDA /* WeeklyDayDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyDayDetailView.swift; sourceTree = "<group>"; };
+		74CFCCF82A82418400DF8D1C /* DefaultAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DefaultAlert.storyboard; sourceTree = "<group>"; };
+		74CFCCFA2A82460700DF8D1C /* DefaultAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAlertViewController.swift; sourceTree = "<group>"; };
 		74DD402A2A6FDF48004BC382 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		74DDE9E82A5A6B5F00EA0929 /* SubscriptionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionResponse.swift; sourceTree = "<group>"; };
 		74DFB6B02A38790C00FD99CE /* MoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCell.swift; sourceTree = "<group>"; };
@@ -415,7 +433,8 @@
 		740A26E82A4D7F6E00D96A1D /* Alert */ = {
 			isa = PBXGroup;
 			children = (
-				745B623B2A66CD2800289F95 /* LoginAlert */,
+				74CFCCF72A82416500DF8D1C /* Default Alert */,
+				745B623B2A66CD2800289F95 /* Login Alert */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -493,6 +512,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		742A81102A814C2A00F897EE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				742A81112A814C4400F897EE /* PasswordRequirementView.xib */,
+				742A81132A814C4E00F897EE /* PasswordRequirementView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		7431D8102A24836B00F79E48 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -515,18 +543,19 @@
 			path = FormTextField;
 			sourceTree = "<group>";
 		};
-		745B623B2A66CD2800289F95 /* LoginAlert */ = {
+		745B623B2A66CD2800289F95 /* Login Alert */ = {
 			isa = PBXGroup;
 			children = (
 				745B623C2A66CD3500289F95 /* LoginAlert.storyboard */,
 				745B623E2A66CF4E00289F95 /* LoginAlertViewController.swift */,
 			);
-			path = LoginAlert;
+			path = "Login Alert";
 			sourceTree = "<group>";
 		};
 		7464B6212A7E8024007A4DFD /* Change Password */ = {
 			isa = PBXGroup;
 			children = (
+				742A81102A814C2A00F897EE /* Components */,
 				7464B6232A7E8056007A4DFD /* ChangePassword.storyboard */,
 				7464B6252A7E8069007A4DFD /* ChangePasswordViewController.swift */,
 				7424ED712A7E94820011C52E /* ChangePasswordViewModel.swift */,
@@ -616,6 +645,7 @@
 				749002632A7BDFED007DACDF /* Day.swift */,
 				749002652A7BDFF8007DACDF /* WeekDay.swift */,
 				749002672A7BE003007DACDF /* CalendarMonth.swift */,
+				74BAEAAE2A84CF81000BB1E4 /* AlertViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -667,6 +697,8 @@
 		7490E44B2A40A0BF00463582 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				74BAEAB52A8502D1000BB1E4 /* Settings */,
+				74BAEAB02A84FA9A000BB1E4 /* My Subs */,
 				74B132402A766FE00056D740 /* My Mood */,
 				748B40952A7157AD00CA78CD /* Components */,
 				7490E45C2A40A1A600463582 /* Profile.storyboard */,
@@ -703,6 +735,24 @@
 			path = SearchView;
 			sourceTree = "<group>";
 		};
+		74BAEAB02A84FA9A000BB1E4 /* My Subs */ = {
+			isa = PBXGroup;
+			children = (
+				74BAEAB12A84FAA6000BB1E4 /* MySubs.storyboard */,
+				74BAEAB32A84FAB1000BB1E4 /* MySubsViewController.swift */,
+			);
+			path = "My Subs";
+			sourceTree = "<group>";
+		};
+		74BAEAB52A8502D1000BB1E4 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				74BAEAB62A8502DA000BB1E4 /* Settings.storyboard */,
+				74BAEAB82A8502E4000BB1E4 /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		74C0908A2A7206DC001B552E /* Edit Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -720,6 +770,15 @@
 				74C090922A720868001B552E /* ProfileNavigationBar.swift */,
 			);
 			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		74CFCCF72A82416500DF8D1C /* Default Alert */ = {
+			isa = PBXGroup;
+			children = (
+				74CFCCF82A82418400DF8D1C /* DefaultAlert.storyboard */,
+				74CFCCFA2A82460700DF8D1C /* DefaultAlertViewController.swift */,
+			);
+			path = "Default Alert";
 			sourceTree = "<group>";
 		};
 		74D1B9AE2A7AA6C1009E4F73 /* MonthlyView */ = {
@@ -1252,14 +1311,17 @@
 				F88A83062A13CEDA00D3E975 /* Montserrat-ExtraBold.ttf in Resources */,
 				F827D9852A10FAD70034B5AF /* MainTabBar.storyboard in Resources */,
 				F88A83042A13CEDA00D3E975 /* Montserrat-SemiBold.ttf in Resources */,
+				742A81122A814C4400F897EE /* PasswordRequirementView.xib in Resources */,
 				7467C1132A388B9300DFF86D /* MoodCell.xib in Resources */,
 				F88A83072A13CEDA00D3E975 /* Montserrat-Black.ttf in Resources */,
+				74CFCCF92A82418400DF8D1C /* DefaultAlert.storyboard in Resources */,
 				F88A83012A13CEDA00D3E975 /* Montserrat-Bold.ttf in Resources */,
 				F8669E342A0BE604004D28A1 /* Login.storyboard in Resources */,
 				F88A83002A13CEDA00D3E975 /* Montserrat-Thin.ttf in Resources */,
 				F88A83082A13CEDA00D3E975 /* Montserrat-Regular.ttf in Resources */,
 				7419C4592A209B0200DD86F2 /* TermsAndCondition.storyboard in Resources */,
 				74B132422A766FF20056D740 /* ProfileMood.storyboard in Resources */,
+				74BAEAB22A84FAA6000BB1E4 /* MySubs.storyboard in Resources */,
 				7464B6242A7E8056007A4DFD /* ChangePassword.storyboard in Resources */,
 				74576BFC2A7D5D40003D4211 /* FormTextFieldView.xib in Resources */,
 				74F1DD1B2A4996AF008F4680 /* CategoryCell.xib in Resources */,
@@ -1279,6 +1341,7 @@
 				F88A83092A13CEDA00D3E975 /* Montserrat-Italic.ttf in Resources */,
 				F8D3D38D2A223E7600AD7C2D /* ForgotPassword.storyboard in Resources */,
 				F88A830B2A13CEDA00D3E975 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
+				74BAEAB72A8502DA000BB1E4 /* Settings.storyboard in Resources */,
 				F81A48162A17725300D72E73 /* TextFieldView.xib in Resources */,
 				F88A82FF2A13CEDA00D3E975 /* Montserrat-ExtraLight.ttf in Resources */,
 				74C090912A72085E001B552E /* ProfileNavigationBar.xib in Resources */,
@@ -1336,6 +1399,7 @@
 				74DFB6B12A38790C00FD99CE /* MoodCell.swift in Sources */,
 				F8D3D38F2A223E8000AD7C2D /* ForgotPasswordViewController.swift in Sources */,
 				F8669E3E2A0BE84F004D28A1 /* RootViewModel.swift in Sources */,
+				74BAEAAF2A84CF81000BB1E4 /* AlertViewModel.swift in Sources */,
 				F8512C3D2A13BDAF0041C14F /* WelcomeViewController.swift in Sources */,
 				741CB6A32A44791000975949 /* User.swift in Sources */,
 				7467C1172A38AE3400DFF86D /* DefaultResponse.swift in Sources */,
@@ -1343,7 +1407,9 @@
 				F8669E3B2A0BE6CE004D28A1 /* Route.swift in Sources */,
 				F86F797D2A18C3C200298581 /* TappableLabel.swift in Sources */,
 				741CB6A82A44799700975949 /* User+Init.swift in Sources */,
+				74CFCCFB2A82460700DF8D1C /* DefaultAlertViewController.swift in Sources */,
 				748B40992A71589E00CA78CD /* DateTypeSelectionView.swift in Sources */,
+				74BAEAB92A8502E4000BB1E4 /* SettingsViewController.swift in Sources */,
 				F8511DF02A17D02000EFFFB4 /* FormButton.swift in Sources */,
 				745B62412A66DFB500289F95 /* SearchPlaylistAndSubliminalResponse.swift in Sources */,
 				746FA5F42A2602BD006CE52C /* Configuration.swift in Sources */,
@@ -1358,6 +1424,7 @@
 				7419C45B2A209F6700DD86F2 /* TermsAndConditionViewController.swift in Sources */,
 				7490E4612A40A3A500463582 /* HomeViewModel.swift in Sources */,
 				74B132442A76727D0056D740 /* ProfileMoodViewController.swift in Sources */,
+				742A81142A814C4E00F897EE /* PasswordRequirementView.swift in Sources */,
 				7424ED722A7E94820011C52E /* ChangePasswordViewModel.swift in Sources */,
 				74B9177A2A51B5C200B598EB /* SearchViewModel.swift in Sources */,
 				F80A38B82A18C09F0023D166 /* KeyboardManager.swift in Sources */,
@@ -1422,6 +1489,7 @@
 				74F1DD1D2A4996C6008F4680 /* CategoryCell.swift in Sources */,
 				F8512C352A13B9EA0041C14F /* String+Images.swift in Sources */,
 				F8669E302A0BDAB8004D28A1 /* LocalizedStrings.swift in Sources */,
+				74BAEAB42A84FAB1000BB1E4 /* MySubsViewController.swift in Sources */,
 				7464B6262A7E8069007A4DFD /* ChangePasswordViewController.swift in Sources */,
 				740A26EA2A4DCE2500D96A1D /* PremiumViewModel.swift in Sources */,
 				741CB6AC2A4479D300975949 /* UserInfoResponse.swift in Sources */,

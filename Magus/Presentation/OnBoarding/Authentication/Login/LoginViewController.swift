@@ -46,13 +46,13 @@ class LoginViewController: CommonViewController {
     
     @IBOutlet var emailTextFieldView: TextFieldView! {
         didSet {
-            emailTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.email, textObservable: viewModel.userName, keyboardType: .emailAddress))
+            emailTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.email, textRelay: viewModel.userName, keyboardType: .emailAddress))
         }
     }
     
     @IBOutlet var passwordTextFieldView: TextFieldView! {
         didSet {
-            passwordTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.password, textObservable: viewModel.password, isSecureEntry: true))
+            passwordTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.password, textRelay: viewModel.password, isSecureEntry: true))
         }
     }
     

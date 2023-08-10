@@ -106,6 +106,9 @@ struct LocalizedStrings {
         static let enterNewPassword = "Enter New Password"
         static let confirmPassword = "Confirm Password"
         static let save = "Save"
+    }
+    
+    enum ChangePassword {
         static let contain8Characters = "Contain at least 8 characters"
         static let includeOneUppercase = "Include at least one uppercase letter (A-Z)"
         static let includeOneNumber = "Include at least one number (0-9)"

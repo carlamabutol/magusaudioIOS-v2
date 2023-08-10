@@ -61,7 +61,6 @@ extension UIView {
         layer.shadowOpacity = shadowOpacity
         layer.shadowOffset = offset
         layer.shadowColor = color.cgColor
-        layer.shouldRasterize = true
     }
     
     func applyShadowLayer(radius: CGFloat = 5, shadowOpacity: Float = 0.2) {

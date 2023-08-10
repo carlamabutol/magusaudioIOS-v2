@@ -15,6 +15,13 @@ class ChangePasswordViewModel: ViewModel {
     let enterNewPasswordRelay = BehaviorRelay(value: "")
     let confirmNewPasswordRelay = BehaviorRelay(value: "")
     
+    let contain8CharacterRelay = BehaviorRelay<ChangePasswordViewModel.PasswordRequirementModel>(
+        value: .init(
+            imageName: .check,
+            text: LocalizedStrings.ChangePassword.contain8Characters
+        )
+    )
+    
     override init() {
         super.init()
         currentPasswordRelay.asObservable()
@@ -32,7 +39,13 @@ class ChangePasswordViewModel: ViewModel {
                 Logger.info(confirmedPassword, topic: .presentation)
             }
             .disposed(by: disposeBag)
-        
     }
     
+}
+
+extension ChangePasswordViewModel {
+    struct PasswordRequirementModel {
+        let imageName: ImageAsset
+        let text: String
+    }
 }

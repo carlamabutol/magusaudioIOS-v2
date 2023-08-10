@@ -36,7 +36,7 @@ class FormTextFieldView: ReusableXibView {
     
     @IBOutlet var eyeContainerView: UIView!
     
-    private var textObservable: BehaviorRelay<String>!
+    private var textRelay: BehaviorRelay<String>!
     private var placeholder: String = ""
     private var errorMessage: Observable<String>?
     private var isPassword: Bool = false
@@ -45,7 +45,8 @@ class FormTextFieldView: ReusableXibView {
         textField.attributedPlaceholder = Self.placeholderAttributedString(for: model.placeholder)
         textField.keyboardType = model.keyboardType
         textField.isSecureTextEntry = model.isSecureEntry
-        textObservable = model.textObservable
+        textField.text = model.textRelay.value
+        textRelay = model.textRelay
         placeholder = model.placeholder
         isPassword = model.isSecureEntry
         setupBinding()
@@ -59,7 +60,7 @@ class FormTextFieldView: ReusableXibView {
     private func setupBinding() {
         textField.rx.text
             .orEmpty
-            .bind(to: textObservable)
+            .bind(to: textRelay)
             .disposed(by: disposeBag)
         
         textField.rx.text
@@ -107,6 +108,35 @@ class FormTextFieldView: ReusableXibView {
     private static func placeholderAttributedString(for placeholder: String) -> NSMutableAttributedString {
         .init(string: placeholder, attributes: [.font: UIFont.Montserrat.medium2,
                                                 .foregroundColor: UIColor.TextColor.placeholderColor])
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        updateShadow()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        updateShadow()
+    }
+    
+    private func updateShadow() {
+        print("BOUNDS - \(bounds)")
+        let shadowColor = UIColor.black.cgColor
+        let shadowOffset = CGSize(width: 0, height: 2)
+        let shadowBlurRadius: CGFloat = 4.0
+        layer.shadowColor = shadowColor
+        layer.shadowOffset = shadowOffset
+        layer.shadowRadius = shadowBlurRadius
+        layer.shadowOpacity = 1.0
+        
+        let innerPath = UIBezierPath(rect: bounds.insetBy(dx: 10, dy: 10)).cgPath
+        let outerPath = UIBezierPath(rect: bounds).cgPath
+        
+        let shadowLayer = CAShapeLayer()
+        shadowLayer.path = outerPath
+        shadowLayer.fillRule = .evenOdd
+        layer.mask = shadowLayer
     }
 }
 

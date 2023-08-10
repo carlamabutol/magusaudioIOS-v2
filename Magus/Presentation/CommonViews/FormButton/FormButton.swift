@@ -19,12 +19,9 @@ class FormButton: UIButton {
         setTitleColor(.TextColor.primaryBlue, for: .normal)
         setTitleColor(.TextColor.primaryBlue, for: .highlighted)
         titleLabel?.font = UIFont.Montserrat.bold1
+        cornerRadius(with: 5)
         applyShadow(radius: 5, offset: .init(width: 0, height: 4))
-    }
-    
-    override var isEnabled: Bool {
-        didSet {
-            
-        }
+        layer.shouldRasterize = false
+        
     }
 }

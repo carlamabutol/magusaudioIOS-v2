@@ -31,7 +31,7 @@ class ForgotPasswordViewController: CommonViewController {
     
     @IBOutlet var textFieldView: TextFieldView! {
         didSet {
-            textFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.email, textObservable: viewModel.emailRelay))
+            textFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.email, textRelay: viewModel.emailRelay))
         }
     }
     

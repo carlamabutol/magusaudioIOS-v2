@@ -103,6 +103,7 @@ class ProfileViewController: CommonViewController {
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
         }
+        pageViewController.setViewControllers([viewControllerAtIndex(selectedIndex)!], direction: .forward, animated: false, completion: nil)
         
     }
     
@@ -165,7 +166,6 @@ class ProfileViewController: CommonViewController {
         pageView.addSubview(pageViewController.view)
         pageViewController!.view.frame = pageView.bounds
         pageViewController.didMove(toParent: self)
-        
         // Add the page view controller's gesture recognizers to the view controller's view so that the gestures are started more easily.
         pageView.gestureRecognizers = pageViewController.gestureRecognizers
     }
@@ -188,13 +188,13 @@ extension ProfileViewController {
             profileVC.profileViewModel = viewModel
             viewController = profileVC
         case .sub:
-            let profileVC = ProfileMoodViewController.instantiate(from: .profileMood) as! ProfileMoodViewController
-            profileVC.profileViewModel = viewModel
-            viewController = profileVC
+            let viewC = MySubsViewController.instantiate(from: .mySubs) as! MySubsViewController
+            viewC.profileViewModel = viewModel
+            viewController = viewC
         case .settings:
-            let profileVC = ProfileMoodViewController.instantiate(from: .profileMood) as! ProfileMoodViewController
-            profileVC.profileViewModel = viewModel
-            viewController = profileVC
+            let viewC = SettingsViewController.instantiate(from: .settings) as! SettingsViewController
+            viewC.profileViewModel = viewModel
+            viewController = viewC
             return viewController
         }
         return viewController

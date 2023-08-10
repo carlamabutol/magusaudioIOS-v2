@@ -21,6 +21,8 @@ class TextFieldView: ReusableXibView {
         }
     }
     
+    @IBOutlet var wrongInputLabel: UILabel!
+    
     @IBOutlet private (set)var textField: UITextField! {
         didSet {
             textField.font = UIFont.Montserrat.medium2
@@ -45,7 +47,7 @@ class TextFieldView: ReusableXibView {
         textField.attributedPlaceholder = Self.placeholderAttributedString(for: model.placeholder)
         textField.keyboardType = model.keyboardType
         textField.isSecureTextEntry = model.isSecureEntry
-        textObservable = model.textObservable
+        textObservable = model.textRelay
         placeholder = model.placeholder
         isPassword = model.isSecureEntry
         setupBinding()
@@ -121,7 +123,7 @@ extension TextFieldView {
     
     struct Model {
         let placeholder: String
-        let textObservable: BehaviorRelay<String>
+        let textRelay: BehaviorRelay<String>
         var isSecureEntry: Bool = false
         var keyboardType: UIKeyboardType = .default
         var errorMessage: Observable<String>?

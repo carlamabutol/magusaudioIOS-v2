@@ -27,42 +27,42 @@
                     <rect key="frame" x="10" y="5" width="373" height="52"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MN-w4-swX">
-                            <rect key="frame" x="0.0" y="0.0" width="373" height="12"/>
+                            <rect key="frame" x="0.0" y="0.0" width="373" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rIH-fm-FJl">
-                            <rect key="frame" x="0.0" y="17" width="373" height="35"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rIH-fm-FJl">
+                            <rect key="frame" x="0.0" y="22" width="373" height="30"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="51b-9U-SE1">
-                                    <rect key="frame" x="0.0" y="0.0" width="338" height="35"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="35" id="cte-Ky-Xey"/>
-                                    </constraints>
+                                    <rect key="frame" x="0.0" y="0.0" width="333" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gi3-a6-Gw6">
-                                    <rect key="frame" x="338" y="0.0" width="35" height="35"/>
+                                    <rect key="frame" x="343" y="0.0" width="30" height="30"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VU4-Xf-88g">
-                                            <rect key="frame" x="7.6666666666666856" y="10" width="20" height="15"/>
+                                            <rect key="frame" x="5" y="5" width="20" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="20" id="N5d-BU-Lmt"/>
-                                                <constraint firstAttribute="height" constant="15" id="wZT-Cf-LC3"/>
+                                                <constraint firstAttribute="height" constant="20" id="wZT-Cf-LC3"/>
                                             </constraints>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="VU4-Xf-88g" firstAttribute="centerY" secondItem="Gi3-a6-Gw6" secondAttribute="centerY" id="V9j-ys-TcR"/>
-                                        <constraint firstAttribute="width" constant="35" id="aY2-N2-3Ab"/>
-                                        <constraint firstItem="VU4-Xf-88g" firstAttribute="centerX" secondItem="Gi3-a6-Gw6" secondAttribute="centerX" id="pTd-TA-UdJ"/>
+                                        <constraint firstItem="VU4-Xf-88g" firstAttribute="centerX" secondItem="Gi3-a6-Gw6" secondAttribute="centerX" id="YU0-Ca-8Yg"/>
+                                        <constraint firstAttribute="width" constant="30" id="aY2-N2-3Ab"/>
+                                        <constraint firstItem="VU4-Xf-88g" firstAttribute="centerY" secondItem="Gi3-a6-Gw6" secondAttribute="centerY" id="ycu-Wo-Sqb"/>
                                     </constraints>
                                 </view>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="EOv-rb-pWd"/>
+                            </constraints>
                         </stackView>
                     </subviews>
                 </stackView>

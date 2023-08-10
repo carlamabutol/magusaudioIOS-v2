@@ -18,17 +18,17 @@ class ProfileNavigationBar: ReusableXibView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupTapActions()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        setupTapActions()
     }
     
     private func setupTapActions() {
         backButton.addTarget(self, action: #selector(backAction), for: .touchUpInside)
-        if saveHandler != nil {
-            saveButton.addTarget(self, action: #selector(saveAction), for: .touchUpInside)
-        }
+        saveButton.addTarget(self, action: #selector(saveAction), for: .touchUpInside)
     }
     
     func hideShowButton(isHidden: Bool) {
@@ -40,7 +40,6 @@ class ProfileNavigationBar: ReusableXibView {
         self.goBackHandler = goBackHandler
         self.saveHandler = saveHandler
         self.hideShowButton(isHidden: saveHandler == nil)
-        self.setupTapActions()
     }
     
     @objc private func backAction() {

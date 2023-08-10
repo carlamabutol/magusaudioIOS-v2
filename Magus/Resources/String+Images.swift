@@ -48,5 +48,7 @@ enum ImageAsset: String {
     case tabUserUnselected = "TabUser"
     case tabUserSelected = "TabUserSelected"
     
+    case cross
+    case check
     
 }

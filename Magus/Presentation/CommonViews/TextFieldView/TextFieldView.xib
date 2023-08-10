@@ -10,12 +10,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TextFieldView" customModule="Magus" customModuleProvider="target">
             <connections>
-                <outlet property="eyeButton" destination="xgK-nV-u7V" id="LI1-WM-WXK"/>
+                <outlet property="eyeButton" destination="xgK-nV-u7V" id="cra-tn-pBz"/>
                 <outlet property="placeholderLabel" destination="QyD-mo-CyE" id="z7f-da-Rq4"/>
-                <outlet property="placeholderStackView" destination="LTG-eX-UEv" id="tr6-CK-Z5s"/>
+                <outlet property="placeholderStackView" destination="LTG-eX-UEv" id="3I8-R6-tV6"/>
                 <outlet property="stackView" destination="kxa-2p-ac2" id="Yr8-Vi-8ow"/>
-                <outlet property="textField" destination="B3h-dh-CiP" id="Mvt-QP-ySX"/>
-                <outlet property="wrongInputLabel" destination="QyD-mo-CyE" id="qIz-F3-OgP"/>
+                <outlet property="textField" destination="B3h-dh-CiP" id="8nd-Yb-FeM"/>
+                <outlet property="wrongInputLabel" destination="3JI-g3-nfh" id="3s9-p9-lKf"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -66,7 +66,7 @@
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="kxa-2p-ac2" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="ONk-gG-K0i"/>
                 <constraint firstItem="kxa-2p-ac2" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="YnE-Mh-4R0"/>

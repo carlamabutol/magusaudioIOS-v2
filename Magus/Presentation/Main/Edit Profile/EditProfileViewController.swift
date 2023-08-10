@@ -77,10 +77,28 @@ class EditProfileViewController: CommonViewController {
         hideKeyboardOnTap()
         profileNavigationBar.configure { [weak self] in
             self?.navigationController?.popViewController(animated: true)
+        } saveHandler: { [weak self] in
+            self?.showSampleAlert()
         }
-        firstNameForm.configure(model: .init(placeholder: LocalizedStrings.EditProfile.firstName, textObservable: .init(value: "")))
-        lastNameForm.configure(model: .init(placeholder: LocalizedStrings.EditProfile.lastName, textObservable: .init(value: "")))
-        emailForm.configure(model: .init(placeholder: LocalizedStrings.EditProfile.email, textObservable: .init(value: "")))
+        
+        firstNameForm.configure(
+            model: .init(
+                placeholder: LocalizedStrings.EditProfile.firstName,
+                textRelay: viewModel.firstNameRelay
+            )
+        )
+        lastNameForm.configure(
+            model: .init(
+                placeholder: LocalizedStrings.EditProfile.lastName,
+                textRelay: viewModel.lastNameRelay
+            )
+        )
+        emailForm.configure(
+            model: .init(
+                placeholder: LocalizedStrings.EditProfile.email,
+                textRelay: viewModel.emailRelay
+            )
+        )
     }
     
     override func setupBinding() {
@@ -98,6 +116,12 @@ class EditProfileViewController: CommonViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.showSaveButton
+            .subscribe { [weak self] condition in
+                self?.profileNavigationBar.hideShowButton(isHidden: !condition)
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     private func pushToChangePasswordViewController() {
@@ -108,6 +132,11 @@ class EditProfileViewController: CommonViewController {
     private func pushToDeleteAccountViewController() {
         let deleteAccountVC = DeleteAccountViewController.instantiate(from: .deleteAccount)
         navigationController?.pushViewController(deleteAccountVC, animated: true)
+    }
+    
+    private func showSampleAlert() {
+        let alertVC = presentAlert(title: "Sample", message: "Alert")
+        present(alertVC, animated: true)
     }
     
 }

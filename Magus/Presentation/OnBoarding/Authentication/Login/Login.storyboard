@@ -150,12 +150,12 @@
                     <connections>
                         <outlet property="descLbl" destination="9t4-Bq-qWr" id="a0a-Rp-Igs"/>
                         <outlet property="dividerView" destination="BOV-wP-uV1" id="Lv9-YV-fOQ"/>
-                        <outlet property="emailTextFieldView" destination="bEj-fJ-nqg" id="fo5-VJ-YOO"/>
+                        <outlet property="emailTextFieldView" destination="bEj-fJ-nqg" id="yUZ-fO-ngZ"/>
                         <outlet property="forgotPasswordButton" destination="hNu-a8-wU5" id="b85-6U-aqj"/>
                         <outlet property="formContainerView" destination="tF9-vq-klX" id="BiU-Xd-fKy"/>
                         <outlet property="loginScrollView" destination="mgW-kG-aDV" id="FBi-2t-5hW"/>
                         <outlet property="magusLogoImageView" destination="SIO-zL-8Wj" id="gmc-hU-Bsa"/>
-                        <outlet property="passwordTextFieldView" destination="xuU-ah-NM1" id="nHN-8h-a0M"/>
+                        <outlet property="passwordTextFieldView" destination="xuU-ah-NM1" id="dxD-tO-NVm"/>
                         <outlet property="scrollContentView" destination="5E9-pH-AwM" id="Paf-0g-P6N"/>
                         <outlet property="signInButton" destination="WhN-Ee-mCJ" id="lYG-bR-mcQ"/>
                         <outlet property="signUpLabel" destination="Cvg-NC-Kt0" id="cCj-Ro-Y9K"/>

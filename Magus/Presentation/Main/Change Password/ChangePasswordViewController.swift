@@ -27,18 +27,21 @@ class ChangePasswordViewController: CommonViewController {
     @IBOutlet var currentPasswordForm: FormTextFieldView! {
         didSet {
             currentPasswordForm.backgroundColor = .white
+            currentPasswordForm.cornerRadius(with: 5)
         }
     }
     
     @IBOutlet var newPasswordForm: FormTextFieldView!{
         didSet {
             newPasswordForm.backgroundColor = .white
+            newPasswordForm.cornerRadius(with: 5)
         }
     }
     
     @IBOutlet var confirmNewPasswordForm: FormTextFieldView!{
         didSet {
             confirmNewPasswordForm.backgroundColor = .white
+            confirmNewPasswordForm.cornerRadius(with: 5)
         }
     }
     
@@ -47,9 +50,29 @@ class ChangePasswordViewController: CommonViewController {
     @IBOutlet var requirementsTitleLbl: UILabel! {
         didSet {
             requirementsTitleLbl.font = .Montserrat.semibold1
-            requirementsTitleLbl.text = LocalizedStrings.EditProfile.passwordMust
+            requirementsTitleLbl.text = LocalizedStrings.ChangePassword.passwordMust
+            requirementsTitleLbl.textColor = .TextColor.primaryBlack.withAlphaComponent(0.56)
         }
     }
+    
+    @IBOutlet var firstPasswordReqView: PasswordRequirementView! {
+        didSet {
+            firstPasswordReqView.configure(text: LocalizedStrings.ChangePassword.contain8Characters)
+        }
+    }
+    
+    @IBOutlet var secondPasswordReqView: PasswordRequirementView! {
+        didSet {
+            secondPasswordReqView.configure(text: LocalizedStrings.ChangePassword.includeOneUppercase)
+        }
+    }
+    
+    @IBOutlet var thirdPasswordReqView: PasswordRequirementView! {
+        didSet {
+            thirdPasswordReqView.configure(text: LocalizedStrings.ChangePassword.includeOneNumber)
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +80,7 @@ class ChangePasswordViewController: CommonViewController {
             self?.navigationController?.popViewController(animated: true)
         } saveHandler: { [weak self] in
             // TODO SAVE
-            self?.dismiss(animated: true)
+            self?.presentDefaultAlert()
         }
         configureForms()
     }
@@ -65,15 +88,28 @@ class ChangePasswordViewController: CommonViewController {
     private func configureForms() {
         currentPasswordForm.configure(
             model: .init(placeholder: LocalizedStrings.EditProfile.currentPassword,
-                         textObservable: viewModel.currentPasswordRelay)
+                         textRelay: viewModel.currentPasswordRelay,
+                         isSecureEntry: true)
         )
         newPasswordForm.configure(
             model: .init(placeholder: LocalizedStrings.EditProfile.enterNewPassword,
-                         textObservable: viewModel.enterNewPasswordRelay)
+                         textRelay: viewModel.enterNewPasswordRelay,
+                         isSecureEntry: true)
         )
         confirmNewPasswordForm.configure(
             model: .init(placeholder: LocalizedStrings.EditProfile.confirmPassword,
-                         textObservable: viewModel.confirmNewPasswordRelay)
+                         textRelay: viewModel.confirmNewPasswordRelay,
+                         isSecureEntry: true)
         )
+    }
+    
+    private func presentDefaultAlert() {
+        let alertVC = DefaultAlertViewController.instantiate(from: .defaultAlert) as! DefaultAlertViewController
+        alertVC.modalTransitionStyle = .crossDissolve
+        alertVC.modalPresentationStyle = .overCurrentContext
+        present(alertVC, animated: true)
+        alertVC.configure(.init(title: "", message: "Are you sure you want to change your password?", actionHandler: { [weak self] in
+            self?.dismiss(animated: true)
+        }))
     }
 }

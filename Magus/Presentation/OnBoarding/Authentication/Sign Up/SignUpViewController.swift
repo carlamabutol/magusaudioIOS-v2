@@ -31,25 +31,25 @@ class SignUpViewController: CommonViewController {
     
     @IBOutlet var fullNameTextFieldView: TextFieldView! {
         didSet {
-            fullNameTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.fullName, textObservable: viewModel.fullNameRelay))
+            fullNameTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.fullName, textRelay: viewModel.fullNameRelay))
         }
     }
     
     @IBOutlet var emailTextFieldView: TextFieldView! {
         didSet {
-            emailTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.email, textObservable: viewModel.emailRelay))
+            emailTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.email, textRelay: viewModel.emailRelay))
         }
     }
     
     @IBOutlet var passwordTextFieldView: TextFieldView! {
         didSet {
-            passwordTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.password, textObservable: viewModel.passwordRelay, isSecureEntry: true))
+            passwordTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.password, textRelay: viewModel.passwordRelay, isSecureEntry: true))
         }
     }
     
     @IBOutlet var confirmPasswordTextFieldView: TextFieldView! {
         didSet {
-            confirmPasswordTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.confirmPassword, textObservable: viewModel.confirmPasswordRelay, isSecureEntry: true))
+            confirmPasswordTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.confirmPassword, textRelay: viewModel.confirmPasswordRelay, isSecureEntry: true))
         }
     }
     @IBOutlet var textFieldContainerView: UIView! {

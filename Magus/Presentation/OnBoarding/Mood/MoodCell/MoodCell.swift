@@ -15,6 +15,7 @@ class MoodCell: UICollectionViewCell {
     @IBOutlet var moodContainerView: UIView! {
         didSet {
             moodContainerView.backgroundColor = .Background.moodBackgroundColor
+            moodContainerView.cornerRadius(with: 5)
             moodContainerView.applyShadow(radius: 5)
             moodContainerView.isUserInteractionEnabled = true
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectMood))
