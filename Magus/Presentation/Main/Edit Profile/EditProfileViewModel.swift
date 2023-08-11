@@ -17,11 +17,14 @@ class EditProfileViewModel: ViewModel {
     var emailRelay: BehaviorRelay<String>
     var showSaveButton = PublishRelay<Bool>()
     
+    let profileUseCase: ProfileUseCase
+    
     init(sharedDependencies: EditProfileViewModel.Dependencies = .standard) {
         user = sharedDependencies.user
         firstNameRelay = BehaviorRelay(value: user()?.info.firstName ?? "")
         lastNameRelay = BehaviorRelay(value: user()?.info.lastName ?? "")
         emailRelay = BehaviorRelay(value: user()?.email ?? "")
+        profileUseCase = sharedDependencies.profileUseCase
         super.init()
         Observable.combineLatest(firstNameRelay.asObservable(),
                                                       lastNameRelay.asObservable(),
@@ -51,6 +54,18 @@ class EditProfileViewModel: ViewModel {
         user()?.name ?? ""
     }
     
+    func updateUserDetails() {
+        Task {
+            let result = await profileUseCase.updateProfileDetails(firstName: firstNameRelay.value, lastName: lastNameRelay.value)
+            switch result {
+            case .success(let user):
+                Logger.info("Updated User \(user)", topic: .presentation)
+            case .failure(let error):
+                Logger.error("updateUserDetails Network Error: \(error.localizedDescription)", topic: .network)
+            }
+        }
+    }
+    
 }
 
 extension EditProfileViewModel {
@@ -59,14 +74,14 @@ extension EditProfileViewModel {
         let user: () -> User?
         let router: Router
         let networkService: NetworkService
-        let authenticationUseCase: AuthenticationUseCase
+        let profileUseCase: ProfileUseCase
         
         static var standard: Dependencies {
             return .init(
                 user: { SharedDependencies.sharedDependencies.store.appState.user },
                 router: SharedDependencies.sharedDependencies.router,
                 networkService: SharedDependencies.sharedDependencies.networkService,
-                authenticationUseCase: SharedDependencies.sharedDependencies.useCases.authenticationUseCase
+                profileUseCase: SharedDependencies.sharedDependencies.useCases.profileUseCase
             )
         }
     }

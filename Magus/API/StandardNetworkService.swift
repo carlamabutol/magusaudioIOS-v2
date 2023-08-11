@@ -158,4 +158,25 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
+    func updateUserSettings(firstName: String, lastName: String) async throws -> JSONAPIArrayResponse<UserResponse> {
+        var url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("user")
+            .appendingPathComponent("info")
+            .appendingPathComponent("update")
+        if let userID = getUserID() {
+            url = url.appendingPathComponent(userID)
+        }
+        let parameters: [String: String] = [
+            "first_name": firstName,
+            "last_name": lastName
+        ]
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<UserResponse>.self)
+        
+        return try await task.value
+    }
+    
 }

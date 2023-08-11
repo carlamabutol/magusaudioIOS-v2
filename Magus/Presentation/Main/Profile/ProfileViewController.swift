@@ -25,14 +25,12 @@ class ProfileViewController: CommonViewController {
         didSet {
             nameLbl.numberOfLines = 2
             nameLbl.font = .Montserrat.title
-            nameLbl.text = tabViewModel.userFullname()
         }
     }
     
     @IBOutlet var emailLbl: UILabel! {
         didSet {
             emailLbl.font = .Montserrat.body2
-            emailLbl.text = tabViewModel.userEmail()
         }
     }
     @IBOutlet var scrollViewContentView: UIView!
@@ -83,11 +81,22 @@ class ProfileViewController: CommonViewController {
         super.viewDidLoad()
         setupTabSelection()
         setupPageController()
+        updateUserDetails()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateUserDetails()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         profileImageView.circle()
+    }
+    
+    private func updateUserDetails() {
+        emailLbl.text = tabViewModel.userEmail()
+        nameLbl.text = tabViewModel.userFullname()
     }
     
     func selectedIndex(_ index: Int) {

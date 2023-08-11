@@ -10,10 +10,17 @@ import Foundation
 class UseCases {
     
     let authenticationUseCase: AuthenticationUseCase
+    let profileUseCase: ProfileUseCase
     
     init(store: Store, networkService: NetworkService, credentialsService: AuthenticationService, router: Router) {
         
         authenticationUseCase = AuthenticationUseCase(
+            store: store,
+            networkService: networkService,
+            credentialsService: credentialsService
+        )
+        
+        profileUseCase = ProfileUseCase(
             store: store,
             networkService: networkService,
             credentialsService: credentialsService

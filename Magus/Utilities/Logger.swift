@@ -14,7 +14,7 @@ struct Logger {
     private static func log(level: Log.Level, topic: Log.Topic, message: String) {
         let log = Log(level: level, topic: topic, message: message)
         if level.shouldPrintLog {
-            print(log.output)
+            debugPrint(log.output)
         }
         if reportableLogLevels.contains(level) {
             let error = NSError(domain: "Logger", code: 0, userInfo: log.userInfo)

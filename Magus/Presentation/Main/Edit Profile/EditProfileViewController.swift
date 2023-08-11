@@ -78,7 +78,7 @@ class EditProfileViewController: CommonViewController {
         profileNavigationBar.configure { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         } saveHandler: { [weak self] in
-            self?.showSampleAlert()
+            self?.viewModel.updateUserDetails()
         }
         
         firstNameForm.configure(
@@ -137,6 +137,12 @@ class EditProfileViewController: CommonViewController {
     private func showSampleAlert() {
         let alertVC = presentAlert(title: "Sample", message: "Alert")
         present(alertVC, animated: true)
+    }
+    
+    private func showAlert(alertModel: LoginAlertViewController.AlertModel) {
+        let alertVC = LoginAlertViewController.instantiate(from: .loginAlert) as! LoginAlertViewController
+        presentModally(alertVC, animated: true)
+        alertVC.configure(alertModel: alertModel)
     }
     
 }

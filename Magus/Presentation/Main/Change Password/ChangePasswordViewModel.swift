@@ -22,7 +22,12 @@ class ChangePasswordViewModel: ViewModel {
         )
     )
     
-    override init() {
+    let store: Store
+    let networkService: NetworkService
+    
+    init(dependencies: ChangePasswordViewModel.Dependencies = .standard) {
+        store = dependencies.store
+        networkService = dependencies.networkService
         super.init()
         currentPasswordRelay.asObservable()
             .subscribe { currentPassword in
@@ -47,5 +52,19 @@ extension ChangePasswordViewModel {
     struct PasswordRequirementModel {
         let imageName: ImageAsset
         let text: String
+    }
+}
+
+extension ChangePasswordViewModel {
+    struct Dependencies {
+        let store: Store
+        let networkService: NetworkService
+        
+        static var standard: Dependencies {
+            return .init(
+                store: SharedDependencies.sharedDependencies.store,
+                networkService: SharedDependencies.sharedDependencies.networkService
+            )
+        }
     }
 }

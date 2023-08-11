@@ -94,6 +94,7 @@
 		74BAEAB42A84FAB1000BB1E4 /* MySubsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BAEAB32A84FAB1000BB1E4 /* MySubsViewController.swift */; };
 		74BAEAB72A8502DA000BB1E4 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74BAEAB62A8502DA000BB1E4 /* Settings.storyboard */; };
 		74BAEAB92A8502E4000BB1E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BAEAB82A8502E4000BB1E4 /* SettingsViewController.swift */; };
+		74BAEABB2A85494E000BB1E4 /* ProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BAEABA2A85494E000BB1E4 /* ProfileUseCase.swift */; };
 		74C090892A71FC3E001B552E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C090882A71FC3E001B552E /* ProfileViewModel.swift */; };
 		74C0908C2A7206EA001B552E /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C0908B2A7206EA001B552E /* EditProfile.storyboard */; };
 		74C0908E2A7206F4001B552E /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C0908D2A7206F4001B552E /* EditProfileViewController.swift */; };
@@ -316,6 +317,7 @@
 		74BAEAB32A84FAB1000BB1E4 /* MySubsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySubsViewController.swift; sourceTree = "<group>"; };
 		74BAEAB62A8502DA000BB1E4 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		74BAEAB82A8502E4000BB1E4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		74BAEABA2A85494E000BB1E4 /* ProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUseCase.swift; sourceTree = "<group>"; };
 		74C090882A71FC3E001B552E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		74C0908B2A7206EA001B552E /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
 		74C0908D2A7206F4001B552E /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 				741CB6B52A447E9B00975949 /* Main Use Cases */,
 				741CB6B22A447D5100975949 /* Error Use Case */,
 				741CB6B02A447C9B00975949 /* UseCases.swift */,
+				74BAEABA2A85494E000BB1E4 /* ProfileUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1445,6 +1448,7 @@
 				74C090952A720BB0001B552E /* Helper.swift in Sources */,
 				7431D8122A24837C00F79E48 /* StandardNetworkService.swift in Sources */,
 				74E3BAD32A5042AB00CB0005 /* FeaturedPlaylistResponse.swift in Sources */,
+				74BAEABB2A85494E000BB1E4 /* ProfileUseCase.swift in Sources */,
 				F8512C3F2A13BDC90041C14F /* WelcomeViewModel.swift in Sources */,
 				74C090932A720868001B552E /* ProfileNavigationBar.swift in Sources */,
 				746FA5F12A25FE76006CE52C /* JSONAPIArrayResponse.swift in Sources */,
