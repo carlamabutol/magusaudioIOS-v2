@@ -110,33 +110,74 @@ class FormTextFieldView: ReusableXibView {
                                                 .foregroundColor: UIColor.TextColor.placeholderColor])
     }
     
+    lazy var innerShadow: InnerShadowView = {
+        let view = InnerShadowView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        updateShadow()
+        addShadow()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        updateShadow()
+        addShadow()
     }
     
-    private func updateShadow() {
-        print("BOUNDS - \(bounds)")
-        let shadowColor = UIColor.black.cgColor
-        let shadowOffset = CGSize(width: 0, height: 2)
-        let shadowBlurRadius: CGFloat = 4.0
-        layer.shadowColor = shadowColor
-        layer.shadowOffset = shadowOffset
-        layer.shadowRadius = shadowBlurRadius
-        layer.shadowOpacity = 1.0
-        
-        let innerPath = UIBezierPath(rect: bounds.insetBy(dx: 10, dy: 10)).cgPath
-        let outerPath = UIBezierPath(rect: bounds).cgPath
-        
-        let shadowLayer = CAShapeLayer()
-        shadowLayer.path = outerPath
-        shadowLayer.fillRule = .evenOdd
-        layer.mask = shadowLayer
+    private func addShadow() {
+        contentView.addSubview(innerShadow)
+        contentView.sendSubviewToBack(innerShadow)
+        NSLayoutConstraint.activate(
+            [
+                innerShadow.topAnchor.constraint(equalTo: contentView.topAnchor),
+                innerShadow.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+                innerShadow.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+                innerShadow.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            ]
+        )
     }
 }
 
+class InnerShadowView: UIView {
+
+    lazy var innerShadowLayer: CAShapeLayer = {
+        let shadowLayer = CAShapeLayer()
+        shadowLayer.shadowColor = UIColor.black.cgColor
+        shadowLayer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        shadowLayer.shadowOpacity = 0.1
+        shadowLayer.shadowRadius = 5
+        shadowLayer.fillRule = .evenOdd
+        return shadowLayer
+    }()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.configure()
+        backgroundColor = .white
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.configure()
+    }
+
+    private func configure() {
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 5
+        self.layer.addSublayer(self.innerShadowLayer)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        let shadowPath = CGMutablePath()
+        let inset = -self.innerShadowLayer.shadowRadius * 2.0
+        shadowPath.addRect(self.bounds.insetBy(dx: inset, dy: inset))
+        shadowPath.addRect(self.bounds)
+        self.innerShadowLayer.path = shadowPath
+    }
+
+}

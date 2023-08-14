@@ -168,6 +168,7 @@ extension StandardNetworkService: NetworkService {
             url = url.appendingPathComponent(userID)
         }
         let parameters: [String: String] = [
+            "name": firstName + " " + lastName,
             "first_name": firstName,
             "last_name": lastName
         ]

@@ -39,6 +39,7 @@ enum StoryboardString: String {
     // Alert
     case defaultAlert = "DefaultAlert"
     case loginAlert = "LoginAlert"
+    case profileAlert = "ProfileAlert"
     
     // Edit Profile
     case editProfile = "EditProfile"

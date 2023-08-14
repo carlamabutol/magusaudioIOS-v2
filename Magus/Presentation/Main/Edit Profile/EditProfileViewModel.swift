@@ -16,6 +16,8 @@ class EditProfileViewModel: ViewModel {
     var lastNameRelay: BehaviorRelay<String>
     var emailRelay: BehaviorRelay<String>
     var showSaveButton = PublishRelay<Bool>()
+    private let alertModel = PublishRelay<ProfileAlertViewController.AlertModel>()
+    var alertModelObservable: Observable<ProfileAlertViewController.AlertModel> { alertModel.asObservable() }
     
     let profileUseCase: ProfileUseCase
     
@@ -59,6 +61,7 @@ class EditProfileViewModel: ViewModel {
             let result = await profileUseCase.updateProfileDetails(firstName: firstNameRelay.value, lastName: lastNameRelay.value)
             switch result {
             case .success(let user):
+                self.alertModel.accept(.init(message: "Profile successfully updated.", image: .goodPassword))
                 Logger.info("Updated User \(user)", topic: .presentation)
             case .failure(let error):
                 Logger.error("updateUserDetails Network Error: \(error.localizedDescription)", topic: .network)

@@ -122,6 +122,13 @@ class EditProfileViewController: CommonViewController {
             }
             .disposed(by: disposeBag)
         
+        viewModel.alertModelObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] model in
+                self?.showAlert(alertModel: model)
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     private func pushToChangePasswordViewController() {
@@ -139,8 +146,8 @@ class EditProfileViewController: CommonViewController {
         present(alertVC, animated: true)
     }
     
-    private func showAlert(alertModel: LoginAlertViewController.AlertModel) {
-        let alertVC = LoginAlertViewController.instantiate(from: .loginAlert) as! LoginAlertViewController
+    private func showAlert(alertModel: ProfileAlertViewController.AlertModel) {
+        let alertVC = ProfileAlertViewController.instantiate(from: .profileAlert) as! ProfileAlertViewController
         presentModally(alertVC, animated: true)
         alertVC.configure(alertModel: alertModel)
     }

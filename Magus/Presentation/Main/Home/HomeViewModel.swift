@@ -30,12 +30,12 @@ class HomeViewModel: ViewModel {
                 var newSection = self.sections.value
                 if newSection.isEmpty {
                     newSection.insert(.init(header: LocalizedStrings.HomeHeaderTitle.category, items: categories), at: 0)
-                } else {
+                } else if !categories.isEmpty {
                     newSection[0].items = categories
                 }
                 if let playListIndex = newSection.lastIndex(where: { $0.header == LocalizedStrings.HomeHeaderTitle.featuredPlayList }) {
                     newSection[playListIndex].items = playlist
-                } else {
+                } else if !playlist.isEmpty {
                     newSection.append(.init(header: LocalizedStrings.HomeHeaderTitle.featuredPlayList, items: playlist))
                 }
                 self.sections.accept(newSection)

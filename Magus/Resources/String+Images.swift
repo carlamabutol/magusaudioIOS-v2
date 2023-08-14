@@ -51,4 +51,6 @@ enum ImageAsset: String {
     case cross
     case check
     
+    case goodPassword = "Good Password"
+    
 }
