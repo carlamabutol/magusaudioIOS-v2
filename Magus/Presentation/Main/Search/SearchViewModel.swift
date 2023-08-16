@@ -29,8 +29,8 @@ class SearchViewModel: ViewModel {
     
     let sections = BehaviorRelay<[SectionViewModel]>(value: [])
     
-    private let subliminalRelay = BehaviorRelay<[CategoryCell.Model]>(value: [])
-    private let playlistRelay = BehaviorRelay<[CategoryCell.Model]>(value: [])
+    private let subliminalRelay = BehaviorRelay<[SearchViewModel.CellModel]>(value: [])
+    private let playlistRelay = BehaviorRelay<[SearchViewModel.CellModel]>(value: [])
     private let networkService: NetworkService
     private let searchRelay = BehaviorRelay<String>(value: "")
     
@@ -70,8 +70,8 @@ class SearchViewModel: ViewModel {
                 let response = try await networkService.searchSubliminalAndPlaylist(search: searchRelay.value)
                 switch response {
                 case .success(let dict):
-                    subliminalRelay.accept(dict.subliminal.map { CategoryCell.Model(id: $0.subliminalId, title: $0.title, imageUrl: .init(string: $0.cover )) })
-                    playlistRelay.accept(dict.playlist.map { CategoryCell.Model(id: $0.playlistId, title: $0.title, imageUrl: .init(string: $0.cover )) })
+                    subliminalRelay.accept(dict.subliminal.map { SearchViewModel.CellModel(id: $0.subliminalId, title: $0.title, imageUrl: .init(string: $0.cover )) })
+                    playlistRelay.accept(dict.playlist.map { SearchViewModel.CellModel(id: $0.playlistId, title: $0.title, imageUrl: .init(string: $0.cover )) })
                     Logger.info("Search Request Success - \(dict)", topic: .presentation)
                 case .error(let errorResponse):
                     Logger.error("Search Response Error", topic: .presentation)
@@ -88,9 +88,20 @@ class SearchViewModel: ViewModel {
         self.searchRelay.accept(search)
     }
     
+//    func getSubliminal(_ id: String) -> Subliminal {
+//
+//    }
+    
 }
 
 extension SearchViewModel {
+            
+    struct CellModel: ItemModel {
+        var id: String
+        var title: String
+        var imageUrl: URL?
+    }
+
     
     struct Dependencies {
         let router: Router

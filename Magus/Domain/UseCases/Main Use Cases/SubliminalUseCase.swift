@@ -1,0 +1,32 @@
+//
+//  SubliminalUseCase.swift
+//  Magus
+//
+//  Created by Jomz on 8/14/23.
+//
+
+import Foundation
+import RxSwift
+
+final class SubliminalUseCase {
+    
+    private var store: Store
+    private let networkService: NetworkService
+    private let credentialsService: AuthenticationService
+    
+    init(store: Store, networkService: NetworkService, credentialsService: AuthenticationService) {
+        self.store = store
+        self.networkService = networkService
+        self.credentialsService = credentialsService
+    }
+    
+    func getSubliminalAudios(_ subliminalId: String) async -> Result<[String], Error> {
+        do {
+            let response = try await networkService.getSubliminalAudio(subliminalId: subliminalId)
+            return .success(response.data ?? [])
+        } catch {
+            return .failure(error)
+        }
+    }
+    
+}

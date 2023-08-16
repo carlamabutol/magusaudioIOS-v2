@@ -37,3 +37,8 @@ enum JSONAPIArrayResponse<Response: EndpointResponse>: Decodable {
     }
     
 }
+
+struct ResponseArrayModel<T: Decodable>: Decodable {
+    let message: String
+    let data: [T]?
+}

@@ -11,6 +11,7 @@ class UseCases {
     
     let authenticationUseCase: AuthenticationUseCase
     let profileUseCase: ProfileUseCase
+    let subliminalUseCase: SubliminalUseCase
     
     init(store: Store, networkService: NetworkService, credentialsService: AuthenticationService, router: Router) {
         
@@ -21,6 +22,12 @@ class UseCases {
         )
         
         profileUseCase = ProfileUseCase(
+            store: store,
+            networkService: networkService,
+            credentialsService: credentialsService
+        )
+        
+        subliminalUseCase = SubliminalUseCase(
             store: store,
             networkService: networkService,
             credentialsService: credentialsService

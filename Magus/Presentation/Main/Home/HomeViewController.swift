@@ -7,6 +7,7 @@
 
 import UIKit
 import RxDataSources
+import RxSwift
 
 class HomeViewController: CommonViewController {
     
@@ -46,6 +47,10 @@ class HomeViewController: CommonViewController {
         tabBarController?.selectedIndex = 1
     }
     
+    override func setupBinding() {
+        super.setupBinding()
+    }
+    
     private func setupDataSource() {
         let dataSource = RxCollectionViewSectionedReloadDataSource<SectionViewModel>(configureCell: { dataSource, collectionView, indexPath, item in
             let cell: HomeCustomCell!
@@ -77,6 +82,20 @@ class HomeViewController: CommonViewController {
         
         viewModel.sections.asObservable()
             .bind(to: collectionView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        Observable
+            .zip(
+                collectionView
+                    .rx
+                    .itemSelected
+                ,collectionView
+                    .rx
+                    .modelSelected(SectionViewModel.Item.self)
+            )
+            .bind{ [unowned self] indexPath, model in
+                Logger.info("Selected Model - \(model)", topic: .presentation)
+            }
             .disposed(by: disposeBag)
         
         self.dataSource = dataSource

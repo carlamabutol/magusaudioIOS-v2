@@ -180,4 +180,18 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
+    func getSubliminalAudio(subliminalId: String) async throws -> ResponseArrayModel<String> {
+        var url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("audio")
+            .appendingPathComponent("subliminal")
+            .appendingPathComponent(subliminalId)
+        
+        let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(ResponseArrayModel<String>.self)
+        
+        return try await task.value
+    }
+    
 }

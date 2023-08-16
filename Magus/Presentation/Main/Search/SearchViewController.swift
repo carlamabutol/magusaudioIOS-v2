@@ -7,6 +7,7 @@
 
 import UIKit
 import RxDataSources
+import RxSwift
 
 class SearchViewController: CommonViewController {
     
@@ -73,13 +74,23 @@ class SearchViewController: CommonViewController {
         viewModel.sections.asObservable()
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
-        
-        collectionView
-                .rx
-                .modelSelected(SectionViewModel.Item.self)
-                .subscribe(onNext: { (model) in
-                    //Your code
-                }).disposed(by: disposeBag)
+    
+        Observable
+            .zip(
+                collectionView
+                    .rx
+                    .itemSelected
+                ,collectionView
+                    .rx
+                    .modelSelected(SectionViewModel.Item.self)
+            )
+            .bind{ [unowned self] indexPath, model in
+                if indexPath.section == 0 {
+                    Logger.info("Selected Model - \(model)", topic: .presentation)
+                    self.tabViewModel.getSubliminalAudios(model.id)
+                }
+            }
+            .disposed(by: disposeBag)
         
         self.dataSource = dataSource
     }

@@ -18,4 +18,5 @@ protocol NetworkService {
     func getSubscriptions() async throws -> JSONAPIArrayResponse<SubscriptionResponse>
     func searchSubliminalAndPlaylist(search: String) async throws -> JSONAPIDictionaryResponse<SearchPlaylistAndSubliminalResponse>
     func updateUserSettings(firstName: String, lastName: String) async throws -> JSONAPIArrayResponse<UserResponse>
+    func getSubliminalAudio(subliminalId: String) async throws -> ResponseArrayModel<String>
 }

@@ -17,9 +17,15 @@ class MainTabViewModel: ViewModel {
     private let selectedSubRelay = PublishRelay<Subliminal>()
     var selectedSubliminalObservable: Observable<Subliminal> { selectedSubRelay.compactMap{ $0 }.asObservable() }
     private var user: () -> User?
+    private let subliminalUseCase: SubliminalUseCase
+    private let subliminalAudios = PublishRelay<[String]>()
+    var subliminalAudiosObservable: Observable<[String]> { subliminalAudios.compactMap{ $0 }.asObservable() }
+    private let selectedTabIndex = BehaviorRelay<MainTabViewModel.TabItem>(value: .home)
+    var selectedTabIndexObservable: Observable<MainTabViewModel.TabItem> { selectedTabIndex.asObservable() }
     
     init(sharedDependencies: MainTabViewModel.Dependencies = .standard) {
         user = sharedDependencies.user
+        subliminalUseCase = sharedDependencies.subliminalUseCase
         super.init()
     }
     
@@ -40,6 +46,20 @@ class MainTabViewModel: ViewModel {
         selectedSubRelay.accept(subliminal)
     }
     
+    func getSubliminalAudios(_ id: String) {
+        selectedTabIndex.accept(TabItem.sound)
+        Task {
+            let response = await subliminalUseCase.getSubliminalAudios(id)
+            switch response {
+            case .success(let audios):
+                Logger.info("RESPONSE SUBLIMINAL AUDIO - \(audios)", topic: .presentation)
+                subliminalAudios.accept(audios)
+            case .failure(let error):
+                Logger.error(error.localizedDescription, topic: .presentation)
+            }
+        }
+    }
+    
 }
 
 extension MainTabViewModel {
@@ -48,14 +68,14 @@ extension MainTabViewModel {
         let user: () -> User?
         let router: Router
         let networkService: NetworkService
-        let authenticationUseCase: AuthenticationUseCase
+        let subliminalUseCase: SubliminalUseCase
         
         static var standard: Dependencies {
             return .init(
                 user: { SharedDependencies.sharedDependencies.store.appState.user },
                 router: SharedDependencies.sharedDependencies.router,
                 networkService: SharedDependencies.sharedDependencies.networkService,
-                authenticationUseCase: SharedDependencies.sharedDependencies.useCases.authenticationUseCase
+                subliminalUseCase: SharedDependencies.sharedDependencies.useCases.subliminalUseCase
             )
         }
     }

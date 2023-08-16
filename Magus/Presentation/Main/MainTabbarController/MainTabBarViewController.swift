@@ -33,6 +33,13 @@ class MainTabBarViewController: UITabBarController {
             .bind(to: rx.viewControllers)
             .disposed(by: disposeBag)
         
+        viewModel.selectedTabIndexObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] item in
+                self?.setSelectedIndex(item)
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     func setSelectedIndex(_ tabItem: MainTabViewModel.TabItem) {
