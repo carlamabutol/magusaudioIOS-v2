@@ -64,6 +64,7 @@
 		7480EDFC2A7CF02E000206B1 /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7480EDFB2A7CF02E000206B1 /* MonthlyView.swift */; };
 		7480EDFE2A7D0411000206B1 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7480EDFD2A7D0411000206B1 /* CalendarViewController.swift */; };
 		748B40992A71589E00CA78CD /* DateTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748B40982A71589E00CA78CD /* DateTypeSelectionView.swift */; };
+		748ED5012A8E1FA1005608FE /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748ED5002A8E1FA1005608FE /* SettingsViewModel.swift */; };
 		749002642A7BDFED007DACDF /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749002632A7BDFED007DACDF /* Day.swift */; };
 		749002662A7BDFF8007DACDF /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749002652A7BDFF8007DACDF /* WeekDay.swift */; };
 		749002682A7BE003007DACDF /* CalendarMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749002672A7BE003007DACDF /* CalendarMonth.swift */; };
@@ -295,6 +296,7 @@
 		7480EDFB2A7CF02E000206B1 /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
 		7480EDFD2A7D0411000206B1 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		748B40982A71589E00CA78CD /* DateTypeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTypeSelectionView.swift; sourceTree = "<group>"; };
+		748ED5002A8E1FA1005608FE /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		749002632A7BDFED007DACDF /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		749002652A7BDFF8007DACDF /* WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
 		749002672A7BE003007DACDF /* CalendarMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonth.swift; sourceTree = "<group>"; };
@@ -772,6 +774,7 @@
 			children = (
 				74BAEAB62A8502DA000BB1E4 /* Settings.storyboard */,
 				74BAEAB82A8502E4000BB1E4 /* SettingsViewController.swift */,
+				748ED5002A8E1FA1005608FE /* SettingsViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1516,6 +1519,7 @@
 				7474B31A2A49B7BE00086600 /* HeaderTitleView.swift in Sources */,
 				7490E4462A4096FC00463582 /* Logger.swift in Sources */,
 				F88A830E2A13D22900D3E975 /* UIView+Extension.swift in Sources */,
+				748ED5012A8E1FA1005608FE /* SettingsViewModel.swift in Sources */,
 				74E3BAD52A504CD400CB0005 /* FooterView.swift in Sources */,
 				F8315DE52A1CE9C100634DA1 /* SignUpViewModel.swift in Sources */,
 				74CD22C42A8BD2D900B9D28A /* AudioAVPlayer.swift in Sources */,

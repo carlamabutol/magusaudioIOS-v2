@@ -32,4 +32,9 @@ class Router {
         selectedRouterObservable = selectedRouteRelay.asObservable().observe(on: MainScheduler.asyncInstance)
     }
     
+    func logout() {
+        credentialsService.clearAuthentication()
+        selectedRoute = .welcomeOnBoard
+    }
+    
 }

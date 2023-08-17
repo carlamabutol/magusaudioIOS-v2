@@ -28,4 +28,26 @@ class AudioPlayerManager {
     func removeAudioPlayer(for url: URL) {
         audioPlayers[url] = nil
     }
+    
+    func playAllAudioPlayers() {
+        if audioPlayers.first?.value.isPlaying == true {
+            for (_, player) in audioPlayers {
+                player.pause()
+            }
+        } else {
+            for (_, player) in audioPlayers {
+                player.play()
+            }
+        }
+    }
+    
+    func pauseAllAudioPlayers() {
+        for (_, player) in audioPlayers {
+            player.pause()
+        }
+    }
+    
+    func removePlayers() {
+        audioPlayers.removeAll()
+    }
 }

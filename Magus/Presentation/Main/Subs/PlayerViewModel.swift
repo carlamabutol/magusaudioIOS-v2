@@ -71,16 +71,15 @@ class AudioPlayerViewModel: ViewModel {
     }
     
     func clearAudioPlayers() {
-//        audioPlayerManager.pauseAllAudio()
+        audioPlayerManager.removePlayers()
     }
-    
 
     func playAudio() {
-        activePlayer?.play()
+        audioPlayerManager.playAllAudioPlayers()
     }
     
     func pauseAllAudio() {
-//        audioPlayerManager.pauseAllAudio()
+        audioPlayerManager.pauseAllAudioPlayers()
     }
     
     func next() {

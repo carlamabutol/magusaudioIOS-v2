@@ -60,6 +60,10 @@ class MainTabViewModel: ViewModel {
         }
     }
     
+    deinit {
+        Logger.info("Deinit Tab View Model", topic: .presentation)
+    }
+    
 }
 
 extension MainTabViewModel {

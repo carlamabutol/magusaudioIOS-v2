@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import RxSwift
 
 class SettingsViewController: CommonViewController {
     var profileViewModel: ProfileViewModel!
+    
+    private let viewModel = SettingsViewModel()
     
     @IBOutlet var titleLabel: UILabel! {
         didSet {
@@ -56,6 +59,18 @@ class SettingsViewController: CommonViewController {
         didSet {
             logoutButton.titleLabel?.font = .Montserrat.bold15
         }
+    }
+    
+    override func setupBinding() {
+        super.setupBinding()
+        
+        logoutButton.rx.tap
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.viewModel.logout()
+            }
+            .disposed(by: disposeBag)
+        
     }
     
 }

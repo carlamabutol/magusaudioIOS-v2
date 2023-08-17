@@ -49,6 +49,7 @@ class AudioPlayer {
     init(url: URL) {
         let playerItem = AVPlayerItem(url: url)
         avPlayer = AVPlayer(playerItem: playerItem)
+        repeatAllAudioPlayers()
         addTimeObserver()
     }
     
@@ -65,6 +66,22 @@ class AudioPlayer {
         }
     }
     
+    private func repeatAllAudioPlayers() {
+        avPlayer?.actionAtItemEnd = .none
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handlePlayerItemDidReachEnd(notification:)),
+                                               name: .AVPlayerItemDidPlayToEndTime,
+                                               object: avPlayer?.currentItem)
+    }
+    
+    @objc private func handlePlayerItemDidReachEnd(notification: Notification) {
+        if let playerItem = notification.object as? AVPlayerItem,
+           avPlayer?.currentItem === playerItem {
+            avPlayer?.seek(to: .zero)
+            play()
+        }
+    }
+    
     func play() {
         if isPlaying {
             pause()
@@ -78,4 +95,6 @@ class AudioPlayer {
         avPlayer?.pause()
         delegate?.audioPlayerDidPause()
     }
+    
+    
 }

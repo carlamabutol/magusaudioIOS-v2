@@ -47,6 +47,11 @@ class Store {
         return try JSONDecoder().decode(AppState.self, from: savedAppStateData)
     }
     
+    func removeAppState() {
+        AudioPlayerManager.shared.removePlayers()
+        UserDefaults.standard.removeObject(forKey: Self.appStateStorageKey)
+    }
+    
     func observable<T: Equatable>(of path: KeyPath<AppState, T>) -> Observable<T> {
         return appStateObject
             .map { $0[keyPath: path]}
