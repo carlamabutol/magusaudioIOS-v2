@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import RxSwift
 
 final class SubliminalUseCase {
     
@@ -26,6 +25,20 @@ final class SubliminalUseCase {
             return .success(response.data ?? [])
         } catch {
             return .failure(error)
+        }
+    }
+    
+    func getSubliminals() async throws -> [Subliminal] {
+        do {
+            let response = try await networkService.getSubliminals()
+            switch response {
+            case .success(let response):
+                return response.data.map{ Subliminal(subliminalReponse: $0) }
+            case .error(_):
+                throw NetworkServiceError.jsonDecodingError
+            }
+        } catch {
+            throw error
         }
     }
     

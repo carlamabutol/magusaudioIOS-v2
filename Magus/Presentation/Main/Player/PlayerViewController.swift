@@ -1,5 +1,5 @@
 //
-//  SubsViewController.swift
+//  PlayerViewController.swift
 //  Magus
 //
 //  Created by Jomz on 6/19/23.
@@ -8,10 +8,10 @@
 import UIKit
 import RxSwift
 
-class SubsViewController: CommonViewController {
+class PlayerViewController: CommonViewController {
     
     var tabViewModel: MainTabViewModel!
-    private let viewModel = AudioPlayerViewModel()
+    let viewModel = AudioPlayerViewModel()
     
     @IBOutlet var advanceVolumeBtn: UIButton! {
         didSet {

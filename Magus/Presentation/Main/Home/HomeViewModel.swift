@@ -76,7 +76,7 @@ class HomeViewModel: ViewModel {
                     debugPrint("RESPONSE ERROR - \(errorResponse.message)")
                 }
             } catch {
-                debugPrint("Network Error Response - \(error.localizedDescription)")
+                Logger.error(error.localizedDescription, topic: .presentation)
             }
             
         }

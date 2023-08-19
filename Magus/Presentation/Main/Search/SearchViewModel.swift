@@ -29,8 +29,8 @@ class SearchViewModel: ViewModel {
     
     let sections = BehaviorRelay<[SectionViewModel]>(value: [])
     
-    private let subliminalRelay = BehaviorRelay<[SearchViewModel.CellModel]>(value: [])
-    private let playlistRelay = BehaviorRelay<[SearchViewModel.CellModel]>(value: [])
+    private let subliminalRelay = BehaviorRelay<[Subliminal]>(value: [])
+    private let playlistRelay = BehaviorRelay<[Playlist]>(value: [])
     private let networkService: NetworkService
     private let searchRelay = BehaviorRelay<String>(value: "")
     
@@ -38,7 +38,12 @@ class SearchViewModel: ViewModel {
         networkService = sharedDependencies.networkService
         super.init()
         Observable.combineLatest(subliminalRelay, playlistRelay)
-            .subscribe { [weak self] subliminals, playlist in
+            .map({ subliminals, playlists in
+                let subliminalCells: [SearchViewModel.CellModel]  = subliminals.map { SearchViewModel.CellModel(id: $0.subliminalID, title: $0.title, imageUrl: .init(string: $0.cover )) }
+                let playlistCell: [SearchViewModel.CellModel] = playlists.map { SearchViewModel.CellModel(id: $0.playlistID, title: $0.title, imageUrl: .init(string: $0.cover )) }
+                return (subliminalCells, playlistCell)
+            })
+            .subscribe { [weak self] (subliminals, playlist) in
                 guard let self else { return }
                 var newSection = self.sections.value
                 if newSection.isEmpty {
@@ -70,8 +75,8 @@ class SearchViewModel: ViewModel {
                 let response = try await networkService.searchSubliminalAndPlaylist(search: searchRelay.value)
                 switch response {
                 case .success(let dict):
-                    subliminalRelay.accept(dict.subliminal.map { SearchViewModel.CellModel(id: $0.subliminalId, title: $0.title, imageUrl: .init(string: $0.cover )) })
-                    playlistRelay.accept(dict.playlist.map { SearchViewModel.CellModel(id: $0.playlistId, title: $0.title, imageUrl: .init(string: $0.cover )) })
+                    subliminalRelay.accept(dict.subliminal.map { Subliminal.init(subliminalReponse: $0 )})
+                    playlistRelay.accept(dict.playlist.map { Playlist.init(searchPlaylistResponse: $0 )})
                     Logger.info("Search Request Success - \(dict)", topic: .presentation)
                 case .error(let errorResponse):
                     Logger.error("Search Response Error", topic: .presentation)
@@ -88,9 +93,9 @@ class SearchViewModel: ViewModel {
         self.searchRelay.accept(search)
     }
     
-//    func getSubliminal(_ id: String) -> Subliminal {
-//
-//    }
+    func getSubliminal(_ subliminalID: String) -> Subliminal {
+        return subliminalRelay.value.first(where: { $0.subliminalID == subliminalID })!
+    }
     
 }
 

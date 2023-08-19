@@ -7,23 +7,23 @@
 
 import Foundation
 
-struct SubliminalResponse: EndpointResponse {
+struct SubliminalArrayResponse: EndpointResponse {
     typealias ErrorResponse = SubliminalErrorResponse
     
-    let data: [Subliminal]
+    let data: [SubliminalResponse]
 }
 
-struct Subliminal: EndpointResponse {
+struct SubliminalResponse: EndpointResponse {
     typealias ErrorResponse = SubliminalErrorResponse
     
     let id: Int
     let subliminalID, title: String
     let cover: String
     let description: String
-    let isFeatured, isVisible, categoryID: Int
-    let subscriptionID, createdAt, updatedAt, guide: String
-    let moodsID: String?
-    let info: [SubliminalInfo]
+    let isFeatured, isVisible: Int?
+    let subscriptionID, createdAt, updatedAt: String
+    let guide, moodsID: String?
+    let info: [SubliminalInfoResponse]
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -31,7 +31,6 @@ struct Subliminal: EndpointResponse {
         case title, cover, description
         case isFeatured = "is_featured"
         case isVisible = "is_visible"
-        case categoryID = "category_id"
         case subscriptionID = "subscription_id"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
@@ -52,11 +51,11 @@ struct SubliminalErrorResponse: Decodable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - Info
-struct SubliminalInfo: Codable, Hashable {
+struct SubliminalInfoResponse: Codable, Hashable {
     let id: Int
     let subliminalID, trackID: String
     let version, audioTypeID, volume: Int
-    let createdAt, updatedAt, trackTitle: String
+    let trackTitle, link: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -65,8 +64,7 @@ struct SubliminalInfo: Codable, Hashable {
         case version
         case audioTypeID = "audio_type_id"
         case volume
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
         case trackTitle = "track_title"
+        case link
     }
 }

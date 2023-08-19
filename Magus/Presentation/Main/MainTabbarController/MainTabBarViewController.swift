@@ -67,15 +67,15 @@ extension MainTabBarViewController {
         case .search:
             let searchVC = SearchViewController.instantiate(from: .search) as! SearchViewController
             searchVC.tabViewModel = viewModel
+            searchVC.tabNavigationDelegate = self
             viewController = searchVC
-        case .sound:
-            let playerVC = SubsViewController.instantiate(from: .subs) as! SubsViewController
-            playerVC.tabViewModel = viewModel
-            viewController = playerVC
+//        case .sound:
+//            let playerVC = PlayerViewController.instantiate(from: .player) as! PlayerViewController
+//            playerVC.tabViewModel = viewModel
+//            viewController = playerVC
         case .premium:
             viewController = PremiumViewController.instantiate(from: .premium)
         case .user:
-            
             let profileVC = ProfileViewController.instantiate(from: .profile) as! ProfileViewController
             profileVC.tabViewModel = viewModel
             let navVC = UINavigationController(rootViewController: profileVC)
@@ -103,4 +103,19 @@ extension MainTabBarViewController {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         item.title = item.accessibilityIdentifier
     }
+}
+
+extension MainTabBarViewController: TabNavigationDelegate {
+    
+    func goToPlayer(subliminal: Subliminal) {
+        let playerVC = PlayerViewController.instantiate(from: .player) as! PlayerViewController
+        playerVC.tabViewModel = viewModel
+        playerVC.viewModel.createArrayAudioPlayer(with: subliminal.info.compactMap { $0.link })
+//        navigationController?.pushViewController(playerVC, animated: true)
+        present(playerVC, animated: true)
+    }
+    
+}
+protocol TabNavigationDelegate: AnyObject {
+    func goToPlayer(subliminal: Subliminal)
 }

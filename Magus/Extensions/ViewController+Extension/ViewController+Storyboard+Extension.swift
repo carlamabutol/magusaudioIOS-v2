@@ -27,7 +27,6 @@ enum StoryboardString: String {
     case mainTabBar = "MainTabBar"
     case home = "Home"
     case search = "Search"
-    case subs = "Subs"
     case premium = "Premium"
     case profile = "Profile"
     
@@ -45,6 +44,9 @@ enum StoryboardString: String {
     case editProfile = "EditProfile"
     case changePassword = "ChangePassword"
     case deleteAccount = "DeleteAccount"
+    
+    // Player
+    case player = "Player"
     
 }
 

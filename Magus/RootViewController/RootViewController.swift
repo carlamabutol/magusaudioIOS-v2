@@ -55,7 +55,9 @@ class RootViewController: CommonViewController {
             rootViewController = MoodViewController.instantiate(from: .mood)
         case .home:
             rootViewController?.dismiss(animated: false)
-            rootViewController = UIViewController.instantiate(from: .mainTabBar)
+            let navigationController = UINavigationController(rootViewController: UIViewController.instantiate(from: .mainTabBar))
+            navigationController.navigationBar.isHidden = true
+            rootViewController = navigationController
         }
     }
     

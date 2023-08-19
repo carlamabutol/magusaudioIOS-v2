@@ -116,14 +116,14 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
-    func getSubliminals() async throws -> JSONAPIDictionaryResponse<SubliminalResponse> {
+    func getSubliminals() async throws -> JSONAPIDictionaryResponse<SubliminalArrayResponse> {
         let url = baseURL
             .appendingPathComponent("api")
             .appendingPathComponent("subliminal")
         
         let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
-            .serializingDecodable(JSONAPIDictionaryResponse<SubliminalResponse>.self)
+            .serializingDecodable(JSONAPIDictionaryResponse<SubliminalArrayResponse>.self)
         
         return try await task.value
     }

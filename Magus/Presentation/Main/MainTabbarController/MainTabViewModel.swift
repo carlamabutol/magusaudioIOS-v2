@@ -47,7 +47,6 @@ class MainTabViewModel: ViewModel {
     }
     
     func getSubliminalAudios(_ id: String) {
-        selectedTabIndex.accept(TabItem.sound)
         Task {
             let response = await subliminalUseCase.getSubliminalAudios(id)
             switch response {
@@ -91,7 +90,6 @@ extension MainTabViewModel {
     enum TabItem {
         case home
         case search
-        case sound
         case premium
         case user
         
@@ -99,7 +97,6 @@ extension MainTabViewModel {
             switch self {
             case .home: return ImageAsset.tabHomeSelected
             case .search: return ImageAsset.tabSearchSelected
-            case .sound: return ImageAsset.tabSoundSelected
             case .premium: return ImageAsset.tabPremiumSelected
             case .user: return ImageAsset.tabUserSelected
             }
@@ -109,7 +106,6 @@ extension MainTabViewModel {
             switch self {
             case .home: return ImageAsset.tabHomeUnselected
             case .search: return ImageAsset.tabSearchUnselected
-            case .sound: return ImageAsset.tabSoundUnselected
             case .premium: return ImageAsset.tabPremiumUnselected
             case .user: return ImageAsset.tabUserUnselected
             }
@@ -119,7 +115,6 @@ extension MainTabViewModel {
             switch self {
             case .home: return LocalizedStrings.TabBarTitle.home
             case .search: return LocalizedStrings.TabBarTitle.search
-            case .sound: return LocalizedStrings.TabBarTitle.subs
             case .premium: return LocalizedStrings.TabBarTitle.premium
             case .user: return LocalizedStrings.TabBarTitle.profile
             }
@@ -129,7 +124,6 @@ extension MainTabViewModel {
             switch self {
             case .home: return Self.homeOrderIndex
             case .search: return Self.searchOrderIndex
-            case .sound: return Self.subsOrderIndex
             case .premium: return Self.premiumOrderIndex
             case .user: return Self.profileOrderIndex
             }
@@ -137,13 +131,12 @@ extension MainTabViewModel {
         
         static let homeOrderIndex = 0
         static let searchOrderIndex = 1
-        static let subsOrderIndex = 2
-        static let premiumOrderIndex = 3
-        static let profileOrderIndex = 4
+        static let premiumOrderIndex = 2
+        static let profileOrderIndex = 3
     }
     
     private static func constructTabItems() -> [TabItem] {
-        [.home, .search, .sound, .premium, .user]
+        [.home, .search, .premium, .user]
             .sorted { $0.orderIndex < $1.orderIndex }
     }
     

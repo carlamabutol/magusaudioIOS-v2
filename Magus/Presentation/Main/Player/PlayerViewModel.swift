@@ -14,7 +14,6 @@ class AudioPlayerViewModel: ViewModel {
     private let audioPlayerManager = AudioPlayerManager.shared
     
     private let selectedAudioPlayer = PublishRelay<AudioPlayer>()
-//    var timeObservable: Observable<String> { activePlayer?.timeObservable }
     var timeRelay = PublishRelay<String>()
     var progressRelay = PublishRelay<Float>()
     let selectedPlayer = BehaviorRelay<Int>(value: 0)
