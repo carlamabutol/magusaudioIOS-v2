@@ -7,17 +7,43 @@
 
 import UIKit
 import RxSwift
+import Hero
 
 class MainTabBarViewController: UITabBarController {
     
     private let viewModel = MainTabViewModel()
     private let disposeBag = DisposeBag()
     
+    var containerView: CollapsedPlayerView = {
+        let view = CollapsedPlayerView()
+        view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHeroEnabled = true
+        view.heroID = "sample"
+        return view
+    }()
+    
+    fileprivate func collapsedPlayerView() {
+        let padding: CGFloat = 10
+        let bottom = getSafeAreaLayoutGuide().1
+        let paddingBottom = bottom + tabBar.height + padding
+        view.addSubview(containerView)
+        NSLayoutConstraint.activate([
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -paddingBottom),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            containerView.heightAnchor.constraint(equalToConstant: 90)
+        ])
+        containerView.cornerRadius(with: 5)
+        containerView.applyShadow(radius: 5)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         styleTabBar()
         setupBindings()
         hideKeyboardOnTap()
+        collapsedPlayerView()
     }
     
     private func styleTabBar() {
@@ -111,8 +137,11 @@ extension MainTabBarViewController: TabNavigationDelegate {
         let playerVC = PlayerViewController.instantiate(from: .player) as! PlayerViewController
         playerVC.tabViewModel = viewModel
         playerVC.viewModel.createArrayAudioPlayer(with: subliminal.info.compactMap { $0.link })
-//        navigationController?.pushViewController(playerVC, animated: true)
-        present(playerVC, animated: true)
+        playerVC.view.heroID = "sample"
+        playerVC.isHeroEnabled = true
+        playerVC.modalPresentationStyle = .currentContext
+        navigationController?.present(playerVC, animated: true)
+//        present(playerVC, animated: true)
     }
     
 }

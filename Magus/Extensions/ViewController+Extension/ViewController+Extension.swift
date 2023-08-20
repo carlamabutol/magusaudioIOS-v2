@@ -34,4 +34,17 @@ extension UIViewController {
         view.endEditing(true)
     }
     
+    func getSafeAreaLayoutGuide() -> (CGFloat, CGFloat) {
+//        if #available(iOS 15.0, *) {
+//            let window = UIApplication.shared.currentScene?.keyWindow
+//            let topPadding = window.safeAreaInsets.top
+//            let bottomPadding = window.safeAreaInsets.bottom
+//            return (topPadding, bottomPadding)
+//        }
+        let window = UIApplication.shared.windows.first
+        let topPadding = window?.safeAreaInsets.top ?? 0
+        let bottomPadding = window?.safeAreaInsets.bottom ?? 0
+        return (topPadding, bottomPadding)
+    }
+    
 }

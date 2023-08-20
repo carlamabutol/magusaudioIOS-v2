@@ -13,6 +13,7 @@ class PlayerViewController: CommonViewController {
     var tabViewModel: MainTabViewModel!
     let viewModel = AudioPlayerViewModel()
     
+    @IBOutlet var closeButton: UIButton!
     @IBOutlet var advanceVolumeBtn: UIButton! {
         didSet {
             let image = UIImage(named: "advance volume")
@@ -73,6 +74,10 @@ class PlayerViewController: CommonViewController {
     
     @IBOutlet var timeLabel: UILabel!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     override func setupBinding() {
         super.setupBinding()
         tabViewModel.selectedSubliminalObservable
@@ -110,6 +115,13 @@ class PlayerViewController: CommonViewController {
             .subscribe { [weak self] _ in
                 self?.viewModel.previous()
                 self?.updatePlayerStatus()
+            }
+            .disposed(by: disposeBag)
+        
+        closeButton.rx.tap
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
         

@@ -17,6 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Bl-7K-SLD">
+                                <rect key="frame" x="338" y="79" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="9iN-UE-on6"/>
+                                    <constraint firstAttribute="width" constant="35" id="eOT-tH-iRj"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="xmark" catalog="system"/>
+                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JA0-d4-2rH">
                                 <rect key="frame" x="0.0" y="-20" width="393" height="530"/>
                             </imageView>
@@ -118,13 +127,16 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
                             <constraint firstItem="JA0-d4-2rH" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.622" id="IG9-VG-X1g"/>
                             <constraint firstAttribute="top" secondItem="JA0-d4-2rH" secondAttribute="top" constant="20" symbolic="YES" id="Mhe-hV-93z"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="JA0-d4-2rH" secondAttribute="trailing" id="Pf4-aF-I5Q"/>
+                            <constraint firstItem="4Bl-7K-SLD" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="VuT-K4-0V7"/>
                             <constraint firstItem="1g4-UH-yeN" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="Z1Q-zQ-9hB"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="1g4-UH-yeN" secondAttribute="trailing" id="cRR-eI-hvF"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="4Bl-7K-SLD" secondAttribute="trailing" constant="20" id="nT1-tl-BT1"/>
                             <constraint firstItem="1g4-UH-yeN" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="qrA-Nh-xcb"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="advanceVolumeBtn" destination="8la-df-3sg" id="B0A-fG-ODA"/>
+                        <outlet property="closeButton" destination="4Bl-7K-SLD" id="4sa-A7-JlS"/>
                         <outlet property="descriptionLbl" destination="YdU-cy-9ws" id="75o-bq-kQs"/>
                         <outlet property="favoriteButton" destination="iAk-Wt-1zL" id="oyv-5s-14d"/>
                         <outlet property="nextButton" destination="bpi-oz-DDD" id="OKh-2N-ulI"/>
@@ -141,6 +153,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
         </scene>
     </scenes>
     <resources>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -89,6 +89,8 @@
 		74A6C5772A5DA9BC00D9DAED /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A6C5762A5DA9BC00D9DAED /* PlanView.swift */; };
 		74B132422A766FF20056D740 /* ProfileMood.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74B132412A766FF20056D740 /* ProfileMood.storyboard */; };
 		74B132442A76727D0056D740 /* ProfileMoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B132432A76727D0056D740 /* ProfileMoodViewController.swift */; };
+		74B16A182A90DAA8003E8A2D /* CollapsedPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B16A172A90DAA8003E8A2D /* CollapsedPlayerView.swift */; };
+		74B16A1A2A90DAC5003E8A2D /* CollapsedPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74B16A192A90DAC5003E8A2D /* CollapsedPlayerView.xib */; };
 		74B529DC2A6FDA4200F43BFC /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74B529DB2A6FDA4200F43BFC /* SearchView.xib */; };
 		74B9177A2A51B5C200B598EB /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B917792A51B5C200B598EB /* SearchViewModel.swift */; };
 		74B9177C2A51C8A800B598EB /* SubliminalArrayResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B9177B2A51C8A800B598EB /* SubliminalArrayResponse.swift */; };
@@ -116,6 +118,7 @@
 		74CD22C42A8BD2D900B9D28A /* AudioAVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CD22C32A8BD2D900B9D28A /* AudioAVPlayer.swift */; };
 		74CFCCF92A82418400DF8D1C /* DefaultAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74CFCCF82A82418400DF8D1C /* DefaultAlert.storyboard */; };
 		74CFCCFB2A82460700DF8D1C /* DefaultAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CFCCFA2A82460700DF8D1C /* DefaultAlertViewController.swift */; };
+		74D0DC672A925F2D00749A0C /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = 74D0DC662A925F2D00749A0C /* Hero */; };
 		74DD402B2A6FDF48004BC382 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DD402A2A6FDF48004BC382 /* SearchView.swift */; };
 		74DDE9E92A5A6B5F00EA0929 /* SubscriptionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DDE9E82A5A6B5F00EA0929 /* SubscriptionResponse.swift */; };
 		74DFB6AE2A386EAC00FD99CE /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 74DFB6AD2A386EAC00FD99CE /* RxDataSources */; };
@@ -325,6 +328,8 @@
 		74A6C5762A5DA9BC00D9DAED /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
 		74B132412A766FF20056D740 /* ProfileMood.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileMood.storyboard; sourceTree = "<group>"; };
 		74B132432A76727D0056D740 /* ProfileMoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMoodViewController.swift; sourceTree = "<group>"; };
+		74B16A172A90DAA8003E8A2D /* CollapsedPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsedPlayerView.swift; sourceTree = "<group>"; };
+		74B16A192A90DAC5003E8A2D /* CollapsedPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollapsedPlayerView.xib; sourceTree = "<group>"; };
 		74B529DB2A6FDA4200F43BFC /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
 		74B917792A51B5C200B598EB /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		74B9177B2A51C8A800B598EB /* SubliminalArrayResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubliminalArrayResponse.swift; sourceTree = "<group>"; };
@@ -451,6 +456,7 @@
 				741CB6A02A4476F400975949 /* KeychainAccess in Frameworks */,
 				F848EF0D2A0BD3530097F104 /* RxSwift in Frameworks */,
 				74DFB6AE2A386EAC00FD99CE /* RxDataSources in Frameworks */,
+				74D0DC672A925F2D00749A0C /* Hero in Frameworks */,
 				F848EF0B2A0BD3530097F104 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -763,6 +769,15 @@
 			path = "My Mood";
 			sourceTree = "<group>";
 		};
+		74B16A162A90DA96003E8A2D /* CollapsedPlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				74B16A172A90DAA8003E8A2D /* CollapsedPlayerView.swift */,
+				74B16A192A90DAC5003E8A2D /* CollapsedPlayerView.xib */,
+			);
+			path = CollapsedPlayerView;
+			sourceTree = "<group>";
+		};
 		74B529DA2A6FDA2E00F43BFC /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
@@ -979,6 +994,7 @@
 		F835B0172A06527000123A16 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				74B16A162A90DA96003E8A2D /* CollapsedPlayerView */,
 				740A26E82A4D7F6E00D96A1D /* Alert */,
 				F835B0092A06526200123A16 /* Main.storyboard */,
 				F83C49B02A19BC9800BC4429 /* CommonViews */,
@@ -1277,6 +1293,7 @@
 				746FA5FE2A26494C006CE52C /* Alamofire */,
 				74DFB6AD2A386EAC00FD99CE /* RxDataSources */,
 				741CB69F2A4476F400975949 /* KeychainAccess */,
+				74D0DC662A925F2D00749A0C /* Hero */,
 			);
 			productName = Magus;
 			productReference = F835B0002A06526200123A16 /* Magus.app */;
@@ -1312,6 +1329,7 @@
 				746FA5FD2A26494C006CE52C /* XCRemoteSwiftPackageReference "Alamofire" */,
 				74DFB6AC2A386EAC00FD99CE /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				741CB69E2A4476F400975949 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				74D0DC652A925F2D00749A0C /* XCRemoteSwiftPackageReference "Hero" */,
 			);
 			productRefGroup = F835B0012A06526200123A16 /* Products */;
 			projectDirPath = "";
@@ -1387,6 +1405,7 @@
 				74A6C5752A5DA9A100D9DAED /* PlanView.xib in Resources */,
 				74B529DC2A6FDA4200F43BFC /* SearchView.xib in Resources */,
 				F8E4CCE92A19ED5F002C388C /* SignUp.storyboard in Resources */,
+				74B16A1A2A90DAC5003E8A2D /* CollapsedPlayerView.xib in Resources */,
 				F8A4D4102A87648C008F460F /* ProfileAlert.storyboard in Resources */,
 				74C960A62A722F5D00391DDA /* WeeklyDayDetailView.xib in Resources */,
 				F8512C342A13B9EA0041C14F /* Assets.xcassets in Resources */,
@@ -1514,6 +1533,7 @@
 				74CD22BE2A8B8D5B00B9D28A /* AudioPlayer.swift in Sources */,
 				74C090932A720868001B552E /* ProfileNavigationBar.swift in Sources */,
 				746FA5F12A25FE76006CE52C /* JSONAPIArrayResponse.swift in Sources */,
+				74B16A182A90DAA8003E8A2D /* CollapsedPlayerView.swift in Sources */,
 				F835B01E2A0652D100123A16 /* RootViewController.swift in Sources */,
 				7490E4442A40940300463582 /* Store.swift in Sources */,
 				74DD402B2A6FDF48004BC382 /* SearchView.swift in Sources */,
@@ -1900,6 +1920,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		74D0DC652A925F2D00749A0C /* XCRemoteSwiftPackageReference "Hero" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/HeroTransitions/Hero";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		74DFB6AC2A386EAC00FD99CE /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
@@ -1952,6 +1980,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 746FA5FD2A26494C006CE52C /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		74D0DC662A925F2D00749A0C /* Hero */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 74D0DC652A925F2D00749A0C /* XCRemoteSwiftPackageReference "Hero" */;
+			productName = Hero;
 		};
 		74DFB6AD2A386EAC00FD99CE /* RxDataSources */ = {
 			isa = XCSwiftPackageProductDependency;
