@@ -7,17 +7,19 @@
 
 import UIKit
 import RxSwift
+import SDWebImage
+import Hero
 
 class PlayerViewController: CommonViewController {
     
     var tabViewModel: MainTabViewModel!
-    let viewModel = AudioPlayerViewModel()
+    var playerViewModel: AudioPlayerViewModel!
     
     @IBOutlet var closeButton: UIButton!
     @IBOutlet var advanceVolumeBtn: UIButton! {
         didSet {
             let image = UIImage(named: "advance volume")
-            let newImage = resizeImage(image: image!, targetHeight: 21)
+            let newImage = image?.resizeImage(targetHeight: 21)
             advanceVolumeBtn.setImage(newImage, for: .normal)
             advanceVolumeBtn.imageView?.contentMode = .scaleAspectFit
         }
@@ -26,7 +28,7 @@ class PlayerViewController: CommonViewController {
     @IBOutlet var previousButton: UIButton! {
         didSet {
             let image = UIImage(named: "previous")
-            let newImage = resizeImage(image: image!, targetHeight: 49)
+            let newImage = image?.resizeImage(targetHeight: 49)
             previousButton.setImage(newImage, for: .normal)
             previousButton.imageView?.contentMode = .scaleAspectFit
         }
@@ -35,7 +37,7 @@ class PlayerViewController: CommonViewController {
     @IBOutlet var playPauseButton: UIButton! {
         didSet {
             let image = UIImage(named: "play")
-            let newImage = resizeImage(image: image!, targetHeight: 59)
+            let newImage = image?.resizeImage(targetHeight: 59)
             playPauseButton.setImage(newImage, for: .normal)
             playPauseButton.imageView?.contentMode = .scaleAspectFit
         }
@@ -44,7 +46,7 @@ class PlayerViewController: CommonViewController {
     @IBOutlet var nextButton: UIButton! {
         didSet {
             let image = UIImage(named: "next")
-            let newImage = resizeImage(image: image!, targetHeight: 49)
+            let newImage = image?.resizeImage(targetHeight: 49)
             nextButton.setImage(newImage, for: .normal)
             nextButton.imageView?.contentMode = .scaleAspectFit
         }
@@ -53,7 +55,7 @@ class PlayerViewController: CommonViewController {
     @IBOutlet var favoriteButton: UIButton! {
         didSet {
             let image = UIImage(named: "heart")
-            let newImage = resizeImage(image: image!, targetHeight: 21)
+            let newImage = image?.resizeImage(targetHeight: 21)
             favoriteButton.setImage(newImage, for: .normal)
             favoriteButton.imageView?.contentMode = .scaleAspectFit
         }
@@ -73,31 +75,32 @@ class PlayerViewController: CommonViewController {
     @IBOutlet var progressView: UIProgressView!
     
     @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var coverImageView: UIImageView! {
+        didSet {
+            coverImageView.isHeroEnabled = true
+            coverImageView.heroID = "cover"
+            coverImageView.contentMode = .scaleAspectFill
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    func configure(subliminal: Subliminal) {
+        titleLbl.text = subliminal.title
+        descriptionLbl.text = subliminal.guide
+        coverImageView.sd_setImage(with: .init(string: subliminal.cover))
+        updatePlayerStatus()
+    }
+    
     override func setupBinding() {
         super.setupBinding()
-        tabViewModel.selectedSubliminalObservable
-            .observe(on: MainScheduler.asyncInstance)
-            .subscribe { [weak self] subliminal in
-                self?.titleLbl.text = subliminal.element?.title
-                self?.descriptionLbl.text = subliminal.element?.description
-            }
-            .disposed(by: disposeBag)
-        
-        tabViewModel.subliminalAudiosObservable
-            .subscribe { [weak self] audioArray in
-                self?.viewModel.createArrayAudioPlayer(with: audioArray)
-            }
-            .disposed(by: disposeBag)
         
         playPauseButton.rx.tap
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { [weak self] _ in
-                self?.viewModel.playAudio()
+                self?.playerViewModel.playAudio()
                 self?.updatePlayerStatus()
             }
             .disposed(by: disposeBag)
@@ -105,7 +108,7 @@ class PlayerViewController: CommonViewController {
         nextButton.rx.tap
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { [weak self] _ in
-                self?.viewModel.next()
+                self?.playerViewModel.next()
                 self?.updatePlayerStatus()
             }
             .disposed(by: disposeBag)
@@ -113,7 +116,7 @@ class PlayerViewController: CommonViewController {
         previousButton.rx.tap
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { [weak self] _ in
-                self?.viewModel.previous()
+                self?.playerViewModel.previous()
                 self?.updatePlayerStatus()
             }
             .disposed(by: disposeBag)
@@ -125,38 +128,21 @@ class PlayerViewController: CommonViewController {
             }
             .disposed(by: disposeBag)
         
-        viewModel.progressRelay
+        playerViewModel.progressObservable
             .observe(on: MainScheduler.asyncInstance)
-            .subscribe { [weak self] progress in
-                self?.progressView.progress = progress
-            }
+            .bind(to: progressView.rx.progress)
             .disposed(by: disposeBag)
     }
     
     private func updatePlayerStatus() {
-        guard let isPlaying: Bool = viewModel.activePlayer?.isPlaying else { return }
+        guard let isPlaying: Bool = playerViewModel.activePlayer?.isPlaying else { return }
         let image = UIImage(named: isPlaying ? "pause" : "play")
-        let newImage = resizeImage(image: image!, targetHeight: 59)
+        let newImage = image?.resizeImage(targetHeight: 59)
         playPauseButton.setImage(newImage, for: .normal)
         playPauseButton.imageView?.contentMode = .scaleAspectFit
     }
     
-    fileprivate func resizeImage(image: UIImage, targetHeight: CGFloat) -> UIImage {
-        // Get current image size
-        let size = image.size
-
-        // Compute scaled, new size
-        let heightRatio = targetHeight / size.height
-        let newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-
-        // Create new image
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
-        image.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        // Return new image
-        return newImage!
+    deinit {
+        print("Deinit Player View Controller")
     }
 }

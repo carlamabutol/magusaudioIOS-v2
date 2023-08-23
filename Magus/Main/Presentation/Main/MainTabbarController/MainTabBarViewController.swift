@@ -12,38 +12,45 @@ import Hero
 class MainTabBarViewController: UITabBarController {
     
     private let viewModel = MainTabViewModel()
+    private let playerViewModel = AudioPlayerViewModel()
     private let disposeBag = DisposeBag()
     
-    var containerView: CollapsedPlayerView = {
+    var collapsedPlayerView: CollapsedPlayerView = {
         let view = CollapsedPlayerView()
         view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHeroEnabled = true
         view.heroID = "sample"
+        view.isHidden = true
         return view
     }()
-    
-    fileprivate func collapsedPlayerView() {
-        let padding: CGFloat = 10
-        let bottom = getSafeAreaLayoutGuide().1
-        let paddingBottom = bottom + tabBar.height + padding
-        view.addSubview(containerView)
-        NSLayoutConstraint.activate([
-            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -paddingBottom),
-            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            containerView.heightAnchor.constraint(equalToConstant: 90)
-        ])
-        containerView.cornerRadius(with: 5)
-        containerView.applyShadow(radius: 5)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         styleTabBar()
         setupBindings()
         hideKeyboardOnTap()
-        collapsedPlayerView()
+        setupCollapsedPlayerView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        collapsedPlayerView.isHidden = playerViewModel.selectedSubliminal == nil
+    }
+    
+    fileprivate func setupCollapsedPlayerView() {
+        let padding: CGFloat = 10
+        let bottom = getSafeAreaLayoutGuide().1
+        let paddingBottom = bottom + tabBar.height + padding
+        view.addSubview(collapsedPlayerView)
+        NSLayoutConstraint.activate([
+            collapsedPlayerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -paddingBottom),
+            collapsedPlayerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            collapsedPlayerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            collapsedPlayerView.heightAnchor.constraint(equalToConstant: 90)
+        ])
+        collapsedPlayerView.cornerRadius(with: 5)
+        collapsedPlayerView.applyShadow(radius: 5)
     }
     
     private func styleTabBar() {
@@ -66,6 +73,12 @@ class MainTabBarViewController: UITabBarController {
             }
             .disposed(by: disposeBag)
         
+        viewModel.selectedSubliminalObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] sub in
+                self?.goToPlayer(subliminal: sub)
+            }
+            .disposed(by: disposeBag)
     }
     
     func setSelectedIndex(_ tabItem: MainTabViewModel.TabItem) {
@@ -93,7 +106,7 @@ extension MainTabBarViewController {
         case .search:
             let searchVC = SearchViewController.instantiate(from: .search) as! SearchViewController
             searchVC.tabViewModel = viewModel
-            searchVC.tabNavigationDelegate = self
+//            searchVC.tabNavigationDelegate = self
             viewController = searchVC
 //        case .sound:
 //            let playerVC = PlayerViewController.instantiate(from: .player) as! PlayerViewController
@@ -131,20 +144,23 @@ extension MainTabBarViewController {
     }
 }
 
-extension MainTabBarViewController: TabNavigationDelegate {
+extension MainTabBarViewController {
     
     func goToPlayer(subliminal: Subliminal) {
         let playerVC = PlayerViewController.instantiate(from: .player) as! PlayerViewController
         playerVC.tabViewModel = viewModel
-        playerVC.viewModel.createArrayAudioPlayer(with: subliminal.info.compactMap { $0.link })
+        playerVC.playerViewModel = playerViewModel
+        playerVC.playerViewModel.createArrayAudioPlayer(with: subliminal)
         playerVC.view.heroID = "sample"
         playerVC.isHeroEnabled = true
         playerVC.modalPresentationStyle = .currentContext
+        collapsedPlayerView.configure(title: subliminal.title, image: subliminal.cover)
         navigationController?.present(playerVC, animated: true)
+        playerVC.configure(subliminal: subliminal)
 //        present(playerVC, animated: true)
     }
     
 }
-protocol TabNavigationDelegate: AnyObject {
-    func goToPlayer(subliminal: Subliminal)
-}
+//protocol TabNavigationDelegate: AnyObject {
+//    func goToPlayer(subliminal: Subliminal)
+//}

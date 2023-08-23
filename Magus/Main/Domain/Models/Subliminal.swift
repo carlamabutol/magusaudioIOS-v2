@@ -16,7 +16,7 @@ struct Subliminal {
     let isFeatured, isVisible: Int?
     let subscriptionID: String
     let guide, moodsID: String?
-    let info: [SubliminalInfo]
+    let info: [SubliminalAudioInfo]
     
 }
 
@@ -33,7 +33,7 @@ extension Subliminal {
         subscriptionID = subliminalReponse.subscriptionID
         guide = subliminalReponse.guide
         moodsID = subliminalReponse.moodsID
-        info = subliminalReponse.info.map { SubliminalInfo(infoResponse: $0) }
+        info = subliminalReponse.info.map { SubliminalAudioInfo(infoResponse: $0) }
         
     }
     
@@ -48,7 +48,7 @@ extension Subliminal {
         subscriptionID = playlistSubliminalResponse.subscriptionID
         guide = playlistSubliminalResponse.guide
         moodsID = playlistSubliminalResponse.moodsID
-        info = playlistSubliminalResponse.trackInfo.map { SubliminalInfo(infoResponse: $0) }
+        info = playlistSubliminalResponse.trackInfo.map { SubliminalAudioInfo(infoResponse: $0) }
         
     }
     

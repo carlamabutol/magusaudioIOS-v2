@@ -7,26 +7,54 @@
 
 import Foundation
 import AVFoundation
+import RxSwift
+import RxRelay
 
 class AudioPlayerManager {
     static let shared = AudioPlayerManager()
+    private var disposeBag = DisposeBag()
     
-    var audioPlayers: [URL: AudioPlayer] = [:]
+    var audioPlayers: [SubliminalAudioInfo: AudioPlayer] = [:]
+    private let playerStatusUpdate = PublishRelay<Void>()
+    private let activePlayer = BehaviorRelay<AudioPlayer?>(value: nil)
+    private let isPlayingRelay = BehaviorRelay<Bool>(value: false)
+    var activePlayerObservable: Observable<AudioPlayer> {
+        activePlayer
+            .compactMap{ $0 }
+            .asObservable()
+            .debounce(.seconds(1), scheduler: MainScheduler.asyncInstance)
+        
+    }
+    var playerStatusObservable: Observable<Void> { playerStatusUpdate.asObservable() }
 
-    private init() {}
+    init() {
+        playerStatusObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.setActiveLongestDurationPlayer()
+            }.disposed(by: disposeBag)
+        
+    }
+    
+    private func setActiveLongestDurationPlayer() {
+        let player = audioPlayers.max { old, new in
+            return old.value.duration > new.value.duration
+        }?.value
+        activePlayer.accept(player)
+    }
 
-    func createAudioPlayer(with url: URL) -> AudioPlayer {
-        if let existingPlayer = audioPlayers[url] {
-            return existingPlayer
+    func createAudioPlayer(with subliminalAudioInfo: SubliminalAudioInfo, url: URL) {
+        if audioPlayers.contains(where: { $0.key.id == subliminalAudioInfo.id }) {
+            return
         }
         
         let newPlayer = AudioPlayer(url: url)
-        audioPlayers[url] = newPlayer
-        return newPlayer
-    }
-    
-    func removeAudioPlayer(for url: URL) {
-        audioPlayers[url] = nil
+        newPlayer.playerStatusObservable
+            .subscribe { [weak self] status in
+                guard status == .isReadyToPlay else { return }
+                self?.setActiveLongestDurationPlayer()
+            }.disposed(by: disposeBag)
+        audioPlayers[subliminalAudioInfo] = newPlayer
     }
     
     func playAllAudioPlayers() {
@@ -47,7 +75,12 @@ class AudioPlayerManager {
         }
     }
     
+    func getLongestDuration() -> Double {
+        audioPlayers.map { $0.value.duration }.reduce(0, +)
+    }
+    
     func removePlayers() {
         audioPlayers.removeAll()
+        disposeBag = DisposeBag()
     }
 }

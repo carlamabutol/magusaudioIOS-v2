@@ -27,6 +27,25 @@ extension UIImage {
         self.init(named: name.rawValue)
     }
     
+    func resizeImage(targetHeight: CGFloat) -> UIImage {
+        // Get current image size
+        let size = self.size
+
+        // Compute scaled, new size
+        let heightRatio = targetHeight / size.height
+        let newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+        // Create new image
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
+        self.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        // Return new image
+        return newImage!
+    }
+    
 }
 
 enum ImageAsset: String {

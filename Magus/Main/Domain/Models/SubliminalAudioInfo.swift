@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SubliminalInfo {
+struct SubliminalAudioInfo: Hashable {
     
     let id: Int
     let subliminalID, trackID: String
@@ -16,7 +16,7 @@ struct SubliminalInfo {
     
 }
 
-extension SubliminalInfo {
+extension SubliminalAudioInfo {
     
     init(infoResponse: SubliminalInfoResponse) {
         id = infoResponse.id

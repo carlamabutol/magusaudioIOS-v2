@@ -26,8 +26,9 @@ struct SearchPlaylistResponse: Decodable {
     let isVisible: Int
     let subscriptionID, userID: String
     let isFeatured: Int
-    let moodsID, categoryID: String?
-    let isOwnPlaylist, isLiked: Int?
+    let moodsID: String?
+    let categoryID, isOwnPlaylist, isLiked: Int?
+    let name, image: String?
     let info: [SearchSubliminalResponse]
 
     enum CodingKeys: String, CodingKey {
@@ -42,6 +43,7 @@ struct SearchPlaylistResponse: Decodable {
         case categoryID = "category_id"
         case isOwnPlaylist = "is_own_playlist"
         case isLiked = "is_liked"
+        case name, image
         case info
     }
 }
@@ -50,7 +52,10 @@ struct SearchSubliminalResponse: Decodable {
     let id: Int
     let playlistID, subliminalID, categoryID, subscriptionID: String
     let moodsID: String?
-    
+    let title: String
+    let cover: String
+    let guide, description: String?
+
     enum CodingKeys: String, CodingKey {
         case id
         case playlistID = "playlist_id"
@@ -58,6 +63,7 @@ struct SearchSubliminalResponse: Decodable {
         case categoryID = "category_id"
         case subscriptionID = "subscription_id"
         case moodsID = "moods_id"
+        case title, cover, guide, description
     }
 }
 

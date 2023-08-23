@@ -23,10 +23,19 @@ class AudioPlayer {
     
     weak var delegate: AudioPlayerDelegate?
     
-    private let timeRelay = PublishRelay<String>()
-    var timeObservable: Observable<String> { timeRelay.asObservable() }
+    private let timeRelay = PublishRelay<TimeInterval>()
+    var timeObservable: Observable<TimeInterval> { timeRelay.asObservable() }
     private let progressRelay = BehaviorRelay<Float>(value: 0)
     var progressObservable: Observable<Float> { progressRelay.asObservable() }
+    private let playerStatus = BehaviorRelay<PlayerStatus>(value: .loading)
+    var playerStatusObservable: Observable<PlayerStatus> { playerStatus.asObservable() }
+    
+    private var observer: NSKeyValueObservation? {
+        willSet {
+            guard let observer = observer else { return }
+            observer.invalidate()
+        }
+    }
     
     var isPlaying: Bool {
         return avPlayer?.rate != 0.0
@@ -51,6 +60,20 @@ class AudioPlayer {
         avPlayer = AVPlayer(playerItem: playerItem)
         repeatAllAudioPlayers()
         addTimeObserver()
+        
+        // Register as an observer of the player item's status property
+        self.observer = playerItem.observe(\.status, options:  [.new, .old], changeHandler: { [unowned self](playerItem, change) in
+            switch playerItem.status {
+            case .failed:
+                self.playerStatus.accept(.failed)
+            case .readyToPlay:
+                self.playerStatus.accept(.isReadyToPlay)
+            case .unknown:
+                self.playerStatus.accept(.unknown)
+            @unknown default:
+                self.playerStatus.accept(.unknown)
+            }
+        })
     }
     
     private func addTimeObserver() {
@@ -59,10 +82,8 @@ class AudioPlayer {
             let currentTime = CMTimeGetSeconds(time)
             let duration = self?.duration ?? 0
             let progress = currentTime / duration
-            self?.timeRelay.accept("\(duration):00-\(currentTime)")
+            self?.timeRelay.accept(currentTime)
             self?.progressRelay.accept(Float(progress))
-//            self?.delegate?.audioPlayerDidUpdateDuration(duration: CMTimeGetSeconds(time))
-//            self?.delegate?.audioPlayerDidUpdateCurrentTime(currentTime: CMTimeGetSeconds(time))
         }
     }
     
@@ -96,5 +117,11 @@ class AudioPlayer {
         delegate?.audioPlayerDidPause()
     }
     
-    
+}
+
+enum PlayerStatus {
+    case loading
+    case isReadyToPlay
+    case failed
+    case unknown
 }

@@ -18,8 +18,9 @@ struct FeaturedPlaylistResponse: EndpointResponse {
     let isVisible: Int
     let subscriptionID, userID: String
     let isFeatured: Int
-    let moodsID, categoryID: String?
-    let isOwnPlaylist, isLiked: Int?
+    let moodsID: String?
+    let categoryID, isOwnPlaylist, isLiked: Int?
+    let name, image: String?
     let info: [PlaylistSubliminalResponse]
 
     enum CodingKeys: String, CodingKey {
@@ -34,6 +35,7 @@ struct FeaturedPlaylistResponse: EndpointResponse {
         case categoryID = "category_id"
         case isOwnPlaylist = "is_own_playlist"
         case isLiked = "is_liked"
+        case name, image
         case info
     }
 }

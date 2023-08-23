@@ -137,6 +137,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
                     <connections>
                         <outlet property="advanceVolumeBtn" destination="8la-df-3sg" id="B0A-fG-ODA"/>
                         <outlet property="closeButton" destination="4Bl-7K-SLD" id="4sa-A7-JlS"/>
+                        <outlet property="coverImageView" destination="JA0-d4-2rH" id="jOt-e4-aTe"/>
                         <outlet property="descriptionLbl" destination="YdU-cy-9ws" id="75o-bq-kQs"/>
                         <outlet property="favoriteButton" destination="iAk-Wt-1zL" id="oyv-5s-14d"/>
                         <outlet property="nextButton" destination="bpi-oz-DDD" id="OKh-2N-ulI"/>

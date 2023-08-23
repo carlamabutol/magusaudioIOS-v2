@@ -16,7 +16,7 @@ class SearchViewController: CommonViewController {
     var tabViewModel: MainTabViewModel!
     private let viewModel = SearchViewModel()
     var dataSource: RxCollectionViewSectionedReloadDataSource<SectionViewModel>!
-    weak var tabNavigationDelegate: TabNavigationDelegate?
+//    weak var tabNavigationDelegate: TabNavigationDelegate?
     
     @IBOutlet var searchView: SearchView! {
         didSet {
@@ -88,7 +88,7 @@ class SearchViewController: CommonViewController {
             .bind{ [unowned self] indexPath, model in
                 if indexPath.section == 0 {
                     let subliminal = self.viewModel.getSubliminal(model.id)
-                    self.tabNavigationDelegate?.goToPlayer(subliminal: subliminal)
+                    self.tabViewModel.selectSubliminal(subliminal)
                 }
             }
             .disposed(by: disposeBag)

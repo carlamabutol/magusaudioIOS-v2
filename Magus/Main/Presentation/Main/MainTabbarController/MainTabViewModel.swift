@@ -14,7 +14,7 @@ class MainTabViewModel: ViewModel {
     
     let tabItems: Observable<[TabItem]> = .just(MainTabViewModel.constructTabItems())
     
-    private let selectedSubRelay = PublishRelay<Subliminal>()
+    private let selectedSubRelay = BehaviorRelay<Subliminal?>(value: nil)
     var selectedSubliminalObservable: Observable<Subliminal> { selectedSubRelay.compactMap{ $0 }.asObservable() }
     private var user: () -> User?
     private let subliminalUseCase: SubliminalUseCase
