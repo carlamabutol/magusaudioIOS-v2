@@ -15,7 +15,8 @@ class HomeViewModel: ViewModel {
     let sections = BehaviorRelay<[SectionViewModel]>(value: [])
     
     private let categoryRelay = BehaviorRelay<[CategoryCell.Model]>(value: [])
-    private let playlistRelay = BehaviorRelay<[CategoryCell.Model]>(value: [])
+    private let recommendedSubliminals = BehaviorRelay<[CategoryCell.Model]>(value: [])
+    private let playlistRelay = BehaviorRelay<[Playlist]>(value: [])
     
     private let networkService: NetworkService
     private var user: () -> User?
@@ -24,8 +25,12 @@ class HomeViewModel: ViewModel {
         networkService = sharedDependencies.networkService
         user = sharedDependencies.user
         super.init()
-        Observable.combineLatest(categoryRelay, playlistRelay)
-            .subscribe { [weak self] categories, playlist in
+        Observable.combineLatest(categoryRelay, recommendedSubliminals, playlistRelay)
+            .map { category, recommendedSub, playlist in
+                let cellPlaylist = playlist.map { CategoryCell.Model(id: $0.playlistID, title: $0.title, imageUrl: .init(string: $0.cover )) }
+                return (category, recommendedSub, cellPlaylist)
+            }
+            .subscribe { [weak self] (categories, subliminals, playlist) in
                 guard let self else { return }
                 var newSection = self.sections.value
                 if newSection.isEmpty {
@@ -33,10 +38,29 @@ class HomeViewModel: ViewModel {
                 } else if !categories.isEmpty {
                     newSection[0].items = categories
                 }
-                if let playListIndex = newSection.lastIndex(where: { $0.header == LocalizedStrings.HomeHeaderTitle.featuredPlayList }) {
-                    newSection[playListIndex].items = playlist
-                } else if !playlist.isEmpty {
-                    newSection.append(.init(header: LocalizedStrings.HomeHeaderTitle.featuredPlayList, items: playlist))
+                if self.user()?.info.moodsID != nil {
+                    if !subliminals.isEmpty {
+                        if let recommendationIndex = newSection.lastIndex(where: { $0.header == LocalizedStrings.HomeHeaderTitle.recommendations }) {
+                            newSection[recommendationIndex].items = subliminals
+                        } else if !categories.isEmpty {
+                            newSection.append(.init(header: LocalizedStrings.HomeHeaderTitle.recommendations, items: subliminals))
+                        }
+                    } else {
+                        if let recommendationIndex = newSection.lastIndex(where: { $0.header == LocalizedStrings.HomeHeaderTitle.recommendations }) {
+                            newSection.remove(at: recommendationIndex)
+                        }
+                    }
+                }
+                if !playlist.isEmpty {
+                    if let playListIndex = newSection.lastIndex(where: { $0.header == LocalizedStrings.HomeHeaderTitle.featuredPlayList }) {
+                        newSection[playListIndex].items = playlist
+                    } else if !playlist.isEmpty {
+                        newSection.append(.init(header: LocalizedStrings.HomeHeaderTitle.featuredPlayList, items: playlist))
+                    }
+                } else {
+                    if let playListIndex = newSection.lastIndex(where: { $0.header == LocalizedStrings.HomeHeaderTitle.featuredPlayList }) {
+                        newSection.remove(at: playListIndex)
+                    }
                 }
                 self.sections.accept(newSection)
             }
@@ -46,6 +70,7 @@ class HomeViewModel: ViewModel {
     func getHomeDetails() {
         getAllCategory()
         getFeaturedPlaylists()
+        getRecommendations()
     }
     
     private func getAllCategory() {
@@ -70,8 +95,26 @@ class HomeViewModel: ViewModel {
             do {
                 let response = try await networkService.getFeaturedPlaylists()
                 switch response {
-                case .success(let array):
-                    playlistRelay.accept(array.map { CategoryCell.Model(id: String(describing: $0.id), title: $0.title, imageUrl: .init(string: $0.cover )) })
+                case .success(let response):
+                    playlistRelay.accept(response.playlist.map { Playlist(searchPlaylistResponse: $0) })
+                    debugPrint("getFeaturedPlaylists Success - \(response.playlist.count)")
+                case .error(let errorResponse):
+                    debugPrint("getFeaturedPlaylists Error - \(errorResponse.message)")
+                }
+            } catch {
+                Logger.error(error.localizedDescription, topic: .presentation)
+            }
+        }
+        
+    }
+    
+    private func getRecommendations() {
+        Task {
+            do {
+                let response = try await networkService.getRecommendations()
+                switch response {
+                case .success(let response):
+                    recommendedSubliminals.accept(response.subliminal.map { CategoryCell.Model(id: String(describing: $0.id), title: $0.title, imageUrl: .init(string: $0.cover )) })
                 case .error(let errorResponse):
                     debugPrint("RESPONSE ERROR - \(errorResponse.message)")
                 }
@@ -81,6 +124,10 @@ class HomeViewModel: ViewModel {
             
         }
         
+    }
+    
+    func getPlaylistByID(id: String) -> Playlist? {
+        playlistRelay.value.first(where: { $0.playlistID == id})
     }
     
 }

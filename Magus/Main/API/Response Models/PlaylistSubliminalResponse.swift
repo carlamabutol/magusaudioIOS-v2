@@ -15,7 +15,7 @@ struct PlaylistSubliminalResponse: EndpointResponse {
     let subliminalID, title: String
     let cover: String
     let description: String
-    let isFeatured, isVisible: Int?
+    let isFeatured, isVisible, isLiked: Int?
     let subscriptionID, createdAt, updatedAt: String
     let guide, moodsID: String?
     let trackInfo: [SubliminalInfoResponse]
@@ -26,6 +26,7 @@ struct PlaylistSubliminalResponse: EndpointResponse {
         case title, cover, description
         case isFeatured = "is_featured"
         case isVisible = "is_visible"
+        case isLiked = "is_liked"
         case subscriptionID = "subscription_id"
         case createdAt = "created_at"
         case updatedAt = "updated_at"

@@ -21,7 +21,7 @@ class CategoryCell: HomeCustomCell {
     lazy var categoryImageView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .darkGray
+        view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.cornerRadius(with: 5)
         return view
@@ -70,7 +70,7 @@ class CategoryCell: HomeCustomCell {
     
     override func configure(item: SectionViewModel.Item) {
         setTextWithShadow(text: item.title)
-        categoryImageView.sd_setImage(with: item.imageUrl, placeholderImage: nil, context: nil) { [weak self] _, _, url in
+        categoryImageView.sd_setImage(with: item.imageUrl, placeholderImage: .init(named: "Cover Image"), context: nil) { [weak self] _, _, url in
             
         }
     }

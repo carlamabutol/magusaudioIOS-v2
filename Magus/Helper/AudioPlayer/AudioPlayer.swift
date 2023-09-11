@@ -18,12 +18,13 @@ protocol AudioPlayerDelegate: AnyObject {
 }
 
 class AudioPlayer {
+    private var avUrlAsset: AVAsset?
     private var avPlayer: AVPlayer?
     private var timeObserver: Any?
     
     weak var delegate: AudioPlayerDelegate?
     
-    private let timeRelay = PublishRelay<TimeInterval>()
+    private let timeRelay = BehaviorRelay<TimeInterval>(value: 0)
     var timeObservable: Observable<TimeInterval> { timeRelay.asObservable() }
     private let progressRelay = BehaviorRelay<Float>(value: 0)
     var progressObservable: Observable<Float> { progressRelay.asObservable() }
@@ -41,12 +42,7 @@ class AudioPlayer {
         return avPlayer?.rate != 0.0
     }
     
-    var duration: TimeInterval {
-        guard let player = avPlayer, let currentItem = player.currentItem else {
-            return 0
-        }
-        return CMTimeGetSeconds(currentItem.duration)
-    }
+    private var duration: TimeInterval = 0
     
     var currentTime: TimeInterval {
         guard let player = avPlayer else {
@@ -56,13 +52,13 @@ class AudioPlayer {
     }
     
     init(url: URL) {
-        let playerItem = AVPlayerItem(url: url)
+        let asset = AVAsset(url: url)
+        let playerItem: AVPlayerItem = AVPlayerItem(asset: asset)
         avPlayer = AVPlayer(playerItem: playerItem)
         repeatAllAudioPlayers()
         addTimeObserver()
-        
         // Register as an observer of the player item's status property
-        self.observer = playerItem.observe(\.status, options:  [.new, .old], changeHandler: { [unowned self](playerItem, change) in
+        observer = playerItem.observe(\.status, options:  [.new, .old], changeHandler: { [unowned self](playerItem, change) in
             switch playerItem.status {
             case .failed:
                 self.playerStatus.accept(.failed)
@@ -76,14 +72,42 @@ class AudioPlayer {
         })
     }
     
+    func setDuration(duration: Int) {
+        self.duration = TimeInterval(duration / 1000)
+    }
+    
+    func setVolume(volume: Int) {
+        avPlayer?.volume = Float(volume)
+    }
+    
+    func getDuration() -> TimeInterval {
+        return duration
+    }
+    
+    // Function to handle the notification
+    @objc func assetDurationDidChange(_ notification: Notification) {
+        if let asset = notification.object as? AVAsset {
+            // The duration of the asset has changed
+            let duration = CMTimeGetSeconds(asset.duration)
+            print("Asset Duration Changed: \(duration) seconds")
+        }
+    }
+
+    // Don't forget to remove the observer when it's no longer needed (e.g., in deinit)
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .AVAssetDurationDidChange, object: nil)
+    }
+    
     private func addTimeObserver() {
         let interval = CMTime(seconds: 1, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         timeObserver = avPlayer?.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] time in
-            let currentTime = CMTimeGetSeconds(time)
-            let duration = self?.duration ?? 0
-            let progress = currentTime / duration
-            self?.timeRelay.accept(currentTime)
-            self?.progressRelay.accept(Float(progress))
+            if (self?.playerStatus.value == .isReadyToPlay || self?.playerStatus.value == .isPlaying) == true {
+                let currentTime = CMTimeGetSeconds(time)
+                let duration = self?.duration ?? 0
+                let progress = currentTime / duration
+                self?.timeRelay.accept(currentTime)
+                self?.progressRelay.accept(Float(progress))
+            }
         }
     }
     
@@ -94,6 +118,7 @@ class AudioPlayer {
                                                name: .AVPlayerItemDidPlayToEndTime,
                                                object: avPlayer?.currentItem)
     }
+    
     
     @objc private func handlePlayerItemDidReachEnd(notification: Notification) {
         if let playerItem = notification.object as? AVPlayerItem,
@@ -107,14 +132,14 @@ class AudioPlayer {
         if isPlaying {
             pause()
         } else {
+            playerStatus.accept(.isPlaying)
             avPlayer?.play()
-            delegate?.audioPlayerDidStartPlaying()
         }
     }
     
     func pause() {
+        playerStatus.accept(.isPaused)
         avPlayer?.pause()
-        delegate?.audioPlayerDidPause()
     }
     
 }
@@ -122,6 +147,8 @@ class AudioPlayer {
 enum PlayerStatus {
     case loading
     case isReadyToPlay
+    case isPlaying
+    case isPaused
     case failed
     case unknown
 }

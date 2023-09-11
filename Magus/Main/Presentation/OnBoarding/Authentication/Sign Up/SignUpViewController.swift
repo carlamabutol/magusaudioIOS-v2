@@ -115,6 +115,24 @@ class SignUpViewController: CommonViewController {
         viewModel.checkboxStateObsevable
             .bind(to: signUpButton.rx.isEnabled)
             .disposed(by: disposeBag)
+        
+        signUpButton.rx.tap
+            .subscribe { [weak self] _ in
+                self?.viewModel.signUp()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.isLoadingObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(to: signUpButton.rx.isLoading)
+            .disposed(by: disposeBag)
+        
+        viewModel.alertModelObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] alertModel in
+                self?.showAlert(alertModel: alertModel)
+            }
+            .disposed(by: disposeBag)
     }
     
     @objc private func tapCheckbox() {
@@ -130,6 +148,12 @@ class SignUpViewController: CommonViewController {
     private func presentTermsAndCondition() {
         let vc = TermsAndConditionViewController.instantiate(from: .termsAndCondition)
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func showAlert(alertModel: LoginAlertViewController.AlertModel) {
+        let alertVC = LoginAlertViewController.instantiate(from: .loginAlert) as! LoginAlertViewController
+        presentModally(alertVC, animated: true)
+        alertVC.configure(alertModel: alertModel)
     }
 
 }

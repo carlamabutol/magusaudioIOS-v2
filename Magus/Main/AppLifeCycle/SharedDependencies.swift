@@ -42,7 +42,12 @@ extension SharedDependencies {
         
         let store = Store(appState: appState ?? AppState())
         let router = Router(credentialsService: credentialsService)
-        let networkService = StandardNetworkService(baseURL: Configuration.baseURL, credentialsService: credentialsService, getUserID: { store.appState.userId })
+        let networkService = StandardNetworkService(
+            baseURL: Configuration.baseURL,
+            credentialsService: credentialsService,
+            getUserID: { store.appState.userId },
+            getSubscriptionID: { store.appState.user?.info.subscriptionID ?? 0  }
+        )
         return .init(store: store, router: router, credentialsService: credentialsService, networkService: networkService)
     }()
 }

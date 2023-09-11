@@ -14,14 +14,17 @@ class StandardNetworkService {
     private let credentialsService: AuthenticationService
     private let requestManager: Session
     private let getUserID: () -> String?
+    private let getSubscriptionID: () -> Int
     private static let validStatusCodes: [Int] = (200 ..< 300) + [422]
     
     init(baseURL: URL,
          credentialsService: AuthenticationService,
-         getUserID: @escaping () -> String?) {
+         getUserID: @escaping () -> String?,
+         getSubscriptionID: @escaping () -> Int) {
         self.baseURL = baseURL
         self.credentialsService = credentialsService
         self.getUserID = getUserID
+        self.getSubscriptionID = getSubscriptionID
         self.requestManager = Alamofire.Session(configuration: .default)
     }
     
@@ -35,7 +38,7 @@ class StandardNetworkService {
         }
         
         var headers = getUnauthenticatedHeaders()
-        Logger.info("Authorization - \(token)", topic: .domain)
+        Logger.info("Authorization - \(token) -- \(userID)", topic: .domain)
         headers.add(HTTPHeader(name: "Authorization", value: "Bearer \(token)"))
         return headers
     }
@@ -57,6 +60,25 @@ extension StandardNetworkService: NetworkService {
         let task = requestManager.request(url, method: .post, parameters: parameters, encoder: JSONParameterEncoder.default, headers: getUnauthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
             .serializingDecodable(JSONAPIDictionaryResponse<SignInResponse>.self)
+        
+        return try await task.value
+    }
+    
+    func signUp(name: String, email: String, password: String) async throws -> JSONAPIDictionaryResponse<SignUpResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("register")
+        
+        let parameters: [String: String] = [
+            "name": name,
+            "email": email,
+            "password": password,
+            "password_confirmation": password
+        ]
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, encoder: JSONParameterEncoder.default, headers: getUnauthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIDictionaryResponse<SignUpResponse>.self)
         
         return try await task.value
     }
@@ -104,14 +126,42 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
-    func getFeaturedPlaylists() async throws -> JSONAPIArrayResponse<FeaturedPlaylistResponse> {
+    func getFeaturedPlaylists() async throws -> JSONAPIDictionaryResponse<FeaturedPlaylistResponse> {
         let url = baseURL
             .appendingPathComponent("api")
-            .appendingPathComponent("playlist")
+            .appendingPathComponent("featured")
         
-        let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
+        var parameters: [String: String] = [
+            "subscription_id": String(describing: getSubscriptionID())
+        ]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
-            .serializingDecodable(JSONAPIArrayResponse<FeaturedPlaylistResponse>.self)
+            .serializingDecodable(JSONAPIDictionaryResponse<FeaturedPlaylistResponse>.self)
+        
+        return try await task.value
+    }
+    
+    func getRecommendations() async throws -> JSONAPIDictionaryResponse<RecommendationResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("recommendations")
+        
+        var parameters: [String: String] = [
+            "subscription_id": String(describing: getSubscriptionID())
+        ]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIDictionaryResponse<RecommendationResponse>.self)
         
         return try await task.value
     }
@@ -133,6 +183,12 @@ extension StandardNetworkService: NetworkService {
             .appendingPathComponent("api")
             .appendingPathComponent("subscription")
         
+        var parameters: [String: String] = [:]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
         let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
             .serializingDecodable(JSONAPIArrayResponse<SubscriptionResponse>.self)
@@ -146,10 +202,14 @@ extension StandardNetworkService: NetworkService {
             .appendingPathComponent("search")
             .appendingPathComponent("filter")
         
-        let parameters: [String: String] = [
+        var parameters: [String: String] = [
             "subscription_id": "1",
             "search": search
         ]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
         
         let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
@@ -190,6 +250,28 @@ extension StandardNetworkService: NetworkService {
         let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
             .serializingDecodable(ResponseArrayModel<String>.self)
+        
+        return try await task.value
+    }
+    
+    func updateFavorite(id: String, api: FavoriteAPI, isLiked: Bool) async throws -> EmptyResponse {
+        guard let userID = getUserID() else {
+            throw NetworkServiceError.notAuthenticated
+        }
+        let parameters: [String: String] = [
+            "user_id": userID,
+            "\(api.rawValue)_id": id
+        ]
+        
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("like")
+            .appendingPathComponent(api.rawValue)
+            .appendingPathComponent(isLiked ? "add" : "delete")
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(EmptyResponse.self)
         
         return try await task.value
     }

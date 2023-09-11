@@ -23,7 +23,8 @@ class LoginViewModel {
     
     let alertModel = PublishRelay<LoginAlertViewController.AlertModel?>()
     var alertModelObservable: Observable<LoginAlertViewController.AlertModel> { alertModel.compactMap{ $0 }.asObservable() }
-    
+    private let isLoading = PublishRelay<Bool>()
+    var isLoadingObservable: Observable<Bool> { isLoading.asObservable() }
     let alertRelay = PublishRelay<String>()
     
     init(dependencies: Dependencies = .standard) {
@@ -39,6 +40,7 @@ class LoginViewModel {
             Logger.warning(LocalizedStrings.Login.signInError, topic: .other)
             return
         }
+        isLoading.accept(true)
         Task {
             let result = await authenticationUseCase.signIn(email: userName.value, password: password.value)
             switch result {
@@ -50,6 +52,7 @@ class LoginViewModel {
                 alertModel.accept(.init(message: error.errorMesasge, image: nil))
                 Logger.error("SignIn Network Error: \(error.errorMesasge)", topic: .network)
             }
+            isLoading.accept(false)
         }
     }
     

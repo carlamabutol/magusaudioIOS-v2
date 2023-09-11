@@ -20,7 +20,7 @@ class EditProfileViewController: CommonViewController {
     }
     @IBOutlet private var profileImageView: UIImageView! {
         didSet {
-            profileImageView.sd_setImage(with: viewModel.profileImage())
+            profileImageView.sd_setImage(with: viewModel.profileImage(), placeholderImage: .init(named: "Cover Image"))
             profileImageView.circle()
             profileImageView.clipsToBounds = true
         }

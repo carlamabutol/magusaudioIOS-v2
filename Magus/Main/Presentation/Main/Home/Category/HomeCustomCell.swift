@@ -9,8 +9,6 @@ import UIKit
 
 class HomeCustomCell: UICollectionViewCell {
     
-    static let cellIdentifier = "HomeCustomCell"
-    
     func configure(item: SectionViewModel.Item) {
         
     }

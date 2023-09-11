@@ -71,6 +71,18 @@ class SettingsViewController: CommonViewController {
             }
             .disposed(by: disposeBag)
         
+        howMagusWorksButton.rx.tap
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.goToHowItWorks()
+            }
+            .disposed(by: disposeBag)
+        
+    }
+    
+    private func goToHowItWorks() {
+        let viewController = HowMagusWorksViewController.instantiate(from: .howMagusWorks)
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
 }

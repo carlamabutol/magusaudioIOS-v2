@@ -13,9 +13,8 @@ import Hero
 class PlayerViewController: CommonViewController {
     
     var tabViewModel: MainTabViewModel!
-    var playerViewModel: AudioPlayerViewModel!
+    var audioPlayerViewModel: AudioPlayerViewModel!
     
-    @IBOutlet var closeButton: UIButton!
     @IBOutlet var advanceVolumeBtn: UIButton! {
         didSet {
             let image = UIImage(named: "advance volume")
@@ -72,9 +71,19 @@ class PlayerViewController: CommonViewController {
             descriptionLbl.font = .Montserrat.body3
         }
     }
-    @IBOutlet var progressView: UIProgressView!
+    @IBOutlet var progressView: UIProgressView! {
+        didSet {
+            progressView.progress = 0
+        }
+    }
     
-    @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var timeLabel: UILabel! {
+        didSet {
+            timeLabel.font = .Montserrat.body1
+            timeLabel.text = ""
+        }
+    }
+    
     @IBOutlet var coverImageView: UIImageView! {
         didSet {
             coverImageView.isHeroEnabled = true
@@ -83,41 +92,81 @@ class PlayerViewController: CommonViewController {
         }
     }
     
+    @IBOutlet var scrollView: ScrollViewWithPanGesture! {
+        didSet {
+            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
+            scrollView.addGestureRecognizer(panGesture)
+        }
+    }
+    
+    @IBOutlet var optionStackView: UIStackView!
+    @IBOutlet var repeatView: UIButton!
+    @IBOutlet var closeButton: UIButton! {
+        didSet {
+            closeButton.setTitle("", for: .normal)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.bringSubviewToFront(optionStackView)
+        view.bringSubviewToFront(closeButton)
     }
     
     func configure(subliminal: Subliminal) {
         titleLbl.text = subliminal.title
         descriptionLbl.text = subliminal.guide
-        coverImageView.sd_setImage(with: .init(string: subliminal.cover))
-        updatePlayerStatus()
+        coverImageView.sd_setImage(with: .init(string: subliminal.cover)) { [weak self] image, error, _, _ in
+            self?.coverImageView.image = image
+            self?.coverImageView.contentMode = .scaleAspectFill
+        }
+        updateFavorite(isLiked: subliminal.isLiked == 0)
+    }
+    
+    @objc private func panGesture(_ sender: UIGestureRecognizer) {
+        let location = sender.location(in: scrollView)
+        Logger.info("gesture - \(location)", topic: .presentation)
     }
     
     override func setupBinding() {
         super.setupBinding()
         
+        audioPlayerViewModel.selectedSubliminalObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] subliminal in
+                self?.configure(subliminal: subliminal)
+            }
+            .disposed(by: disposeBag)
+        
         playPauseButton.rx.tap
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { [weak self] _ in
-                self?.playerViewModel.playAudio()
-                self?.updatePlayerStatus()
+                self?.audioPlayerViewModel.playAudio()
             }
+            .disposed(by: disposeBag)
+        
+        audioPlayerViewModel.playerStatusObservable
+            .map { $0 == .isPlaying || $0 == .isPaused || $0 == .isReadyToPlay }
+            .bind(
+                to: playPauseButton.rx.isEnabled,
+                  nextButton.rx.isEnabled,
+                  previousButton.rx.isEnabled,
+                  favoriteButton.rx.isEnabled,
+                  advanceVolumeBtn.rx.isEnabled
+            )
             .disposed(by: disposeBag)
         
         nextButton.rx.tap
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { [weak self] _ in
-                self?.playerViewModel.next()
-                self?.updatePlayerStatus()
+                self?.audioPlayerViewModel.next()
             }
             .disposed(by: disposeBag)
         
         previousButton.rx.tap
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { [weak self] _ in
-                self?.playerViewModel.previous()
-                self?.updatePlayerStatus()
+                self?.audioPlayerViewModel.previous()
             }
             .disposed(by: disposeBag)
         
@@ -128,18 +177,42 @@ class PlayerViewController: CommonViewController {
             }
             .disposed(by: disposeBag)
         
-        playerViewModel.progressObservable
-            .observe(on: MainScheduler.asyncInstance)
+        favoriteButton.rx.tap
+            .debounce(.milliseconds(200), scheduler: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.audioPlayerViewModel.updateFavorite()
+            }
+            .disposed(by: disposeBag)
+        
+        audioPlayerViewModel.progressObservable
             .bind(to: progressView.rx.progress)
+            .disposed(by: disposeBag)
+        
+        audioPlayerViewModel.timeRelay
+            .map { $0.replacingOccurrences(of: " - ", with: "/")}
+            .bind(to: timeLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        audioPlayerViewModel.playerStatusObservable
+            .distinctUntilChanged()
+            .subscribe { [weak self] status in
+                self?.updatePlayerStatus(status: status)
+            }
             .disposed(by: disposeBag)
     }
     
-    private func updatePlayerStatus() {
-        guard let isPlaying: Bool = playerViewModel.activePlayer?.isPlaying else { return }
-        let image = UIImage(named: isPlaying ? "pause" : "play")
+    private func updatePlayerStatus(status: PlayerStatus) {
+        let image = UIImage(named: status == .isPlaying ? "pause" : "play")
         let newImage = image?.resizeImage(targetHeight: 59)
         playPauseButton.setImage(newImage, for: .normal)
         playPauseButton.imageView?.contentMode = .scaleAspectFit
+    }
+    
+    private func updateFavorite(isLiked: Bool) {
+        let image = UIImage(named: isLiked ? "active heart" : "heart")
+        let newImage = image?.resizeImage(targetHeight: 21)
+        favoriteButton.setImage(newImage, for: .normal)
+        favoriteButton.imageView?.contentMode = .scaleAspectFit
     }
     
     deinit {

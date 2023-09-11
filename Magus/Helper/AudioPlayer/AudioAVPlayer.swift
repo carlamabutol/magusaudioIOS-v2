@@ -11,9 +11,12 @@ import RxSwift
 import RxRelay
 
 class AudioPlayerManager {
+    typealias SubliminalTracks = [[SubliminalAudioInfo: AudioPlayer]]
     static let shared = AudioPlayerManager()
     private var disposeBag = DisposeBag()
     
+    var currentSubliminal: String = ""
+    var currentTracks: Int = 0
     var audioPlayers: [SubliminalAudioInfo: AudioPlayer] = [:]
     private let playerStatusUpdate = PublishRelay<Void>()
     private let activePlayer = BehaviorRelay<AudioPlayer?>(value: nil)
@@ -26,6 +29,9 @@ class AudioPlayerManager {
         
     }
     var playerStatusObservable: Observable<Void> { playerStatusUpdate.asObservable() }
+    // Observer
+    private let session = AVAudioSession.sharedInstance()
+    private var progressObserver: NSKeyValueObservation!
 
     init() {
         playerStatusObservable
@@ -34,49 +40,87 @@ class AudioPlayerManager {
                 self?.setActiveLongestDurationPlayer()
             }.disposed(by: disposeBag)
         
+        do {
+            try session.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch {
+            print("cannot activate session")
+        }
+
+        progressObserver = session.observe(\.outputVolume) { [weak self] (session, value) in
+            print(session.outputVolume)
+        }
+    }
+    
+    @objc private func systemVolumeDidChange(notification: NSNotification) {
+
+        print(notification.userInfo?["AVSystemController_AudioVolumeNotificationParameter"] as? Float)
     }
     
     private func setActiveLongestDurationPlayer() {
         let player = audioPlayers.max { old, new in
-            return old.value.duration > new.value.duration
+            return old.value.getDuration() > new.value.getDuration()
         }?.value
-        activePlayer.accept(player)
+        
+        if getCurrentTracks().count == currentTracks {
+            activePlayer.accept(player)
+        }
     }
 
-    func createAudioPlayer(with subliminalAudioInfo: SubliminalAudioInfo, url: URL) {
-        if audioPlayers.contains(where: { $0.key.id == subliminalAudioInfo.id }) {
+    fileprivate func updatePlayerStatus(isPlaying: Bool, player: AudioPlayer) {
+        if isPlaying {
+            player.play()
+        } else {
+            player.pause()
+        }
+    }
+    
+    func createAudioPlayers(with subliminal: Subliminal, isPlaying: Bool = false) {
+        currentSubliminal = subliminal.subliminalID
+        currentTracks = 0
+        for audio in subliminal.info {
+            guard let url = URL(string: audio.link ?? "") else {
+                Logger.info("Incorrect URL \(audio.link)", topic: .presentation)
+                continue
+            }
+            createAudioPlayer(with: audio, url: url, isPlaying: isPlaying)
+        }
+    }
+    
+    func createAudioPlayer(with subliminalAudioInfo: SubliminalAudioInfo, url: URL, isPlaying: Bool = false) {
+        if let player = audioPlayers.first(where: { $0.key.id == subliminalAudioInfo.id })?.value {
+            updatePlayerStatus(isPlaying: isPlaying, player: player)
+            currentTracks += 1
             return
         }
         
         let newPlayer = AudioPlayer(url: url)
+        newPlayer.setDuration(duration: subliminalAudioInfo.duration)
+        newPlayer.setVolume(volume: subliminalAudioInfo.volume)
+        print("Setting up duration - \(newPlayer.getDuration())")
+        updatePlayerStatus(isPlaying: isPlaying, player: newPlayer)
         newPlayer.playerStatusObservable
             .subscribe { [weak self] status in
                 guard status == .isReadyToPlay else { return }
                 self?.setActiveLongestDurationPlayer()
             }.disposed(by: disposeBag)
         audioPlayers[subliminalAudioInfo] = newPlayer
+        currentTracks += 1
+    }
+    
+    func getCurrentTracks() -> [AudioPlayer] {
+        return audioPlayers.filter { $0.key.subliminalID == currentSubliminal }.map { $0.value }
     }
     
     func playAllAudioPlayers() {
-        if audioPlayers.first?.value.isPlaying == true {
-            for (_, player) in audioPlayers {
-                player.pause()
-            }
-        } else {
-            for (_, player) in audioPlayers {
-                player.play()
-            }
-        }
+        getCurrentTracks().forEach { $0.play() }
     }
     
     func pauseAllAudioPlayers() {
-        for (_, player) in audioPlayers {
-            player.pause()
-        }
+        getCurrentTracks().forEach { $0.pause() }
     }
     
     func getLongestDuration() -> Double {
-        audioPlayers.map { $0.value.duration }.reduce(0, +)
+        getCurrentTracks().map { $0.getDuration() }.max() ?? 0
     }
     
     func removePlayers() {

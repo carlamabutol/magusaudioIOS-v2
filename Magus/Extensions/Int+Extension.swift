@@ -18,3 +18,13 @@ extension TimeInterval {
     }
     
 }
+
+extension Int {
+    
+    func toMinuteAndSeconds() -> String {
+        let totalMilliseconds = self // Convert to milliseconds
+        let minutes = totalMilliseconds / 60000 // There are 60,000 milliseconds in a minute
+        let seconds = (totalMilliseconds % 60000) / 1000
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+}

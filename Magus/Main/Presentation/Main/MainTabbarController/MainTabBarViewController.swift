@@ -15,7 +15,7 @@ class MainTabBarViewController: UITabBarController {
     private let playerViewModel = AudioPlayerViewModel()
     private let disposeBag = DisposeBag()
     
-    var collapsedPlayerView: CollapsedPlayerView = {
+    lazy var collapsedPlayerView: CollapsedPlayerView = {
         let view = CollapsedPlayerView()
         view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -51,6 +51,13 @@ class MainTabBarViewController: UITabBarController {
         ])
         collapsedPlayerView.cornerRadius(with: 5)
         collapsedPlayerView.applyShadow(radius: 5)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showPlayer))
+        collapsedPlayerView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func showPlayer() {
+        guard let selectedSubliminal = playerViewModel.selectedSubliminal else { return }
+        goToPlayer(subliminal: selectedSubliminal, list: viewModel.subliminals)
     }
     
     private func styleTabBar() {
@@ -75,8 +82,55 @@ class MainTabBarViewController: UITabBarController {
         
         viewModel.selectedSubliminalObservable
             .observe(on: MainScheduler.asyncInstance)
-            .subscribe { [weak self] sub in
-                self?.goToPlayer(subliminal: sub)
+            .subscribe { [weak self] subliminal in
+                let list = self?.viewModel.subliminals ?? []
+                self?.goToPlayer(subliminal: subliminal, list: list)
+            }
+            .disposed(by: disposeBag)
+        
+        playerViewModel.progressObservable
+            .subscribe { [weak self] progress in
+                self?.collapsedPlayerView.configureProgress(progress: progress)
+            }.disposed(by: disposeBag)
+        
+        playerViewModel.timeRelay
+            .subscribe { [weak self] time in
+                self?.collapsedPlayerView.configureTime(time: time)
+            }.disposed(by: disposeBag)
+        
+        playerViewModel.playerStatusObservable
+            .distinctUntilChanged()
+            .subscribe { [weak self] status in
+                self?.collapsedPlayerView.updatePlayerStatus(status: status)
+            }
+            .disposed(by: disposeBag)
+        
+        playerViewModel.selectedSubliminalObservable
+            .distinctUntilChanged()
+            .subscribe { [weak self] subliminal in
+                self?.collapsedPlayerView.updateFavorite(isLiked: subliminal.isLiked == 1) 
+            }
+            .disposed(by: disposeBag)
+        
+        collapsedPlayerView.favoriteButton.rx.tap
+            .debounce(.milliseconds(200), scheduler: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.playerViewModel.updateFavorite()
+            }
+            .disposed(by: disposeBag)
+        
+        
+        collapsedPlayerView.playPauseButton.rx.tap
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.playerViewModel.playAudio()
+            }
+            .disposed(by: disposeBag)
+        
+        collapsedPlayerView.favoriteButton.rx.tap
+            .debounce(.milliseconds(200), scheduler: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.playerViewModel.updateFavorite()
             }
             .disposed(by: disposeBag)
     }
@@ -146,21 +200,18 @@ extension MainTabBarViewController {
 
 extension MainTabBarViewController {
     
-    func goToPlayer(subliminal: Subliminal) {
+    func goToPlayer(subliminal: Subliminal, list: [Subliminal]) {
         let playerVC = PlayerViewController.instantiate(from: .player) as! PlayerViewController
         playerVC.tabViewModel = viewModel
-        playerVC.playerViewModel = playerViewModel
-        playerVC.playerViewModel.createArrayAudioPlayer(with: subliminal)
+        playerVC.audioPlayerViewModel = playerViewModel
+        playerVC.audioPlayerViewModel.createArrayAudioPlayer(with: subliminal)
         playerVC.view.heroID = "sample"
         playerVC.isHeroEnabled = true
         playerVC.modalPresentationStyle = .currentContext
         collapsedPlayerView.configure(title: subliminal.title, image: subliminal.cover)
-        navigationController?.present(playerVC, animated: true)
+        playerViewModel.subliminals = list
         playerVC.configure(subliminal: subliminal)
-//        present(playerVC, animated: true)
+        navigationController?.present(playerVC, animated: true)
     }
     
 }
-//protocol TabNavigationDelegate: AnyObject {
-//    func goToPlayer(subliminal: Subliminal)
-//}

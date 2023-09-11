@@ -9,11 +9,12 @@ import Foundation
 
 struct AppState: Codable, Equatable {
     
+    var user: User?
+    var selectedMood: Mood?
+    var subliminals: [Subliminal] = []
+    
     var userId: String? {
         return user?.userID
     }
-    
-    var user: User?
-    var selectedMood: Mood?
     
 }

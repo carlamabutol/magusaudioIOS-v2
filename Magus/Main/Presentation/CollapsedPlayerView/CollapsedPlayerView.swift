@@ -8,6 +8,13 @@
 import UIKit
 import SDWebImage
 import Hero
+import RxSwift
+
+protocol PlayerDelegate: AnyObject {
+    func playOrPauseAction()
+    func favoriteAction()
+    
+}
 
 class CollapsedPlayerView: ReusableXibView {
     
@@ -17,9 +24,17 @@ class CollapsedPlayerView: ReusableXibView {
         }
     }
     
-    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel! {
+        didSet {
+            titleLabel.font = .Montserrat.bold17
+        }
+    }
     
-    @IBOutlet var audioProgressLabel: UILabel!
+    @IBOutlet var audioProgressLabel: UILabel! {
+        didSet {
+            audioProgressLabel.font = .Montserrat.body2
+        }
+    }
     
     @IBOutlet var favoriteButton: UIButton! {
         didSet {
@@ -30,6 +45,7 @@ class CollapsedPlayerView: ReusableXibView {
     @IBOutlet var playPauseButton: UIButton! {
         didSet {
             favoriteButton.isHeroEnabled = false
+            updateFavorite(isLiked: false)
         }
     }
     
@@ -37,14 +53,30 @@ class CollapsedPlayerView: ReusableXibView {
     
     func configure(title: String, image: String) {
         titleLabel.text = title
-        subliminalImageView.sd_setImage(with: .init(string: image))
+        subliminalImageView.sd_setImage(with: .init(string: image), placeholderImage: .init(named: "Cover Image"))
     }
     
-    func updatePlayerStatus(isPlaying: Bool) {
-        let image = UIImage(named: isPlaying ? "pause" : "play")
+    func configureProgress(progress: Float) {
+        progressView.progress = progress
+    }
+    
+    func configureTime(time: String) {
+        audioProgressLabel.text = time
+    }
+    
+    func updatePlayerStatus(status: PlayerStatus) {
+        let image = UIImage(named: status == .isPlaying ? "pause" : "play")
         let newImage = image?.resizeImage(targetHeight: 59)
         playPauseButton.setImage(newImage, for: .normal)
         playPauseButton.imageView?.contentMode = .scaleAspectFit
     }
+    
+    func updateFavorite(isLiked: Bool) {
+        let image = UIImage(named: isLiked ? "active heart" : "heart")
+        let newImage = image?.resizeImage(targetHeight: 21)
+        favoriteButton.setImage(newImage, for: .normal)
+        favoriteButton.imageView?.contentMode = .scaleAspectFit
+    }
+    
     
 }

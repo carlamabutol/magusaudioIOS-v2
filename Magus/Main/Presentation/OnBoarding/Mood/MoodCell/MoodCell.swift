@@ -28,7 +28,7 @@ class MoodCell: UICollectionViewCell {
     var handleSelection: (() -> Void)?
     
     func configure(model: MoodCell.Model) {
-        moodImageView.sd_setImage(with: URL(string: model.image))
+        moodImageView.sd_setImage(with: URL(string: model.image), placeholderImage: .init(named: "Cover Image"))
         moodTitleLabel.text = model.title
         handleSelection = model.handleSelection
         if model.isSelected {

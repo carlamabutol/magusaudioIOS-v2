@@ -13,7 +13,7 @@ import RxCocoa
 class MainTabViewModel: ViewModel {
     
     let tabItems: Observable<[TabItem]> = .just(MainTabViewModel.constructTabItems())
-    
+    var subliminals: [Subliminal] = []
     private let selectedSubRelay = BehaviorRelay<Subliminal?>(value: nil)
     var selectedSubliminalObservable: Observable<Subliminal> { selectedSubRelay.compactMap{ $0 }.asObservable() }
     private var user: () -> User?
@@ -42,7 +42,8 @@ class MainTabViewModel: ViewModel {
         user()?.name ?? ""
     }
     
-    func selectSubliminal(_ subliminal: Subliminal) {
+    func selectSubliminal(_ subliminal: Subliminal, subliminals: [Subliminal]) {
+        self.subliminals = subliminals
         selectedSubRelay.accept(subliminal)
     }
     

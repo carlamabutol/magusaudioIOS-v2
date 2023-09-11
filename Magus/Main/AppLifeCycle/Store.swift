@@ -59,4 +59,8 @@ class Store {
             .observe(on: MainScheduler.asyncInstance)
     }
     
+    var subliminalsObservable: Observable<[Subliminal]> {
+        return observable(of: \.subliminals)
+    }
+    
 }

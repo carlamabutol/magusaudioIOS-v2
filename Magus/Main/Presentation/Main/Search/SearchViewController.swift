@@ -88,7 +88,7 @@ class SearchViewController: CommonViewController {
             .bind{ [unowned self] indexPath, model in
                 if indexPath.section == 0 {
                     let subliminal = self.viewModel.getSubliminal(model.id)
-                    self.tabViewModel.selectSubliminal(subliminal)
+                    self.tabViewModel.selectSubliminal(subliminal, subliminals: viewModel.subliminalRelay.value)
                 }
             }
             .disposed(by: disposeBag)

@@ -57,7 +57,7 @@ class ProfileViewController: CommonViewController {
     
     @IBOutlet var profileImageView: UIImageView! {
         didSet {
-            profileImageView.sd_setImage(with: tabViewModel.profileImage())
+            profileImageView.sd_setImage(with: tabViewModel.profileImage(), placeholderImage: .init(named: "Cover Image"))
             profileImageView.circle()
             profileImageView.clipsToBounds = true
         }

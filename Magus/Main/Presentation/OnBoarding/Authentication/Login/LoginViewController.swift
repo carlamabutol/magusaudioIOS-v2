@@ -116,6 +116,11 @@ class LoginViewController: CommonViewController {
                 self?.showAlert(alertModel: alertModel)
             }
             .disposed(by: disposeBag)
+        
+        viewModel.isLoadingObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(to: signInButton.rx.isLoading)
+            .disposed(by: disposeBag)
     }
     
     private func gotoSignup() {

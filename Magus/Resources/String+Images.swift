@@ -72,4 +72,11 @@ enum ImageAsset: String {
     
     case goodPassword = "Good Password"
     
+    case leftArrow = "left arrow"
+    case option = "option"
+    
+    // player
+    case favorite = "heart"
+    case favoriteIsActive = "active heart"
+    
 }

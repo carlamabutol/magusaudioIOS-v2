@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import AVFoundation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    // Audio session object
+    private let session = AVAudioSession.sharedInstance()
+    // Observer
+    private var progressObserver: NSKeyValueObservation!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.if #available(iOS 13.0, *) {

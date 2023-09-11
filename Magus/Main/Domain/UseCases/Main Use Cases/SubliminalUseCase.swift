@@ -42,4 +42,22 @@ final class SubliminalUseCase {
         }
     }
     
+    func addToFavorite(id: String) async throws -> EmptyResponse {
+        do {
+            let response = try await networkService.updateFavorite(id: id, api: .subliminal, isLiked: true)
+            return response
+        } catch {
+            throw error
+        }
+    }
+    
+    func deleteToFavorite(id: String) async throws -> EmptyResponse {
+        do {
+            let response = try await networkService.updateFavorite(id: id, api: .subliminal, isLiked: false)
+            return response
+        } catch {
+            throw error
+        }
+    }
+    
 }

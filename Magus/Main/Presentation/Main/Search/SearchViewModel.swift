@@ -21,7 +21,7 @@ class SearchViewModel: ViewModel {
             switch self {
             case .subliminal:
                 return LocalizedStrings.SearchHeaderTitle.subliminal
-            case .playlist:
+            case .playlist: 
                 return LocalizedStrings.SearchHeaderTitle.playlist
             }
         }
@@ -29,8 +29,8 @@ class SearchViewModel: ViewModel {
     
     let sections = BehaviorRelay<[SectionViewModel]>(value: [])
     
-    private let subliminalRelay = BehaviorRelay<[Subliminal]>(value: [])
-    private let playlistRelay = BehaviorRelay<[Playlist]>(value: [])
+    let subliminalRelay = BehaviorRelay<[Subliminal]>(value: [])
+    let playlistRelay = BehaviorRelay<[Playlist]>(value: [])
     private let networkService: NetworkService
     private let searchRelay = BehaviorRelay<String>(value: "")
     
@@ -51,10 +51,16 @@ class SearchViewModel: ViewModel {
                 } else {
                     newSection[0].items = subliminals
                 }
-                if let playListIndex = newSection.lastIndex(where: { $0.header == SearchSection.playlist.title }) {
-                    newSection[playListIndex].items = playlist
+                if playlist.isEmpty {
+                    if let playListIndex = newSection.lastIndex(where: { $0.header == SearchSection.playlist.title }) {
+                        newSection.remove(at: playListIndex)
+                    }
                 } else {
-                    newSection.append(.init(header: SearchSection.playlist.title, items: playlist))
+                    if let playListIndex = newSection.lastIndex(where: { $0.header == SearchSection.playlist.title }) {
+                        newSection[playListIndex].items = playlist
+                    } else {
+                        newSection.append(.init(header: SearchSection.playlist.title, items: playlist))
+                    }
                 }
                 self.sections.accept(newSection)
             }
@@ -77,7 +83,6 @@ class SearchViewModel: ViewModel {
                 case .success(let dict):
                     subliminalRelay.accept(dict.subliminal.map { Subliminal.init(subliminalReponse: $0 )})
                     playlistRelay.accept(dict.playlist.map { Playlist.init(searchPlaylistResponse: $0 )})
-                    Logger.info("Search Request Success - \(dict)", topic: .presentation)
                 case .error(let errorResponse):
                     Logger.error("Search Response Error", topic: .presentation)
                     debugPrint("RESPONSE ERROR - \(errorResponse.message)")
@@ -109,12 +114,14 @@ extension SearchViewModel {
 
     
     struct Dependencies {
+        let store: Store
         let router: Router
         let networkService: NetworkService
         let authenticationUseCase: AuthenticationUseCase
         
         static var standard: Dependencies {
             return .init(
+                store: SharedDependencies.sharedDependencies.store,
                 router: SharedDependencies.sharedDependencies.router,
                 networkService: SharedDependencies.sharedDependencies.networkService,
                 authenticationUseCase: SharedDependencies.sharedDependencies.useCases.authenticationUseCase

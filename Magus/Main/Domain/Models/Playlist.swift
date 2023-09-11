@@ -14,42 +14,24 @@ struct Playlist {
     let cover: String
     let playlistID: String
     let description: String?
-    let isVisible: Int
-    let subscriptionID, userID: String
-    let isFeatured: Int
+    var isVisible: Int
+    let subscriptionID, userID: String?
+    var isFeatured: Int
     let moodsID: String?
-    let categoryID, isOwnPlaylist, isLiked: Int?
-    let name, image: String
-    let info: [Subliminal]
+    let categoryID, isOwnPlaylist: Int?
+    var isLiked: Int?
+    let categoryName: String
+    var subliminals: [Subliminal]
     
 }
 
 extension Playlist {
     
-    init(playlistResponse: FeaturedPlaylistResponse) {
-        id = playlistResponse.id
-        title = playlistResponse.title
-        cover = playlistResponse.cover
-        playlistID = playlistResponse.playlistID
-        description = playlistResponse.description
-        isVisible = playlistResponse.isVisible
-        subscriptionID = playlistResponse.subscriptionID
-        userID = playlistResponse.userID
-        isFeatured = playlistResponse.isFeatured
-        moodsID = playlistResponse.moodsID
-        categoryID = playlistResponse.categoryID
-        isOwnPlaylist = playlistResponse.isOwnPlaylist
-        isLiked = playlistResponse.isLiked
-        name = playlistResponse.name ?? ""
-        image = playlistResponse.image ?? ""
-        info = playlistResponse.info.map{ Subliminal(playlistSubliminalResponse: $0) }
-    }
-    
     init(searchPlaylistResponse: SearchPlaylistResponse) {
         id = searchPlaylistResponse.id
         title = searchPlaylistResponse.title
         cover = searchPlaylistResponse.cover
-        playlistID = searchPlaylistResponse.playlistID
+        playlistID = searchPlaylistResponse.playlistID 
         description = searchPlaylistResponse.description
         isVisible = searchPlaylistResponse.isVisible
         subscriptionID = searchPlaylistResponse.subscriptionID
@@ -59,9 +41,8 @@ extension Playlist {
         categoryID = searchPlaylistResponse.categoryID
         isOwnPlaylist = searchPlaylistResponse.isOwnPlaylist
         isLiked = searchPlaylistResponse.isLiked
-        name = searchPlaylistResponse.name ?? ""
-        image = searchPlaylistResponse.image ?? ""
-        info = searchPlaylistResponse.info.map{ Subliminal(searchSubliminalResponse: $0) }
+        categoryName = searchPlaylistResponse.categoryName
+        subliminals = searchPlaylistResponse.subliminals.map{ Subliminal(subliminalReponse: $0) }
     }
     
 }

@@ -40,6 +40,31 @@ final class AuthenticationUseCase {
         }
     }
     
+    func signUp(name: String, email: String, password: String) async -> Result<[String], SignUpError> {
+        do {
+            let response = try await networkService.signUp(name: name, email: email, password: password)
+            
+            switch response {
+            case let .success(response):
+                if let user = response.user, let token = response.token {
+                    let user = User(response: user)
+                    credentialsService.setToken(token, forID: user.userID)
+                    store.appState.user = user
+                    store.saveAppState()
+                    return .success([])
+                } else {
+                    return .success(response.password ?? [])
+                }
+            case .error(let errorResponse):
+                Logger.error(errorResponse.message, topic: .domain)
+                return .failure(SignUpError.apiError(errorResponse))
+            }
+        } catch {
+            Logger.error("Signin Error: Unable to complete network request - \(error.localizedDescription)", topic: .network)
+            return .failure(SignUpError.networkError)
+        }
+    }
+    
 }
 
 extension AuthenticationUseCase {
@@ -55,5 +80,18 @@ extension AuthenticationUseCase {
             }
         }
     }
+    
+    enum SignUpError: Error {
+        case apiError(SignUpErrorResponse)
+        case networkError
+        
+        var errorMesasge: String {
+            switch self {
+            case let.apiError(response): return response.message
+            case .networkError: return "Network Error"
+            }
+        }
+    }
+    
     
 }

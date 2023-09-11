@@ -19,11 +19,11 @@ struct SubliminalResponse: EndpointResponse {
     let id: Int
     let subliminalID, title: String
     let cover: String
-    let description: String
-    let isFeatured, isVisible: Int?
-    let subscriptionID, createdAt, updatedAt: String
+    let description: String?
+    let isFeatured, isVisible, isLiked: Int?
+    let subscriptionID: String
     let guide, moodsID: String?
-    let info: [SubliminalInfoResponse]
+    let tracks: [SubliminalInfoResponse]
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -31,12 +31,11 @@ struct SubliminalResponse: EndpointResponse {
         case title, cover, description
         case isFeatured = "is_featured"
         case isVisible = "is_visible"
+        case isLiked = "is_liked"
         case subscriptionID = "subscription_id"
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
         case guide
         case moodsID = "moods_id"
-        case info
+        case tracks
     }
 }
 
@@ -55,7 +54,8 @@ struct SubliminalInfoResponse: Codable, Hashable {
     let id: Int
     let subliminalID, trackID: String
     let version, audioTypeID, volume: Int
-    let trackTitle, link: String?
+    let title, link: String?
+    let duration: Int
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -64,7 +64,8 @@ struct SubliminalInfoResponse: Codable, Hashable {
         case version
         case audioTypeID = "audio_type_id"
         case volume
-        case trackTitle = "track_title"
+        case title
         case link
+        case duration
     }
 }

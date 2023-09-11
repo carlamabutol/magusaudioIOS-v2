@@ -48,6 +48,10 @@ enum StoryboardString: String {
     // Player
     case player = "Player"
     
+    // Settings
+    case howMagusWorks = "HowMagusWorks"
+    case playlist = "Playlist"
+    
 }
 
 extension UIViewController {

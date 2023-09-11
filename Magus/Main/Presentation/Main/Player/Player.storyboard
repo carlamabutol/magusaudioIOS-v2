@@ -17,19 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Bl-7K-SLD">
-                                <rect key="frame" x="338" y="79" width="35" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="9iN-UE-on6"/>
-                                    <constraint firstAttribute="width" constant="35" id="eOT-tH-iRj"/>
-                                </constraints>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="xmark" catalog="system"/>
-                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JA0-d4-2rH">
                                 <rect key="frame" x="0.0" y="-20" width="393" height="530"/>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1g4-UH-yeN">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1g4-UH-yeN" customClass="ScrollViewWithPanGesture" customModule="Magus" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="432" width="393" height="386"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hwn-Qk-ewz">
@@ -118,6 +109,41 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
                                     <constraint firstItem="hwn-Qk-ewz" firstAttribute="leading" secondItem="1g4-UH-yeN" secondAttribute="leading" id="lnf-zC-iWJ"/>
                                 </constraints>
                             </scrollView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7Tl-fV-abV">
+                                <rect key="frame" x="338" y="79" width="35" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Bl-7K-SLD">
+                                        <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="9iN-UE-on6"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="option"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBt-P3-LMJ">
+                                        <rect key="frame" x="0.0" y="35" width="35" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="R54-nN-4wq"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="ic_repeat"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="4L8-AD-2SO"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="unO-4T-G9s">
+                                <rect key="frame" x="20" y="79" width="35" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="gBL-iK-Y4i"/>
+                                    <constraint firstAttribute="width" constant="35" id="q7h-fg-Kcl"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="left arrow"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -127,23 +153,28 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
                             <constraint firstItem="JA0-d4-2rH" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.622" id="IG9-VG-X1g"/>
                             <constraint firstAttribute="top" secondItem="JA0-d4-2rH" secondAttribute="top" constant="20" symbolic="YES" id="Mhe-hV-93z"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="JA0-d4-2rH" secondAttribute="trailing" id="Pf4-aF-I5Q"/>
-                            <constraint firstItem="4Bl-7K-SLD" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="VuT-K4-0V7"/>
                             <constraint firstItem="1g4-UH-yeN" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="Z1Q-zQ-9hB"/>
+                            <constraint firstItem="unO-4T-G9s" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="afs-4J-iyw"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="1g4-UH-yeN" secondAttribute="trailing" id="cRR-eI-hvF"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="4Bl-7K-SLD" secondAttribute="trailing" constant="20" id="nT1-tl-BT1"/>
+                            <constraint firstItem="unO-4T-G9s" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="e7n-AW-rCH"/>
                             <constraint firstItem="1g4-UH-yeN" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="qrA-Nh-xcb"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7Tl-fV-abV" secondAttribute="trailing" constant="20" id="r7c-tO-SAc"/>
+                            <constraint firstItem="7Tl-fV-abV" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="tEB-r2-jUh"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="advanceVolumeBtn" destination="8la-df-3sg" id="B0A-fG-ODA"/>
-                        <outlet property="closeButton" destination="4Bl-7K-SLD" id="4sa-A7-JlS"/>
+                        <outlet property="closeButton" destination="unO-4T-G9s" id="Orh-q8-FgP"/>
                         <outlet property="coverImageView" destination="JA0-d4-2rH" id="jOt-e4-aTe"/>
                         <outlet property="descriptionLbl" destination="YdU-cy-9ws" id="75o-bq-kQs"/>
                         <outlet property="favoriteButton" destination="iAk-Wt-1zL" id="oyv-5s-14d"/>
                         <outlet property="nextButton" destination="bpi-oz-DDD" id="OKh-2N-ulI"/>
+                        <outlet property="optionStackView" destination="7Tl-fV-abV" id="ozN-ZV-HiC"/>
                         <outlet property="playPauseButton" destination="0DX-Nd-Tux" id="6v6-7I-BGc"/>
                         <outlet property="previousButton" destination="JgA-3k-boV" id="pOb-sl-uXI"/>
                         <outlet property="progressView" destination="4rf-gW-qkN" id="Lcq-OB-9SU"/>
+                        <outlet property="repeatView" destination="bBt-P3-LMJ" id="RY0-0a-zYb"/>
+                        <outlet property="scrollView" destination="1g4-UH-yeN" id="wqs-3k-AQX"/>
                         <outlet property="timeLabel" destination="EaO-kX-WIH" id="JEN-OL-z89"/>
                         <outlet property="titleLbl" destination="fRK-xu-Lw8" id="ate-hH-G38"/>
                     </connections>
@@ -154,7 +185,9 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
         </scene>
     </scenes>
     <resources>
-        <image name="xmark" catalog="system" width="128" height="113"/>
+        <image name="ic_repeat" width="24" height="24"/>
+        <image name="left arrow" width="19" height="27"/>
+        <image name="option" width="6" height="28"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

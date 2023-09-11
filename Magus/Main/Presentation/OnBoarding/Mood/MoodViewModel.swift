@@ -78,14 +78,6 @@ class MoodViewModel: ViewModel {
 }
 
 extension MoodViewModel {
-    
-    struct SectionMood {
-        let mood: [Mood]
-    }
-    
-}
-
-extension MoodViewModel {
     struct Dependencies {
         let store: Store
         let router: Router

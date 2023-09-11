@@ -94,6 +94,13 @@ class HomeViewController: CommonViewController {
                     .modelSelected(SectionViewModel.Item.self)
             )
             .bind{ [unowned self] indexPath, model in
+                let section = viewModel.sections.value[indexPath.section]
+                switch section.header {
+                case LocalizedStrings.HomeHeaderTitle.featuredPlayList:
+                    self.goToPlaylist(playlistID: model.id)
+                default:
+                    break
+                }
                 Logger.info("Selected Model - \(model)", topic: .presentation)
             }
             .disposed(by: disposeBag)
@@ -113,6 +120,13 @@ class HomeViewController: CommonViewController {
             }
         }
         collectionView.setCollectionViewLayout(layout, animated: true)
+    }
+    
+    private func goToPlaylist(playlistID: String) {
+        guard let playlist = viewModel.getPlaylistByID(id: playlistID) else { return }
+        let playlistVC = PlaylistViewController.instantiate(from: .playlist) as! PlaylistViewController
+        navigationController?.pushViewController(playlistVC, animated: true)
+        playlistVC.setPlaylist(playlist: playlist)
     }
     
     func categorySection()-> NSCollectionLayoutSection {
