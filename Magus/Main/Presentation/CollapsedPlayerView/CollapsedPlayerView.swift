@@ -51,9 +51,11 @@ class CollapsedPlayerView: ReusableXibView {
     
     @IBOutlet var progressView: UIProgressView!
     
-    func configure(title: String, image: String) {
-        titleLabel.text = title
-        subliminalImageView.sd_setImage(with: .init(string: image), placeholderImage: .init(named: "Cover Image"))
+    func configure(subliminal: Subliminal) {
+        isHidden = false
+        titleLabel.text = subliminal.title
+        subliminalImageView.sd_setImage(with: .init(string: subliminal.cover), placeholderImage: .init(named: "Cover Image"))
+        updateFavorite(isLiked: subliminal.isLiked == 1)
     }
     
     func configureProgress(progress: Float) {

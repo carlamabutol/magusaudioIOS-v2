@@ -12,6 +12,22 @@ import RxDataSources
 
 class PlaylistViewController: CommonViewController {
     
+    @IBOutlet var gradientView: UIView! {
+        didSet {
+        }
+    }
+    @IBOutlet var favoriteButton: UIButton! {
+        didSet {
+            favoriteButton.setTitle("", for: .normal)
+        }
+    }
+    
+    @IBOutlet var controlButton: UIButton! {
+        didSet {
+            controlButton.setTitle("", for: .normal)
+        }
+    }
+    
     private let viewModel: PlaylistViewModel = PlaylistViewModel()
     
     lazy var collapsedPlayerView: CollapsedPlayerView = {
@@ -64,6 +80,19 @@ class PlaylistViewController: CommonViewController {
         super.viewDidLoad()
         setupBinding()
         setupDataSource()
+        let gradientLayer = CAGradientLayer()
+        // Set the colors and locations for the gradient layer
+        gradientLayer.colors = [UIColor.white.withAlphaComponent(0.0).cgColor, UIColor.Background.primary.cgColor]
+        gradientLayer.startPoint = .init(x: 1.0, y: 0.1)
+        gradientLayer.endPoint = .init(x: 1.0, y: 0.2)
+        
+        // Set the frame to the layer
+        gradientLayer.frame = gradientView.bounds
+        gradientView.backgroundColor = .clear
+        print("FRAME - \(gradientView.frame) - \(view.frame))")
+        // Add the gradient layer as a sublayer to the background view
+        gradientView.layer.insertSublayer(gradientLayer, at: 0)
+        gradientView.applyShadow(color: UIColor.white.withAlphaComponent(0.5), shadowOpacity: 0.2)
     }
     
     fileprivate func setupCollapsedPlayerView() {
@@ -90,6 +119,26 @@ class PlaylistViewController: CommonViewController {
             }
             .disposed(by: disposeBag)
         
+        backButton.rx.tap
+            .subscribe { [weak self] in self?.goBack() }
+            .disposed(by: disposeBag)
+        
+        Observable
+            .zip(
+                collectionView
+                    .rx
+                    .itemSelected
+                ,collectionView
+                    .rx
+                    .modelSelected(SectionViewModel.Item.self)
+            )
+            .bind{ [unowned self] indexPath, model in
+                self.viewModel.selectedSubliminal(indexPath)
+                Logger.info("Selected Model - \(model)", topic: .presentation)
+            }
+            .disposed(by: disposeBag)
+
+        
     }
     
     private func setupDataSource() {
@@ -102,7 +151,40 @@ class PlaylistViewController: CommonViewController {
     
     func configure(playlist: Playlist) {
         coverImageView.sd_setImage(with: .init(string: playlist.cover))
-        playlistTitle.text = playlist.title
+        configureFavoriteButton(isFavorite: playlist.isLiked == 1)
+        updatePlayerStatus(status: .unknown)
+        setTextWithShadow(text: playlist.title)
+    }
+    
+    private func configureFavoriteButton(isFavorite: Bool) {
+        let image = UIImage(named: isFavorite ? .favoriteIsActive : .favorite)
+        let newImage = image?.resizeImage(targetHeight: 22)
+        favoriteButton.setImage(newImage?.withRenderingMode(.alwaysTemplate), for: .normal)
+        favoriteButton.imageView?.contentMode = .scaleAspectFit
+        favoriteButton.tintColor = .black
+    }
+    
+    private func updatePlayerStatus(status: PlayerStatus) {
+        let image = UIImage(named: status == .isPlaying ? "pause" : "play")
+        let newImage = image?.resizeImage(targetHeight: 49)
+        controlButton.setImage(newImage, for: .normal)
+        controlButton.imageView?.contentMode = .scaleAspectFit
+    }
+    
+    private func setTextWithShadow(text: String) {
+        let myShadow = NSShadow()
+        myShadow.shadowBlurRadius = 3
+        myShadow.shadowOffset = CGSize(width: 3, height: 3)
+        myShadow.shadowColor = UIColor.gray
+        let myAttribute = [NSAttributedString.Key.shadow: myShadow,
+                           NSAttributedString.Key.font: UIFont.Montserrat.title3,
+                           NSAttributedString.Key.foregroundColor: UIColor.white]
+        let myAttrString = NSAttributedString(string: text, attributes: myAttribute)
+        playlistTitle.attributedText = myAttrString
+    }
+    
+    private func goBack() {
+        navigationController?.popViewController(animated: true)
     }
 }
 

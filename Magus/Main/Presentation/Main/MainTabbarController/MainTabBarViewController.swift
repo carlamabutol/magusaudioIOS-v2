@@ -80,14 +80,6 @@ class MainTabBarViewController: UITabBarController {
             }
             .disposed(by: disposeBag)
         
-        viewModel.selectedSubliminalObservable
-            .observe(on: MainScheduler.asyncInstance)
-            .subscribe { [weak self] subliminal in
-                let list = self?.viewModel.subliminals ?? []
-                self?.goToPlayer(subliminal: subliminal, list: list)
-            }
-            .disposed(by: disposeBag)
-        
         playerViewModel.progressObservable
             .subscribe { [weak self] progress in
                 self?.collapsedPlayerView.configureProgress(progress: progress)
@@ -105,10 +97,11 @@ class MainTabBarViewController: UITabBarController {
             }
             .disposed(by: disposeBag)
         
-        playerViewModel.selectedSubliminalObservable
+        viewModel.selectedSubliminalObservable
             .distinctUntilChanged()
             .subscribe { [weak self] subliminal in
-                self?.collapsedPlayerView.updateFavorite(isLiked: subliminal.isLiked == 1) 
+                self?.collapsedPlayerView.configure(subliminal: subliminal)
+                self?.playerViewModel.createArrayAudioPlayer(with: subliminal)
             }
             .disposed(by: disposeBag)
         
@@ -156,7 +149,11 @@ extension MainTabBarViewController {
         let viewController: UIViewController
         switch tabItem {
         case .home:
-            viewController = HomeViewController.instantiate(from: .home)
+            let homeVC = HomeViewController.instantiate(from: .home) as! HomeViewController
+//            homeVC.tabViewModel = viewModel
+            let navVC = UINavigationController(rootViewController: homeVC)
+            navVC.navigationBar.isHidden = true
+            viewController = navVC
         case .search:
             let searchVC = SearchViewController.instantiate(from: .search) as! SearchViewController
             searchVC.tabViewModel = viewModel
@@ -208,7 +205,6 @@ extension MainTabBarViewController {
         playerVC.view.heroID = "sample"
         playerVC.isHeroEnabled = true
         playerVC.modalPresentationStyle = .currentContext
-        collapsedPlayerView.configure(title: subliminal.title, image: subliminal.cover)
         playerViewModel.subliminals = list
         playerVC.configure(subliminal: subliminal)
         navigationController?.present(playerVC, animated: true)

@@ -12,27 +12,30 @@ import RxDataSources
 
 class PlaylistViewModel: ViewModel {
     
+    private let store: Store
+    
     private var playlist: Playlist?
     private let playlistRelay = BehaviorRelay<Playlist?>(value: nil)
     var playlistObservable: Observable<Playlist> { playlistRelay.compactMap { $0 }.asObservable() }
     
     private let subliminalCellModelRelay = BehaviorRelay<[SublimincalCellModel]>(value: [])
     var subliminalCellModelObservable: Observable<[SublimincalCellModel]> { subliminalCellModelRelay.asObservable() }
-    private let updatedSubliminalRelay = BehaviorRelay<Subliminal?>(value: nil)
-    private let updatedSubliminalRelay1 = PublishRelay<Subliminal>()
+    private let updatedSubliminalRelay = PublishRelay<Subliminal>()
     
     init(dependencies: PlaylistViewModel.Dependencies = .standard) {
-        
+        store = dependencies.store
         super.init()
         
-        let subliminalsObservable = updatedSubliminalRelay1.asObservable()
+        let subliminalsObservable = updatedSubliminalRelay.asObservable()
             .compactMap { [weak self] updatedSubliminal in
-                self?.playlist?.subliminals.map { subliminal in
+                let newSubliminals = self?.playlist?.subliminals.map { subliminal in
                     var newSubliminal = subliminal
                     let isLiked = subliminal.subliminalID == updatedSubliminal.subliminalID ? updatedSubliminal.isLiked : subliminal.isLiked
                     newSubliminal.isLiked = isLiked
                     return newSubliminal
                 }
+                self?.playlist?.subliminals = newSubliminals ?? []
+                return newSubliminals
             }
         
         playlistObservable
@@ -55,8 +58,8 @@ class PlaylistViewModel: ViewModel {
         subliminals.map { [weak self] subliminal in
             SublimincalCellModel(
                 id: subliminal.subliminalID,
-                cover: URL(string: subliminal.cover),
                 title: subliminal.title,
+                imageUrl: URL(string: subliminal.cover),
                 duration: subliminal.info.map { $0.duration }.max()?.toMinuteAndSeconds() ?? "",
                 isFavorite: subliminal.isLiked == 1,
                 favoriteButtonHandler: { [weak self] in
@@ -74,7 +77,12 @@ class PlaylistViewModel: ViewModel {
     private func favoriteButtonIsTapped(_ subliminal: Subliminal) {
         var updatedSubliminal = subliminal
         updatedSubliminal.isLiked = subliminal.isLiked == 0 ? 1 : 0
-        updatedSubliminalRelay1.accept(updatedSubliminal)
+        updatedSubliminalRelay.accept(updatedSubliminal)
+    }
+    
+    func selectedSubliminal(_ indexPath: IndexPath) {
+        let subliminal = playlist?.subliminals[indexPath.row]
+        store.appState.selectedSubliminal = subliminal
     }
     
 }
@@ -82,6 +90,7 @@ class PlaylistViewModel: ViewModel {
 extension PlaylistViewModel {
     
     struct Dependencies {
+        let store: Store
         let user: () -> User?
         let router: Router
         let networkService: NetworkService
@@ -89,6 +98,7 @@ extension PlaylistViewModel {
         
         static var standard: Dependencies {
             return .init(
+                store: SharedDependencies.sharedDependencies.store,
                 user: { SharedDependencies.sharedDependencies.store.appState.user },
                 router: SharedDependencies.sharedDependencies.router,
                 networkService: SharedDependencies.sharedDependencies.networkService,
@@ -101,10 +111,11 @@ extension PlaylistViewModel {
 
 extension PlaylistViewModel {
     
-    struct SublimincalCellModel {
-        let id: String
-        let cover: URL?
-        let title: String
+    struct SublimincalCellModel: ItemModel {
+        
+        var id: String
+        var title: String
+        var imageUrl: URL?
         let duration: String
         let isFavorite: Bool
         var favoriteButtonHandler: () -> Void

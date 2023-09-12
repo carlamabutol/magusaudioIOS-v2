@@ -59,7 +59,7 @@ class AudioPlayerViewModel: ViewModel {
         playerStatusRelay.accept(.isReadyToPlay)
     }
     
-    func createArrayAudioPlayer(with subliminal: Subliminal) {
+    public func createArrayAudioPlayer(with subliminal: Subliminal) {
         if subliminal.id == selectedSubliminal?.id && activePlayer != nil {
             playBackSubscriber(audioPlayer: activePlayer!)
             return

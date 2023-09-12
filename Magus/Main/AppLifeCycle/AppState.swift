@@ -12,6 +12,7 @@ struct AppState: Codable, Equatable {
     var user: User?
     var selectedMood: Mood?
     var subliminals: [Subliminal] = []
+    var selectedSubliminal: Subliminal?
     
     var userId: String? {
         return user?.userID

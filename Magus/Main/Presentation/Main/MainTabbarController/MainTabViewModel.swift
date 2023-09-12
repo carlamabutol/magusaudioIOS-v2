@@ -14,19 +14,30 @@ class MainTabViewModel: ViewModel {
     
     let tabItems: Observable<[TabItem]> = .just(MainTabViewModel.constructTabItems())
     var subliminals: [Subliminal] = []
+    private var store: Store
     private let selectedSubRelay = BehaviorRelay<Subliminal?>(value: nil)
-    var selectedSubliminalObservable: Observable<Subliminal> { selectedSubRelay.compactMap{ $0 }.asObservable() }
+//    var selectedSubliminalObservable: Observable<Subliminal> { selectedSubRelay.compactMap{ $0 }.asObservable() }
     private var user: () -> User?
     private let subliminalUseCase: SubliminalUseCase
     private let subliminalAudios = PublishRelay<[String]>()
     var subliminalAudiosObservable: Observable<[String]> { subliminalAudios.compactMap{ $0 }.asObservable() }
     private let selectedTabIndex = BehaviorRelay<MainTabViewModel.TabItem>(value: .home)
     var selectedTabIndexObservable: Observable<MainTabViewModel.TabItem> { selectedTabIndex.asObservable() }
+    var selectedSubliminalObservable: Observable<Subliminal>
     
     init(sharedDependencies: MainTabViewModel.Dependencies = .standard) {
+        store = sharedDependencies.store
         user = sharedDependencies.user
         subliminalUseCase = sharedDependencies.subliminalUseCase
+        selectedSubliminalObservable = sharedDependencies.selectedSubliminal
         super.init()
+        
+//        selectedSubliminalObservable
+//            .subscribe { subliminal in
+//                AudioPlayerManager.shared.createArrayAudioPlayer(with: subliminal)
+//            }
+//            .disposed(by: disposeBag)
+        
     }
     
     func profileImage() -> URL? {
@@ -44,7 +55,7 @@ class MainTabViewModel: ViewModel {
     
     func selectSubliminal(_ subliminal: Subliminal, subliminals: [Subliminal]) {
         self.subliminals = subliminals
-        selectedSubRelay.accept(subliminal)
+        store.appState.selectedSubliminal = subliminal
     }
     
     func getSubliminalAudios(_ id: String) {
@@ -69,17 +80,21 @@ class MainTabViewModel: ViewModel {
 extension MainTabViewModel {
     
     struct Dependencies {
+        let store: Store
         let user: () -> User?
         let router: Router
         let networkService: NetworkService
         let subliminalUseCase: SubliminalUseCase
+        let selectedSubliminal: Observable<Subliminal>
         
         static var standard: Dependencies {
             return .init(
+                store: SharedDependencies.sharedDependencies.store,
                 user: { SharedDependencies.sharedDependencies.store.appState.user },
                 router: SharedDependencies.sharedDependencies.router,
                 networkService: SharedDependencies.sharedDependencies.networkService,
-                subliminalUseCase: SharedDependencies.sharedDependencies.useCases.subliminalUseCase
+                subliminalUseCase: SharedDependencies.sharedDependencies.useCases.subliminalUseCase,
+                selectedSubliminal: SharedDependencies.sharedDependencies.store.observable(of: \.selectedSubliminal).compactMap { $0 }
             )
         }
     }

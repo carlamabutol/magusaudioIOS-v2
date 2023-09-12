@@ -35,6 +35,7 @@ class SubliminalCollectionViewCell: UICollectionViewCell {
             favoriteButton.setTitle("", for: .normal)
             favoriteButton.addTarget(self, action: #selector(favoriteButtonIsTapped), for: .touchUpInside)
             favoriteButton.tintColor = .black
+            favoriteButton.isHidden = true
         }
     }
     
@@ -52,7 +53,7 @@ class SubliminalCollectionViewCell: UICollectionViewCell {
     var favoriteButtonHandler: CompletionHandler?
     
     func configure(item: PlaylistViewModel.SublimincalCellModel) {
-        coverImageView.sd_setImage(with: item.cover)
+        coverImageView.sd_setImage(with: item.imageUrl)
         titleLabel.text = item.title
         durationLabel.text = item.duration
         favoriteButtonHandler = item.favoriteButtonHandler
