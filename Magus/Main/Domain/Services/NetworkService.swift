@@ -12,7 +12,8 @@ protocol NetworkService {
     func signIn(email: String, password: String) async throws -> JSONAPIDictionaryResponse<SignInResponse>
     func signUp(name: String, email: String, password: String) async throws -> JSONAPIDictionaryResponse<SignUpResponse>
     func getAllMoods() async throws -> JSONAPIArrayResponse<Mood>
-    func updateSelectedMoods(userId: String, moodId: Int) async throws -> DefaultResponse
+    func getMoodCalendar(userId: String) async throws -> JSONAPIArrayResponse<MoodCalendarResponse>
+    func updateSelectedMoods(userId: String, moodId: Int) async throws -> EmptyResponse
     func getCategorySubliminal() async throws -> JSONAPIArrayResponse<CategorySubliminalElement>
     func getFeaturedPlaylists() async throws -> JSONAPIDictionaryResponse<FeaturedPlaylistResponse>
     func getRecommendations() async throws -> JSONAPIDictionaryResponse<RecommendationResponse>

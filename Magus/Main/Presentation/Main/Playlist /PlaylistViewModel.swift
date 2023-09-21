@@ -85,6 +85,11 @@ class PlaylistViewModel: ViewModel {
         store.appState.selectedSubliminal = subliminal
     }
     
+    func playPlaylist() {
+        guard let firstSub = playlist?.subliminals.first else { return }
+        store.appState.selectedSubliminal = firstSub
+    }
+    
 }
 
 extension PlaylistViewModel {

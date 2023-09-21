@@ -51,7 +51,7 @@ class AudioPlayer {
         return CMTimeGetSeconds(player.currentTime())
     }
     
-    init(url: URL) {
+    init(url: URL, isPlaying: Bool = false) {
         let asset = AVAsset(url: url)
         let playerItem: AVPlayerItem = AVPlayerItem(asset: asset)
         avPlayer = AVPlayer(playerItem: playerItem)
@@ -64,6 +64,9 @@ class AudioPlayer {
                 self.playerStatus.accept(.failed)
             case .readyToPlay:
                 self.playerStatus.accept(.isReadyToPlay)
+                if isPlaying {
+                    self.avPlayer?.play()
+                }
             case .unknown:
                 self.playerStatus.accept(.unknown)
             @unknown default:

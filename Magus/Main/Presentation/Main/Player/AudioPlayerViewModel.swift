@@ -11,6 +11,8 @@ import RxRelay
 import RxSwift
 
 class AudioPlayerViewModel: ViewModel {
+    static let shared = AudioPlayerViewModel()
+    private let store: Store
     private let audioPlayerManager = AudioPlayerManager.shared
     var selectedSubliminal: Subliminal?
     var subliminals: [Subliminal] = []
@@ -30,6 +32,7 @@ class AudioPlayerViewModel: ViewModel {
     private let subliminalUseCase: SubliminalUseCase
     
     init(dependencies: Dependencies = .standard) {
+        store = dependencies.store
         subliminalUseCase = dependencies.subliminalUseCase
         super.init()
         audioPlayerManager.activePlayerObservable
@@ -67,7 +70,7 @@ class AudioPlayerViewModel: ViewModel {
         selectedSubliminal = subliminal
         selectedSubliminalRelay.accept(subliminal)
         clearAudioPlayers()
-        audioPlayerManager.createAudioPlayers(with: subliminal, isPlaying: false)
+        audioPlayerManager.createAudioPlayers(with: subliminal, isPlaying: playerStatusRelay.value == .isPlaying)
     }
     
     func clearAudioPlayers() {
@@ -121,6 +124,8 @@ class AudioPlayerViewModel: ViewModel {
         guard let selectedSubliminal = selectedSubliminal else { return }
         Task {
             do {
+                var subliminal = selectedSubliminal
+                subliminal.isLiked = subliminal.isLiked == 0 ? 1 : 0
                 if selectedSubliminal.isLiked == 0 {
                     let response = try await subliminalUseCase.addToFavorite(id: selectedSubliminal.subliminalID)
                     Logger.info("Successfully added to favorite", topic: .presentation)
@@ -128,14 +133,13 @@ class AudioPlayerViewModel: ViewModel {
                     let response = try await subliminalUseCase.deleteToFavorite(id: selectedSubliminal.subliminalID)
                     Logger.info("Successfully removed from favorite", topic: .presentation)
                 }
+                self.selectedSubliminal = subliminal
+                self.selectedSubliminalRelay.accept(subliminal)
+                self.store.appState.selectedSubliminal = subliminal
             } catch {
                 Logger.info("Failed to update favorite \(error)", topic: .presentation)
             }
         }
-        var subliminal = selectedSubliminal
-        subliminal.isLiked = subliminal.isLiked == 0 ? 1 : 0
-        self.selectedSubliminal = subliminal
-        selectedSubliminalRelay.accept(subliminal)
     }
 }
 
@@ -144,11 +148,13 @@ extension AudioPlayerViewModel {
     struct Dependencies {
         let networkService: NetworkService
         let subliminalUseCase: SubliminalUseCase
+        let store: Store
         
         static var standard: Dependencies {
             return .init(
                 networkService: SharedDependencies.sharedDependencies.networkService,
-                subliminalUseCase: SharedDependencies.sharedDependencies.useCases.subliminalUseCase
+                subliminalUseCase: SharedDependencies.sharedDependencies.useCases.subliminalUseCase,
+                store: SharedDependencies.sharedDependencies.store
             )
         }
     }

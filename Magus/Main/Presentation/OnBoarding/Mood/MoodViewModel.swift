@@ -68,10 +68,15 @@ class MoodViewModel: ViewModel {
         print("CONTINUE TAPPED")
         guard let selectedMood = moodListRelay.value.first(where: { $0.isSelected }) else { return }
         Task {
-            let response = try await networkService.updateSelectedMoods(userId: userId, moodId: selectedMood.id)
-            store.saveAppState()
-            router.selectedRoute = .home
-            Logger.info(response.message, topic: .presentation)
+            do {
+                let response = try await networkService.updateSelectedMoods(userId: userId, moodId: selectedMood.id)
+                store.saveAppState()
+                router.selectedRoute = .home
+                Logger.info(response.message, topic: .presentation)
+            }
+            catch {
+                Logger.error(error.localizedDescription, topic: .domain)
+            }
         }
     }
     

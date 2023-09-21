@@ -93,10 +93,9 @@ class AudioPlayerManager {
             return
         }
         
-        let newPlayer = AudioPlayer(url: url)
+        let newPlayer = AudioPlayer(url: url, isPlaying: isPlaying)
         newPlayer.setDuration(duration: subliminalAudioInfo.duration)
         newPlayer.setVolume(volume: subliminalAudioInfo.volume)
-        print("Setting up duration - \(newPlayer.getDuration())")
         updatePlayerStatus(isPlaying: isPlaying, player: newPlayer)
         newPlayer.playerStatusObservable
             .subscribe { [weak self] status in

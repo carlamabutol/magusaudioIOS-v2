@@ -10,6 +10,7 @@ import RxSwift
 
 class ProfileMoodViewController: CommonViewController {
     
+    private let viewModel = ProfileMoodViewModel()
     var profileViewModel: ProfileViewModel!
     
     @IBOutlet var dateTypeSelectionView: DateTypeSelectionView! {
@@ -26,7 +27,7 @@ class ProfileMoodViewController: CommonViewController {
     @IBOutlet var weeklyView: WeeklyView!
     
     @IBOutlet var monthlyView: WeeklyView!
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

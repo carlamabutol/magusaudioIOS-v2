@@ -34,6 +34,8 @@ enum StoryboardString: String {
     case profileMood = "ProfileMood"
     case settings = "Settings"
     case mySubs = "MySubs"
+    case profilePlaylists = "ProfilePlaylists"
+    case profileFavorites = "ProfileFavorites"
     
     // Alert
     case defaultAlert = "DefaultAlert"

@@ -134,6 +134,7 @@ struct WeeklyData: Identifiable {
         return day
     }
 }
+
 extension Array {
     func chunked(into size: Int) -> [[Element]] {
         return stride(from: 0, to: count, by: size).map {

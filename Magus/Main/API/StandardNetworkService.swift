@@ -95,7 +95,7 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
-    func updateSelectedMoods(userId: String, moodId: Int) async throws -> DefaultResponse {
+    func updateSelectedMoods(userId: String, moodId: Int) async throws -> EmptyResponse {
         let url = baseURL
             .appendingPathComponent("api")
             .appendingPathComponent("user")
@@ -104,12 +104,30 @@ extension StandardNetworkService: NetworkService {
         
         let parameters: [String: Any] = [
             "user_id": userId,
-            "moods": moodId
+            "mood_id": moodId
         ]
         
-        let task = requestManager.request(url, method: .post, parameters: parameters, headers: getUnauthenticatedHeaders())
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
-            .serializingDecodable(DefaultResponse.self)
+            .serializingDecodable(EmptyResponse.self)
+        
+        return try await task.value
+    }
+    
+    func getMoodCalendar(userId: String) async throws -> JSONAPIArrayResponse<MoodCalendarResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("user")
+            .appendingPathComponent("mood")
+            .appendingPathComponent("calendar")
+        
+        let parameters: [String: Any] = [
+            "user_id": userId
+        ]
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<MoodCalendarResponse>.self)
         
         return try await task.value
     }

@@ -12,7 +12,7 @@ import Hero
 class MainTabBarViewController: UITabBarController {
     
     private let viewModel = MainTabViewModel()
-    private let playerViewModel = AudioPlayerViewModel()
+    private let playerViewModel = AudioPlayerViewModel.shared
     private let disposeBag = DisposeBag()
     
     lazy var collapsedPlayerView: CollapsedPlayerView = {
@@ -98,7 +98,6 @@ class MainTabBarViewController: UITabBarController {
             .disposed(by: disposeBag)
         
         viewModel.selectedSubliminalObservable
-            .distinctUntilChanged()
             .subscribe { [weak self] subliminal in
                 self?.collapsedPlayerView.configure(subliminal: subliminal)
                 self?.playerViewModel.createArrayAudioPlayer(with: subliminal)
@@ -117,13 +116,6 @@ class MainTabBarViewController: UITabBarController {
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { [weak self] _ in
                 self?.playerViewModel.playAudio()
-            }
-            .disposed(by: disposeBag)
-        
-        collapsedPlayerView.favoriteButton.rx.tap
-            .debounce(.milliseconds(200), scheduler: MainScheduler.asyncInstance)
-            .subscribe { [weak self] _ in
-                self?.playerViewModel.updateFavorite()
             }
             .disposed(by: disposeBag)
     }

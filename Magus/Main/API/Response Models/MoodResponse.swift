@@ -7,24 +7,21 @@
 
 import Foundation
 
-struct MoodResponse : EndpointResponse {
-    typealias ErrorResponse = MoodResponseErrorResponse
-    let code: Int
-    let data: [Mood]
-}
-
-struct MoodResponseErrorResponse: Decodable {
-    let message: String
-}
-
 struct Mood: EndpointResponse, Equatable, Encodable {
-    typealias ErrorResponse = MoodResponseErrorResponse
+    typealias ErrorResponse = MoodErrorResponse
     
     let id: Int
     let name, description: String
     let image: String
+    let createdAt, updatedAt: String?
 
     enum CodingKeys: String, CodingKey {
         case id, name, description, image
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
     }
+}
+
+struct MoodErrorResponse: Decodable {
+    let message: String
 }

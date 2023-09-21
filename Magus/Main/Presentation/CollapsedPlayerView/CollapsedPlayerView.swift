@@ -55,6 +55,7 @@ class CollapsedPlayerView: ReusableXibView {
         isHidden = false
         titleLabel.text = subliminal.title
         subliminalImageView.sd_setImage(with: .init(string: subliminal.cover), placeholderImage: .init(named: "Cover Image"))
+        print("subliminal.isLiked == \(subliminal.isLiked == 1)")
         updateFavorite(isLiked: subliminal.isLiked == 1)
     }
     
@@ -80,5 +81,24 @@ class CollapsedPlayerView: ReusableXibView {
         favoriteButton.imageView?.contentMode = .scaleAspectFit
     }
     
+    var favoriteTapHandler: CompletionHandler?
+    
+    var playPauseTapHandler: CompletionHandler?
+    
+    private func setupBinding() {
+        favoriteButton.rx.tap
+            .debounce(.milliseconds(200), scheduler: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.favoriteTapHandler?()
+            }
+            .disposed(by: disposeBag)
+        
+        playPauseButton.rx.tap
+            .debounce(.milliseconds(200), scheduler: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.playPauseTapHandler?()
+            }
+            .disposed(by: disposeBag)
+    }
     
 }

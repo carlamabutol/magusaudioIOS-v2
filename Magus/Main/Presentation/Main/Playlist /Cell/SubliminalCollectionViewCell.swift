@@ -35,7 +35,6 @@ class SubliminalCollectionViewCell: UICollectionViewCell {
             favoriteButton.setTitle("", for: .normal)
             favoriteButton.addTarget(self, action: #selector(favoriteButtonIsTapped), for: .touchUpInside)
             favoriteButton.tintColor = .black
-            favoriteButton.isHidden = true
         }
     }
     

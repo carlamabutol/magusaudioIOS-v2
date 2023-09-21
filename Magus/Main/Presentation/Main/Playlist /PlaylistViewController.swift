@@ -9,8 +9,8 @@ import UIKit
 import RxSwift
 import RxDataSources
 
-
 class PlaylistViewController: CommonViewController {
+    private let playerViewModel = AudioPlayerViewModel.shared
     
     @IBOutlet var gradientView: UIView! {
         didSet {
@@ -119,8 +119,21 @@ class PlaylistViewController: CommonViewController {
             }
             .disposed(by: disposeBag)
         
+        playerViewModel.playerStatusObservable
+            .distinctUntilChanged()
+            .subscribe { [weak self] status in
+                self?.updatePlayerStatus(status: status)
+            }
+            .disposed(by: disposeBag)
+        
         backButton.rx.tap
-            .subscribe { [weak self] in self?.goBack() }
+            .subscribe { [weak self] _ in self?.goBack() }
+            .disposed(by: disposeBag)
+        
+        controlButton.rx.tap
+            .subscribe { [weak self] _ in
+                self?.viewModel.playPlaylist()
+            }
             .disposed(by: disposeBag)
         
         Observable
@@ -166,7 +179,7 @@ class PlaylistViewController: CommonViewController {
     
     private func updatePlayerStatus(status: PlayerStatus) {
         let image = UIImage(named: status == .isPlaying ? "pause" : "play")
-        let newImage = image?.resizeImage(targetHeight: 49)
+        let newImage = image?.resizeImage(targetHeight: 40)
         controlButton.setImage(newImage, for: .normal)
         controlButton.imageView?.contentMode = .scaleAspectFit
     }
