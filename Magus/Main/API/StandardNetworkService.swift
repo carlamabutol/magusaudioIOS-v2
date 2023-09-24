@@ -196,6 +196,48 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
+    func getAllFavoriteSubliminals() async throws -> JSONAPIArrayResponse<SubliminalResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("like")
+            .appendingPathComponent("subliminal")
+        
+        var parameters: [String: String] = [
+            "subscription_id": String(describing: getSubscriptionID())
+        ]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<SubliminalResponse>.self)
+        
+        return try await task.value
+    }
+    
+    func getAllFavoritePlaylist() async throws -> JSONAPIArrayResponse<SearchPlaylistResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("like")
+            .appendingPathComponent("playlist")
+        
+        var parameters: [String: String] = [
+            "subscription_id": String(describing: getSubscriptionID())
+        ]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<SearchPlaylistResponse>.self)
+        
+        return try await task.value
+    }
+    
     func getSubscriptions() async throws -> JSONAPIArrayResponse<SubscriptionResponse> {
         let url = baseURL
             .appendingPathComponent("api")
@@ -259,7 +301,7 @@ extension StandardNetworkService: NetworkService {
     }
     
     func getSubliminalAudio(subliminalId: String) async throws -> ResponseArrayModel<String> {
-        var url = baseURL
+        let url = baseURL
             .appendingPathComponent("api")
             .appendingPathComponent("audio")
             .appendingPathComponent("subliminal")
@@ -278,7 +320,8 @@ extension StandardNetworkService: NetworkService {
         }
         let parameters: [String: String] = [
             "user_id": userID,
-            "\(api.rawValue)_id": id
+            "\(api.rawValue)_id": id,
+            "subscription_id": getSubscriptionID().toString()
         ]
         
         let url = baseURL

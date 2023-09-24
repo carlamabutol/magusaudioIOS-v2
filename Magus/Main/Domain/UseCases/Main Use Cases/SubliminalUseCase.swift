@@ -28,6 +28,20 @@ final class SubliminalUseCase {
         }
     }
     
+    func getAllLikeSubliminal() async throws -> [Subliminal] {
+        do {
+            let response = try await networkService.getAllFavoriteSubliminals()
+            switch response {
+            case .success(let response):
+                return response.map { Subliminal(subliminalReponse: $0) }
+            case .error(_):
+                throw NetworkServiceError.jsonDecodingError
+            }
+        } catch {
+            throw error
+        }
+    }
+    
     func getSubliminals() async throws -> [Subliminal] {
         do {
             let response = try await networkService.getSubliminals()

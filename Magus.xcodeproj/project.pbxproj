@@ -259,6 +259,17 @@
 		F8A4D4102A87648C008F460F /* ProfileAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8A4D40F2A87648C008F460F /* ProfileAlert.storyboard */; };
 		F8A4D4122A876495008F460F /* ProfileAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A4D4112A876495008F460F /* ProfileAlertViewController.swift */; };
 		F8AFFD7A2A19AC6A00FDC40B /* TappableLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8AFFD792A19AC6A00FDC40B /* TappableLabel.xib */; };
+		F8BA02592ABF025C007C9128 /* SubliminalCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA02582ABF025C007C9128 /* SubliminalCollectionViewController.swift */; };
+		F8BA025B2ABF0274007C9128 /* PlaylistCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA025A2ABF0274007C9128 /* PlaylistCollectionViewController.swift */; };
+		F8BA025E2ABF055D007C9128 /* FavoriteSubliminalCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8BA025D2ABF055D007C9128 /* FavoriteSubliminalCollectionViewCell.xib */; };
+		F8BA02602ABF0619007C9128 /* FavoriteSubliminalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA025F2ABF0619007C9128 /* FavoriteSubliminalCollectionViewCell.swift */; };
+		F8BA02622ABF0A91007C9128 /* FavoritePlaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA02612ABF0A91007C9128 /* FavoritePlaylistCell.swift */; };
+		F8BA02642ABF0A9F007C9128 /* FavoritePlaylistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8BA02632ABF0A9F007C9128 /* FavoritePlaylistCell.xib */; };
+		F8BA02662ABFF8AA007C9128 /* ProfilePlaylistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA02652ABFF8AA007C9128 /* ProfilePlaylistsViewModel.swift */; };
+		F8C40DB62ABEBA2D00A44312 /* PlaylistUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C40DB52ABEBA2D00A44312 /* PlaylistUseCase.swift */; };
+		F8C40DB82ABED0A000A44312 /* ProfileFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C40DB72ABED0A000A44312 /* ProfileFavoritesViewModel.swift */; };
+		F8C40DBB2ABEEC1700A44312 /* TabSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8C40DBA2ABEEC1700A44312 /* TabSelectionView.xib */; };
+		F8C40DBD2ABEEC6500A44312 /* TabSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C40DBC2ABEEC6500A44312 /* TabSelectionView.swift */; };
 		F8D3D38D2A223E7600AD7C2D /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8D3D38C2A223E7600AD7C2D /* ForgotPassword.storyboard */; };
 		F8D3D38F2A223E8000AD7C2D /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3D38E2A223E8000AD7C2D /* ForgotPasswordViewController.swift */; };
 		F8D3D3912A223E8800AD7C2D /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3D3902A223E8800AD7C2D /* ForgotPasswordViewModel.swift */; };
@@ -467,6 +478,17 @@
 		F8A4D40F2A87648C008F460F /* ProfileAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileAlert.storyboard; sourceTree = "<group>"; };
 		F8A4D4112A876495008F460F /* ProfileAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAlertViewController.swift; sourceTree = "<group>"; };
 		F8AFFD792A19AC6A00FDC40B /* TappableLabel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TappableLabel.xib; sourceTree = "<group>"; };
+		F8BA02582ABF025C007C9128 /* SubliminalCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubliminalCollectionViewController.swift; sourceTree = "<group>"; };
+		F8BA025A2ABF0274007C9128 /* PlaylistCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionViewController.swift; sourceTree = "<group>"; };
+		F8BA025D2ABF055D007C9128 /* FavoriteSubliminalCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteSubliminalCollectionViewCell.xib; sourceTree = "<group>"; };
+		F8BA025F2ABF0619007C9128 /* FavoriteSubliminalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteSubliminalCollectionViewCell.swift; sourceTree = "<group>"; };
+		F8BA02612ABF0A91007C9128 /* FavoritePlaylistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlaylistCell.swift; sourceTree = "<group>"; };
+		F8BA02632ABF0A9F007C9128 /* FavoritePlaylistCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritePlaylistCell.xib; sourceTree = "<group>"; };
+		F8BA02652ABFF8AA007C9128 /* ProfilePlaylistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePlaylistsViewModel.swift; sourceTree = "<group>"; };
+		F8C40DB52ABEBA2D00A44312 /* PlaylistUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistUseCase.swift; sourceTree = "<group>"; };
+		F8C40DB72ABED0A000A44312 /* ProfileFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFavoritesViewModel.swift; sourceTree = "<group>"; };
+		F8C40DBA2ABEEC1700A44312 /* TabSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabSelectionView.xib; sourceTree = "<group>"; };
+		F8C40DBC2ABEEC6500A44312 /* TabSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabSelectionView.swift; sourceTree = "<group>"; };
 		F8D3D38C2A223E7600AD7C2D /* ForgotPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPassword.storyboard; sourceTree = "<group>"; };
 		F8D3D38E2A223E8000AD7C2D /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		F8D3D3902A223E8800AD7C2D /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
@@ -579,6 +601,7 @@
 				741CB6B62A447EAB00975949 /* UserUseCase.swift */,
 				741CB6B82A447F0A00975949 /* AuthenticationUseCase.swift */,
 				745FA79B2A8A3F5B00F068E4 /* SubliminalUseCase.swift */,
+				F8C40DB52ABEBA2D00A44312 /* PlaylistUseCase.swift */,
 			);
 			path = "Main Use Cases";
 			sourceTree = "<group>";
@@ -735,6 +758,7 @@
 		748B40952A7157AD00CA78CD /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				F8C40DB92ABEEC0700A44312 /* TabSelectionView */,
 				74D1B9AE2A7AA6C1009E4F73 /* MonthlyView */,
 				740C4CFF2A71F4CC00050D5A /* WeeklyView */,
 				74D328892A71655B009B3C61 /* DateSelection */,
@@ -952,8 +976,11 @@
 		74EB5BC92ABB1D2C00C3FF0C /* Profile Favorites */ = {
 			isa = PBXGroup;
 			children = (
+				F8BA025C2ABF0500007C9128 /* Cells */,
+				F8BA02572ABF0243007C9128 /* Controllers */,
 				74EB5BCF2ABB20CD00C3FF0C /* ProfileFavorites.storyboard */,
 				74EB5BD12ABB20DB00C3FF0C /* ProfileFavoritesViewController.swift */,
+				F8C40DB72ABED0A000A44312 /* ProfileFavoritesViewModel.swift */,
 			);
 			path = "Profile Favorites";
 			sourceTree = "<group>";
@@ -963,6 +990,7 @@
 			children = (
 				74EB5BCB2ABB1D4B00C3FF0C /* ProfilePlaylists.storyboard */,
 				74EB5BCD2ABB1D6400C3FF0C /* ProfilePlaylistsViewController.swift */,
+				F8BA02652ABFF8AA007C9128 /* ProfilePlaylistsViewModel.swift */,
 			);
 			path = "Profile Playlists";
 			sourceTree = "<group>";
@@ -1333,6 +1361,35 @@
 			path = TappableLabel;
 			sourceTree = "<group>";
 		};
+		F8BA02572ABF0243007C9128 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F8BA02582ABF025C007C9128 /* SubliminalCollectionViewController.swift */,
+				F8BA025A2ABF0274007C9128 /* PlaylistCollectionViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F8BA025C2ABF0500007C9128 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F8BA025D2ABF055D007C9128 /* FavoriteSubliminalCollectionViewCell.xib */,
+				F8BA025F2ABF0619007C9128 /* FavoriteSubliminalCollectionViewCell.swift */,
+				F8BA02612ABF0A91007C9128 /* FavoritePlaylistCell.swift */,
+				F8BA02632ABF0A9F007C9128 /* FavoritePlaylistCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		F8C40DB92ABEEC0700A44312 /* TabSelectionView */ = {
+			isa = PBXGroup;
+			children = (
+				F8C40DBA2ABEEC1700A44312 /* TabSelectionView.xib */,
+				F8C40DBC2ABEEC6500A44312 /* TabSelectionView.swift */,
+			);
+			path = TabSelectionView;
+			sourceTree = "<group>";
+		};
 		F8D3D38B2A223E6A00AD7C2D /* Forgot Password */ = {
 			isa = PBXGroup;
 			children = (
@@ -1497,6 +1554,7 @@
 				7467C1132A388B9300DFF86D /* MoodCell.xib in Resources */,
 				F88A83072A13CEDA00D3E975 /* Montserrat-Black.ttf in Resources */,
 				74CFCCF92A82418400DF8D1C /* DefaultAlert.storyboard in Resources */,
+				F8BA025E2ABF055D007C9128 /* FavoriteSubliminalCollectionViewCell.xib in Resources */,
 				F88A83012A13CEDA00D3E975 /* Montserrat-Bold.ttf in Resources */,
 				F8669E342A0BE604004D28A1 /* Login.storyboard in Resources */,
 				F88A83002A13CEDA00D3E975 /* Montserrat-Thin.ttf in Resources */,
@@ -1509,9 +1567,11 @@
 				74F1DD1B2A4996AF008F4680 /* CategoryCell.xib in Resources */,
 				F8AFFD7A2A19AC6A00FDC40B /* TappableLabel.xib in Resources */,
 				74A6C5752A5DA9A100D9DAED /* PlanView.xib in Resources */,
+				F8BA02642ABF0A9F007C9128 /* FavoritePlaylistCell.xib in Resources */,
 				74B529DC2A6FDA4200F43BFC /* SearchView.xib in Resources */,
 				F8E4CCE92A19ED5F002C388C /* SignUp.storyboard in Resources */,
 				74B16A1A2A90DAC5003E8A2D /* CollapsedPlayerView.xib in Resources */,
+				F8C40DBB2ABEEC1700A44312 /* TabSelectionView.xib in Resources */,
 				F8A4D4102A87648C008F460F /* ProfileAlert.storyboard in Resources */,
 				74C960A62A722F5D00391DDA /* WeeklyDayDetailView.xib in Resources */,
 				F8512C342A13B9EA0041C14F /* Assets.xcassets in Resources */,
@@ -1592,6 +1652,8 @@
 				F8A4D4122A876495008F460F /* ProfileAlertViewController.swift in Sources */,
 				7467C1172A38AE3400DFF86D /* DefaultResponse.swift in Sources */,
 				749002662A7BDFF8007DACDF /* WeekDay.swift in Sources */,
+				F8C40DBD2ABEEC6500A44312 /* TabSelectionView.swift in Sources */,
+				F8BA02662ABFF8AA007C9128 /* ProfilePlaylistsViewModel.swift in Sources */,
 				F8669E3B2A0BE6CE004D28A1 /* Route.swift in Sources */,
 				F86F797D2A18C3C200298581 /* TappableLabel.swift in Sources */,
 				741CB6A82A44799700975949 /* User+Init.swift in Sources */,
@@ -1604,6 +1666,7 @@
 				746FA5F42A2602BD006CE52C /* Configuration.swift in Sources */,
 				7437A0BD2AA7436F00DEA0D1 /* SignUpResponse.swift in Sources */,
 				749002682A7BE003007DACDF /* CalendarMonth.swift in Sources */,
+				F8C40DB82ABED0A000A44312 /* ProfileFavoritesViewModel.swift in Sources */,
 				74CB03992A90BCD5007A1A90 /* PlaylistSubliminalResponse.swift in Sources */,
 				74EB5BD22ABB20DB00C3FF0C /* ProfileFavoritesViewController.swift in Sources */,
 				74CB03912A909A70007A1A90 /* Subliminal.swift in Sources */,
@@ -1612,6 +1675,7 @@
 				7424ED702A7E84B30011C52E /* DeleteAccountViewController.swift in Sources */,
 				74BED2392AA4C4F400D31009 /* RecommendationResponse.swift in Sources */,
 				F8D3D3912A223E8800AD7C2D /* ForgotPasswordViewModel.swift in Sources */,
+				F8BA02592ABF025C007C9128 /* SubliminalCollectionViewController.swift in Sources */,
 				F8512C422A13C3C60041C14F /* Colors.swift in Sources */,
 				F827D9872A10FAE30034B5AF /* MainTabBarViewController.swift in Sources */,
 				F88A82E62A13CE8500D3E975 /* Font+Extension.swift in Sources */,
@@ -1663,6 +1727,7 @@
 				746FA5E92A25E9BE006CE52C /* NetworkService.swift in Sources */,
 				F8E4CCEB2A19ED74002C388C /* SignUpViewController.swift in Sources */,
 				F8669E382A0BE623004D28A1 /* LoginViewModel.swift in Sources */,
+				F8BA02622ABF0A91007C9128 /* FavoritePlaylistCell.swift in Sources */,
 				743750ED2AACF75100731791 /* SubliminalCollectionViewCell.swift in Sources */,
 				F848EF142A0BD46C0097F104 /* ViewController+Extension.swift in Sources */,
 				74576BFE2A7D5D91003D4211 /* FormTextFieldView.swift in Sources */,
@@ -1670,6 +1735,7 @@
 				F827D97D2A10F6BB0034B5AF /* SharedDependencies.swift in Sources */,
 				F806560C2A179B7B006D53F8 /* CommonView.swift in Sources */,
 				74576BF92A7D59DB003D4211 /* EditProfileViewModel.swift in Sources */,
+				F8C40DB62ABEBA2D00A44312 /* PlaylistUseCase.swift in Sources */,
 				7474B31A2A49B7BE00086600 /* HeaderTitleView.swift in Sources */,
 				7490E4462A4096FC00463582 /* Logger.swift in Sources */,
 				F88A830E2A13D22900D3E975 /* UIView+Extension.swift in Sources */,
@@ -1689,12 +1755,14 @@
 				F82CA4F22A19B4A5007EDFAE /* ViewController+Storyboard+Extension.swift in Sources */,
 				746FA5ED2A25F479006CE52C /* JSONAPIDictionaryResponse.swift in Sources */,
 				74EB5BCE2ABB1D6400C3FF0C /* ProfilePlaylistsViewController.swift in Sources */,
+				F8BA025B2ABF0274007C9128 /* PlaylistCollectionViewController.swift in Sources */,
 				F82BDDF42A41EAE1002E29E5 /* CategoryResponse.swift in Sources */,
 				74CB03932A909AF3007A1A90 /* SubliminalAudioInfo.swift in Sources */,
 				741CB6B12A447C9B00975949 /* UseCases.swift in Sources */,
 				74DDE9E92A5A6B5F00EA0929 /* SubscriptionResponse.swift in Sources */,
 				7490E4422A4092F200463582 /* AppState.swift in Sources */,
 				746FA5FC2A260D18006CE52C /* Presentation.swift in Sources */,
+				F8BA02602ABF0619007C9128 /* FavoriteSubliminalCollectionViewCell.swift in Sources */,
 				7480EDFE2A7D0411000206B1 /* CalendarViewController.swift in Sources */,
 				741CB69D2A44763900975949 /* StandardCredentialsService.swift in Sources */,
 				74F1DD1D2A4996C6008F4680 /* CategoryCell.swift in Sources */,

@@ -28,19 +28,18 @@ class SearchViewModel: ViewModel {
     }
     
     let sections = BehaviorRelay<[SectionViewModel]>(value: [])
-    
     let subliminalRelay = BehaviorRelay<[Subliminal]>(value: [])
     let playlistRelay = BehaviorRelay<[Playlist]>(value: [])
-    private let networkService: NetworkService
     private let searchRelay = BehaviorRelay<String>(value: "")
+    private let networkService: NetworkService
     
     init(sharedDependencies: SearchViewModel.Dependencies = .standard) {
         networkService = sharedDependencies.networkService
         super.init()
         Observable.combineLatest(subliminalRelay, playlistRelay)
             .map({ subliminals, playlists in
-                let subliminalCells: [SearchViewModel.CellModel]  = subliminals.map { SearchViewModel.CellModel(id: $0.subliminalID, title: $0.title, imageUrl: .init(string: $0.cover )) }
-                let playlistCell: [SearchViewModel.CellModel] = playlists.map { SearchViewModel.CellModel(id: $0.playlistID, title: $0.title, imageUrl: .init(string: $0.cover )) }
+                let subliminalCells: [CategoryCell.Model]  = subliminals.map { CategoryCell.Model(id: $0.subliminalID, title: $0.title, imageUrl: .init(string: $0.cover )) }
+                let playlistCell: [CategoryCell.Model] = playlists.map { CategoryCell.Model(id: $0.playlistID, title: $0.title, imageUrl: .init(string: $0.cover )) }
                 return (subliminalCells, playlistCell)
             })
             .subscribe { [weak self] (subliminals, playlist) in
@@ -105,13 +104,6 @@ class SearchViewModel: ViewModel {
 }
 
 extension SearchViewModel {
-            
-    struct CellModel: ItemModel {
-        var id: String
-        var title: String
-        var imageUrl: URL?
-    }
-
     
     struct Dependencies {
         let store: Store

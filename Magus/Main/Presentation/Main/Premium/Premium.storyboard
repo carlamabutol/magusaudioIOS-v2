@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -21,11 +21,11 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashSunHeader" translatesAutoresizingMaskIntoConstraints="NO" id="DN6-Po-62B">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="170.33333333333334"/>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hwO-Qr-HNP">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hwO-Qr-HNP">
                                 <rect key="frame" x="0.0" y="170.33333333333331" width="393" height="647.66666666666674"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNH-jp-ed5">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="647.66666666666663"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZNH-jp-ed5">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="491"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGm-aa-ghG">
                                                 <rect key="frame" x="20" y="0.0" width="353" height="20.333333333333332"/>
@@ -123,19 +123,13 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qFZ-P6-d0n">
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qFZ-P6-d0n">
                                                 <rect key="frame" x="20" y="306" width="353" height="80"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="saT-rQ-ESU" customClass="PlanView" customModule="Magus" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="80"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                    </view>
-                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="80" id="7QE-IJ-rFk"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="n6H-79-hYp"/>
                                                 </constraints>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRP-tw-dmf">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRP-tw-dmf">
                                                 <rect key="frame" x="20" y="406" width="353" height="65"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="65" id="OKS-3u-8m1"/>
@@ -163,13 +157,12 @@
                                             <constraint firstAttribute="trailing" secondItem="fGB-OY-9un" secondAttribute="trailing" id="jjK-4i-Z3R"/>
                                             <constraint firstItem="A46-FA-mAd" firstAttribute="leading" secondItem="ZNH-jp-ed5" secondAttribute="leading" constant="20" id="qq1-o3-RBr"/>
                                             <constraint firstItem="bGm-aa-ghG" firstAttribute="top" secondItem="ZNH-jp-ed5" secondAttribute="top" id="raZ-yN-0tV"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ZRP-tw-dmf" secondAttribute="bottom" constant="20" id="u19-2d-jdP"/>
+                                            <constraint firstAttribute="bottom" secondItem="ZRP-tw-dmf" secondAttribute="bottom" priority="999" constant="20" id="u19-2d-jdP"/>
                                             <constraint firstItem="qFZ-P6-d0n" firstAttribute="top" secondItem="A46-FA-mAd" secondAttribute="bottom" constant="20" id="zhq-iU-QRo"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="ZNH-jp-ed5" firstAttribute="centerY" secondItem="hwO-Qr-HNP" secondAttribute="centerY" id="AQI-Hh-AiY"/>
                                     <constraint firstItem="ZNH-jp-ed5" firstAttribute="centerX" secondItem="hwO-Qr-HNP" secondAttribute="centerX" id="e9W-fG-kjm"/>
                                     <constraint firstItem="ZNH-jp-ed5" firstAttribute="top" secondItem="hwO-Qr-HNP" secondAttribute="top" id="gyz-NN-r18"/>
                                     <constraint firstAttribute="trailing" secondItem="ZNH-jp-ed5" secondAttribute="trailing" id="kFf-nt-lry"/>
@@ -196,7 +189,9 @@
                         <outlet property="chooseYourPlanLabel" destination="A46-FA-mAd" id="ibg-Ha-Sqx"/>
                         <outlet property="collectionView" destination="fGB-OY-9un" id="EjL-xs-FW6"/>
                         <outlet property="continueButton" destination="ZRP-tw-dmf" id="8kF-hn-wAw"/>
+                        <outlet property="planStackHeightConstraint" destination="n6H-79-hYp" id="geo-w1-MOQ"/>
                         <outlet property="planStackView" destination="qFZ-P6-d0n" id="Azn-Ed-apw"/>
+                        <outlet property="scrollView" destination="hwO-Qr-HNP" id="PCT-Sk-Ekd"/>
                         <outlet property="subTitleLabel" destination="aIz-oa-Mbm" id="mG8-au-DgE"/>
                         <outlet property="titleLabel" destination="bGm-aa-ghG" id="1hg-h0-zHF"/>
                     </connections>

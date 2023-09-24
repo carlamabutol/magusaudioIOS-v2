@@ -13,17 +13,19 @@ import RxDataSources
 class PlaylistViewModel: ViewModel {
     
     private let store: Store
+    private let playlistUseCase: PlaylistUseCase
     
     private var playlist: Playlist?
     private let playlistRelay = BehaviorRelay<Playlist?>(value: nil)
     var playlistObservable: Observable<Playlist> { playlistRelay.compactMap { $0 }.asObservable() }
     
-    private let subliminalCellModelRelay = BehaviorRelay<[SublimincalCellModel]>(value: [])
-    var subliminalCellModelObservable: Observable<[SublimincalCellModel]> { subliminalCellModelRelay.asObservable() }
+    private let subliminalCellModelRelay = BehaviorRelay<[SubliminalCollectionViewCell.SubliminalCellModel]>(value: [])
+    var subliminalCellModelObservable: Observable<[SubliminalCollectionViewCell.SubliminalCellModel]> { subliminalCellModelRelay.asObservable() }
     private let updatedSubliminalRelay = PublishRelay<Subliminal>()
     
     init(dependencies: PlaylistViewModel.Dependencies = .standard) {
         store = dependencies.store
+        playlistUseCase = dependencies.playlistUseCase
         super.init()
         
         let subliminalsObservable = updatedSubliminalRelay.asObservable()
@@ -54,9 +56,9 @@ class PlaylistViewModel: ViewModel {
             .disposed(by: disposeBag)
     }
     
-    private func setupSubliminalCellModels(subliminals: [Subliminal]) -> [SublimincalCellModel] {
+    private func setupSubliminalCellModels(subliminals: [Subliminal]) -> [SubliminalCollectionViewCell.SubliminalCellModel] {
         subliminals.map { [weak self] subliminal in
-            SublimincalCellModel(
+            SubliminalCollectionViewCell.SubliminalCellModel(
                 id: subliminal.subliminalID,
                 title: subliminal.title,
                 imageUrl: URL(string: subliminal.cover),
@@ -80,6 +82,41 @@ class PlaylistViewModel: ViewModel {
         updatedSubliminalRelay.accept(updatedSubliminal)
     }
     
+    func updatePlaylistFavorite() {
+        print("abc 123")
+        guard var playlist = playlist else { return }
+        playlist.isLiked = playlist.isLiked == 0 ? 1 : 0
+        if playlist.isLiked == 1 {
+            addToFavorite(id: playlist.playlistID)
+        } else {
+            removeToFavorite(id: playlist.playlistID)
+        }
+        self.playlist?.isLiked = playlist.isLiked
+        playlistRelay.accept(playlist)
+    }
+    
+    private func addToFavorite(id: String) {
+        Task {
+            do {
+                _ = try await playlistUseCase.addToFavorite(id: id)
+                Logger.info("Successfully added to favorite", topic: .presentation)
+            } catch {
+                Logger.info("Failed to update favorite \(error)", topic: .presentation)
+            }
+        }
+    }
+    
+    private func removeToFavorite(id: String) {
+        Task {
+            do {
+                _ = try await playlistUseCase.deleteToFavorite(id: id)
+                Logger.info("Successfully removed from favorite", topic: .presentation)
+            } catch {
+                Logger.info("Failed to update favorite \(error)", topic: .presentation)
+            }
+        }
+    }
+    
     func selectedSubliminal(_ indexPath: IndexPath) {
         let subliminal = playlist?.subliminals[indexPath.row]
         store.appState.selectedSubliminal = subliminal
@@ -97,17 +134,13 @@ extension PlaylistViewModel {
     struct Dependencies {
         let store: Store
         let user: () -> User?
-        let router: Router
-        let networkService: NetworkService
-        let authenticationUseCase: AuthenticationUseCase
+        let playlistUseCase: PlaylistUseCase
         
         static var standard: Dependencies {
             return .init(
                 store: SharedDependencies.sharedDependencies.store,
                 user: { SharedDependencies.sharedDependencies.store.appState.user },
-                router: SharedDependencies.sharedDependencies.router,
-                networkService: SharedDependencies.sharedDependencies.networkService,
-                authenticationUseCase: SharedDependencies.sharedDependencies.useCases.authenticationUseCase
+                playlistUseCase: SharedDependencies.sharedDependencies.useCases.playlistUseCase
             )
         }
     }

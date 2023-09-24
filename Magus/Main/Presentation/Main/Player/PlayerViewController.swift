@@ -146,7 +146,9 @@ class PlayerViewController: CommonViewController {
             .disposed(by: disposeBag)
         
         audioPlayerViewModel.playerStatusObservable
-            .map { $0 == .isPlaying || $0 == .isPaused || $0 == .isReadyToPlay }
+            .map {
+                $0 == .isPlaying || $0 == .isPaused || $0 == .isReadyToPlay
+            }
             .bind(
                 to: playPauseButton.rx.isEnabled,
                   nextButton.rx.isEnabled,

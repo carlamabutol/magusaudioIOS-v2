@@ -12,7 +12,7 @@ import RxCocoa
 class PremiumViewModel {
     
     let premiumFeatures = BehaviorRelay(value: PremiumViewModel.PremiumFeatures.sample)
-    let premiumFeature = BehaviorRelay<[PremiumPlan]>(value: [])
+    let planRelay = BehaviorRelay<[PremiumPlan]>(value: [])
     
     private let networkService: NetworkService
     
@@ -28,10 +28,16 @@ class PremiumViewModel {
                 switch response {
                 case .success(let array):
                     guard let premium = array.first(where: { $0.name == "Premium" }) else { return}
-                    
-                    premiumFeature.accept([.init(premiumId: premium.id, premiumType: .monthly, amount: Float(premium.amount), isSelected: false),
-                                           .init(premiumId: premium.id, premiumType: .yearly, amount: Float(premium.amount), isSelected: false)])
-                    debugPrint("getSubscriptions - \(premiumFeature.value)")
+                    let subscriptions: [PremiumPlan] = [
+                        .init(premiumId: premium.id, premiumType: .monthly, amount: Float(premium.amount), isSelected: false, tapHandler: {
+                            
+                        }),
+                        .init(premiumId: premium.id, premiumType: .yearly, amount: Float(premium.amountYear), isSelected: false, tapHandler: {
+                            
+                        })
+                    ]
+                    planRelay.accept(subscriptions)
+                    debugPrint("getSubscriptions - \(planRelay.value)")
                 case .error(let errorResponse):
                     debugPrint("RESPONSE ERROR - \(errorResponse.message)")
                 }
@@ -46,9 +52,18 @@ class PremiumViewModel {
 
 extension PremiumViewModel {
     
-    enum PremiumType {
-        case monthly
-        case yearly
+    enum PremiumType: String {
+        case monthly = "Monthly"
+        case yearly = "Yearly"
+        
+        var coverImage: String {
+            switch self {
+            case .monthly:
+                return "premiumFeature1"
+            case .yearly:
+                return "premiumFeature2"
+            }
+        }
     }
     
     struct PremiumFeatures {
@@ -61,6 +76,7 @@ extension PremiumViewModel {
         let premiumType: PremiumType
         let amount: Float
         var isSelected: Bool
+        var tapHandler: () -> Void
     }
     
 }

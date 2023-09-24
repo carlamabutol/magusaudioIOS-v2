@@ -134,7 +134,7 @@ class ProfileViewController: CommonViewController {
             tabButtons.append(button)
             tabStackView.addArrangedSubview(button)
         }
-        let x = tabStackView.frame.width / 3
+        let x = tabStackView.frame.width / CGFloat(viewModel.tabSelections.count)
         scrollViewContentView.addSubview(tabSelectedIndicatorView)
         centerXLayoutConstraint = tabSelectedIndicatorView.centerXAnchor.constraint(equalTo: tabButtons[0].centerXAnchor)
         centerXLayoutConstraint.isActive = true

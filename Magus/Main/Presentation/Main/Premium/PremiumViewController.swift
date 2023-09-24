@@ -6,11 +6,17 @@
 //
 
 import UIKit
+import RxSwift
 
 class PremiumViewController: CommonViewController {
     
     let viewModel = PremiumViewModel()
     
+    @IBOutlet var scrollView: UIScrollView! {
+        didSet {
+            scrollView.backgroundColor = .clear
+        }
+    }
     @IBOutlet var titleLabel: UILabel! {
         didSet {
             titleLabel.text = LocalizedStrings.Premium.title
@@ -54,6 +60,8 @@ class PremiumViewController: CommonViewController {
         }
     }
     
+    @IBOutlet var planStackHeightConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,8 +72,38 @@ class PremiumViewController: CommonViewController {
         viewModel.premiumFeatures.bind(to: collectionView.rx.items(cellIdentifier: PremiumFeatureCell.reuseId, cellType: PremiumFeatureCell.self)) { (row,item,cell) in
             cell.configure(item: item)
         }.disposed(by: disposeBag)
+        
+        viewModel.planRelay.asObservable()
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] plans in
+                self?.setupPlanStackView(plans: plans)
+            })
+            .disposed(by: disposeBag)
     }
     
+    private func setupPlanStackView(plans: [PremiumViewModel.PremiumPlan]) {
+        planStackView.arrangedSubviews.forEach {
+            planStackView.removeArrangedSubview($0)
+        }
+        for plan in plans {
+            let view = UIView()
+            view.translatesAutoresizingMaskIntoConstraints = false
+            view.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
+            view.heightAnchor.constraint(equalToConstant: 80).isActive = true
+            let planView = PlanView()
+            planView.translatesAutoresizingMaskIntoConstraints = false
+            planView.configure(model: plan)
+            view.addSubview(planView)
+            NSLayoutConstraint.activate([
+                planView.topAnchor.constraint(equalTo: view.topAnchor),
+                planView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                planView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                planView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            ])
+            planStackView.addArrangedSubview(view)
+        }
+        view.layoutIfNeeded()
+    }
 }
 
 extension PremiumViewController: UICollectionViewDelegateFlowLayout {

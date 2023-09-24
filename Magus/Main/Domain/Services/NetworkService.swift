@@ -16,8 +16,10 @@ protocol NetworkService {
     func updateSelectedMoods(userId: String, moodId: Int) async throws -> EmptyResponse
     func getCategorySubliminal() async throws -> JSONAPIArrayResponse<CategorySubliminalElement>
     func getFeaturedPlaylists() async throws -> JSONAPIDictionaryResponse<FeaturedPlaylistResponse>
+    func getAllFavoritePlaylist() async throws -> JSONAPIArrayResponse<SearchPlaylistResponse>
     func getRecommendations() async throws -> JSONAPIDictionaryResponse<RecommendationResponse>
     func getSubliminals() async throws -> JSONAPIDictionaryResponse<SubliminalArrayResponse>
+    func getAllFavoriteSubliminals() async throws -> JSONAPIArrayResponse<SubliminalResponse>
     func getSubscriptions() async throws -> JSONAPIArrayResponse<SubscriptionResponse>
     func searchSubliminalAndPlaylist(search: String) async throws -> JSONAPIDictionaryResponse<SearchPlaylistAndSubliminalResponse>
     func updateUserSettings(firstName: String, lastName: String) async throws -> JSONAPIArrayResponse<UserResponse>

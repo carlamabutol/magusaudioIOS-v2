@@ -5,9 +5,193 @@
 //  Created by Jomz on 9/20/23.
 //
 
-import Foundation
+import UIKit
 import RxSwift
+import RxRelay
 
 class ProfileFavoritesViewController: CommonViewController {
+    
+    private let viewModel = ProfileFavoritesViewModel()
+    @IBOutlet var backButton: UIButton!
+    @IBOutlet var gradientView: UIView!
+    
+    @IBOutlet var coverImageView: UIImageView! {
+        didSet {
+            coverImageView.contentMode = .scaleAspectFill
+        }
+    }
+    @IBOutlet var titleLabel: UILabel! {
+        didSet {
+            titleLabel.font = .Montserrat.title3
+            titleLabel.numberOfLines = 2
+        }
+    }
+    @IBOutlet var repeatButton: UIButton! {
+        didSet {
+            repeatButton.imageView?.contentMode = .scaleAspectFit
+        }
+    }
+    
+    @IBOutlet var playButton: UIButton! {
+        didSet {
+            playButton.imageView?.contentMode = .scaleAspectFit
+        }
+    }
+    
+    @IBOutlet var tabSelectionView: TabSelectionView!
+    
+    @IBOutlet var pageView: UIView!
+    var viewControllers: [UIViewController]!
+    var pageViewController: UIPageViewController!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setTextWithShadow(text: "Favorites")
+        tabSelectionView.delegate = self
+        tabSelectionView.configure(tabSelections: viewModel.tabSelectionModel)
+        viewModel.getAllPlaylistFavorites()
+        viewModel.getAllSubliminalFavorites()
+        setupGradientView(view: gradientView)
+        setupPageController()
+    }
+    
+    override func setupBinding() {
+        super.setupBinding()
+        
+        backButton.rx.tap
+            .subscribe { [weak self] _ in self?.popViewController() }
+            .disposed(by: disposeBag)
+        
+        viewModel.firstSubliminalObservable
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe (onNext: { [weak self] subliminal in
+                self?.configure(subliminal: subliminal)
+            })
+            .disposed(by: disposeBag)
+        
+    }
+    
+    private func configure(subliminal: Subliminal) {
+        coverImageView.sd_setImage(with: .init(string: subliminal.cover))
+    }
+    
+    private func setupPageController() {
+        pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        pageViewController.delegate = self
+        
+        viewControllers = createOrderedViewControllers(from: viewModel.tabSelectionModel)
+        
+        pageViewController.setViewControllers([viewControllerAtIndex(0)!], direction: .forward, animated: true, completion: nil)
+        pageViewController.dataSource = self
+        
+        addChild(pageViewController)
+        pageView.addSubview(pageViewController.view)
+        pageViewController!.view.frame = pageView.bounds
+        pageViewController.didMove(toParent: self)
+        // Add the page view controller's gesture recognizers to the view controller's view so that the gestures are started more easily.
+        pageView.gestureRecognizers = pageViewController.gestureRecognizers
+    }
+    
+    private func setTextWithShadow(text: String) {
+        let myShadow = NSShadow()
+        myShadow.shadowBlurRadius = 3
+        myShadow.shadowOffset = CGSize(width: 3, height: 3)
+        myShadow.shadowColor = UIColor.gray
+        let myAttribute = [NSAttributedString.Key.shadow: myShadow,
+                           NSAttributedString.Key.font: UIFont.Montserrat.title3,
+                           NSAttributedString.Key.foregroundColor: UIColor.white]
+        let myAttrString = NSAttributedString(string: text, attributes: myAttribute)
+        titleLabel.attributedText = myAttrString
+    }
+}
+
+extension ProfileFavoritesViewController {
+    
+    private func createOrderedViewControllers(from tabItems: [TabSelectionView.TabSelectionModel]) -> [UIViewController] {
+        return tabItems
+            .sorted(by: { $0.index < $1.index })
+            .map({ createPageViewController(tabItem: $0) })
+        
+    }
+    
+    private func createPageViewController(tabItem: TabSelectionView.TabSelectionModel) -> UIViewController {
+        let viewController: UIViewController
+        switch tabItem.index {
+        case 0:
+            let vc = SubliminalCollectionViewController()
+            vc.favoritesViewModel = viewModel
+            viewController = vc
+        case 1:
+            let vc = PlaylistCollectionViewController()
+            vc.favoritesViewModel = viewModel
+            viewController = vc
+        default:
+            viewController = UIViewController()
+        }
+        
+        return viewController
+    }
+}
+
+// MARK: - ProfileFavoritesViewController DataSource and Delegate
+extension ProfileFavoritesViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        var index = indexOfViewController(viewController)
+        
+        if (index == 0) || (index == NSNotFound) {
+            return nil
+        }
+        
+        index -= 1
+        return viewControllerAtIndex(index)
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        var index = indexOfViewController(viewController)
+        
+        if index == NSNotFound {
+            return nil
+        }
+        
+        index += 1
+        if index == viewControllers.count {
+            return nil
+        }
+        return viewControllerAtIndex(index)
+    }
+    
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        return 0
+    }
+    
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        return 0
+    }
+}
+
+// MARK: - Helpers
+extension ProfileFavoritesViewController {
+    
+    fileprivate func viewControllerAtIndex(_ index: Int) -> UIViewController? {
+        if viewControllers.count == 0 || index >= viewControllers.count {
+            return nil
+        }
+        return viewControllers[index]
+    }
+    
+    fileprivate func indexOfViewController(_ viewController: UIViewController) -> Int {
+        return viewControllers.index(of: viewController) ?? NSNotFound
+    }
+    
+}
+
+
+extension ProfileFavoritesViewController: TabSelectionDelegate {
+    
+    func selectedTabIndex(_ selectedIndex: Int) {
+        pageViewController.setViewControllers([viewControllerAtIndex(selectedIndex)!], direction: selectedIndex == 0 ? .reverse : .forward, animated: true, completion: nil)
+    }
     
 }

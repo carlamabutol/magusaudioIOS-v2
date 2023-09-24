@@ -37,6 +37,7 @@ class AudioPlayerViewModel: ViewModel {
         super.init()
         audioPlayerManager.activePlayerObservable
             .subscribe { [weak self] player in
+                self?.playerStatusRelay.accept(.isReadyToPlay)
                 self?.playBackSubscriber(audioPlayer: player)
             }.disposed(by: disposeBag)
         
@@ -58,8 +59,6 @@ class AudioPlayerViewModel: ViewModel {
             }
             .bind(to: timeRelay)
             .disposed(by: playerDisposeBag)
-        
-        playerStatusRelay.accept(.isReadyToPlay)
     }
     
     public func createArrayAudioPlayer(with subliminal: Subliminal) {
@@ -127,10 +126,10 @@ class AudioPlayerViewModel: ViewModel {
                 var subliminal = selectedSubliminal
                 subliminal.isLiked = subliminal.isLiked == 0 ? 1 : 0
                 if selectedSubliminal.isLiked == 0 {
-                    let response = try await subliminalUseCase.addToFavorite(id: selectedSubliminal.subliminalID)
+                    let _ = try await subliminalUseCase.addToFavorite(id: selectedSubliminal.subliminalID)
                     Logger.info("Successfully added to favorite", topic: .presentation)
                 } else {
-                    let response = try await subliminalUseCase.deleteToFavorite(id: selectedSubliminal.subliminalID)
+                    let _ = try await subliminalUseCase.deleteToFavorite(id: selectedSubliminal.subliminalID)
                     Logger.info("Successfully removed from favorite", topic: .presentation)
                 }
                 self.selectedSubliminal = subliminal

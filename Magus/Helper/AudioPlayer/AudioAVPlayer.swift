@@ -46,7 +46,7 @@ class AudioPlayerManager {
             print("cannot activate session")
         }
 
-        progressObserver = session.observe(\.outputVolume) { [weak self] (session, value) in
+        progressObserver = session.observe(\.outputVolume) { (session, value) in
             print(session.outputVolume)
         }
     }
@@ -79,7 +79,7 @@ class AudioPlayerManager {
         currentTracks = 0
         for audio in subliminal.info {
             guard let url = URL(string: audio.link ?? "") else {
-                Logger.info("Incorrect URL \(audio.link)", topic: .presentation)
+                Logger.info("Incorrect URL \(String(describing: audio.link))", topic: .presentation)
                 continue
             }
             createAudioPlayer(with: audio, url: url, isPlaying: isPlaying)

@@ -1,15 +1,15 @@
 //
-//  SubliminalCollectionViewCell.swift
+//  FavoriteSubliminalCollectionViewCell.swift
 //  Magus
 //
-//  Created by Jomz on 9/10/23.
+//  Created by Jose Mari Pascual on 9/23/23.
 //
 
 import UIKit
-import SDWebImage
 import RxSwift
 
-class SubliminalCollectionViewCell: UICollectionViewCell {
+class FavoriteSubliminalCollectionViewCell: UICollectionViewCell {
+    static let identifier = "FavoriteSubliminalCollectionViewCell"
     
     let disposeBag = DisposeBag()
     
@@ -27,6 +27,7 @@ class SubliminalCollectionViewCell: UICollectionViewCell {
     @IBOutlet var titleLabel: UILabel! {
         didSet {
             titleLabel.font = .Montserrat.bold15
+            titleLabel.numberOfLines = 2
         }
     }
     
@@ -47,11 +48,9 @@ class SubliminalCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    static let cellIdentifier = "SubliminalCollectionViewCell"
-    
     var favoriteButtonHandler: CompletionHandler?
     
-    func configure(item: SubliminalCellModel) {
+    func configure(item: SubliminalCollectionViewCell.SubliminalCellModel) {
         coverImageView.sd_setImage(with: item.imageUrl)
         titleLabel.text = item.title
         durationLabel.text = item.duration
@@ -68,19 +67,5 @@ class SubliminalCollectionViewCell: UICollectionViewCell {
     
     @objc private func favoriteButtonIsTapped() {
         favoriteButtonHandler?()
-    }
-    
-}
-
-extension SubliminalCollectionViewCell {
-    
-    struct SubliminalCellModel: ItemModel {
-        
-        var id: String
-        var title: String
-        var imageUrl: URL?
-        let duration: String
-        let isFavorite: Bool
-        var favoriteButtonHandler: () -> Void
     }
 }

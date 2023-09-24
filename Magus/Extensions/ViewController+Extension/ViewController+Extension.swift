@@ -47,4 +47,23 @@ extension UIViewController {
         return (topPadding, bottomPadding)
     }
     
+    func setupGradientView(view: UIView) {
+        let gradientLayer = CAGradientLayer()
+        // Set the colors and locations for the gradient layer
+        gradientLayer.colors = [UIColor.white.withAlphaComponent(0.0).cgColor, UIColor.Background.primary.cgColor]
+        gradientLayer.startPoint = .init(x: 1.0, y: 0.1)
+        gradientLayer.endPoint = .init(x: 1.0, y: 0.2)
+        
+        // Set the frame to the layer
+        gradientLayer.frame = view.bounds
+        view.backgroundColor = .clear
+        // Add the gradient layer as a sublayer to the background view
+        view.layer.insertSublayer(gradientLayer, at: 0)
+        view.applyShadow(color: UIColor.white.withAlphaComponent(0.5), shadowOpacity: 0.2)
+    }
+    
+    func popViewController() {
+        navigationController?.popViewController(animated: true)
+    }
+    
 }

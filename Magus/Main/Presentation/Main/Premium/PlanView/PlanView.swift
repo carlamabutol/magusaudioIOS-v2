@@ -17,7 +17,6 @@ class PlanView: ReusableXibView {
     
     @IBOutlet var containerView: UIView! {
         didSet {
-            containerView.backgroundColor = .Background.primary
             containerView.cornerRadius(with: 5)
         }
     }
@@ -27,6 +26,8 @@ class PlanView: ReusableXibView {
         didSet {
             checkContainerView.backgroundColor = .white
             checkContainerView.circle()
+            checkContainerView.applyShadow(shadowOpacity: 0.2, offset: .init(width: 2, height: 2))
+            checkContainerView.layer.shouldRasterize = false
         }
     }
     
@@ -39,6 +40,15 @@ class PlanView: ReusableXibView {
         didSet {
             amountLabel.font = .Montserrat.body1
         }
+    }
+    @IBOutlet var checkIndicator: UIImageView!
+    
+    func configure(model: PremiumViewModel.PremiumPlan) {
+        titleLabel.text = model.premiumType.rawValue
+//        coverImageView.image = UIImage(named: model.premiumType.coverImage)
+        amountLabel.text = model.amount.commaRepresentation + "PHP"
+        containerView.backgroundColor = model.isSelected ? .Background.primary : .clear
+        checkIndicator.isHidden = !model.isSelected
     }
     
     

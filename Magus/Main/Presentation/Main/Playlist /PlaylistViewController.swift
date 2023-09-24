@@ -78,21 +78,8 @@ class PlaylistViewController: CommonViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupBinding()
         setupDataSource()
-        let gradientLayer = CAGradientLayer()
-        // Set the colors and locations for the gradient layer
-        gradientLayer.colors = [UIColor.white.withAlphaComponent(0.0).cgColor, UIColor.Background.primary.cgColor]
-        gradientLayer.startPoint = .init(x: 1.0, y: 0.1)
-        gradientLayer.endPoint = .init(x: 1.0, y: 0.2)
-        
-        // Set the frame to the layer
-        gradientLayer.frame = gradientView.bounds
-        gradientView.backgroundColor = .clear
-        print("FRAME - \(gradientView.frame) - \(view.frame))")
-        // Add the gradient layer as a sublayer to the background view
-        gradientView.layer.insertSublayer(gradientLayer, at: 0)
-        gradientView.applyShadow(color: UIColor.white.withAlphaComponent(0.5), shadowOpacity: 0.2)
+        setupGradientView(view: gradientView)
     }
     
     fileprivate func setupCollapsedPlayerView() {
@@ -127,12 +114,18 @@ class PlaylistViewController: CommonViewController {
             .disposed(by: disposeBag)
         
         backButton.rx.tap
-            .subscribe { [weak self] _ in self?.goBack() }
+            .subscribe { [weak self] _ in self?.popViewController() }
             .disposed(by: disposeBag)
         
         controlButton.rx.tap
             .subscribe { [weak self] _ in
                 self?.viewModel.playPlaylist()
+            }
+            .disposed(by: disposeBag)
+        
+        favoriteButton.rx.tap
+            .subscribe { [weak self] _ in
+                self?.viewModel.updatePlaylistFavorite()
             }
             .disposed(by: disposeBag)
         
@@ -194,10 +187,6 @@ class PlaylistViewController: CommonViewController {
                            NSAttributedString.Key.foregroundColor: UIColor.white]
         let myAttrString = NSAttributedString(string: text, attributes: myAttribute)
         playlistTitle.attributedText = myAttrString
-    }
-    
-    private func goBack() {
-        navigationController?.popViewController(animated: true)
     }
 }
 

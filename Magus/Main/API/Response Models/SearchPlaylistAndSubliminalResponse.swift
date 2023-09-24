@@ -16,7 +16,8 @@ struct SearchPlaylistAndSubliminalResponse: EndpointResponse {
 }
 
 
-struct SearchPlaylistResponse: Decodable {
+struct SearchPlaylistResponse: EndpointResponse {
+    typealias ErrorResponse = SearchPlaylistAndSubliminalErrorResponse
     
     let id: Int
     let title: String

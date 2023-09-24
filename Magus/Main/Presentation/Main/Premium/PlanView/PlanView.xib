@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,9 +11,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlanView" customModule="Magus" customModuleProvider="target">
             <connections>
                 <outlet property="amountLabel" destination="is1-ve-NtW" id="UeS-ga-Ymu"/>
-                <outlet property="checkContainerView" destination="Mrn-ni-bhY" id="eLR-eL-4vW"/>
+                <outlet property="checkContainerView" destination="Y0z-Qx-6eS" id="Xvh-Mi-6Et"/>
+                <outlet property="checkIndicator" destination="xPB-Kn-3a4" id="dDP-tW-uFg"/>
                 <outlet property="containerView" destination="rAc-MS-KZr" id="NWC-p4-oG5"/>
-                <outlet property="coverImageView" destination="qlU-tf-7fN" id="dty-kR-mHJ"/>
+                <outlet property="coverImageView" destination="cyv-V0-jqK" id="nGH-yB-NNQ"/>
                 <outlet property="stackView" destination="rAc-MS-KZr" id="jKE-Bx-upA"/>
                 <outlet property="titleLabel" destination="vSs-el-fcd" id="7Gc-fd-WDR"/>
             </connections>
@@ -22,9 +23,8 @@
         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wD6-Qs-ch2">
             <rect key="frame" x="0.0" y="0.0" width="342" height="80"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="premiumBackground" id="qlU-tf-7fN">
-                    <rect key="frame" x="175" y="0.0" width="167" height="80"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cyv-V0-jqK">
+                    <rect key="frame" x="188" y="0.0" width="154" height="80"/>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="rAc-MS-KZr">
                     <rect key="frame" x="0.0" y="0.0" width="342" height="80"/>
@@ -79,8 +79,12 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="rAc-MS-KZr" secondAttribute="trailing" id="2bd-Zq-h68"/>
                 <constraint firstAttribute="height" constant="80" id="4Mz-KZ-MjD"/>
+                <constraint firstAttribute="trailing" secondItem="cyv-V0-jqK" secondAttribute="trailing" id="BVA-u8-vmB"/>
+                <constraint firstItem="cyv-V0-jqK" firstAttribute="top" secondItem="wD6-Qs-ch2" secondAttribute="top" id="CEr-Vo-uMW"/>
                 <constraint firstItem="rAc-MS-KZr" firstAttribute="leading" secondItem="wD6-Qs-ch2" secondAttribute="leading" id="MKm-40-a3K"/>
                 <constraint firstAttribute="bottom" secondItem="rAc-MS-KZr" secondAttribute="bottom" id="SvB-w2-3Wa"/>
+                <constraint firstItem="cyv-V0-jqK" firstAttribute="width" secondItem="wD6-Qs-ch2" secondAttribute="width" multiplier="0.45" id="WBN-Ds-6Vz"/>
+                <constraint firstAttribute="bottom" secondItem="cyv-V0-jqK" secondAttribute="bottom" id="Z9A-HS-XTq"/>
                 <constraint firstItem="rAc-MS-KZr" firstAttribute="leading" secondItem="wD6-Qs-ch2" secondAttribute="leading" id="ba2-U8-xhB"/>
                 <constraint firstAttribute="top" secondItem="rAc-MS-KZr" secondAttribute="top" id="brV-jf-W2H"/>
                 <constraint firstAttribute="bottom" secondItem="rAc-MS-KZr" secondAttribute="bottom" id="mLB-mb-rts"/>
@@ -93,7 +97,6 @@
     </objects>
     <resources>
         <image name="PremiumPlanCheck" width="17" height="15"/>
-        <image name="premiumBackground" width="151" height="84"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
