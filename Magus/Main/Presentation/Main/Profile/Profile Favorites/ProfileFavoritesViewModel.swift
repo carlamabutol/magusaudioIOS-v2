@@ -17,11 +17,13 @@ class ProfileFavoritesViewModel: ViewModel {
     private let subliminalsRelay = BehaviorRelay<[Subliminal]>(value: [])
     private let playlistRelay = BehaviorRelay<[Playlist]>(value: [])
     private let firstSubliminalRelay = PublishRelay<Subliminal>()
+    private let selectedPlaylistRelay = PublishRelay<Playlist>()
     private let subliminalCellModelRelay = BehaviorRelay<[SubliminalCollectionViewCell.SubliminalCellModel]>(value: [])
     var subliminalsObservable: Observable<[SubliminalCollectionViewCell.SubliminalCellModel]> { subliminalCellModelRelay.asObservable() }
     private let playlistCellModelRelay = BehaviorRelay<[SubliminalCollectionViewCell.SubliminalCellModel]>(value: [])
     var playlistObservable: Observable<[SubliminalCollectionViewCell.SubliminalCellModel]> { playlistCellModelRelay.asObservable() }
     var firstSubliminalObservable: Observable<Subliminal> { firstSubliminalRelay.asObservable() }
+    var selectedPlaylistObservable: Observable<Playlist> { selectedPlaylistRelay.asObservable() }
     
     let tabSelectionModel = [
         TabSelectionView.TabSelectionModel(index: 0, title: "Subs"),
@@ -52,6 +54,11 @@ class ProfileFavoritesViewModel: ViewModel {
     func selectedSubliminal(_ indexPath: IndexPath) {
         let subliminal = subliminalsRelay.value[indexPath.row]
         store.appState.selectedSubliminal = subliminal
+    }
+    
+    func selectedPlaylist(for indexPath: IndexPath)  {
+        let playlist = playlistRelay.value[indexPath.row]
+        selectedPlaylistRelay.accept(playlist)
     }
     
     private func setupSubliminalCellModels(subliminals: [Subliminal]) -> [SubliminalCollectionViewCell.SubliminalCellModel] {

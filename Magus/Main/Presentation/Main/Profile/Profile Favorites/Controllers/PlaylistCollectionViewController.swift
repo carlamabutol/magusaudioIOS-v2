@@ -48,6 +48,20 @@ class PlaylistCollectionViewController: CommonViewController {
                 cell.configure(item: element)
             }
             .disposed(by: disposeBag)
+        
+        Observable
+            .zip(
+                collectionView
+                    .rx
+                    .itemSelected
+                ,collectionView
+                    .rx
+                    .modelSelected(SectionViewModel.Item.self)
+            )
+            .bind{ [unowned self] indexPath, model in
+                favoritesViewModel.selectedPlaylist(for: indexPath)
+            }
+            .disposed(by: disposeBag)
     }
     
 }

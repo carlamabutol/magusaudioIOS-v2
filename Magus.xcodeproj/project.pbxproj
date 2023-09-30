@@ -47,6 +47,8 @@
 		745B62412A66DFB500289F95 /* SearchPlaylistAndSubliminalResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745B62402A66DFB500289F95 /* SearchPlaylistAndSubliminalResponse.swift */; };
 		745FA79A2A8A383D00F068E4 /* SubliminalAudioResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745FA7992A8A383D00F068E4 /* SubliminalAudioResponse.swift */; };
 		745FA79C2A8A3F5B00F068E4 /* SubliminalUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745FA79B2A8A3F5B00F068E4 /* SubliminalUseCase.swift */; };
+		7460D3322AC5DBEF004863DE /* PlaylistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7460D3312AC5DBEF004863DE /* PlaylistCell.xib */; };
+		7460D3342AC5DC00004863DE /* PlaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7460D3332AC5DC00004863DE /* PlaylistCell.swift */; };
 		7464B6242A7E8056007A4DFD /* ChangePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7464B6232A7E8056007A4DFD /* ChangePassword.storyboard */; };
 		7464B6262A7E8069007A4DFD /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7464B6252A7E8069007A4DFD /* ChangePasswordViewController.swift */; };
 		7467C1132A388B9300DFF86D /* MoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7467C1122A388B9300DFF86D /* MoodCell.xib */; };
@@ -66,6 +68,7 @@
 		74733B9D2A30B03D002FE613 /* MoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74733B9C2A30B03D002FE613 /* MoodViewModel.swift */; };
 		7474B31A2A49B7BE00086600 /* HeaderTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7474B3192A49B7BE00086600 /* HeaderTitleView.swift */; };
 		7474B31C2A49BD5D00086600 /* HomeCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7474B31B2A49BD5D00086600 /* HomeCustomCell.swift */; };
+		7477E46E2AC5DF7B00CE5979 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7477E46D2AC5DF7B00CE5979 /* UILabel+Extension.swift */; };
 		7480EDFA2A7CF01B000206B1 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7480EDF92A7CF01B000206B1 /* Calendar.storyboard */; };
 		7480EDFC2A7CF02E000206B1 /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7480EDFB2A7CF02E000206B1 /* MonthlyView.swift */; };
 		7480EDFE2A7D0411000206B1 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7480EDFD2A7D0411000206B1 /* CalendarViewController.swift */; };
@@ -317,6 +320,8 @@
 		745B62402A66DFB500289F95 /* SearchPlaylistAndSubliminalResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaylistAndSubliminalResponse.swift; sourceTree = "<group>"; };
 		745FA7992A8A383D00F068E4 /* SubliminalAudioResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubliminalAudioResponse.swift; sourceTree = "<group>"; };
 		745FA79B2A8A3F5B00F068E4 /* SubliminalUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubliminalUseCase.swift; sourceTree = "<group>"; };
+		7460D3312AC5DBEF004863DE /* PlaylistCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaylistCell.xib; sourceTree = "<group>"; };
+		7460D3332AC5DC00004863DE /* PlaylistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCell.swift; sourceTree = "<group>"; };
 		7464B6232A7E8056007A4DFD /* ChangePassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChangePassword.storyboard; sourceTree = "<group>"; };
 		7464B6252A7E8069007A4DFD /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		7467C1122A388B9300DFF86D /* MoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoodCell.xib; sourceTree = "<group>"; };
@@ -335,6 +340,7 @@
 		74733B9C2A30B03D002FE613 /* MoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewModel.swift; sourceTree = "<group>"; };
 		7474B3192A49B7BE00086600 /* HeaderTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTitleView.swift; sourceTree = "<group>"; };
 		7474B31B2A49BD5D00086600 /* HomeCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCustomCell.swift; sourceTree = "<group>"; };
+		7477E46D2AC5DF7B00CE5979 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		7480EDF92A7CF01B000206B1 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		7480EDFB2A7CF02E000206B1 /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
 		7480EDFD2A7D0411000206B1 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -674,6 +680,15 @@
 			path = "Login Alert";
 			sourceTree = "<group>";
 		};
+		7460D3302AC5DBE5004863DE /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7460D3312AC5DBEF004863DE /* PlaylistCell.xib */,
+				7460D3332AC5DC00004863DE /* PlaylistCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		7464B6212A7E8024007A4DFD /* Change Password */ = {
 			isa = PBXGroup;
 			children = (
@@ -988,6 +1003,7 @@
 		74EB5BCA2ABB1D3900C3FF0C /* Profile Playlists */ = {
 			isa = PBXGroup;
 			children = (
+				7460D3302AC5DBE5004863DE /* Cells */,
 				74EB5BCB2ABB1D4B00C3FF0C /* ProfilePlaylists.storyboard */,
 				74EB5BCD2ABB1D6400C3FF0C /* ProfilePlaylistsViewController.swift */,
 				F8BA02652ABFF8AA007C9128 /* ProfilePlaylistsViewModel.swift */,
@@ -1287,6 +1303,7 @@
 				7490026B2A7BE32E007DACDF /* Calendar+Extension.swift */,
 				749332092A9652FE00EA559B /* Int+Extension.swift */,
 				7437A0BE2AA7483300DEA0D1 /* String+extensions.swift */,
+				7477E46D2AC5DF7B00CE5979 /* UILabel+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1554,6 +1571,7 @@
 				7467C1132A388B9300DFF86D /* MoodCell.xib in Resources */,
 				F88A83072A13CEDA00D3E975 /* Montserrat-Black.ttf in Resources */,
 				74CFCCF92A82418400DF8D1C /* DefaultAlert.storyboard in Resources */,
+				7460D3322AC5DBEF004863DE /* PlaylistCell.xib in Resources */,
 				F8BA025E2ABF055D007C9128 /* FavoriteSubliminalCollectionViewCell.xib in Resources */,
 				F88A83012A13CEDA00D3E975 /* Montserrat-Bold.ttf in Resources */,
 				F8669E342A0BE604004D28A1 /* Login.storyboard in Resources */,
@@ -1651,9 +1669,11 @@
 				741CB6A32A44791000975949 /* User.swift in Sources */,
 				F8A4D4122A876495008F460F /* ProfileAlertViewController.swift in Sources */,
 				7467C1172A38AE3400DFF86D /* DefaultResponse.swift in Sources */,
+				7477E46E2AC5DF7B00CE5979 /* UILabel+Extension.swift in Sources */,
 				749002662A7BDFF8007DACDF /* WeekDay.swift in Sources */,
 				F8C40DBD2ABEEC6500A44312 /* TabSelectionView.swift in Sources */,
 				F8BA02662ABFF8AA007C9128 /* ProfilePlaylistsViewModel.swift in Sources */,
+				7460D3342AC5DC00004863DE /* PlaylistCell.swift in Sources */,
 				F8669E3B2A0BE6CE004D28A1 /* Route.swift in Sources */,
 				F86F797D2A18C3C200298581 /* TappableLabel.swift in Sources */,
 				741CB6A82A44799700975949 /* User+Init.swift in Sources */,

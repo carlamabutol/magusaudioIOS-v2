@@ -19,6 +19,20 @@ final class PlaylistUseCase {
         self.credentialsService = credentialsService
     }
     
+    func searchPlaylists(search: String) async throws -> [Playlist] {
+        do {
+            let response = try await networkService.searchSubliminalAndPlaylist(search: search)
+            switch response {
+            case .success(let response):
+                return response.playlist.map { Playlist(searchPlaylistResponse: $0) }
+            case .error(_):
+                throw NetworkServiceError.jsonDecodingError
+            }
+        } catch {
+            throw error
+        }
+    }
+    
     func getAllLikePlaylist() async throws -> [Playlist] {
         do {
             let response = try await networkService.getAllFavoritePlaylist()

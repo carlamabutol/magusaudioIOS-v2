@@ -70,6 +70,13 @@ class ProfileFavoritesViewController: CommonViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.selectedPlaylistObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe (onNext: { [weak self] playlist in
+                self?.goToPlaylist(playlist: playlist)
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     private func configure(subliminal: Subliminal) {
@@ -103,6 +110,12 @@ class ProfileFavoritesViewController: CommonViewController {
                            NSAttributedString.Key.foregroundColor: UIColor.white]
         let myAttrString = NSAttributedString(string: text, attributes: myAttribute)
         titleLabel.attributedText = myAttrString
+    }
+    
+    private func goToPlaylist(playlist: Playlist) {
+        let playlistVC = PlaylistViewController.instantiate(from: .playlist) as! PlaylistViewController
+        navigationController?.pushViewController(playlistVC, animated: true)
+        playlistVC.setPlaylist(playlist: playlist)
     }
 }
 
