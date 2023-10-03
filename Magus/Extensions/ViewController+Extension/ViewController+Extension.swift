@@ -25,6 +25,24 @@ extension UIViewController {
         present(viewController, animated: animated)
     }
     
+    @discardableResult
+    func presentLoading() -> UIViewController {
+        let alertController = UIViewController()
+        
+        // Create and add an activity indicator to the alert controller
+        let loadingIndicator = UIActivityIndicatorView(style: .large)
+        loadingIndicator.color = .gray
+        loadingIndicator.startAnimating()
+        alertController.view.addSubview(loadingIndicator)
+        
+        // Center the activity indicator
+        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        loadingIndicator.centerXAnchor.constraint(equalTo: alertController.view.centerXAnchor).isActive = true
+        loadingIndicator.centerYAnchor.constraint(equalTo: alertController.view.centerYAnchor).isActive = true
+        presentModally(alertController, animated: true)
+        return alertController
+    }
+    
     func hideKeyboardOnTap() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -49,6 +67,7 @@ extension UIViewController {
     }
     
     func setupGradientView(view: UIView) {
+        view.layoutIfNeeded()
         let gradientLayer = CAGradientLayer()
         // Set the colors and locations for the gradient layer
         gradientLayer.colors = [UIColor.white.withAlphaComponent(0.0).cgColor, UIColor.Background.primary.cgColor]

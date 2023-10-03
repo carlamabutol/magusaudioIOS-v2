@@ -36,6 +36,7 @@ class ProfilePlaylistsViewModel: ViewModel {
     private let selectedPlaylist = PublishRelay<Playlist>()
     private let editPlaylist = PublishRelay<Playlist>()
     private let loadingRelay = BehaviorRelay<Bool>(value: true)
+    let fullScreenLoadingRelay = PublishRelay<Bool>()
     var loadingObservable: Observable<Bool> { loadingRelay.asObservable() }
     var selectedPlaylistObservable: Observable<Playlist> { selectedPlaylist.asObservable()}
     var editPlaylistObservable: Observable<Playlist> { editPlaylist.asObservable()}

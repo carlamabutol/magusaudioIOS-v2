@@ -11,7 +11,7 @@ import RxSwift
 
 class AddPlaylistViewModel: ViewModel {
     private let playlistUseCase: PlaylistUseCase
-    var playlistID: String? = nil
+    var playlist: Playlist? = nil
     private let isLoadingRelay = PublishRelay<Bool>()
     private let alertRelay = PublishRelay<AlertViewModel>()
     private let backRelay = PublishRelay<Void>()
@@ -29,7 +29,7 @@ class AddPlaylistViewModel: ViewModel {
     
     func addPlaylist() {
         isLoadingRelay.accept(true)
-        if let playlistID = playlistID {
+        if let playlistID = playlist?.playlistID {
             savePlaylist(playlistID: playlistID)
             return
         }
@@ -58,14 +58,32 @@ class AddPlaylistViewModel: ViewModel {
         }
     }
     
+    func toggleFavorite() {
+        playlist?.isLiked = playlist?.isLiked == 1 ? 0 : 1
+        let isFavorite = playlist?.isLiked == 1
+        optionRelay.accept(isFavorite ? PlaylistOptionCell.activeOptions : PlaylistOptionCell.options)
+        guard let playlistID = playlist?.playlistID else { return }
+        Task {
+            do {
+                if isFavorite {
+                    _ = try await playlistUseCase.deleteToFavorite(id: playlistID)
+                } else {
+                    _ = try await playlistUseCase.addToFavorite(id: playlistID)
+                }
+            } catch MessageError.message(let message){
+                Logger.warning("Toggle Playlist Favorite \(message)", topic: .presentation)
+            }
+        }
+    }
+    
     func savePlaylist(playlistID: String) {
         Task {
             do {
-                _ = try await playlistUseCase.savePlaylist(playlistID: playlistID, title: playlistTitle.value)
+                let response = try await playlistUseCase.savePlaylist(playlistID: playlistID, title: playlistTitle.value)
                 alertRelay.accept(
                     .init(
                         title: "",
-                        message: "Updated playlist succesfully.",
+                        message: response.message,
                         actionHandler: { [weak self] in self?.backRelay.accept(())}
                     )
                 )
@@ -80,6 +98,34 @@ class AddPlaylistViewModel: ViewModel {
                 Logger.warning("Failed to add Playlist \(message)", topic: .presentation)
             }
             isLoadingRelay.accept(false)
+        }
+    }
+    
+    func deletePlaylist() {
+        guard let playlistID = playlist?.playlistID else { return }
+        isLoadingRelay.accept(true)
+        Task {
+            do {
+                let response = try await playlistUseCase.deletePlaylist(id: playlistID)
+                isLoadingRelay.accept(false)
+                alertRelay.accept(
+                    .init(
+                        title: "",
+                        message: response.message,
+                        actionHandler: { [weak self] in self?.backRelay.accept(())}
+                    )
+                )
+            } catch MessageError.message(let message){
+                isLoadingRelay.accept(false)
+                alertRelay.accept(
+                    .init(
+                        title: "",
+                        message: message,
+                        actionHandler: { }
+                    )
+                )
+                Logger.warning("Failed to add Playlist \(message)", topic: .presentation)
+            }
         }
     }
     

@@ -12,6 +12,7 @@ import RxDataSources
 class ProfilePlaylistsViewController: CommonViewController {
     
     private let viewModel = ProfilePlaylistsViewModel()
+    private var loadingVC: UIViewController?
     
     @IBOutlet var profileNavigationBar: ProfileNavigationBar! {
         didSet {
@@ -84,7 +85,7 @@ class ProfilePlaylistsViewController: CommonViewController {
         viewModel.editPlaylistObservable
             .distinctUntilChanged()
             .subscribe { [weak self] playlist in
-                self?.pushAddPlaylistVC(playlistID: playlist.playlistID)
+                self?.pushAddPlaylistVC(playlist: playlist)
             }
             .disposed(by: disposeBag)
         
@@ -100,11 +101,11 @@ class ProfilePlaylistsViewController: CommonViewController {
         playlistVC.setPlaylist(playlist: playlist)
     }
     
-    private func pushAddPlaylistVC(playlistID: String? = nil) {
+    private func pushAddPlaylistVC(playlist: Playlist? = nil) {
         let playlistVC = AddPlaylistViewController.instantiate(from: .addPlaylist) as! AddPlaylistViewController
         navigationController?.pushViewController(playlistVC, animated: true)
         playlistVC.loadViewIfNeeded()
-        playlistVC.configure(playlistID: playlistID)
+        playlistVC.configure(playlist: playlist)
     }
     
     private func setupDataSource() {
@@ -132,10 +133,10 @@ class ProfilePlaylistsViewController: CommonViewController {
     }
     
     func gridSection()-> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(0.75))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.5))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.40))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
         group.interItemSpacing = .fixed(15)
         

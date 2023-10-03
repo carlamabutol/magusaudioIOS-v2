@@ -369,7 +369,9 @@ extension StandardNetworkService: NetworkService {
             .appendingPathComponent("playlist")
         
         var parameters: [String: String] = [
-            "subscription_id": String(describing: getSubscriptionID())
+            "subscription_id": String(describing: getSubscriptionID()),
+            "title": title,
+            "playlist_id": playlistID
         ]
         
         if let userID = getUserID() {
@@ -377,6 +379,29 @@ extension StandardNetworkService: NetworkService {
         }
         
         let task = requestManager.request(url, method: .put, parameters: parameters, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<SearchPlaylistResponse>.self)
+        
+        return try await task.value
+    }
+    
+    func deletePlaylist(playlistID: String) async throws -> JSONAPIArrayResponse<SearchPlaylistResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("own")
+            .appendingPathComponent("playlist")
+            .appendingPathComponent("delete")
+        
+        var parameters: [String: String] = [
+            "subscription_id": String(describing: getSubscriptionID()),
+            "playlist_id": playlistID
+        ]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
             .serializingDecodable(JSONAPIArrayResponse<SearchPlaylistResponse>.self)
         

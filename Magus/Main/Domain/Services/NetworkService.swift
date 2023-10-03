@@ -28,6 +28,7 @@ protocol NetworkService {
     func getOwnPlaylist() async throws -> JSONAPIArrayResponse<SearchPlaylistResponse>
     func addPlaylist(title: String) async throws -> JSONAPIArrayResponse<SearchPlaylistResponse>
     func savePlaylist(playlistID: String, title: String) async throws -> JSONAPIArrayResponse<SearchPlaylistResponse>
+    func deletePlaylist(playlistID: String) async throws -> JSONAPIArrayResponse<SearchPlaylistResponse>
     func getAllFavoritePlaylist() async throws -> JSONAPIArrayResponse<SearchPlaylistResponse>
     func getFeaturedPlaylists() async throws -> JSONAPIDictionaryResponse<FeaturedPlaylistResponse>
 }

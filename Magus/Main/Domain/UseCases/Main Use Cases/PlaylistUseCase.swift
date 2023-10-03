@@ -102,9 +102,22 @@ final class PlaylistUseCase {
             case.error(let error):
                 throw MessageError.message(error.message)
             }
-            return .init(success: true, message: "\(title) Playlist Updated.")
         } catch {
-            throw error
+            throw MessageError.message(error.localizedDescription)
+        }
+    }
+    
+    func deletePlaylist(id: String) async throws -> EmptyResponse {
+        do {
+            let response = try await networkService.deletePlaylist(playlistID: id)
+            switch response {
+            case .success:
+                return .init(success: true, message: "Deleted Playlist successfully.")
+            case.error(let error):
+                throw MessageError.message(error.message)
+            }
+        } catch {
+            throw MessageError.message(error.localizedDescription)
         }
     }
     

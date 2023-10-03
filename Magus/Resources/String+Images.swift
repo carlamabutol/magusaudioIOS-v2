@@ -84,5 +84,7 @@ enum ImageAsset: String {
     case trash = "trash can"
     case edit = "edit profile"
     
+    case delete = "Trash Delete"
+    
     
 }

@@ -64,6 +64,7 @@
                     <connections>
                         <outlet property="confirmButton" destination="5O5-13-HjO" id="cCL-YP-DUC"/>
                         <outlet property="containerView" destination="XcY-Bp-iCQ" id="3Ff-OF-BKJ"/>
+                        <outlet property="coverImageView" destination="pqN-bv-h80" id="n57-hl-n5f"/>
                         <outlet property="messageLbl" destination="0mM-nT-ecR" id="PGG-1I-lhr"/>
                     </connections>
                 </viewController>

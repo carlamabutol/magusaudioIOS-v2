@@ -10,6 +10,14 @@ import Foundation
 struct AlertViewModel {
     let title: String
     let message: String
+    let image: ImageAsset?
     let actionHandler: () -> ()
+    
+    init(title: String, message: String, image: ImageAsset? = nil, actionHandler: @escaping () -> Void) {
+        self.title = title
+        self.message = message
+        self.image = image
+        self.actionHandler = actionHandler
+    }
     
 }

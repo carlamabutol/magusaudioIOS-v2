@@ -12,6 +12,7 @@ import RxDataSources
 class AddPlaylistViewController: CommonViewController {
     
     private let viewModel = AddPlaylistViewModel()
+    private var loadingVC: UIViewController?
     
     @IBOutlet var navigationBar: ProfileNavigationBar! {
         didSet {
@@ -32,16 +33,7 @@ class AddPlaylistViewController: CommonViewController {
         }
     }
     
-    @IBOutlet var playlistTitleForm: FormTextFieldView! {
-        didSet {
-            playlistTitleForm.configure(
-                model: TextFieldView.Model(
-                    placeholder: "Playlist Title",
-                    textRelay: viewModel.playlistTitle
-                )
-            )
-        }
-    }
+    @IBOutlet var playlistTitleForm: FormTextFieldView!
     
     @IBOutlet var tableView: UITableView! {
         didSet {
@@ -52,13 +44,25 @@ class AddPlaylistViewController: CommonViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDataSource()
+        playlistTitleForm.configure(
+            model: TextFieldView.Model(
+                placeholder: "Playlist Title",
+                textRelay: viewModel.playlistTitle
+            )
+        )
     }
     
     func configure(playlist: Playlist? = nil) {
-        viewModel.playlistID = playlist?.playlistID
+        viewModel.playlist = playlist
         viewModel.playlistTitle.accept(playlist?.title ?? "")
         tableView.isHidden = playlist == nil
         playlistTitleForm.isHidden = playlist != nil
+        playlistTitleForm.configure(
+            model: TextFieldView.Model(
+                placeholder: "Playlist Title",
+                textRelay: viewModel.playlistTitle
+            )
+        )
     }
     
     private func setupDataSource() {
@@ -75,11 +79,9 @@ class AddPlaylistViewController: CommonViewController {
                     self?.tableView.isHidden = true
                     self?.playlistTitleForm.isHidden = false
                 case 1:
-                    // TODO: ADD TO FAVORITE
-                    break
+                    self?.viewModel.toggleFavorite()
                 case 2:
-                    // TODO: DELETE PLAYLIST
-                    break
+                    self?.presentDeleteAlert()
                 default:
                     break
                 }
@@ -99,10 +101,38 @@ class AddPlaylistViewController: CommonViewController {
         viewModel.alertObservable
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { [weak self] model in
-                self?.presentAlert(title: model.title, message: model.message, tapOKHandler: model.actionHandler)
+                if self?.loadingVC == nil {
+                    self?.presentAlert(title: model.title, message: model.message, tapOKHandler: model.actionHandler)
+                } else {
+                    self?.presentAlert(title: model.title, message: model.message, tapOKHandler: model.actionHandler)
+                }
             }
             .disposed(by: disposeBag)
         
+        viewModel.isLoadingObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] condition in
+                if condition && self?.loadingVC != nil {
+                    self?.loadingVC = self?.presentLoading()
+                } else if !condition {
+                    self?.loadingVC?.dismiss(animated: false, completion: {
+                        self?.loadingVC = nil
+                    })
+                }
+            })
+            .disposed(by: disposeBag)
+        
+    }
+    
+    private func presentDeleteAlert() {
+        let alertVC = DefaultAlertViewController.instantiate(from: .defaultAlert) as! DefaultAlertViewController
+        alertVC.modalTransitionStyle = .crossDissolve
+        alertVC.modalPresentationStyle = .overCurrentContext
+        present(alertVC, animated: true)
+        alertVC.configure(.init(title: "", message: "Are you sure you want to delete this Playlist?", image: .delete, actionHandler: { [weak self] in
+            self?.dismiss(animated: true)
+            self?.viewModel.deletePlaylist()
+        }))
     }
     
 }

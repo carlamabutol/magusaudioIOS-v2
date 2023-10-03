@@ -10,9 +10,17 @@ import RxSwift
 
 class DefaultAlertViewController: CommonViewController {
     
+    @IBOutlet var coverImageView: UIImageView! {
+        didSet {
+            
+        }
+    }
+    
     @IBOutlet var messageLbl: UILabel! {
         didSet {
             messageLbl.numberOfLines = 0
+            messageLbl.font = .Montserrat.title2
+            messageLbl.textAlignment = .center
         }
     }
      
@@ -52,6 +60,10 @@ class DefaultAlertViewController: CommonViewController {
     func configure(_ alertViewModel: AlertViewModel) {
         messageLbl.text = alertViewModel.message
         actionHandler = alertViewModel.actionHandler
+        if let image = alertViewModel.image {
+            coverImageView.image = UIImage(named: image)
+            coverImageView.contentMode = .scaleAspectFit
+        }
     }
     
 }
