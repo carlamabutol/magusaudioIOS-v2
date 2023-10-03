@@ -35,11 +35,17 @@ class ProfileNavigationBar: ReusableXibView {
         saveButton.isHidden = isHidden
     }
     
-    func configure(goBackHandler: @escaping CompletionHandler,
-                   saveHandler: CompletionHandler? = nil) {
-        self.goBackHandler = goBackHandler
-        self.saveHandler = saveHandler
+    func configure(model: Model) {
+        self.goBackHandler = model.leftButtonHandler
+        self.saveHandler = model.rightButtonHandler
         self.hideShowButton(isHidden: saveHandler == nil)
+        saveButton.setTitle(model.rightButtonModel?.title, for: .normal)
+        saveButton.setTitleColor(UIColor.TextColor.primaryBlue, for: .normal)
+        if let imageAsset = model.rightButtonModel?.image {
+            let image = UIImage(named: imageAsset).resizeImage(targetHeight: 28)
+            saveButton.setImage(image, for: .normal)
+            saveButton.imageView?.contentMode = .scaleAspectFit
+        }
     }
     
     @objc private func backAction() {
@@ -48,6 +54,26 @@ class ProfileNavigationBar: ReusableXibView {
     
     @objc private func saveAction() {
         saveHandler?()
+    }
+    
+    struct Model {
+        let leftButtonHandler: CompletionHandler
+        let rightButtonHandler: CompletionHandler?
+        let rightButtonModel: ButtonModel?
+        
+    }
+    
+    struct ButtonModel {
+        let title: String?
+        let image: ImageAsset?
+    }
+    
+    static func saveButtonModel(backHandler: @escaping CompletionHandler, saveHandler: @escaping CompletionHandler, title: String) -> Model {
+        Model(
+            leftButtonHandler: backHandler,
+            rightButtonHandler: saveHandler,
+            rightButtonModel: .init(title: title, image: nil)
+        )
     }
     
 }

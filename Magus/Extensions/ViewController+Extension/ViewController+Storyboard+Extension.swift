@@ -53,6 +53,7 @@ enum StoryboardString: String {
     // Settings
     case howMagusWorks = "HowMagusWorks"
     case playlist = "Playlist"
+    case addPlaylist = "AddPlaylist"
     
 }
 

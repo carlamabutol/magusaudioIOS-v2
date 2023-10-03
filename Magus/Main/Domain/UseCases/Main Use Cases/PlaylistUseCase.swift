@@ -33,6 +33,20 @@ final class PlaylistUseCase {
         }
     }
     
+    func getFavoritesPlaylist() async throws -> [Playlist] {
+        do {
+            let response = try await networkService.getOwnPlaylist()
+            switch response {
+            case .success(let response):
+                return response.map { Playlist(searchPlaylistResponse: $0) }
+            case .error(_):
+                throw NetworkServiceError.jsonDecodingError
+            }
+        } catch {
+            throw error
+        }
+    }
+    
     func getAllLikePlaylist() async throws -> [Playlist] {
         do {
             let response = try await networkService.getAllFavoritePlaylist()
@@ -60,6 +74,35 @@ final class PlaylistUseCase {
         do {
             let response = try await networkService.updateFavorite(id: id, api: .playlist, isLiked: false)
             return response
+        } catch {
+            throw error
+        }
+    }
+    
+    func addPlaylist(title: String) async throws -> EmptyResponse {
+        do {
+            let response = try await networkService.addPlaylist(title: title)
+            switch response {
+            case .success:
+                return .init(success: true, message: "New Playlist Added.")
+            case.error(let error):
+                throw MessageError.message(error.message)
+            }
+        } catch {
+            throw error
+        }
+    }
+    
+    func savePlaylist(playlistID: String, title: String) async throws -> EmptyResponse {
+        do {
+            let response = try await networkService.savePlaylist(playlistID: playlistID, title: title)
+            switch response {
+            case .success:
+                return .init(success: true, message: "Updated Playlist successfully.")
+            case.error(let error):
+                throw MessageError.message(error.message)
+            }
+            return .init(success: true, message: "\(title) Playlist Updated.")
         } catch {
             throw error
         }

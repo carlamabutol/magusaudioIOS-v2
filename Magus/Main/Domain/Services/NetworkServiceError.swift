@@ -12,3 +12,7 @@ enum NetworkServiceError: Error {
     case jsonDecodingError
     case unknown
 }
+
+enum MessageError: Error {
+    case message(String)
+}

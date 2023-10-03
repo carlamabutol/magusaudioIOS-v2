@@ -73,15 +73,17 @@ class ChangePasswordViewController: CommonViewController {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBar.configure { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
-        } saveHandler: { [weak self] in
-            // TODO SAVE
-            self?.presentDefaultAlert()
-        }
+        navigationBar.configure(
+            model: .init(
+                leftButtonHandler: {[weak self] in
+                    self?.navigationController?.popViewController(animated: true)
+                }, rightButtonHandler: { [weak self] in
+                    self?.presentDefaultAlert()
+                }, rightButtonModel: .init(title: "Save", image: nil)
+            )
+        )
         configureForms()
     }
     

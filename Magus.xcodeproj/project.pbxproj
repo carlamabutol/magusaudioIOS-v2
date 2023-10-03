@@ -154,6 +154,7 @@
 		F80A38B82A18C09F0023D166 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80A38B72A18C09F0023D166 /* KeyboardManager.swift */; };
 		F81A48162A17725300D72E73 /* TextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F81A48152A17725300D72E73 /* TextFieldView.xib */; };
 		F81A48182A17736200D72E73 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81A48172A17736200D72E73 /* TextFieldView.swift */; };
+		F81C8FF22AC9920500E40FF5 /* PlaylistOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81C8FF12AC9920500E40FF5 /* PlaylistOptionCell.swift */; };
 		F81ED0762A16160E0043E245 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E3D2A0BE84F004D28A1 /* RootViewModel.swift */; };
 		F81ED0772A16160E0043E245 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8512C3C2A13BDAF0041C14F /* WelcomeViewController.swift */; };
 		F81ED0782A16160E0043E245 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E3A2A0BE6CE004D28A1 /* Route.swift */; };
@@ -269,6 +270,9 @@
 		F8BA02622ABF0A91007C9128 /* FavoritePlaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA02612ABF0A91007C9128 /* FavoritePlaylistCell.swift */; };
 		F8BA02642ABF0A9F007C9128 /* FavoritePlaylistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8BA02632ABF0A9F007C9128 /* FavoritePlaylistCell.xib */; };
 		F8BA02662ABFF8AA007C9128 /* ProfilePlaylistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA02652ABFF8AA007C9128 /* ProfilePlaylistsViewModel.swift */; };
+		F8BABF522AC7FCA4009AD1F1 /* AddPlaylist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8BABF512AC7FCA3009AD1F1 /* AddPlaylist.storyboard */; };
+		F8BABF542AC7FCAF009AD1F1 /* AddPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BABF532AC7FCAF009AD1F1 /* AddPlaylistViewController.swift */; };
+		F8BABF562AC7FCB8009AD1F1 /* AddPlaylistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BABF552AC7FCB8009AD1F1 /* AddPlaylistViewModel.swift */; };
 		F8C40DB62ABEBA2D00A44312 /* PlaylistUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C40DB52ABEBA2D00A44312 /* PlaylistUseCase.swift */; };
 		F8C40DB82ABED0A000A44312 /* ProfileFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C40DB72ABED0A000A44312 /* ProfileFavoritesViewModel.swift */; };
 		F8C40DBB2ABEEC1700A44312 /* TabSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8C40DBA2ABEEC1700A44312 /* TabSelectionView.xib */; };
@@ -424,6 +428,7 @@
 		F80A38B72A18C09F0023D166 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		F81A48152A17725300D72E73 /* TextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldView.xib; sourceTree = "<group>"; };
 		F81A48172A17736200D72E73 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		F81C8FF12AC9920500E40FF5 /* PlaylistOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistOptionCell.swift; sourceTree = "<group>"; };
 		F81ED0AC2A16160E0043E245 /* Magus Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magus Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F81ED0AF2A162B9C0043E245 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		F81ED0B12A162E5E0043E245 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
@@ -491,6 +496,9 @@
 		F8BA02612ABF0A91007C9128 /* FavoritePlaylistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlaylistCell.swift; sourceTree = "<group>"; };
 		F8BA02632ABF0A9F007C9128 /* FavoritePlaylistCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritePlaylistCell.xib; sourceTree = "<group>"; };
 		F8BA02652ABFF8AA007C9128 /* ProfilePlaylistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePlaylistsViewModel.swift; sourceTree = "<group>"; };
+		F8BABF512AC7FCA3009AD1F1 /* AddPlaylist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddPlaylist.storyboard; sourceTree = "<group>"; };
+		F8BABF532AC7FCAF009AD1F1 /* AddPlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaylistViewController.swift; sourceTree = "<group>"; };
+		F8BABF552AC7FCB8009AD1F1 /* AddPlaylistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaylistViewModel.swift; sourceTree = "<group>"; };
 		F8C40DB52ABEBA2D00A44312 /* PlaylistUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistUseCase.swift; sourceTree = "<group>"; };
 		F8C40DB72ABED0A000A44312 /* ProfileFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFavoritesViewModel.swift; sourceTree = "<group>"; };
 		F8C40DBA2ABEEC1700A44312 /* TabSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabSelectionView.xib; sourceTree = "<group>"; };
@@ -1049,6 +1057,14 @@
 			path = TextFieldView;
 			sourceTree = "<group>";
 		};
+		F81C8FF02AC991F700E40FF5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F81C8FF12AC9920500E40FF5 /* PlaylistOptionCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		F81ED0AE2A16264E0043E245 /* SplashScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -1069,6 +1085,7 @@
 		F827D9812A10FAB40034B5AF /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				F8BABF502AC7FC92009AD1F1 /* Add Playlist */,
 				743C4E352AACE10800D3BF77 /* Playlist  */,
 				74ED5DA92AA5C77B006F6C8D /* How Magus Works */,
 				7464B6222A7E802B007A4DFD /* Delete Account */,
@@ -1398,6 +1415,17 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		F8BABF502AC7FC92009AD1F1 /* Add Playlist */ = {
+			isa = PBXGroup;
+			children = (
+				F81C8FF02AC991F700E40FF5 /* Cells */,
+				F8BABF512AC7FCA3009AD1F1 /* AddPlaylist.storyboard */,
+				F8BABF532AC7FCAF009AD1F1 /* AddPlaylistViewController.swift */,
+				F8BABF552AC7FCB8009AD1F1 /* AddPlaylistViewModel.swift */,
+			);
+			path = "Add Playlist";
+			sourceTree = "<group>";
+		};
 		F8C40DB92ABEEC0700A44312 /* TabSelectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1569,6 +1597,7 @@
 				F88A83042A13CEDA00D3E975 /* Montserrat-SemiBold.ttf in Resources */,
 				742A81122A814C4400F897EE /* PasswordRequirementView.xib in Resources */,
 				7467C1132A388B9300DFF86D /* MoodCell.xib in Resources */,
+				F8BABF522AC7FCA4009AD1F1 /* AddPlaylist.storyboard in Resources */,
 				F88A83072A13CEDA00D3E975 /* Montserrat-Black.ttf in Resources */,
 				74CFCCF92A82418400DF8D1C /* DefaultAlert.storyboard in Resources */,
 				7460D3322AC5DBEF004863DE /* PlaylistCell.xib in Resources */,
@@ -1747,6 +1776,7 @@
 				746FA5E92A25E9BE006CE52C /* NetworkService.swift in Sources */,
 				F8E4CCEB2A19ED74002C388C /* SignUpViewController.swift in Sources */,
 				F8669E382A0BE623004D28A1 /* LoginViewModel.swift in Sources */,
+				F8BABF562AC7FCB8009AD1F1 /* AddPlaylistViewModel.swift in Sources */,
 				F8BA02622ABF0A91007C9128 /* FavoritePlaylistCell.swift in Sources */,
 				743750ED2AACF75100731791 /* SubliminalCollectionViewCell.swift in Sources */,
 				F848EF142A0BD46C0097F104 /* ViewController+Extension.swift in Sources */,
@@ -1771,6 +1801,7 @@
 				74733B9B2A30B034002FE613 /* MoodViewController.swift in Sources */,
 				74C090892A71FC3E001B552E /* ProfileViewModel.swift in Sources */,
 				74ED5DAD2AA5C7F0006F6C8D /* HowMagusWorksViewController.swift in Sources */,
+				F8BABF542AC7FCAF009AD1F1 /* AddPlaylistViewController.swift in Sources */,
 				746FA5FA2A260D04006CE52C /* SignupPresentation.swift in Sources */,
 				F82CA4F22A19B4A5007EDFAE /* ViewController+Storyboard+Extension.swift in Sources */,
 				746FA5ED2A25F479006CE52C /* JSONAPIDictionaryResponse.swift in Sources */,
@@ -1793,6 +1824,7 @@
 				7464B6262A7E8069007A4DFD /* ChangePasswordViewController.swift in Sources */,
 				740A26EA2A4DCE2500D96A1D /* PremiumViewModel.swift in Sources */,
 				741CB6AC2A4479D300975949 /* UserInfoResponse.swift in Sources */,
+				F81C8FF22AC9920500E40FF5 /* PlaylistOptionCell.swift in Sources */,
 				F8512C442A13C4120041C14F /* Colors+Hex.swift in Sources */,
 				740C4D032A71F52800050D5A /* WeeklyView.swift in Sources */,
 				741CB69B2A4475E900975949 /* AuthenticationService.swift in Sources */,

@@ -75,11 +75,15 @@ class EditProfileViewController: CommonViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardOnTap()
-        profileNavigationBar.configure { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
-        } saveHandler: { [weak self] in
-            self?.viewModel.updateUserDetails()
-        }
+        profileNavigationBar.configure(
+            model: .init(
+                leftButtonHandler: {[weak self] in
+                    self?.navigationController?.popViewController(animated: true)
+                }, rightButtonHandler: { [weak self] in
+                    self?.viewModel.updateUserDetails()
+                }, rightButtonModel: .init(title: "Save", image: nil)
+            )
+        )
         
         firstNameForm.configure(
             model: .init(
@@ -142,8 +146,7 @@ class EditProfileViewController: CommonViewController {
     }
     
     private func showSampleAlert() {
-        let alertVC = presentAlert(title: "Sample", message: "Alert")
-        present(alertVC, animated: true)
+        presentAlert(title: "Sample", message: "Alert")
     }
     
     private func showAlert(alertModel: ProfileAlertViewController.AlertModel) {

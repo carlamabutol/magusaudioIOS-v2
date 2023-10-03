@@ -15,7 +15,6 @@ class FormButton: UIButton {
         didSet {
             // whenever `isLoading` state is changed, update the view
             updateView()
-            print("ABC loading")
         }
     }
     

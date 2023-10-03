@@ -11,6 +11,7 @@ extension UIColor {
     
     enum Background {
         static let primary = UIColor(rgb: 0xF4FAFF)
+        static let primaryBlue = UIColor(rgb: 0x427AB3)
         static let moodBackgroundColor = UIColor(rgb: 0xEAEAEA)
         static let alertFailBackgroundColor = UIColor(rgb: 0xFDEDEE)
         static let alertSuccessBackgroundColor = UIColor(rgb: 0xF4FAFF)

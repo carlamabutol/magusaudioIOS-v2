@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Playlist {
+struct Playlist: Equatable {
     
     let id: Int
     let title: String

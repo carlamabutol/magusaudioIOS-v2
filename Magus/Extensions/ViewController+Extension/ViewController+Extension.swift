@@ -9,13 +9,14 @@ import UIKit
 
 extension UIViewController {
     
-    @discardableResult
-    func presentAlert(title: String = "", message: String? = nil) -> UIAlertController {
+    func presentAlert(title: String = "", message: String? = nil, tapOKHandler: CompletionHandler? = nil) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        alertVC.addAction(UIAlertAction(title: "Okay", style: .default))
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            tapOKHandler?()
+        }))
         
-        return alertVC
+        present(alertVC, animated: true)
     }
     
     func presentModally(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {

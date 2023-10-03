@@ -79,4 +79,10 @@ enum ImageAsset: String {
     case favorite = "heart"
     case favoriteIsActive = "active heart"
     
+    case addPlaylist = "add playlist"
+    
+    case trash = "trash can"
+    case edit = "edit profile"
+    
+    
 }

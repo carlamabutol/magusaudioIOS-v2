@@ -27,13 +27,18 @@ class ProfilePlaylistsViewModel: ViewModel {
         }
     }
     
-    let sections = BehaviorRelay<[SectionViewModel]>(value: [])
-    let playlistRelay = BehaviorRelay<[Playlist]>(value: [])
-    private let searchRelay = BehaviorRelay<String>(value: "")
     private let playlistUseCase: PlaylistUseCase
+    let sections = BehaviorRelay<[SectionViewModel]>(value: [])
+    private let magusPlaylistRelay = PublishRelay<[Playlist]>()
+    private let ownPlaylistRelay = PublishRelay<[Playlist]>()
+    private let searchRelay = BehaviorRelay<String>(value: "")
     private let searchDebounceTime: RxTimeInterval
     private let selectedPlaylist = PublishRelay<Playlist>()
+    private let editPlaylist = PublishRelay<Playlist>()
+    private let loadingRelay = BehaviorRelay<Bool>(value: true)
+    var loadingObservable: Observable<Bool> { loadingRelay.asObservable() }
     var selectedPlaylistObservable: Observable<Playlist> { selectedPlaylist.asObservable()}
+    var editPlaylistObservable: Observable<Playlist> { editPlaylist.asObservable()}
     let dataSource = BehaviorRelay<[Section]>(value: [])
     
     init(dependencies: ProfilePlaylistsViewModel.Dependencies = .standard) {
@@ -45,24 +50,25 @@ class ProfilePlaylistsViewModel: ViewModel {
             .debounce(searchDebounceTime, scheduler: MainScheduler.asyncInstance)
             .distinctUntilChanged()
             .subscribe { [weak self] search in
+                self?.loadingRelay.accept(true)
                 self?.search()
             }
             .disposed(by: disposeBag)
         
-        playlistRelay.asObservable()
+        magusPlaylistRelay.asObservable()
             .compactMap { [weak self] in self?.constructDataSource(playlist: $0) }
             .subscribe(onNext: { [weak self] in
                 self?.dataSource.accept($0)
+                self?.loadingRelay.accept(false)
             })
             .disposed(by: disposeBag)
     }
     
-    private func search() {
+    func search() {
         Task {
             do {
                 let playlists = try await playlistUseCase.searchPlaylists(search: searchRelay.value)
-                Logger.info("Playlists - \(playlists)", topic: .presentation)
-                playlistRelay.accept(playlists)
+                magusPlaylistRelay.accept(playlists)
             } catch {
                 debugPrint("Network Error Response - \(error.localizedDescription)")
             }
@@ -77,6 +83,7 @@ class ProfilePlaylistsViewModel: ViewModel {
     private func constructDataSource(playlist: [Playlist]) -> [Section] {
         let groupedPlaylist = Set(playlist.compactMap { $0.isOwnPlaylist })
         return groupedPlaylist
+            .sorted(by: { $0 > $1 })
             .map { isOwnPlaylist in
                 let title = PlaylistGroupTitle(rawValue: isOwnPlaylist)?.title
                 let cellModels = playlist
@@ -84,10 +91,23 @@ class ProfilePlaylistsViewModel: ViewModel {
                     .map { [weak self] playlist in
                         PlaylistCell.Model(imageUrl: URL(string: playlist.cover), title: playlist.title, tapHandler: {
                             self?.selectedPlaylist.accept(playlist)
-                        })
+                        }) {
+                            self?.editPlaylist.accept(playlist)
+                        }
                     }
                 return Section(items: cellModels, title: title)
             }
+    }
+    
+    private func constructOwnPlaylistSection(playlist: [Playlist]) -> [Section] {
+        let cellModels = playlist
+            .map { [weak self] playlist in
+                let cellModel = PlaylistCell.Model(imageUrl: URL(string: playlist.cover), title: playlist.title, tapHandler: {
+                            self?.selectedPlaylist.accept(playlist)
+                        })
+                return cellModel
+            }
+        return [.init(items: cellModels, title: PlaylistGroupTitle.isOwnPlaylist.title)]
     }
     
 }
@@ -103,7 +123,7 @@ extension ProfilePlaylistsViewModel {
             .init(
                 store: SharedDependencies.sharedDependencies.store,
                 playlistUseCase: SharedDependencies.sharedDependencies.useCases.playlistUseCase,
-                searchDebounceTime: .milliseconds(100)
+                searchDebounceTime: .milliseconds(200)
             )
         }
     }

@@ -32,6 +32,7 @@ class ProfilePlaylistsViewController: CommonViewController {
             collectionView.backgroundColor = .clear
             collectionView.register(PlaylistCell.instantiate(), forCellWithReuseIdentifier: PlaylistCell.identifier)
             collectionView.register(HeaderTitleView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderTitleView.identifier)
+            collectionView.alwaysBounceVertical = true
             setupCompositionalLayout()
         }
     }
@@ -39,10 +40,28 @@ class ProfilePlaylistsViewController: CommonViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDataSource()
+        profileNavigationBar.configure(
+            model: .init(
+                leftButtonHandler: {[weak self] in
+                    self?.navigationController?.popViewController(animated: true)
+                }, rightButtonHandler: { [weak self] in
+                    // TODO: ADD PLAYLIST
+                    self?.pushAddPlaylistVC()
+                }, rightButtonModel: .init(title: nil, image: .addPlaylist)
+            )
+        )
     }
     
     override func setupBinding() {
         super.setupBinding()
+        let refreshControl = UIRefreshControl()
+        collectionView.refreshControl = refreshControl
+        refreshControl.rx.controlEvent(.valueChanged)
+            .subscribe { [weak self] event in
+                self?.viewModel.search()
+            }
+            .disposed(by: disposeBag)
+        
         searchView.textField.rx.text
             .orEmpty
             .subscribe { [weak self] text in
@@ -62,12 +81,30 @@ class ProfilePlaylistsViewController: CommonViewController {
             }
             .disposed(by: disposeBag)
         
+        viewModel.editPlaylistObservable
+            .distinctUntilChanged()
+            .subscribe { [weak self] playlist in
+                self?.pushAddPlaylistVC(playlistID: playlist.playlistID)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.loadingObservable
+            .bind(to: refreshControl.rx.isRefreshing)
+            .disposed(by: disposeBag)
+        
     }
     
     private func goToPlaylist(playlist: Playlist) {
         let playlistVC = PlaylistViewController.instantiate(from: .playlist) as! PlaylistViewController
         navigationController?.pushViewController(playlistVC, animated: true)
         playlistVC.setPlaylist(playlist: playlist)
+    }
+    
+    private func pushAddPlaylistVC(playlistID: String? = nil) {
+        let playlistVC = AddPlaylistViewController.instantiate(from: .addPlaylist) as! AddPlaylistViewController
+        navigationController?.pushViewController(playlistVC, animated: true)
+        playlistVC.loadViewIfNeeded()
+        playlistVC.configure(playlistID: playlistID)
     }
     
     private func setupDataSource() {
@@ -85,12 +122,6 @@ class ProfilePlaylistsViewController: CommonViewController {
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
-        collectionView.rx.itemSelected
-            .bind{ [unowned self] indexPath in
-//                self.viewModel.selectedSubliminal(indexPath)
-                Logger.info("Selected Model - \(indexPath)", topic: .presentation)
-            }
-            .disposed(by: disposeBag)
     }
     
     private func setupCompositionalLayout() {

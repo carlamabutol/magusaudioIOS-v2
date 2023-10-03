@@ -144,26 +144,6 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
-    func getFeaturedPlaylists() async throws -> JSONAPIDictionaryResponse<FeaturedPlaylistResponse> {
-        let url = baseURL
-            .appendingPathComponent("api")
-            .appendingPathComponent("featured")
-        
-        var parameters: [String: String] = [
-            "subscription_id": String(describing: getSubscriptionID())
-        ]
-        
-        if let userID = getUserID() {
-            parameters["user_id"] = userID
-        }
-        
-        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
-            .validate(statusCode: Self.validStatusCodes)
-            .serializingDecodable(JSONAPIDictionaryResponse<FeaturedPlaylistResponse>.self)
-        
-        return try await task.value
-    }
-    
     func getRecommendations() async throws -> JSONAPIDictionaryResponse<RecommendationResponse> {
         let url = baseURL
             .appendingPathComponent("api")
@@ -213,27 +193,6 @@ extension StandardNetworkService: NetworkService {
         let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
             .serializingDecodable(JSONAPIArrayResponse<SubliminalResponse>.self)
-        
-        return try await task.value
-    }
-    
-    func getAllFavoritePlaylist() async throws -> JSONAPIArrayResponse<SearchPlaylistResponse> {
-        let url = baseURL
-            .appendingPathComponent("api")
-            .appendingPathComponent("like")
-            .appendingPathComponent("playlist")
-        
-        var parameters: [String: String] = [
-            "subscription_id": String(describing: getSubscriptionID())
-        ]
-        
-        if let userID = getUserID() {
-            parameters["user_id"] = userID
-        }
-        
-        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
-            .validate(statusCode: Self.validStatusCodes)
-            .serializingDecodable(JSONAPIArrayResponse<SearchPlaylistResponse>.self)
         
         return try await task.value
     }
@@ -337,4 +296,109 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
+    // MARK: PLAYLIST
+    
+    func getFeaturedPlaylists() async throws -> JSONAPIDictionaryResponse<FeaturedPlaylistResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("featured")
+        
+        var parameters: [String: String] = [
+            "subscription_id": String(describing: getSubscriptionID())
+        ]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIDictionaryResponse<FeaturedPlaylistResponse>.self)
+        
+        return try await task.value
+    }
+    
+    func getAllFavoritePlaylist() async throws -> JSONAPIArrayResponse<SearchPlaylistResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("like")
+            .appendingPathComponent("playlist")
+        
+        var parameters: [String: String] = [
+            "subscription_id": String(describing: getSubscriptionID())
+        ]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<SearchPlaylistResponse>.self)
+        
+        return try await task.value
+    }
+    
+    func addPlaylist(title: String) async throws -> JSONAPIArrayResponse<SearchPlaylistResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("own")
+            .appendingPathComponent("playlist")
+            .appendingPathComponent("add")
+        
+        var parameters: [String: String] = [
+            "subscription_id": String(describing: getSubscriptionID()),
+            "title": title
+        ]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<SearchPlaylistResponse>.self)
+        
+        return try await task.value
+    }
+    
+    func savePlaylist(playlistID: String, title: String) async throws -> JSONAPIArrayResponse<SearchPlaylistResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("own")
+            .appendingPathComponent("playlist")
+        
+        var parameters: [String: String] = [
+            "subscription_id": String(describing: getSubscriptionID())
+        ]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
+        let task = requestManager.request(url, method: .put, parameters: parameters, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<SearchPlaylistResponse>.self)
+        
+        return try await task.value
+    }
+    
+    func getOwnPlaylist() async throws -> JSONAPIArrayResponse<SearchPlaylistResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("own")
+            .appendingPathComponent("playlist")
+        
+        var parameters: [String: String] = [:]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<SearchPlaylistResponse>.self)
+        
+        return try await task.value
+    }
 }
