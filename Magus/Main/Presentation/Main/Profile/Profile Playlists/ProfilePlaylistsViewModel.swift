@@ -71,7 +71,7 @@ class ProfilePlaylistsViewModel: ViewModel {
                 let playlists = try await playlistUseCase.searchPlaylists(search: searchRelay.value)
                 magusPlaylistRelay.accept(playlists)
             } catch {
-                debugPrint("Network Error Response - \(error.localizedDescription)")
+                Logger.warning("Network Error Response - \(error.localizedDescription)", topic: .presentation)
             }
             
         }

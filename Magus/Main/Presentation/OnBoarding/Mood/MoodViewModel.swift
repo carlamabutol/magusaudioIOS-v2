@@ -38,17 +38,16 @@ class MoodViewModel: ViewModel {
                 
                 switch response {
                 case .success(let array):
-                    print("ARRAY - \(array)")
                     self.moodListRelay.accept(array.map { mood in
                         return MoodCell.Model(id: mood.id, title: mood.name, image: mood.image, selectedColor: mood.description, isSelected: false) { [weak self] in
                             self?.didSelectMood(mood)
                         }
                     })
                 case .error(let errorResponse):
-                    print("errorResponse - \(errorResponse.message)")
+                    Logger.warning(errorResponse.message, topic: .presentation)
                 }
             } catch {
-                print("Error Response - \(error.localizedDescription)")
+                Logger.warning(error.localizedDescription, topic: .presentation)
             }
         }
     }
@@ -65,7 +64,6 @@ class MoodViewModel: ViewModel {
     }
     
     func updateSelectedMood() {
-        print("CONTINUE TAPPED")
         guard let selectedMood = moodListRelay.value.first(where: { $0.isSelected }) else { return }
         Task {
             do {

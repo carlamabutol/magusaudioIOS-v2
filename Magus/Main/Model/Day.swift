@@ -56,9 +56,7 @@ extension Day {
         let format = date.getDateFormat(with: dateFormat)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = dateFormat
-        print("DATE FORMATTER - ", format)
         if let date = dateFormatter.date(from: format) {
-            print("DATE FORMATTER - ", date.timeIntervalSince1970.rounded())
             return date.timeIntervalSince1970.rounded()
         }
         return date.timeIntervalSince1970.rounded()
@@ -68,9 +66,7 @@ extension Day {
         let format = date.getDateFormat(with: "MM/dd/yyyy HH:mm:ss")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy HH:mm:ss"
-        print("DATE FORMATTER - ", format)
         if let date = dateFormatter.date(from: format) {
-            print("DATE FORMATTER - ", date.timeIntervalSince1970.rounded())
             return date.timeIntervalSince1970.rounded()
         }
         return date.timeIntervalSince1970.rounded()
@@ -80,9 +76,7 @@ extension Day {
         let format = date.getDateFormat(with: "MM/dd/yyyy")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy HH:mm:ss"
-        print("DATE FORMATTER - ", format)
         if let date = dateFormatter.date(from: format + "23:59:59") {
-            print("DATE FORMATTER - ", date.timeIntervalSince1970)
             return date.timeIntervalSince1970
         }
         return date.timeIntervalSince1970

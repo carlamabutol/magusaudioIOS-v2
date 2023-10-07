@@ -90,7 +90,7 @@ class MainTabBarViewController: UITabBarController {
                 self?.collapsedPlayerView.configureTime(time: time)
             }.disposed(by: disposeBag)
         
-        playerViewModel.playerStatusObservable
+        playerViewModel.playerStateObservable
             .distinctUntilChanged()
             .subscribe { [weak self] status in
                 self?.collapsedPlayerView.updatePlayerStatus(status: status)

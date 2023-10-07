@@ -30,6 +30,8 @@ class AudioPlayer {
     var progressObservable: Observable<Float> { progressRelay.asObservable() }
     private let playerStatus = BehaviorRelay<PlayerStatus>(value: .loading)
     var playerStatusObservable: Observable<PlayerStatus> { playerStatus.asObservable() }
+    private let didEndRelay = PublishRelay<Void>()
+    var didEndObservable: Observable<Void> { didEndRelay.asObservable() }
     
     private var observer: NSKeyValueObservation? {
         willSet {
@@ -103,6 +105,7 @@ class AudioPlayer {
     
     private func addTimeObserver() {
         let interval = CMTime(seconds: 1, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        timeObserver = nil
         timeObserver = avPlayer?.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] time in
             if (self?.playerStatus.value == .isReadyToPlay || self?.playerStatus.value == .isPlaying) == true {
                 let currentTime = CMTimeGetSeconds(time)
@@ -115,19 +118,18 @@ class AudioPlayer {
     }
     
     private func repeatAllAudioPlayers() {
-        avPlayer?.actionAtItemEnd = .none
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handlePlayerItemDidReachEnd(notification:)),
                                                name: .AVPlayerItemDidPlayToEndTime,
                                                object: avPlayer?.currentItem)
     }
     
-    
     @objc private func handlePlayerItemDidReachEnd(notification: Notification) {
+        Logger.info("did reach end", topic: .network)
         if let playerItem = notification.object as? AVPlayerItem,
            avPlayer?.currentItem === playerItem {
-            avPlayer?.seek(to: .zero)
-            play()
+            playAtStart()
+            didEndRelay.accept(())
         }
     }
     
@@ -138,6 +140,14 @@ class AudioPlayer {
             playerStatus.accept(.isPlaying)
             avPlayer?.play()
         }
+    }
+    
+    func playAtStart() {
+        avPlayer?.currentItem?.seek(to: .zero, completionHandler: { [weak self] _ in
+            self?.repeatAllAudioPlayers()
+            self?.addTimeObserver()
+            self?.avPlayer?.play()
+        })
     }
     
     func pause() {

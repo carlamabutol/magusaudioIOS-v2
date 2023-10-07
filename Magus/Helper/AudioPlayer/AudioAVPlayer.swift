@@ -114,6 +114,10 @@ class AudioPlayerManager {
         getCurrentTracks().forEach { $0.play() }
     }
     
+    func playAgainAllAudioPlayers() {
+        getCurrentTracks().forEach { $0.playAtStart() }
+    }
+    
     func pauseAllAudioPlayers() {
         getCurrentTracks().forEach { $0.pause() }
     }

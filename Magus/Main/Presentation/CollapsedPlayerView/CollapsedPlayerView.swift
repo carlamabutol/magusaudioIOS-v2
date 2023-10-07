@@ -27,6 +27,7 @@ class CollapsedPlayerView: ReusableXibView {
     @IBOutlet var titleLabel: UILabel! {
         didSet {
             titleLabel.font = .Montserrat.bold17
+            titleLabel.numberOfLines = 2
         }
     }
     
@@ -55,7 +56,6 @@ class CollapsedPlayerView: ReusableXibView {
         isHidden = false
         titleLabel.text = subliminal.title
         subliminalImageView.sd_setImage(with: .init(string: subliminal.cover), placeholderImage: .init(named: "Cover Image"))
-        print("subliminal.isLiked == \(subliminal.isLiked == 1)")
         updateFavorite(isLiked: subliminal.isLiked == 1)
     }
     
@@ -67,7 +67,7 @@ class CollapsedPlayerView: ReusableXibView {
         audioProgressLabel.text = time
     }
     
-    func updatePlayerStatus(status: PlayerStatus) {
+    func updatePlayerStatus(status: AppState.PlayerState) {
         let image = UIImage(named: status == .isPlaying ? "pause" : "play")
         let newImage = image?.resizeImage(targetHeight: 59)
         playPauseButton.setImage(newImage, for: .normal)

@@ -37,12 +37,11 @@ class PremiumViewModel {
                         })
                     ]
                     planRelay.accept(subscriptions)
-                    debugPrint("getSubscriptions - \(planRelay.value)")
                 case .error(let errorResponse):
-                    debugPrint("RESPONSE ERROR - \(errorResponse.message)")
+                    Logger.warning(errorResponse.message, topic: .presentation)
                 }
             } catch {
-                debugPrint("Network Error Response - \(error.localizedDescription)")
+                Logger.warning(error.localizedDescription, topic: .presentation)
             }
             
         }

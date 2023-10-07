@@ -63,6 +63,7 @@ class PlayerViewController: CommonViewController {
     @IBOutlet var titleLbl: UILabel! {
         didSet {
             titleLbl.font = .Montserrat.title3
+            titleLbl.numberOfLines = 2
         }
     }
     
@@ -100,7 +101,14 @@ class PlayerViewController: CommonViewController {
     }
     
     @IBOutlet var optionStackView: UIStackView!
-    @IBOutlet var repeatView: UIButton!
+    
+    @IBOutlet var repeatView: UIButton! {
+        didSet {
+            repeatView.setTitle("", for: .normal)
+            repeatView.setImage(UIImage(named: .repeatAll).withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+    }
+    
     @IBOutlet var closeButton: UIButton! {
         didSet {
             closeButton.setTitle("", for: .normal)
@@ -195,7 +203,7 @@ class PlayerViewController: CommonViewController {
             .bind(to: timeLabel.rx.text)
             .disposed(by: disposeBag)
         
-        audioPlayerViewModel.playerStatusObservable
+        audioPlayerViewModel.playerStateObservable
             .distinctUntilChanged()
             .subscribe { [weak self] status in
                 self?.updatePlayerStatus(status: status)
@@ -203,7 +211,7 @@ class PlayerViewController: CommonViewController {
             .disposed(by: disposeBag)
     }
     
-    private func updatePlayerStatus(status: PlayerStatus) {
+    private func updatePlayerStatus(status: AppState.PlayerState) {
         let image = UIImage(named: status == .isPlaying ? "pause" : "play")
         let newImage = image?.resizeImage(targetHeight: 59)
         playPauseButton.setImage(newImage, for: .normal)

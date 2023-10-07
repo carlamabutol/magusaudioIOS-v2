@@ -83,7 +83,6 @@ class PlaylistViewModel: ViewModel {
     }
     
     func updatePlaylistFavorite() {
-        print("abc 123")
         guard var playlist = playlist else { return }
         playlist.isLiked = playlist.isLiked == 0 ? 1 : 0
         if playlist.isLiked == 1 {

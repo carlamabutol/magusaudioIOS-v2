@@ -33,15 +33,16 @@ extension SharedDependencies {
     static let sharedDependencies: SharedDependencies = {
         var appState: AppState?
         let credentialsService = StandardCredentialsService()
+        let router = Router(credentialsService: credentialsService)
         
         do {
             try appState = Store.getSavedAppState()
         } catch {
+            router.selectedRoute = .welcomeOnBoard
             Logger.error("Error decoding saved app state", topic: .domain)
         }
         
         let store = Store(appState: appState ?? AppState())
-        let router = Router(credentialsService: credentialsService)
         let networkService = StandardNetworkService(
             baseURL: Configuration.baseURL,
             credentialsService: credentialsService,

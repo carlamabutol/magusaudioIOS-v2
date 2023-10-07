@@ -81,10 +81,10 @@ class HomeViewModel: ViewModel {
                 case .success(let array):
                     categoryRelay.accept(array.map { CategoryCell.Model(id: String(describing: $0.id), title: $0.name, imageUrl: .init(string: $0.image ?? "")) })
                 case .error(let errorResponse):
-                    debugPrint("RESPONSE ERROR - \(errorResponse.message)")
+                    Logger.warning(errorResponse.message, topic: .presentation)
                 }
             } catch {
-                debugPrint("Network Error Response - \(error.localizedDescription)")
+                Logger.warning(error.localizedDescription, topic: .presentation)
             }
             
         }
@@ -97,12 +97,11 @@ class HomeViewModel: ViewModel {
                 switch response {
                 case .success(let response):
                     playlistRelay.accept(response.playlist.map { Playlist(searchPlaylistResponse: $0) })
-                    debugPrint("getFeaturedPlaylists Success - \(response.playlist.count)")
                 case .error(let errorResponse):
-                    debugPrint("getFeaturedPlaylists Error - \(errorResponse.message)")
+                    Logger.warning(errorResponse.message, topic: .presentation)
                 }
             } catch {
-                Logger.error(error.localizedDescription, topic: .presentation)
+                Logger.warning(error.localizedDescription, topic: .presentation)
             }
         }
         
@@ -116,10 +115,10 @@ class HomeViewModel: ViewModel {
                 case .success(let response):
                     recommendedSubliminals.accept(response.subliminal.map { CategoryCell.Model(id: String(describing: $0.id), title: $0.title, imageUrl: .init(string: $0.cover )) })
                 case .error(let errorResponse):
-                    debugPrint("RESPONSE ERROR - \(errorResponse.message)")
+                    Logger.warning(errorResponse.message, topic: .presentation)
                 }
             } catch {
-                Logger.error(error.localizedDescription, topic: .presentation)
+                Logger.warning(error.localizedDescription, topic: .presentation)
             }
             
         }

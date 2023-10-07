@@ -47,7 +47,6 @@ class ProfileViewModel: ViewModel {
             let monthDays: [WeekDay] = getWeekdays2(days: calendarDays, month: date)
             return CalendarMonth.init(month: date, days: calendarDays, monthDays: monthDays)
         }
-        print("DATES - \(months[0].days.map({ $0.dayString }).chunked(into: 7)))")
 //        months.remove(at: 0)
         guard let currentMonth = months.lastIndex(where: { $0.month.getDateFormat(with: "MMMM YYYY") == currentDate.getDateFormat(with: "MMMM YYYY") }) else { return }
     }

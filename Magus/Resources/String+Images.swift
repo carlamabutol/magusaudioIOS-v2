@@ -78,6 +78,7 @@ enum ImageAsset: String {
     // player
     case favorite = "heart"
     case favoriteIsActive = "active heart"
+    case repeatAll = "repeat"
     
     case addPlaylist = "add playlist"
     

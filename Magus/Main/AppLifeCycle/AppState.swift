@@ -18,4 +18,11 @@ struct AppState: Codable, Equatable {
         return user?.userID
     }
     
+    var playerState: PlayerState = .isPaused
+    var isRepeatAll: Bool = false
+ 
+    enum PlayerState: Codable {
+        case isPlaying
+        case isPaused
+    }
 }
