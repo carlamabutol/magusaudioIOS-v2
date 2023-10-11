@@ -23,6 +23,8 @@ enum StoryboardString: String {
     
     case mood = "Mood"
     
+    case seeAll = "SeeAllList"
+    
     // Tabbar
     case mainTabBar = "MainTabBar"
     case home = "Home"

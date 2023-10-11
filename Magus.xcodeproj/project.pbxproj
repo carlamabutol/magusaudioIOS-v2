@@ -111,6 +111,9 @@
 		74BAEAB72A8502DA000BB1E4 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74BAEAB62A8502DA000BB1E4 /* Settings.storyboard */; };
 		74BAEAB92A8502E4000BB1E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BAEAB82A8502E4000BB1E4 /* SettingsViewController.swift */; };
 		74BAEABB2A85494E000BB1E4 /* ProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BAEABA2A85494E000BB1E4 /* ProfileUseCase.swift */; };
+		74BCFBFF2AD3F1AE00855210 /* SeeAllList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74BCFBFE2AD3F1AE00855210 /* SeeAllList.storyboard */; };
+		74BCFC012AD3F1C700855210 /* SeeAllListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCFC002AD3F1C700855210 /* SeeAllListViewController.swift */; };
+		74BCFC032AD3F5D100855210 /* SeeAllViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCFC022AD3F5D100855210 /* SeeAllViewModel.swift */; };
 		74BED2392AA4C4F400D31009 /* RecommendationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BED2382AA4C4F400D31009 /* RecommendationResponse.swift */; };
 		74C090892A71FC3E001B552E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C090882A71FC3E001B552E /* ProfileViewModel.swift */; };
 		74C0908C2A7206EA001B552E /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C0908B2A7206EA001B552E /* EditProfile.storyboard */; };
@@ -388,6 +391,9 @@
 		74BAEAB62A8502DA000BB1E4 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		74BAEAB82A8502E4000BB1E4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		74BAEABA2A85494E000BB1E4 /* ProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUseCase.swift; sourceTree = "<group>"; };
+		74BCFBFE2AD3F1AE00855210 /* SeeAllList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SeeAllList.storyboard; sourceTree = "<group>"; };
+		74BCFC002AD3F1C700855210 /* SeeAllListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllListViewController.swift; sourceTree = "<group>"; };
+		74BCFC022AD3F5D100855210 /* SeeAllViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllViewModel.swift; sourceTree = "<group>"; };
 		74BED2382AA4C4F400D31009 /* RecommendationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationResponse.swift; sourceTree = "<group>"; };
 		74C090882A71FC3E001B552E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		74C0908B2A7206EA001B552E /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
@@ -814,6 +820,7 @@
 		7490E4472A40A00E00463582 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				74BCFBFD2AD3F19E00855210 /* See All */,
 				74F1DD192A49964A008F4680 /* Category */,
 				7490E44C2A40A0D400463582 /* Home.storyboard */,
 				7490E44E2A40A0DF00463582 /* HomeViewController.swift */,
@@ -939,6 +946,16 @@
 				748ED5002A8E1FA1005608FE /* SettingsViewModel.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		74BCFBFD2AD3F19E00855210 /* See All */ = {
+			isa = PBXGroup;
+			children = (
+				74BCFBFE2AD3F1AE00855210 /* SeeAllList.storyboard */,
+				74BCFC002AD3F1C700855210 /* SeeAllListViewController.swift */,
+				74BCFC022AD3F5D100855210 /* SeeAllViewModel.swift */,
+			);
+			path = "See All";
 			sourceTree = "<group>";
 		};
 		74C0908A2A7206DC001B552E /* Edit Profile */ = {
@@ -1642,6 +1659,7 @@
 				7490E4512A40A10800463582 /* Search.storyboard in Resources */,
 				F88A83092A13CEDA00D3E975 /* Montserrat-Italic.ttf in Resources */,
 				F8D3D38D2A223E7600AD7C2D /* ForgotPassword.storyboard in Resources */,
+				74BCFBFF2AD3F1AE00855210 /* SeeAllList.storyboard in Resources */,
 				F88A830B2A13CEDA00D3E975 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
 				74BAEAB72A8502DA000BB1E4 /* Settings.storyboard in Resources */,
 				74EB5BCC2ABB1D4B00C3FF0C /* ProfilePlaylists.storyboard in Resources */,
@@ -1713,10 +1731,12 @@
 				749002662A7BDFF8007DACDF /* WeekDay.swift in Sources */,
 				F8C40DBD2ABEEC6500A44312 /* TabSelectionView.swift in Sources */,
 				F8BA02662ABFF8AA007C9128 /* ProfilePlaylistsViewModel.swift in Sources */,
+				74BCFC012AD3F1C700855210 /* SeeAllListViewController.swift in Sources */,
 				7460D3342AC5DC00004863DE /* PlaylistCell.swift in Sources */,
 				F8669E3B2A0BE6CE004D28A1 /* Route.swift in Sources */,
 				F86F797D2A18C3C200298581 /* TappableLabel.swift in Sources */,
 				741CB6A82A44799700975949 /* User+Init.swift in Sources */,
+				74BCFC032AD3F5D100855210 /* SeeAllViewModel.swift in Sources */,
 				74CFCCFB2A82460700DF8D1C /* DefaultAlertViewController.swift in Sources */,
 				748B40992A71589E00CA78CD /* DateTypeSelectionView.swift in Sources */,
 				74EB5BC62ABB156600C3FF0C /* MoodCalendar.swift in Sources */,

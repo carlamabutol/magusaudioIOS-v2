@@ -43,11 +43,24 @@ class ProfileViewController: CommonViewController {
         view.backgroundColor = .TextColor.primaryBlue
         return view
     }()
-    @IBOutlet var subscriptionTypeLbl: UILabel! {
+    
+    @IBOutlet var subscriptionContainerView: UIView! {
         didSet {
-            
+            subscriptionContainerView.isHidden = viewModel.user()?.info.subscriptionID != 2
+            subscriptionContainerView.backgroundColor = .Background.subscriptionBG
+            subscriptionContainerView.cornerBorderRadius(cornerRadius: 5, borderColor: UIColor.black.withAlphaComponent(0.10), borderWidth: 0.5)
+            subscriptionContainerView.applyShadow(radius: 5, offset: .init(width: 0, height: 2))
         }
     }
+    
+    @IBOutlet var subscriptionTypeLbl: UILabel! {
+        didSet {
+            subscriptionTypeLbl.font = .Montserrat.bold3
+            subscriptionTypeLbl.textColor = .white
+            subscriptionTypeLbl.text = viewModel.user()?.info.subscriptionID == 2 ? "PREMIUM" : nil
+        }
+    }
+    
     @IBOutlet var containerProfileImageView: UIView! {
         didSet {
             containerProfileImageView.circle()
@@ -257,6 +270,6 @@ extension ProfileViewController {
     }
     
     fileprivate func indexOfViewController(_ viewController: UIViewController) -> Int {
-        return viewControllers.index(of: viewController) ?? NSNotFound
+        return viewControllers.firstIndex(of: viewController) ?? NSNotFound
     }
 }

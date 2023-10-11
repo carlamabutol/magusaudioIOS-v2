@@ -195,7 +195,7 @@ extension ProfileFavoritesViewController {
     }
     
     fileprivate func indexOfViewController(_ viewController: UIViewController) -> Int {
-        return viewControllers.index(of: viewController) ?? NSNotFound
+        return viewControllers.firstIndex(of: viewController) ?? NSNotFound
     }
     
 }

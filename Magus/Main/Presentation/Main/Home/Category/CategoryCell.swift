@@ -38,6 +38,7 @@ class CategoryCell: HomeCustomCell {
         super.init(frame: frame)
         addSubviews()
         setupCell()
+        initialiseGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -48,6 +49,16 @@ class CategoryCell: HomeCustomCell {
         contentView.addSubview(containerView)
         containerView.addSubview(categoryImageView)
         containerView.addSubview(titleLabel)
+    }
+    
+    private func initialiseGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
+        containerView.addGestureRecognizer(tap)
+        containerView.isUserInteractionEnabled = true
+    }
+    
+    @objc private func tapHandler() {
+        tapActionHandler?()
     }
     
     private func setupCell() {
@@ -68,11 +79,14 @@ class CategoryCell: HomeCustomCell {
         ])
     }
     
+    var tapActionHandler: CompletionHandler?
+    
     override func configure(item: SectionViewModel.Item) {
         setTextWithShadow(text: item.title)
         categoryImageView.sd_setImage(with: item.imageUrl, placeholderImage: .init(named: "Cover Image"), context: nil) { [weak self] _, _, url in
             
         }
+        tapActionHandler = item.tapActionHandler
     }
     
     private func setTextWithShadow(text: String) {
@@ -97,8 +111,10 @@ class CategoryCell: HomeCustomCell {
 extension CategoryCell {
     
     struct Model: ItemModel {
+        
         var id: String
         var title: String
         var imageUrl: URL?
+        var tapActionHandler: CompletionHandler?
     }
 }

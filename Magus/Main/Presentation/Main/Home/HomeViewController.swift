@@ -49,6 +49,14 @@ class HomeViewController: CommonViewController {
     
     override func setupBinding() {
         super.setupBinding()
+        
+        viewModel.selectedFooterObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] modelType in
+                self?.seeAll(for: modelType)
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     private func setupDataSource() {
@@ -76,6 +84,7 @@ class HomeViewController: CommonViewController {
                 return view
             } else {
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: title, withReuseIdentifier: FooterView.identifier, for: indexPath) as! FooterView
+                view.configure(for: dataSource.sectionModels[indexPath.section].footerTapHandler)
                 return view
             }
         })
@@ -127,6 +136,12 @@ class HomeViewController: CommonViewController {
         let playlistVC = PlaylistViewController.instantiate(from: .playlist) as! PlaylistViewController
         navigationController?.pushViewController(playlistVC, animated: true)
         playlistVC.setPlaylist(playlist: playlist)
+    }
+    
+    private func seeAll(for modelType: SeeAllViewModel.ModelType) {
+        let seeAllVC = SeeAllListViewController.instantiate(from: .seeAll) as! SeeAllListViewController
+        seeAllVC.setupViewModel(for: modelType)
+        navigationController?.pushViewController(seeAllVC, animated: true)
     }
     
     func categorySection()-> NSCollectionLayoutSection {

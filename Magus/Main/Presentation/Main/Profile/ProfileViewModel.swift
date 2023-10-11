@@ -26,8 +26,10 @@ class ProfileViewModel: ViewModel {
     var moodViewTypeObservable: Observable<MoodViewType> { moodViewTypeRelay.asObservable() }
     var calendar = Calendar(identifier: .gregorian)
     let calendarDatesRelay = BehaviorRelay<[CalendarMonth]>(value: [])
+    let user: () -> User?
     
-    override init() {
+    init(dependencies: Dependencies = .standard) {
+        user = dependencies.user
         super.init()
         generateDate()
     }
@@ -91,6 +93,16 @@ class ProfileViewModel: ViewModel {
 }
 
 extension ProfileViewModel {
+    
+    struct Dependencies {
+        let user: () -> User?
+        
+        static var standard: Dependencies {
+            return .init(
+                user: { SharedDependencies.sharedDependencies.store.appState.user }
+            )
+        }
+    }
     enum TabSelection {
         case mood
         case sub

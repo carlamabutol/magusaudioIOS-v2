@@ -17,6 +17,8 @@ class HomeViewModel: ViewModel {
     private let categoryRelay = BehaviorRelay<[CategoryCell.Model]>(value: [])
     private let recommendedSubliminals = BehaviorRelay<[CategoryCell.Model]>(value: [])
     private let playlistRelay = BehaviorRelay<[Playlist]>(value: [])
+    private let selectedFooter = PublishRelay<SeeAllViewModel.ModelType>()
+    var selectedFooterObservable: Observable<SeeAllViewModel.ModelType> { selectedFooter.asObservable() }
     
     private let networkService: NetworkService
     private var user: () -> User?
@@ -34,7 +36,13 @@ class HomeViewModel: ViewModel {
                 guard let self else { return }
                 var newSection = self.sections.value
                 if newSection.isEmpty {
-                    newSection.insert(.init(header: LocalizedStrings.HomeHeaderTitle.category, items: categories), at: 0)
+                    newSection.insert(SectionViewModel(
+                        header: LocalizedStrings.HomeHeaderTitle.category,
+                        items: categories,
+                        footerTapHandler: {
+                            self.selectedFooter.accept(.category)
+                        }
+                    ), at: 0)
                 } else if !categories.isEmpty {
                     newSection[0].items = categories
                 }
@@ -43,7 +51,15 @@ class HomeViewModel: ViewModel {
                         if let recommendationIndex = newSection.lastIndex(where: { $0.header == LocalizedStrings.HomeHeaderTitle.recommendations }) {
                             newSection[recommendationIndex].items = subliminals
                         } else if !categories.isEmpty {
-                            newSection.append(.init(header: LocalizedStrings.HomeHeaderTitle.recommendations, items: subliminals))
+                            newSection.append(
+                                SectionViewModel(
+                                    header: LocalizedStrings.HomeHeaderTitle.recommendations,
+                                    items: subliminals,
+                                    footerTapHandler: {
+                                        self.selectedFooter.accept(.recommended)
+                                    }
+                                )
+                            )
                         }
                     } else {
                         if let recommendationIndex = newSection.lastIndex(where: { $0.header == LocalizedStrings.HomeHeaderTitle.recommendations }) {
@@ -55,7 +71,15 @@ class HomeViewModel: ViewModel {
                     if let playListIndex = newSection.lastIndex(where: { $0.header == LocalizedStrings.HomeHeaderTitle.featuredPlayList }) {
                         newSection[playListIndex].items = playlist
                     } else if !playlist.isEmpty {
-                        newSection.append(.init(header: LocalizedStrings.HomeHeaderTitle.featuredPlayList, items: playlist))
+                        newSection.append(
+                            SectionViewModel(
+                                header: LocalizedStrings.HomeHeaderTitle.featuredPlayList,
+                                items: playlist,
+                                footerTapHandler: {
+                                    self.selectedFooter.accept(.featuredPlaylist)
+                                }
+                            )
+                        )
                     }
                 } else {
                     if let playListIndex = newSection.lastIndex(where: { $0.header == LocalizedStrings.HomeHeaderTitle.featuredPlayList }) {
@@ -152,14 +176,22 @@ extension HomeViewModel {
 }
 
 struct SectionViewModel {
-    var header: String!
+    var header: String
     var items: [ItemModel]
+    var footerTapHandler: CompletionHandler?
+    
+    init(header: String, items: [ItemModel], footerTapHandler: CompletionHandler? = nil) {
+        self.header = header
+        self.items = items
+        self.footerTapHandler = footerTapHandler
+    }
 }
 
 protocol ItemModel {
     var id: String { get set }
     var title: String { get set }
     var imageUrl: URL? { get set }
+    var tapActionHandler: CompletionHandler? { get set }
 }
 
 extension SectionViewModel: SectionModelType {

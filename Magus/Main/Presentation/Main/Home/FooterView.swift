@@ -29,6 +29,15 @@ class FooterView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        initialiseTarget()
+    }
+    
+    private func initialiseTarget() {
+        button.addTarget(self, action: #selector(tapSeeAll), for: .touchUpInside)
+    }
+    
+    @objc private func tapSeeAll() {
+        actionHandler?()
     }
     
     private func setupView() {
@@ -41,4 +50,9 @@ class FooterView: UICollectionReusableView {
         ])
     }
     
+    var actionHandler: CompletionHandler?
+    
+    func configure(for actionHandler: CompletionHandler? = nil) {
+        self.actionHandler = actionHandler
+    }
 }

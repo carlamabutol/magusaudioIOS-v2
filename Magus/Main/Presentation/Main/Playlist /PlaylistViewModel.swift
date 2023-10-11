@@ -150,12 +150,14 @@ extension PlaylistViewModel {
     
     struct SublimincalCellModel: ItemModel {
         
+        
         var id: String
         var title: String
         var imageUrl: URL?
         let duration: String
         let isFavorite: Bool
         var favoriteButtonHandler: () -> Void
+        var tapActionHandler: CompletionHandler?
     }
     
     struct SectionViewModel {
