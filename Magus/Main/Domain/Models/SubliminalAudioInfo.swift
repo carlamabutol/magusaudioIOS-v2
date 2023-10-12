@@ -28,7 +28,7 @@ extension SubliminalAudioInfo {
         volume = infoResponse.volume
         trackTitle = infoResponse.title
         link = infoResponse.link
-        duration = infoResponse.duration
+        duration = infoResponse.duration ?? 0
     }
     
 }

@@ -53,7 +53,7 @@ class PlayerViewController: CommonViewController {
     
     @IBOutlet var favoriteButton: UIButton! {
         didSet {
-            let image = UIImage(named: "heart")
+            let image = UIImage(named: .favorite)
             let newImage = image?.resizeImage(targetHeight: 21)
             favoriteButton.setImage(newImage, for: .normal)
             favoriteButton.imageView?.contentMode = .scaleAspectFit

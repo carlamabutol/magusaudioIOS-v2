@@ -55,7 +55,7 @@ struct SubliminalInfoResponse: Codable, Hashable {
     let subliminalID, trackID: String
     let version, audioTypeID, volume: Int
     let title, link: String?
-    let duration: Int
+    let duration: Int?
 
     enum CodingKeys: String, CodingKey {
         case id

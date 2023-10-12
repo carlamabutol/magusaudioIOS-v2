@@ -58,6 +58,26 @@ class SearchViewController: CommonViewController {
             self.viewModel.setSearchFilter("")
         }
         
+        viewModel.selectedSubliminalObservable
+            .subscribe { [weak self] subliminal in
+                guard let self = self else { return }
+                self.tabViewModel.selectSubliminal(subliminal, subliminals: self.viewModel.subliminalRelay.value)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.selectedPlaylistObservable
+            .subscribe { [weak self] playlist in
+                guard let self = self else { return }
+                self.goToPlaylist(with: playlist)
+            }
+            .disposed(by: disposeBag)
+        
+    }
+    
+    private func goToPlaylist(with playlist: Playlist) {
+        let playlistVC = PlaylistViewController.instantiate(from: .playlist) as! PlaylistViewController
+        navigationController?.pushViewController(playlistVC, animated: true)
+        playlistVC.setPlaylist(playlist: playlist)
     }
     
     private func setupDataSource() {
@@ -74,23 +94,6 @@ class SearchViewController: CommonViewController {
         
         viewModel.sections.asObservable()
             .bind(to: collectionView.rx.items(dataSource: dataSource))
-            .disposed(by: disposeBag)
-    
-        Observable
-            .zip(
-                collectionView
-                    .rx
-                    .itemSelected
-                ,collectionView
-                    .rx
-                    .modelSelected(SectionViewModel.Item.self)
-            )
-            .bind{ [unowned self] indexPath, model in
-                if indexPath.section == 0 {
-                    let subliminal = self.viewModel.getSubliminal(model.id)
-                    self.tabViewModel.selectSubliminal(subliminal, subliminals: viewModel.subliminalRelay.value)
-                }
-            }
             .disposed(by: disposeBag)
         
         self.dataSource = dataSource

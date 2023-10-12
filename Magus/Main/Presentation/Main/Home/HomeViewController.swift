@@ -57,6 +57,13 @@ class HomeViewController: CommonViewController {
             }
             .disposed(by: disposeBag)
         
+        viewModel.selectedPlaylistObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] playlist in
+                self?.goToPlaylist(with: playlist)
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     private func setupDataSource() {
@@ -93,27 +100,6 @@ class HomeViewController: CommonViewController {
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
-        Observable
-            .zip(
-                collectionView
-                    .rx
-                    .itemSelected
-                ,collectionView
-                    .rx
-                    .modelSelected(SectionViewModel.Item.self)
-            )
-            .bind{ [unowned self] indexPath, model in
-                let section = viewModel.sections.value[indexPath.section]
-                switch section.header {
-                case LocalisedStrings.HomeHeaderTitle.featuredPlayList:
-                    self.goToPlaylist(playlistID: model.id)
-                default:
-                    break
-                }
-                Logger.info("Selected Model - \(model)", topic: .presentation)
-            }
-            .disposed(by: disposeBag)
-        
         self.dataSource = dataSource
     }
     
@@ -131,8 +117,7 @@ class HomeViewController: CommonViewController {
         collectionView.setCollectionViewLayout(layout, animated: true)
     }
     
-    private func goToPlaylist(playlistID: String) {
-        guard let playlist = viewModel.getPlaylistByID(id: playlistID) else { return }
+    private func goToPlaylist(with playlist: Playlist) {
         let playlistVC = PlaylistViewController.instantiate(from: .playlist) as! PlaylistViewController
         navigationController?.pushViewController(playlistVC, animated: true)
         playlistVC.setPlaylist(playlist: playlist)

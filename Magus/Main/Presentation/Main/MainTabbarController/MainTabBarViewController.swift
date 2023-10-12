@@ -149,8 +149,9 @@ extension MainTabBarViewController {
         case .search:
             let searchVC = SearchViewController.instantiate(from: .search) as! SearchViewController
             searchVC.tabViewModel = viewModel
-//            searchVC.tabNavigationDelegate = self
-            viewController = searchVC
+            let navVC = UINavigationController(rootViewController: searchVC)
+            navVC.navigationBar.isHidden = true
+            viewController = navVC
 //        case .sound:
 //            let playerVC = PlayerViewController.instantiate(from: .player) as! PlayerViewController
 //            playerVC.tabViewModel = viewModel

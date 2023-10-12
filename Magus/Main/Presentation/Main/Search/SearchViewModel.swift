@@ -30,16 +30,21 @@ class SearchViewModel: ViewModel {
     let sections = BehaviorRelay<[SectionViewModel]>(value: [])
     let subliminalRelay = BehaviorRelay<[Subliminal]>(value: [])
     let playlistRelay = BehaviorRelay<[Playlist]>(value: [])
+    private let selectedSubliminal = PublishRelay<Subliminal>()
+    private let selectedPlaylist = PublishRelay<Playlist>()
     private let searchRelay = BehaviorRelay<String>(value: "")
     private let networkService: NetworkService
+    var selectedSubliminalObservable: Observable<Subliminal> { selectedSubliminal.asObservable() }
+    var selectedPlaylistObservable: Observable<Playlist> { selectedPlaylist.asObservable() }
     
     init(sharedDependencies: SearchViewModel.Dependencies = .standard) {
         networkService = sharedDependencies.networkService
         super.init()
         Observable.combineLatest(subliminalRelay, playlistRelay)
-            .map({ subliminals, playlists in
-                let subliminalCells: [CategoryCell.Model]  = subliminals.map { CategoryCell.Model(id: $0.subliminalID, title: $0.title, imageUrl: .init(string: $0.cover )) }
-                let playlistCell: [CategoryCell.Model] = playlists.map { CategoryCell.Model(id: $0.playlistID, title: $0.title, imageUrl: .init(string: $0.cover )) }
+            .map({ [weak self] subliminals, playlists in
+                guard let self = self else { return ([CategoryCell.Model](), [CategoryCell.Model]()) }
+                let subliminalCells: [CategoryCell.Model]  = subliminals.map { self.configureSubliminalCell(with: $0) }
+                let playlistCell: [CategoryCell.Model] = playlists.map { self.configurePlaylistCell(with: $0) }
                 return (subliminalCells, playlistCell)
             })
             .subscribe { [weak self] (subliminals, playlist) in
@@ -93,12 +98,26 @@ class SearchViewModel: ViewModel {
         }
     }
     
-    func setSearchFilter(_ search: String) {
-        self.searchRelay.accept(search)
+    private func configureSubliminalCell(with subliminal: Subliminal) -> CategoryCell.Model {
+        return CategoryCell.Model(
+            id: subliminal.subliminalID,
+            title: subliminal.title
+        ) { [weak self] in
+            self?.selectedSubliminal.accept(subliminal)
+        }
     }
     
-    func getSubliminal(_ subliminalID: String) -> Subliminal {
-        return subliminalRelay.value.first(where: { $0.subliminalID == subliminalID })!
+    private func configurePlaylistCell(with playlist: Playlist) -> CategoryCell.Model {
+        return CategoryCell.Model(
+            id: playlist.playlistID,
+            title: playlist.title
+        ) { [weak self] in
+            self?.selectedPlaylist.accept(playlist)
+        }
+    }
+    
+    func setSearchFilter(_ search: String) {
+        self.searchRelay.accept(search)
     }
     
 }

@@ -19,6 +19,8 @@ class HomeViewModel: ViewModel {
     private let playlistRelay = BehaviorRelay<[Playlist]>(value: [])
     private let selectedFooter = PublishRelay<SeeAllViewModel.ModelType>()
     var selectedFooterObservable: Observable<SeeAllViewModel.ModelType> { selectedFooter.asObservable() }
+    private let selectedPlaylist = PublishRelay<Playlist>()
+    var selectedPlaylistObservable: Observable<Playlist> { selectedPlaylist.asObservable() }
     
     private let networkService: NetworkService
     private var user: () -> User?
@@ -29,7 +31,7 @@ class HomeViewModel: ViewModel {
         super.init()
         Observable.combineLatest(categoryRelay, recommendedSubliminals, playlistRelay)
             .map { category, recommendedSub, playlist in
-                let cellPlaylist = playlist.map { CategoryCell.Model(id: $0.playlistID, title: $0.title, imageUrl: .init(string: $0.cover )) }
+                let cellPlaylist = playlist.map { self.configurePlaylistCell(with: $0) }
                 return (category, recommendedSub, cellPlaylist)
             }
             .subscribe { [weak self] (categories, subliminals, playlist) in
@@ -149,8 +151,13 @@ class HomeViewModel: ViewModel {
         
     }
     
-    func getPlaylistByID(id: String) -> Playlist? {
-        playlistRelay.value.first(where: { $0.playlistID == id})
+    private func configurePlaylistCell(with playlist: Playlist) -> CategoryCell.Model {
+        return CategoryCell.Model(
+            id: playlist.playlistID,
+            title: playlist.title
+        ) { [weak self] in
+            self?.selectedPlaylist.accept(playlist)
+        }
     }
     
 }
