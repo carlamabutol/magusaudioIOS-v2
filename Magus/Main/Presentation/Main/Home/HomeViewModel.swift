@@ -37,7 +37,7 @@ class HomeViewModel: ViewModel {
                 var newSection = self.sections.value
                 if newSection.isEmpty {
                     newSection.insert(SectionViewModel(
-                        header: LocalizedStrings.HomeHeaderTitle.category,
+                        header: LocalisedStrings.HomeHeaderTitle.category,
                         items: categories,
                         footerTapHandler: {
                             self.selectedFooter.accept(.category)
@@ -48,12 +48,12 @@ class HomeViewModel: ViewModel {
                 }
                 if self.user()?.info.moodsID != nil {
                     if !subliminals.isEmpty {
-                        if let recommendationIndex = newSection.lastIndex(where: { $0.header == LocalizedStrings.HomeHeaderTitle.recommendations }) {
+                        if let recommendationIndex = newSection.lastIndex(where: { $0.header == LocalisedStrings.HomeHeaderTitle.recommendations }) {
                             newSection[recommendationIndex].items = subliminals
                         } else if !categories.isEmpty {
                             newSection.append(
                                 SectionViewModel(
-                                    header: LocalizedStrings.HomeHeaderTitle.recommendations,
+                                    header: LocalisedStrings.HomeHeaderTitle.recommendations,
                                     items: subliminals,
                                     footerTapHandler: {
                                         self.selectedFooter.accept(.recommended)
@@ -62,18 +62,18 @@ class HomeViewModel: ViewModel {
                             )
                         }
                     } else {
-                        if let recommendationIndex = newSection.lastIndex(where: { $0.header == LocalizedStrings.HomeHeaderTitle.recommendations }) {
+                        if let recommendationIndex = newSection.lastIndex(where: { $0.header == LocalisedStrings.HomeHeaderTitle.recommendations }) {
                             newSection.remove(at: recommendationIndex)
                         }
                     }
                 }
                 if !playlist.isEmpty {
-                    if let playListIndex = newSection.lastIndex(where: { $0.header == LocalizedStrings.HomeHeaderTitle.featuredPlayList }) {
+                    if let playListIndex = newSection.lastIndex(where: { $0.header == LocalisedStrings.HomeHeaderTitle.featuredPlayList }) {
                         newSection[playListIndex].items = playlist
                     } else if !playlist.isEmpty {
                         newSection.append(
                             SectionViewModel(
-                                header: LocalizedStrings.HomeHeaderTitle.featuredPlayList,
+                                header: LocalisedStrings.HomeHeaderTitle.featuredPlayList,
                                 items: playlist,
                                 footerTapHandler: {
                                     self.selectedFooter.accept(.featuredPlaylist)
@@ -82,7 +82,7 @@ class HomeViewModel: ViewModel {
                         )
                     }
                 } else {
-                    if let playListIndex = newSection.lastIndex(where: { $0.header == LocalizedStrings.HomeHeaderTitle.featuredPlayList }) {
+                    if let playListIndex = newSection.lastIndex(where: { $0.header == LocalisedStrings.HomeHeaderTitle.featuredPlayList }) {
                         newSection.remove(at: playListIndex)
                     }
                 }

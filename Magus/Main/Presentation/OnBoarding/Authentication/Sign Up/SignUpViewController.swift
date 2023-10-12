@@ -16,7 +16,7 @@ class SignUpViewController: CommonViewController {
     @IBOutlet var signUpScrollView: UIScrollView!
     @IBOutlet var titleLabel: UILabel! {
         didSet {
-            titleLabel.text = LocalizedStrings.SignUp.title
+            titleLabel.text = LocalisedStrings.SignUp.title
             titleLabel.numberOfLines = 2
             titleLabel.font = UIFont.Montserrat.title
         }
@@ -24,32 +24,32 @@ class SignUpViewController: CommonViewController {
     
     @IBOutlet var descLabel: UILabel! {
         didSet {
-            descLabel.text = LocalizedStrings.SignUp.description
+            descLabel.text = LocalisedStrings.SignUp.description
             descLabel.font = UIFont.Montserrat.body1
         }
     }
     
     @IBOutlet var fullNameTextFieldView: TextFieldView! {
         didSet {
-            fullNameTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.fullName, textRelay: viewModel.fullNameRelay))
+            fullNameTextFieldView.configure(model: .init(placeholder: LocalisedStrings.Auth.fullName, textRelay: viewModel.fullNameRelay))
         }
     }
     
     @IBOutlet var emailTextFieldView: TextFieldView! {
         didSet {
-            emailTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.email, textRelay: viewModel.emailRelay))
+            emailTextFieldView.configure(model: .init(placeholder: LocalisedStrings.Auth.email, textRelay: viewModel.emailRelay))
         }
     }
     
     @IBOutlet var passwordTextFieldView: TextFieldView! {
         didSet {
-            passwordTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.password, textRelay: viewModel.passwordRelay, isSecureEntry: true))
+            passwordTextFieldView.configure(model: .init(placeholder: LocalisedStrings.Auth.password, textRelay: viewModel.passwordRelay, isSecureEntry: true))
         }
     }
     
     @IBOutlet var confirmPasswordTextFieldView: TextFieldView! {
         didSet {
-            confirmPasswordTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.confirmPassword, textRelay: viewModel.confirmPasswordRelay, isSecureEntry: true))
+            confirmPasswordTextFieldView.configure(model: .init(placeholder: LocalisedStrings.Auth.confirmPassword, textRelay: viewModel.confirmPasswordRelay, isSecureEntry: true))
         }
     }
     @IBOutlet var textFieldContainerView: UIView! {
@@ -64,7 +64,7 @@ class SignUpViewController: CommonViewController {
             let attrb = Self.termsAndConditionAttrbString()
             termsAndConditionLabel.isUserInteractionEnabled = true
             termsAndConditionLabel.attributedText = attrb
-            guard let range = attrb.string.range(of: LocalizedStrings.SignUp.termsAndCondition) else { return }
+            guard let range = attrb.string.range(of: LocalisedStrings.SignUp.termsAndCondition) else { return }
             termsAndConditionLabel.tappableRange = NSRange(range, in: attrb.string)
             termsAndConditionLabel.tappableHandler = { [weak self] in
                 self?.presentTermsAndCondition()
@@ -77,7 +77,7 @@ class SignUpViewController: CommonViewController {
             let attrb = Self.alrdyHaveAnAccountAttrbString()
             alrdyHaveAnAccountLabel.isUserInteractionEnabled = true
             alrdyHaveAnAccountLabel.attributedText = attrb
-            guard let range = attrb.string.range(of: LocalizedStrings.SignUp.signIn) else { return }
+            guard let range = attrb.string.range(of: LocalisedStrings.SignUp.signIn) else { return }
             alrdyHaveAnAccountLabel.tappableRange = NSRange(range, in: attrb.string)
             alrdyHaveAnAccountLabel.tappableHandler = { [weak self] in
                 self?.gotoSignin()
@@ -87,7 +87,7 @@ class SignUpViewController: CommonViewController {
     
     @IBOutlet var signUpButton: FormButton! {
         didSet {
-            signUpButton.setTitle(LocalizedStrings.SignUp.signUp, for: .normal)
+            signUpButton.setTitle(LocalisedStrings.SignUp.signUp, for: .normal)
         }
     }
     @IBOutlet var checkboxImageView: UIImageView! {
@@ -161,9 +161,9 @@ class SignUpViewController: CommonViewController {
 extension SignUpViewController {
         
     private static func termsAndConditionAttrbString() -> NSMutableAttributedString {
-        let title = LocalizedStrings.SignUp.iAgreeWithTermsAndCondition
+        let title = LocalisedStrings.SignUp.iAgreeWithTermsAndCondition
         let mutableString = NSMutableAttributedString(string: title, attributes: [.font: UIFont.Montserrat.body1, .foregroundColor: UIColor.TextColor.primaryBlack])
-        let range = mutableString.mutableString.range(of: LocalizedStrings.SignUp.termsAndCondition)
+        let range = mutableString.mutableString.range(of: LocalisedStrings.SignUp.termsAndCondition)
         mutableString.addAttributes(
             [
                 .foregroundColor: UIColor.TextColor.primaryBlue,
@@ -177,9 +177,9 @@ extension SignUpViewController {
     }
     
     private static func alrdyHaveAnAccountAttrbString() -> NSMutableAttributedString {
-        let title = LocalizedStrings.SignUp.alrdyHaveAnAccount
+        let title = LocalisedStrings.SignUp.alrdyHaveAnAccount
         let mutableString = NSMutableAttributedString(string: title, attributes: [.font: UIFont.Montserrat.body1, .foregroundColor: UIColor.TextColor.primaryBlack])
-        let range = mutableString.mutableString.range(of: LocalizedStrings.SignUp.signIn)
+        let range = mutableString.mutableString.range(of: LocalisedStrings.SignUp.signIn)
         mutableString.addAttributes(
             [
                 .foregroundColor: UIColor.TextColor.primaryBlue,

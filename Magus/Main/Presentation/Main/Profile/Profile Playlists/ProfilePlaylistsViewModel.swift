@@ -20,9 +20,9 @@ class ProfilePlaylistsViewModel: ViewModel {
         var title: String {
             switch self {
             case .subliminal:
-                return LocalizedStrings.SearchHeaderTitle.subliminal
+                return LocalisedStrings.SearchHeaderTitle.subliminal
             case .playlist:
-                return LocalizedStrings.SearchHeaderTitle.playlist
+                return LocalisedStrings.SearchHeaderTitle.playlist
             }
         }
     }

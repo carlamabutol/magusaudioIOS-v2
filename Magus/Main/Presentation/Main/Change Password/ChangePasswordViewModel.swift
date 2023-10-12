@@ -18,7 +18,7 @@ class ChangePasswordViewModel: ViewModel {
     let contain8CharacterRelay = BehaviorRelay<ChangePasswordViewModel.PasswordRequirementModel>(
         value: .init(
             imageName: .check,
-            text: LocalizedStrings.ChangePassword.contain8Characters
+            text: LocalisedStrings.ChangePassword.contain8Characters
         )
     )
     

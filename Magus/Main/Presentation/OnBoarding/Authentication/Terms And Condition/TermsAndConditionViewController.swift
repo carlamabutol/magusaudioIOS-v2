@@ -13,7 +13,7 @@ class TermsAndConditionViewController: CommonViewController {
     @IBOutlet var scrollView: UIScrollView! 
     @IBOutlet var titleLabel: UILabel! {
         didSet {
-            titleLabel.text = LocalizedStrings.TermsAndCondition.title
+            titleLabel.text = LocalisedStrings.TermsAndCondition.title
             titleLabel.numberOfLines = 2
             titleLabel.font = UIFont.Montserrat.title1
         }
@@ -21,14 +21,14 @@ class TermsAndConditionViewController: CommonViewController {
     
     @IBOutlet var acceptButton: FormButton! {
         didSet {
-            acceptButton.setTitle(LocalizedStrings.TermsAndCondition.accept, for: .normal)
+            acceptButton.setTitle(LocalisedStrings.TermsAndCondition.accept, for: .normal)
         }
     }
     @IBOutlet var descLabel: UILabel! {
         didSet {
             descLabel.numberOfLines = 0
             descLabel.font = UIFont.Montserrat.body3
-            descLabel.text = LocalizedStrings.TermsAndCondition.description
+            descLabel.text = LocalisedStrings.TermsAndCondition.description
         }
     }
     

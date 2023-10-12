@@ -175,7 +175,7 @@
 		F81ED0842A16160E0043E245 /* SharedDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F827D97C2A10F6BB0034B5AF /* SharedDependencies.swift */; };
 		F81ED0852A16160E0043E245 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88A830D2A13D22900D3E975 /* UIView+Extension.swift */; };
 		F81ED0862A16160E0043E245 /* String+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8512C332A13B9EA0041C14F /* String+Images.swift */; };
-		F81ED0872A16160E0043E245 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E2F2A0BDAB8004D28A1 /* LocalizedStrings.swift */; };
+		F81ED0872A16160E0043E245 /* LocalisedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E2F2A0BDAB8004D28A1 /* LocalisedStrings.swift */; };
 		F81ED0882A16160E0043E245 /* Colors+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8512C432A13C4120041C14F /* Colors+Hex.swift */; };
 		F81ED0892A16160E0043E245 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F835B0052A06526200123A16 /* SceneDelegate.swift */; };
 		F81ED08A2A16160E0043E245 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = F827D97F2A10F7460034B5AF /* Router.swift */; };
@@ -237,7 +237,7 @@
 		F8512C3F2A13BDC90041C14F /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8512C3E2A13BDC90041C14F /* WelcomeViewModel.swift */; };
 		F8512C422A13C3C60041C14F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8512C412A13C3C60041C14F /* Colors.swift */; };
 		F8512C442A13C4120041C14F /* Colors+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8512C432A13C4120041C14F /* Colors+Hex.swift */; };
-		F8669E302A0BDAB8004D28A1 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E2F2A0BDAB8004D28A1 /* LocalizedStrings.swift */; };
+		F8669E302A0BDAB8004D28A1 /* LocalisedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E2F2A0BDAB8004D28A1 /* LocalisedStrings.swift */; };
 		F8669E342A0BE604004D28A1 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8669E332A0BE604004D28A1 /* Login.storyboard */; };
 		F8669E362A0BE619004D28A1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E352A0BE619004D28A1 /* LoginViewController.swift */; };
 		F8669E382A0BE623004D28A1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E372A0BE623004D28A1 /* LoginViewModel.swift */; };
@@ -286,6 +286,9 @@
 		F8D3D3912A223E8800AD7C2D /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3D3902A223E8800AD7C2D /* ForgotPasswordViewModel.swift */; };
 		F8E4CCE92A19ED5F002C388C /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8E4CCE82A19ED5F002C388C /* SignUp.storyboard */; };
 		F8E4CCEB2A19ED74002C388C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4CCEA2A19ED74002C388C /* SignUpViewController.swift */; };
+		F8F2A7E42AD6E0B500F40D36 /* HowMagusWorksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F2A7E32AD6E0B500F40D36 /* HowMagusWorksViewModel.swift */; };
+		F8F2A7E92AD6E7D700F40D36 /* HowMagusWorkInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F2A7E82AD6E7D700F40D36 /* HowMagusWorkInfoViewController.swift */; };
+		F8F2A7EB2AD6E7E800F40D36 /* HowMagusWorkInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8F2A7EA2AD6E7E800F40D36 /* HowMagusWorkInfo.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -467,7 +470,7 @@
 		F8512C3E2A13BDC90041C14F /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		F8512C412A13C3C60041C14F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F8512C432A13C4120041C14F /* Colors+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors+Hex.swift"; sourceTree = "<group>"; };
-		F8669E2F2A0BDAB8004D28A1 /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
+		F8669E2F2A0BDAB8004D28A1 /* LocalisedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalisedStrings.swift; sourceTree = "<group>"; };
 		F8669E332A0BE604004D28A1 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		F8669E352A0BE619004D28A1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F8669E372A0BE623004D28A1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -516,6 +519,9 @@
 		F8D3D3902A223E8800AD7C2D /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		F8E4CCE82A19ED5F002C388C /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		F8E4CCEA2A19ED74002C388C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		F8F2A7E32AD6E0B500F40D36 /* HowMagusWorksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowMagusWorksViewModel.swift; sourceTree = "<group>"; };
+		F8F2A7E82AD6E7D700F40D36 /* HowMagusWorkInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowMagusWorkInfoViewController.swift; sourceTree = "<group>"; };
+		F8F2A7EA2AD6E7E800F40D36 /* HowMagusWorkInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HowMagusWorkInfo.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -867,6 +873,7 @@
 		7490E44B2A40A0BF00463582 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				F8F2A7E22AD6E09C00F40D36 /* New Group */,
 				74EB5BCA2ABB1D3900C3FF0C /* Profile Playlists */,
 				74EB5BC92ABB1D2C00C3FF0C /* Profile Favorites */,
 				74BAEAB52A8502D1000BB1E4 /* Settings */,
@@ -1050,8 +1057,10 @@
 		74ED5DA92AA5C77B006F6C8D /* How Magus Works */ = {
 			isa = PBXGroup;
 			children = (
+				F8F2A7E52AD6E58000F40D36 /* Cell */,
 				74ED5DAA2AA5C78F006F6C8D /* HowMagusWorks.storyboard */,
 				74ED5DAC2AA5C7F0006F6C8D /* HowMagusWorksViewController.swift */,
+				F8F2A7E32AD6E0B500F40D36 /* HowMagusWorksViewModel.swift */,
 			);
 			path = "How Magus Works";
 			sourceTree = "<group>";
@@ -1309,7 +1318,7 @@
 		F8669E2E2A0BDAA4004D28A1 /* LocalizedStrings */ = {
 			isa = PBXGroup;
 			children = (
-				F8669E2F2A0BDAB8004D28A1 /* LocalizedStrings.swift */,
+				F8669E2F2A0BDAB8004D28A1 /* LocalisedStrings.swift */,
 			);
 			path = LocalizedStrings;
 			sourceTree = "<group>";
@@ -1483,6 +1492,22 @@
 			path = "Sign Up";
 			sourceTree = "<group>";
 		};
+		F8F2A7E22AD6E09C00F40D36 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		F8F2A7E52AD6E58000F40D36 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F8F2A7E82AD6E7D700F40D36 /* HowMagusWorkInfoViewController.swift */,
+				F8F2A7EA2AD6E7E800F40D36 /* HowMagusWorkInfo.storyboard */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1619,6 +1644,7 @@
 				F88A82FE2A13CEDA00D3E975 /* Montserrat-ThinItalic.ttf in Resources */,
 				F88A83032A13CEDA00D3E975 /* Montserrat-BlackItalic.ttf in Resources */,
 				74EB5BD02ABB20CD00C3FF0C /* ProfileFavorites.storyboard in Resources */,
+				F8F2A7EB2AD6E7E800F40D36 /* HowMagusWorkInfo.storyboard in Resources */,
 				F835B00B2A06526200123A16 /* Main.storyboard in Resources */,
 				F88A83062A13CEDA00D3E975 /* Montserrat-ExtraBold.ttf in Resources */,
 				F827D9852A10FAD70034B5AF /* MainTabBar.storyboard in Resources */,
@@ -1708,7 +1734,7 @@
 				F81ED0842A16160E0043E245 /* SharedDependencies.swift in Sources */,
 				F81ED0852A16160E0043E245 /* UIView+Extension.swift in Sources */,
 				F81ED0862A16160E0043E245 /* String+Images.swift in Sources */,
-				F81ED0872A16160E0043E245 /* LocalizedStrings.swift in Sources */,
+				F81ED0872A16160E0043E245 /* LocalisedStrings.swift in Sources */,
 				F81ED0882A16160E0043E245 /* Colors+Hex.swift in Sources */,
 				F81ED0892A16160E0043E245 /* SceneDelegate.swift in Sources */,
 				F81ED08A2A16160E0043E245 /* Router.swift in Sources */,
@@ -1767,6 +1793,7 @@
 				7424ED722A7E94820011C52E /* ChangePasswordViewModel.swift in Sources */,
 				74CB03952A90A222007A1A90 /* Playlist.swift in Sources */,
 				7493320A2A9652FE00EA559B /* Int+Extension.swift in Sources */,
+				F8F2A7E92AD6E7D700F40D36 /* HowMagusWorkInfoViewController.swift in Sources */,
 				74B9177A2A51B5C200B598EB /* SearchViewModel.swift in Sources */,
 				F80A38B82A18C09F0023D166 /* KeyboardManager.swift in Sources */,
 				7474B31C2A49BD5D00086600 /* HomeCustomCell.swift in Sources */,
@@ -1847,9 +1874,10 @@
 				F8BA02602ABF0619007C9128 /* FavoriteSubliminalCollectionViewCell.swift in Sources */,
 				7480EDFE2A7D0411000206B1 /* CalendarViewController.swift in Sources */,
 				741CB69D2A44763900975949 /* StandardCredentialsService.swift in Sources */,
+				F8F2A7E42AD6E0B500F40D36 /* HowMagusWorksViewModel.swift in Sources */,
 				74F1DD1D2A4996C6008F4680 /* CategoryCell.swift in Sources */,
 				F8512C352A13B9EA0041C14F /* String+Images.swift in Sources */,
-				F8669E302A0BDAB8004D28A1 /* LocalizedStrings.swift in Sources */,
+				F8669E302A0BDAB8004D28A1 /* LocalisedStrings.swift in Sources */,
 				74BAEAB42A84FAB1000BB1E4 /* MySubsViewController.swift in Sources */,
 				745FA79A2A8A383D00F068E4 /* SubliminalAudioResponse.swift in Sources */,
 				7464B6262A7E8069007A4DFD /* ChangePasswordViewController.swift in Sources */,

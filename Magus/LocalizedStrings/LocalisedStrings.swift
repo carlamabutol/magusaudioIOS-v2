@@ -1,5 +1,5 @@
 //
-//  LocalizedStrings.swift
+//  LocalisedStrings.swift
 //  Magus
 //
 //  Created by Jose Mari Pascual on 5/10/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LocalizedStrings {
+struct LocalisedStrings {
     
     enum Auth {
         static let fullName = "Full Name"
@@ -113,5 +113,9 @@ struct LocalizedStrings {
         static let includeOneUppercase = "Include at least one uppercase letter (A-Z)"
         static let includeOneNumber = "Include at least one number (0-9)"
         static let passwordMust = "Password must:"
+    }
+    
+    enum HowMagusWorks {
+        static let title = "How Magus Works"
     }
 }

@@ -105,7 +105,7 @@ class HomeViewController: CommonViewController {
             .bind{ [unowned self] indexPath, model in
                 let section = viewModel.sections.value[indexPath.section]
                 switch section.header {
-                case LocalizedStrings.HomeHeaderTitle.featuredPlayList:
+                case LocalisedStrings.HomeHeaderTitle.featuredPlayList:
                     self.goToPlaylist(playlistID: model.id)
                 default:
                     break

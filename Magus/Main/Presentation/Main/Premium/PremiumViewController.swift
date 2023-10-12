@@ -19,14 +19,14 @@ class PremiumViewController: CommonViewController {
     }
     @IBOutlet var titleLabel: UILabel! {
         didSet {
-            titleLabel.text = LocalizedStrings.Premium.title
+            titleLabel.text = LocalisedStrings.Premium.title
             titleLabel.font = .Montserrat.title3
         }
     }
     
     @IBOutlet var subTitleLabel: UILabel! {
         didSet {
-            subTitleLabel.text = LocalizedStrings.Premium.subTitle
+            subTitleLabel.text = LocalisedStrings.Premium.subTitle
             subTitleLabel.font = .Montserrat.body3
         }
     }
@@ -45,7 +45,7 @@ class PremiumViewController: CommonViewController {
     
     @IBOutlet var chooseYourPlanLabel: UILabel! {
         didSet {
-            chooseYourPlanLabel.text = LocalizedStrings.Premium.chooseYourPlan
+            chooseYourPlanLabel.text = LocalisedStrings.Premium.chooseYourPlan
             chooseYourPlanLabel.font = .Montserrat.body3
         }
     }
@@ -54,7 +54,7 @@ class PremiumViewController: CommonViewController {
     
     @IBOutlet var continueButton: UIButton! {
         didSet {
-            continueButton.setTitle(LocalizedStrings.Premium.continueBtn, for: .normal)
+            continueButton.setTitle(LocalisedStrings.Premium.continueBtn, for: .normal)
             continueButton.setTitleColor(.ButtonColor.primaryBlue, for: .normal)
             continueButton.titleLabel?.font = .Montserrat.bold1
         }

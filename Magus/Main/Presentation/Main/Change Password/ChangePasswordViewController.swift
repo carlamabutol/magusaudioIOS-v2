@@ -15,8 +15,8 @@ class ChangePasswordViewController: CommonViewController {
     
     @IBOutlet var titleLbl: UILabel! {
         didSet {
-            let accountPrivacyAttrb = NSAttributedString(string: "\(LocalizedStrings.EditProfile.accountPrivacy.uppercased()) >", attributes: [.font: UIFont.Montserrat.bold12])
-            let changePassAttrb = NSAttributedString(string: " " + LocalizedStrings.EditProfile.changePassword.uppercased(), attributes: [.font: UIFont.Montserrat.bold17])
+            let accountPrivacyAttrb = NSAttributedString(string: "\(LocalisedStrings.EditProfile.accountPrivacy.uppercased()) >", attributes: [.font: UIFont.Montserrat.bold12])
+            let changePassAttrb = NSAttributedString(string: " " + LocalisedStrings.EditProfile.changePassword.uppercased(), attributes: [.font: UIFont.Montserrat.bold17])
             let attrbString = NSMutableAttributedString(attributedString: accountPrivacyAttrb)
             attrbString.append(changePassAttrb)
             titleLbl.numberOfLines = 2
@@ -50,26 +50,26 @@ class ChangePasswordViewController: CommonViewController {
     @IBOutlet var requirementsTitleLbl: UILabel! {
         didSet {
             requirementsTitleLbl.font = .Montserrat.semibold1
-            requirementsTitleLbl.text = LocalizedStrings.ChangePassword.passwordMust
+            requirementsTitleLbl.text = LocalisedStrings.ChangePassword.passwordMust
             requirementsTitleLbl.textColor = .TextColor.primaryBlack.withAlphaComponent(0.56)
         }
     }
     
     @IBOutlet var firstPasswordReqView: PasswordRequirementView! {
         didSet {
-            firstPasswordReqView.configure(text: LocalizedStrings.ChangePassword.contain8Characters)
+            firstPasswordReqView.configure(text: LocalisedStrings.ChangePassword.contain8Characters)
         }
     }
     
     @IBOutlet var secondPasswordReqView: PasswordRequirementView! {
         didSet {
-            secondPasswordReqView.configure(text: LocalizedStrings.ChangePassword.includeOneUppercase)
+            secondPasswordReqView.configure(text: LocalisedStrings.ChangePassword.includeOneUppercase)
         }
     }
     
     @IBOutlet var thirdPasswordReqView: PasswordRequirementView! {
         didSet {
-            thirdPasswordReqView.configure(text: LocalizedStrings.ChangePassword.includeOneNumber)
+            thirdPasswordReqView.configure(text: LocalisedStrings.ChangePassword.includeOneNumber)
         }
     }
     
@@ -89,17 +89,17 @@ class ChangePasswordViewController: CommonViewController {
     
     private func configureForms() {
         currentPasswordForm.configure(
-            model: .init(placeholder: LocalizedStrings.EditProfile.currentPassword,
+            model: .init(placeholder: LocalisedStrings.EditProfile.currentPassword,
                          textRelay: viewModel.currentPasswordRelay,
                          isSecureEntry: true)
         )
         newPasswordForm.configure(
-            model: .init(placeholder: LocalizedStrings.EditProfile.enterNewPassword,
+            model: .init(placeholder: LocalisedStrings.EditProfile.enterNewPassword,
                          textRelay: viewModel.enterNewPasswordRelay,
                          isSecureEntry: true)
         )
         confirmNewPasswordForm.configure(
-            model: .init(placeholder: LocalizedStrings.EditProfile.confirmPassword,
+            model: .init(placeholder: LocalisedStrings.EditProfile.confirmPassword,
                          textRelay: viewModel.confirmNewPasswordRelay,
                          isSecureEntry: true)
         )

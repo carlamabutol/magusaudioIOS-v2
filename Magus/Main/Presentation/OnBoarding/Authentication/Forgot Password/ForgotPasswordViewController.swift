@@ -16,7 +16,7 @@ class ForgotPasswordViewController: CommonViewController {
     
     @IBOutlet var titleLabel: UILabel! {
         didSet {
-            titleLabel.text = LocalizedStrings.ForgotPassword.title
+            titleLabel.text = LocalisedStrings.ForgotPassword.title
             titleLabel.numberOfLines = 2
             titleLabel.font = UIFont.Montserrat.title
         }
@@ -24,20 +24,20 @@ class ForgotPasswordViewController: CommonViewController {
     
     @IBOutlet var descriptionLabel: UILabel! {
         didSet {
-            descriptionLabel.text = LocalizedStrings.ForgotPassword.description
+            descriptionLabel.text = LocalisedStrings.ForgotPassword.description
             descriptionLabel.font = UIFont.Montserrat.body1
         }
     }
     
     @IBOutlet var textFieldView: TextFieldView! {
         didSet {
-            textFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.email, textRelay: viewModel.emailRelay))
+            textFieldView.configure(model: .init(placeholder: LocalisedStrings.Auth.email, textRelay: viewModel.emailRelay))
         }
     }
     
     @IBOutlet var submitButton: FormButton! {
         didSet {
-            submitButton.setTitle(LocalizedStrings.ForgotPassword.submit, for: .normal)
+            submitButton.setTitle(LocalisedStrings.ForgotPassword.submit, for: .normal)
         }
     }
     
@@ -45,7 +45,7 @@ class ForgotPasswordViewController: CommonViewController {
         didSet {
             signUpLabel.isUserInteractionEnabled = true
             signUpLabel.attributedText = Self.dontHaveAnAccountAttributedString()
-            guard let range = signUpLabel.attributedText?.string.range(of: LocalizedStrings.Login.signUp) else { return }
+            guard let range = signUpLabel.attributedText?.string.range(of: LocalisedStrings.Login.signUp) else { return }
             signUpLabel.tappableRange = NSRange(range, in: signUpLabel.attributedText!.string)
             signUpLabel.tappableHandler = { [weak self] in
                 self?.gotoSignup()
@@ -90,9 +90,9 @@ extension ForgotPasswordViewController: KeyboardManager {
 extension ForgotPasswordViewController {
     
     private static func dontHaveAnAccountAttributedString() -> NSMutableAttributedString {
-        let title = LocalizedStrings.Login.dontHaveAnAccount + LocalizedStrings.Login.signUp
+        let title = LocalisedStrings.Login.dontHaveAnAccount + LocalisedStrings.Login.signUp
         let mutableString = NSMutableAttributedString(string: title, attributes: [.font: UIFont.Montserrat.body1, .foregroundColor: UIColor.TextColor.primaryBlack])
-        let range = mutableString.mutableString.range(of: LocalizedStrings.Login.signUp)
+        let range = mutableString.mutableString.range(of: LocalisedStrings.Login.signUp)
         mutableString.addAttributes(
             [
                 .foregroundColor: UIColor.TextColor.primaryBlue,

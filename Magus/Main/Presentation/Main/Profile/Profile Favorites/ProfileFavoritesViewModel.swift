@@ -97,7 +97,7 @@ class ProfileFavoritesViewModel: ViewModel {
                 let playlists = try await playlistUseCase.getAllLikePlaylist()
                 playlistRelay.accept(playlists)
             } catch {
-                Logger.warning("Failed to fetch all favorite subliminals \(error.localizedDescription)", topic: .presentation)
+                Logger.warning("Failed to fetch all playlist subliminals \(error.localizedDescription)", topic: .presentation)
             }
         }
     }

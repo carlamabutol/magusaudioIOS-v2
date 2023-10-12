@@ -17,13 +17,13 @@ class MoodViewController: CommonViewController {
         didSet {
             titleLabel.numberOfLines = 2
             titleLabel.font = UIFont.Montserrat.title2
-            titleLabel.text = LocalizedStrings.MoodSelection.title
+            titleLabel.text = LocalisedStrings.MoodSelection.title
         }
     }
     
     @IBOutlet var continueButton: UIButton! {
         didSet {
-            continueButton.setTitle(LocalizedStrings.MoodSelection.continueButtonTitle, for: .normal)
+            continueButton.setTitle(LocalisedStrings.MoodSelection.continueButtonTitle, for: .normal)
             continueButton.setTitleColor(.ButtonColor.primaryBlue, for: .normal)
             continueButton.titleLabel?.font = .Montserrat.bold1
         }

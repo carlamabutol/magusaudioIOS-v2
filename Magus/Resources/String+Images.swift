@@ -87,5 +87,8 @@ enum ImageAsset: String {
     
     case delete = "Trash Delete"
     
+    // How Magus Works
+    case howMagusWorks1 = "how-magus-works-1"
+    case howMagusWorks2 = "how-magus-works-2"
     
 }

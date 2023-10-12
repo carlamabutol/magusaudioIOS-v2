@@ -26,14 +26,14 @@ class LoginViewController: CommonViewController {
         didSet {
             welcomeTitleLbl.numberOfLines = 2
             welcomeTitleLbl.font = UIFont.Montserrat.title
-            welcomeTitleLbl.text = LocalizedStrings.Login.welcomeBackTitle
+            welcomeTitleLbl.text = LocalisedStrings.Login.welcomeBackTitle
         }
     }
     
     @IBOutlet var descLbl: UILabel! {
         didSet {
             descLbl.font = UIFont.Montserrat.body1
-            descLbl.text = LocalizedStrings.Login.signInStartListening
+            descLbl.text = LocalisedStrings.Login.signInStartListening
         }
     }
     
@@ -46,13 +46,13 @@ class LoginViewController: CommonViewController {
     
     @IBOutlet var emailTextFieldView: TextFieldView! {
         didSet {
-            emailTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.email, textRelay: viewModel.userName, keyboardType: .emailAddress))
+            emailTextFieldView.configure(model: .init(placeholder: LocalisedStrings.Auth.email, textRelay: viewModel.userName, keyboardType: .emailAddress))
         }
     }
     
     @IBOutlet var passwordTextFieldView: TextFieldView! {
         didSet {
-            passwordTextFieldView.configure(model: .init(placeholder: LocalizedStrings.Auth.password, textRelay: viewModel.password, isSecureEntry: true))
+            passwordTextFieldView.configure(model: .init(placeholder: LocalisedStrings.Auth.password, textRelay: viewModel.password, isSecureEntry: true))
         }
     }
     
@@ -64,7 +64,7 @@ class LoginViewController: CommonViewController {
     
     @IBOutlet var forgotPasswordButton: UIButton! {
         didSet {
-            let attributedString = NSAttributedString(string: LocalizedStrings.Login.forgotPassword, attributes: [
+            let attributedString = NSAttributedString(string: LocalisedStrings.Login.forgotPassword, attributes: [
                 .font: UIFont.Montserrat.bold2,
                 .foregroundColor: UIColor.TextColor.primaryBlue,
                 .underlineColor: UIColor.TextColor.primaryBlue,
@@ -77,7 +77,7 @@ class LoginViewController: CommonViewController {
     
     @IBOutlet var signInButton: FormButton! {
         didSet {
-            signInButton.setTitle(LocalizedStrings.Login.signIn, for: .normal)
+            signInButton.setTitle(LocalisedStrings.Login.signIn, for: .normal)
         }
     }
     
@@ -85,7 +85,7 @@ class LoginViewController: CommonViewController {
         didSet {
             signUpLabel.isUserInteractionEnabled = true
             signUpLabel.attributedText = Self.dontHaveAnAccountAttributedString()
-            guard let range = signUpLabel.attributedText?.string.range(of: LocalizedStrings.Login.signUp) else { return }
+            guard let range = signUpLabel.attributedText?.string.range(of: LocalisedStrings.Login.signUp) else { return }
             signUpLabel.tappableRange = NSRange(range, in: signUpLabel.attributedText!.string)
             signUpLabel.tappableHandler = { [weak self] in
                 self?.gotoSignup()
@@ -144,9 +144,9 @@ class LoginViewController: CommonViewController {
 extension LoginViewController {
     
     private static func dontHaveAnAccountAttributedString() -> NSMutableAttributedString {
-        let title = LocalizedStrings.Login.dontHaveAnAccount + LocalizedStrings.Login.signUp
+        let title = LocalisedStrings.Login.dontHaveAnAccount + LocalisedStrings.Login.signUp
         let mutableString = NSMutableAttributedString(string: title, attributes: [.font: UIFont.Montserrat.body1, .foregroundColor: UIColor.TextColor.primaryBlack])
-        let range = mutableString.mutableString.range(of: LocalizedStrings.Login.signUp)
+        let range = mutableString.mutableString.range(of: LocalisedStrings.Login.signUp)
         mutableString.addAttributes(
             [
                 .foregroundColor: UIColor.TextColor.primaryBlue,

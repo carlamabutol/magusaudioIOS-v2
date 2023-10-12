@@ -18,7 +18,7 @@ class WelcomeViewController: CommonViewController {
             let attrb = Self.createAccountAttributedString()
             createAccountLabel.isUserInteractionEnabled = true
             createAccountLabel.attributedText = attrb
-            guard let range = attrb.string.range(of: LocalizedStrings.Welcome.createAccountForFree) else { return }
+            guard let range = attrb.string.range(of: LocalisedStrings.Welcome.createAccountForFree) else { return }
             createAccountLabel.tappableRange = NSRange(range, in: attrb.string)
             createAccountLabel.tappableHandler = { [weak self] in
                 self?.gotoSignup()
@@ -27,7 +27,7 @@ class WelcomeViewController: CommonViewController {
     }
     @IBOutlet var signInButton: FormButton! {
         didSet {
-            signInButton.setTitle(LocalizedStrings.Welcome.signInWithEmail, for: .normal)
+            signInButton.setTitle(LocalisedStrings.Welcome.signInWithEmail, for: .normal)
             signInButton.titleLabel?.textAlignment = .center
             signInButton.titleLabel?.numberOfLines = 2
         }
@@ -79,9 +79,9 @@ extension WelcomeViewController: UIGestureRecognizerDelegate {
 extension WelcomeViewController {
     
     private static func createAccountAttributedString() -> NSMutableAttributedString {
-        let title = LocalizedStrings.Welcome.newHere + LocalizedStrings.Welcome.createAccountForFree
+        let title = LocalisedStrings.Welcome.newHere + LocalisedStrings.Welcome.createAccountForFree
         let mutableString = NSMutableAttributedString(string: title, attributes: [.font: UIFont.Montserrat.body1, .foregroundColor: UIColor.TextColor.primaryBlack])
-        let range = mutableString.mutableString.range(of: LocalizedStrings.Welcome.createAccountForFree)
+        let range = mutableString.mutableString.range(of: LocalisedStrings.Welcome.createAccountForFree)
         mutableString.addAttributes(
             [
                 .foregroundColor: UIColor.TextColor.primaryBlue,

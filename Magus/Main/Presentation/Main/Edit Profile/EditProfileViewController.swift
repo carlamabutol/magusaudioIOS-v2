@@ -29,7 +29,7 @@ class EditProfileViewController: CommonViewController {
     @IBOutlet var userDetailsTitleLbl: UILabel! {
         didSet {
             userDetailsTitleLbl.font = .Montserrat.bold17
-            userDetailsTitleLbl.text = LocalizedStrings.EditProfile.userDetailsTitle
+            userDetailsTitleLbl.text = LocalisedStrings.EditProfile.userDetailsTitle
         }
     }
     
@@ -53,19 +53,19 @@ class EditProfileViewController: CommonViewController {
     @IBOutlet var accountPrivacyLbl: UILabel! {
         didSet {
             accountPrivacyLbl.font = .Montserrat.bold17
-            accountPrivacyLbl.text = LocalizedStrings.EditProfile.accountPrivacy
+            accountPrivacyLbl.text = LocalisedStrings.EditProfile.accountPrivacy
         }
     }
     @IBOutlet var changePasswordButton: UIButton! {
         didSet {
-            changePasswordButton.setTitle(LocalizedStrings.EditProfile.changePassword, for: .normal)
+            changePasswordButton.setTitle(LocalisedStrings.EditProfile.changePassword, for: .normal)
             changePasswordButton.titleLabel?.font = .Montserrat.bold15
         }
     }
     
     @IBOutlet var deleteAccountButton: UIButton! {
         didSet {
-            deleteAccountButton.setTitle(LocalizedStrings.EditProfile.deletePassword, for: .normal)
+            deleteAccountButton.setTitle(LocalisedStrings.EditProfile.deletePassword, for: .normal)
             deleteAccountButton.titleLabel?.font = .Montserrat.bold15
         }
     }
@@ -87,19 +87,19 @@ class EditProfileViewController: CommonViewController {
         
         firstNameForm.configure(
             model: .init(
-                placeholder: LocalizedStrings.EditProfile.firstName,
+                placeholder: LocalisedStrings.EditProfile.firstName,
                 textRelay: viewModel.firstNameRelay
             )
         )
         lastNameForm.configure(
             model: .init(
-                placeholder: LocalizedStrings.EditProfile.lastName,
+                placeholder: LocalisedStrings.EditProfile.lastName,
                 textRelay: viewModel.lastNameRelay
             )
         )
         emailForm.configure(
             model: .init(
-                placeholder: LocalizedStrings.EditProfile.email,
+                placeholder: LocalisedStrings.EditProfile.email,
                 textRelay: viewModel.emailRelay
             )
         )

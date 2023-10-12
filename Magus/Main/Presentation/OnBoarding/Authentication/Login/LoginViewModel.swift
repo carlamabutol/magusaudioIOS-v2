@@ -36,8 +36,8 @@ class LoginViewModel {
     
     func loginAction() {
         if userName.value.count < 8, password.value.count < 8 {
-            alertModel.accept(.init(message: LocalizedStrings.Login.signInError, image: nil))
-            Logger.warning(LocalizedStrings.Login.signInError, topic: .other)
+            alertModel.accept(.init(message: LocalisedStrings.Login.signInError, image: nil))
+            Logger.warning(LocalisedStrings.Login.signInError, topic: .other)
             return
         }
         isLoading.accept(true)

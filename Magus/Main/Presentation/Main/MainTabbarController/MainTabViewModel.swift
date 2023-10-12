@@ -129,10 +129,10 @@ extension MainTabViewModel {
         
         var title: String {
             switch self {
-            case .home: return LocalizedStrings.TabBarTitle.home
-            case .search: return LocalizedStrings.TabBarTitle.search
-            case .premium: return LocalizedStrings.TabBarTitle.premium
-            case .user: return LocalizedStrings.TabBarTitle.profile
+            case .home: return LocalisedStrings.TabBarTitle.home
+            case .search: return LocalisedStrings.TabBarTitle.search
+            case .premium: return LocalisedStrings.TabBarTitle.premium
+            case .user: return LocalisedStrings.TabBarTitle.profile
             }
         }
         
