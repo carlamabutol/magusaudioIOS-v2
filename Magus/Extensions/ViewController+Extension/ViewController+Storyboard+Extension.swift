@@ -57,6 +57,9 @@ enum StoryboardString: String {
     case howMagusWorksInfo = "HowMagusWorkInfo"
     case playlist = "Playlist"
     case addPlaylist = "AddPlaylist"
+    case subliminalGuide = "SubliminalGuide"
+    case companyDocument = "CompanyDocument"
+    case faqs = "FAQs"
     
 }
 

@@ -95,6 +95,14 @@
 		7490E45D2A40A1A600463582 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7490E45C2A40A1A600463582 /* Profile.storyboard */; };
 		7490E45F2A40A1B300463582 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490E45E2A40A1B300463582 /* ProfileViewController.swift */; };
 		7490E4612A40A3A500463582 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490E4602A40A3A500463582 /* HomeViewModel.swift */; };
+		74910DF12AD8158D00F2D909 /* SubliminalGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74910DF02AD8158D00F2D909 /* SubliminalGuideViewController.swift */; };
+		74910DF32AD815AA00F2D909 /* SubliminalGuide.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74910DF22AD815AA00F2D909 /* SubliminalGuide.storyboard */; };
+		74910DF62AD8261600F2D909 /* CompanyDocument.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74910DF52AD8261600F2D909 /* CompanyDocument.storyboard */; };
+		74910DF82AD8262200F2D909 /* CompanyDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74910DF72AD8262200F2D909 /* CompanyDocumentViewController.swift */; };
+		74910DFB2AD82A9200F2D909 /* FAQsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74910DFA2AD82A9200F2D909 /* FAQsViewController.swift */; };
+		74910DFD2AD82A9B00F2D909 /* FAQs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74910DFC2AD82A9B00F2D909 /* FAQs.storyboard */; };
+		74910E022AD82B6800F2D909 /* CollapsibleTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74910E012AD82B6800F2D909 /* CollapsibleTextView.xib */; };
+		74910E042AD82C3D00F2D909 /* CollapsibleTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74910E032AD82C3C00F2D909 /* CollapsibleTextView.swift */; };
 		7493320A2A9652FE00EA559B /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749332092A9652FE00EA559B /* Int+Extension.swift */; };
 		74A6C5752A5DA9A100D9DAED /* PlanView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74A6C5742A5DA9A100D9DAED /* PlanView.xib */; };
 		74A6C5772A5DA9BC00D9DAED /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A6C5762A5DA9BC00D9DAED /* PlanView.swift */; };
@@ -378,6 +386,14 @@
 		7490E45C2A40A1A600463582 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		7490E45E2A40A1B300463582 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7490E4602A40A3A500463582 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		74910DF02AD8158D00F2D909 /* SubliminalGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubliminalGuideViewController.swift; sourceTree = "<group>"; };
+		74910DF22AD815AA00F2D909 /* SubliminalGuide.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubliminalGuide.storyboard; sourceTree = "<group>"; };
+		74910DF52AD8261600F2D909 /* CompanyDocument.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CompanyDocument.storyboard; sourceTree = "<group>"; };
+		74910DF72AD8262200F2D909 /* CompanyDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDocumentViewController.swift; sourceTree = "<group>"; };
+		74910DFA2AD82A9200F2D909 /* FAQsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQsViewController.swift; sourceTree = "<group>"; };
+		74910DFC2AD82A9B00F2D909 /* FAQs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FAQs.storyboard; sourceTree = "<group>"; };
+		74910E012AD82B6800F2D909 /* CollapsibleTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollapsibleTextView.xib; sourceTree = "<group>"; };
+		74910E032AD82C3C00F2D909 /* CollapsibleTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleTextView.swift; sourceTree = "<group>"; };
 		749332092A9652FE00EA559B /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		74A6C5742A5DA9A100D9DAED /* PlanView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlanView.xib; sourceTree = "<group>"; };
 		74A6C5762A5DA9BC00D9DAED /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
@@ -873,18 +889,48 @@
 		7490E44B2A40A0BF00463582 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				F8F2A7E22AD6E09C00F40D36 /* New Group */,
-				74EB5BCA2ABB1D3900C3FF0C /* Profile Playlists */,
-				74EB5BC92ABB1D2C00C3FF0C /* Profile Favorites */,
-				74BAEAB52A8502D1000BB1E4 /* Settings */,
-				74BAEAB02A84FA9A000BB1E4 /* My Subs */,
-				74B132402A766FE00056D740 /* My Mood */,
 				748B40952A7157AD00CA78CD /* Components */,
 				7490E45C2A40A1A600463582 /* Profile.storyboard */,
 				7490E45E2A40A1B300463582 /* ProfileViewController.swift */,
 				74C090882A71FC3E001B552E /* ProfileViewModel.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		74910DEF2AD80F6400F2D909 /* Subliminal Guide */ = {
+			isa = PBXGroup;
+			children = (
+				74910DF02AD8158D00F2D909 /* SubliminalGuideViewController.swift */,
+				74910DF22AD815AA00F2D909 /* SubliminalGuide.storyboard */,
+			);
+			path = "Subliminal Guide";
+			sourceTree = "<group>";
+		};
+		74910DF42AD8253900F2D909 /* T & C and Privacy Policy */ = {
+			isa = PBXGroup;
+			children = (
+				74910DF52AD8261600F2D909 /* CompanyDocument.storyboard */,
+				74910DF72AD8262200F2D909 /* CompanyDocumentViewController.swift */,
+			);
+			path = "T & C and Privacy Policy";
+			sourceTree = "<group>";
+		};
+		74910DF92AD82A8200F2D909 /* FAQs */ = {
+			isa = PBXGroup;
+			children = (
+				74910DFA2AD82A9200F2D909 /* FAQsViewController.swift */,
+				74910DFC2AD82A9B00F2D909 /* FAQs.storyboard */,
+			);
+			path = FAQs;
+			sourceTree = "<group>";
+		};
+		74910DFE2AD82B4700F2D909 /* CollapsibleTextView */ = {
+			isa = PBXGroup;
+			children = (
+				74910E012AD82B6800F2D909 /* CollapsibleTextView.xib */,
+				74910E032AD82C3C00F2D909 /* CollapsibleTextView.swift */,
+			);
+			path = CollapsibleTextView;
 			sourceTree = "<group>";
 		};
 		7493320B2A96558D00EA559B /* Main */ = {
@@ -1122,6 +1168,14 @@
 		F827D9812A10FAB40034B5AF /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				74910DF92AD82A8200F2D909 /* FAQs */,
+				74910DF42AD8253900F2D909 /* T & C and Privacy Policy */,
+				74910DEF2AD80F6400F2D909 /* Subliminal Guide */,
+				74EB5BCA2ABB1D3900C3FF0C /* Profile Playlists */,
+				74EB5BC92ABB1D2C00C3FF0C /* Profile Favorites */,
+				74BAEAB52A8502D1000BB1E4 /* Settings */,
+				74BAEAB02A84FA9A000BB1E4 /* My Subs */,
+				74B132402A766FE00056D740 /* My Mood */,
 				F8BABF502AC7FC92009AD1F1 /* Add Playlist */,
 				743C4E352AACE10800D3BF77 /* Playlist  */,
 				74ED5DA92AA5C77B006F6C8D /* How Magus Works */,
@@ -1237,6 +1291,7 @@
 		F83C49B02A19BC9800BC4429 /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
+				74910DFE2AD82B4700F2D909 /* CollapsibleTextView */,
 				74576BFA2A7D5D20003D4211 /* FormTextField */,
 				74C0908F2A720844001B552E /* NavigationBar */,
 				74B529DA2A6FDA2E00F43BFC /* SearchView */,
@@ -1492,13 +1547,6 @@
 			path = "Sign Up";
 			sourceTree = "<group>";
 		};
-		F8F2A7E22AD6E09C00F40D36 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		F8F2A7E52AD6E58000F40D36 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1674,6 +1722,7 @@
 				74B16A1A2A90DAC5003E8A2D /* CollapsedPlayerView.xib in Resources */,
 				F8C40DBB2ABEEC1700A44312 /* TabSelectionView.xib in Resources */,
 				F8A4D4102A87648C008F460F /* ProfileAlert.storyboard in Resources */,
+				74910E022AD82B6800F2D909 /* CollapsibleTextView.xib in Resources */,
 				74C960A62A722F5D00391DDA /* WeeklyDayDetailView.xib in Resources */,
 				F8512C342A13B9EA0041C14F /* Assets.xcassets in Resources */,
 				7490E45D2A40A1A600463582 /* Profile.storyboard in Resources */,
@@ -1685,6 +1734,7 @@
 				7490E4512A40A10800463582 /* Search.storyboard in Resources */,
 				F88A83092A13CEDA00D3E975 /* Montserrat-Italic.ttf in Resources */,
 				F8D3D38D2A223E7600AD7C2D /* ForgotPassword.storyboard in Resources */,
+				74910DF62AD8261600F2D909 /* CompanyDocument.storyboard in Resources */,
 				74BCFBFF2AD3F1AE00855210 /* SeeAllList.storyboard in Resources */,
 				F88A830B2A13CEDA00D3E975 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
 				74BAEAB72A8502DA000BB1E4 /* Settings.storyboard in Resources */,
@@ -1697,6 +1747,7 @@
 				F88A830A2A13CEDA00D3E975 /* Montserrat-SemiBoldItalic.ttf in Resources */,
 				7490E4552A40A14300463582 /* Player.storyboard in Resources */,
 				7490E4592A40A17200463582 /* Premium.storyboard in Resources */,
+				74910DFD2AD82A9B00F2D909 /* FAQs.storyboard in Resources */,
 				7480EDFA2A7CF01B000206B1 /* Calendar.storyboard in Resources */,
 				740C4D012A71F4DC00050D5A /* WeeklyView.xib in Resources */,
 				F835B01C2A0652B400123A16 /* RootViewController.storyboard in Resources */,
@@ -1708,6 +1759,7 @@
 				F88A82FC2A13CEDA00D3E975 /* Montserrat-BoldItalic.ttf in Resources */,
 				F8512C3B2A13BDA50041C14F /* Welcome.storyboard in Resources */,
 				F8511DED2A17CFEA00EFFFB4 /* FormButton.xib in Resources */,
+				74910DF32AD815AA00F2D909 /* SubliminalGuide.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1800,6 +1852,7 @@
 				F8669E362A0BE619004D28A1 /* LoginViewController.swift in Sources */,
 				F835B0042A06526200123A16 /* AppDelegate.swift in Sources */,
 				74A6C5772A5DA9BC00D9DAED /* PlanView.swift in Sources */,
+				74910E042AD82C3D00F2D909 /* CollapsibleTextView.swift in Sources */,
 				F82552102A17940400ACD902 /* ReusableXibView.swift in Sources */,
 				F848EF082A0BC9EC0097F104 /* CommonViewController.swift in Sources */,
 				F81A48182A17736200D72E73 /* TextFieldView.swift in Sources */,
@@ -1836,7 +1889,9 @@
 				F8669E382A0BE623004D28A1 /* LoginViewModel.swift in Sources */,
 				F8BABF562AC7FCB8009AD1F1 /* AddPlaylistViewModel.swift in Sources */,
 				F8BA02622ABF0A91007C9128 /* FavoritePlaylistCell.swift in Sources */,
+				74910DF82AD8262200F2D909 /* CompanyDocumentViewController.swift in Sources */,
 				743750ED2AACF75100731791 /* SubliminalCollectionViewCell.swift in Sources */,
+				74910DFB2AD82A9200F2D909 /* FAQsViewController.swift in Sources */,
 				F848EF142A0BD46C0097F104 /* ViewController+Extension.swift in Sources */,
 				74576BFE2A7D5D91003D4211 /* FormTextFieldView.swift in Sources */,
 				741CB6AA2A4479B900975949 /* UserResponse.swift in Sources */,
@@ -1890,6 +1945,7 @@
 				741CB6B42A447D6400975949 /* NetworkErrorUseCase.swift in Sources */,
 				749002642A7BDFED007DACDF /* Day.swift in Sources */,
 				F835B0062A06526200123A16 /* SceneDelegate.swift in Sources */,
+				74910DF12AD8158D00F2D909 /* SubliminalGuideViewController.swift in Sources */,
 				74CD22C22A8B903700B9D28A /* AudioPlayerViewModel.swift in Sources */,
 				742F869B2ACC407D0044EE51 /* LoadingAlertViewController.swift in Sources */,
 				7490E45B2A40A17A00463582 /* PremiumViewController.swift in Sources */,

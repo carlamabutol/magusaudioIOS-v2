@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Qs View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="Y6W-OH-hqX" customClass="FAQsViewController" customModule="Magus" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="4of-0M-vh8">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ypH-4S-0vF">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="283.33333333333331"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashSunHeader" translatesAutoresizingMaskIntoConstraints="NO" id="dFF-0H-FBJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="170.33333333333334"/>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="EsC-t6-IBp">
+                                                <rect key="frame" x="20" y="173" width="353" height="300.33333333333326"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKZ-BW-hjv">
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4nr-8x-N5i" customClass="CollapsibleTextView" customModule="Magus" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="40.333333333333314" width="353" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="jrf-cA-dAB"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MeJ-br-dkT" customClass="CollapsibleTextView" customModule="Magus" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="110.33333333333334" width="353" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="g41-A5-izB"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CYq-Yg-LAT" customClass="CollapsibleTextView" customModule="Magus" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="180.33333333333334" width="353" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="AT1-ca-xTD"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1dR-pY-LaU" customClass="CollapsibleTextView" customModule="Magus" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="250.33333333333337" width="353" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Zcz-bF-pci"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="EsC-t6-IBp" firstAttribute="top" secondItem="dFF-0H-FBJ" secondAttribute="bottom" constant="20" id="5pB-FZ-GPW"/>
+                                            <constraint firstItem="EsC-t6-IBp" firstAttribute="leading" secondItem="ypH-4S-0vF" secondAttribute="leading" constant="20" id="LTN-lq-y9u"/>
+                                            <constraint firstAttribute="trailing" secondItem="EsC-t6-IBp" secondAttribute="trailing" constant="20" id="PaT-HJ-xQb"/>
+                                            <constraint firstAttribute="trailing" secondItem="dFF-0H-FBJ" secondAttribute="trailing" id="VEy-CV-Kqm"/>
+                                            <constraint firstItem="dFF-0H-FBJ" firstAttribute="leading" secondItem="ypH-4S-0vF" secondAttribute="leading" id="ZlV-Yg-A8D"/>
+                                            <constraint firstItem="dFF-0H-FBJ" firstAttribute="top" secondItem="ypH-4S-0vF" secondAttribute="top" id="cLh-Tf-bIL"/>
+                                            <constraint firstAttribute="bottom" secondItem="EsC-t6-IBp" secondAttribute="bottom" constant="20" id="tsQ-fo-Hmb"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ypH-4S-0vF" firstAttribute="leading" secondItem="4of-0M-vh8" secondAttribute="leading" id="DJg-X4-bYc"/>
+                                    <constraint firstAttribute="trailing" secondItem="ypH-4S-0vF" secondAttribute="trailing" id="Kye-Hh-bQA"/>
+                                    <constraint firstAttribute="bottom" secondItem="ypH-4S-0vF" secondAttribute="bottom" id="RbP-gC-EZ8"/>
+                                    <constraint firstItem="ypH-4S-0vF" firstAttribute="top" secondItem="4of-0M-vh8" secondAttribute="top" id="ih9-l8-oD1"/>
+                                    <constraint firstItem="ypH-4S-0vF" firstAttribute="width" secondItem="4of-0M-vh8" secondAttribute="width" id="riE-Ry-49Y"/>
+                                </constraints>
+                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NIj-15-1hf" customClass="ProfileNavigationBar" customModule="Magus" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="59" width="393" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Soe-Qi-vuI"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="NIj-15-1hf" secondAttribute="trailing" id="KQ1-7H-dDc"/>
+                            <constraint firstItem="dFF-0H-FBJ" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.2" id="NQH-W2-JFb"/>
+                            <constraint firstItem="NIj-15-1hf" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="PI4-Ei-MMn"/>
+                            <constraint firstItem="NIj-15-1hf" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Vws-qy-SJ2"/>
+                            <constraint firstAttribute="top" secondItem="4of-0M-vh8" secondAttribute="top" id="Xdf-t4-OTM"/>
+                            <constraint firstItem="4of-0M-vh8" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="fnz-Bo-0of"/>
+                            <constraint firstItem="4of-0M-vh8" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="l81-LD-tqC"/>
+                            <constraint firstItem="4of-0M-vh8" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="wCN-gK-8HO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="isSubliminalAudioSafeView" destination="1dR-pY-LaU" id="DK9-ha-tra"/>
+                        <outlet property="navigationBar" destination="NIj-15-1hf" id="NHg-Rx-YwH"/>
+                        <outlet property="titleLabel" destination="cKZ-BW-hjv" id="tBX-XK-4Nb"/>
+                        <outlet property="whatAreBenefitsView" destination="CYq-Yg-LAT" id="OKy-zk-lhj"/>
+                        <outlet property="whatIsMagusView" destination="4nr-8x-N5i" id="HHo-I4-9Yj"/>
+                        <outlet property="whatIsSubAudioView" destination="MeJ-br-dkT" id="9Yb-Hq-GfF"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="6" y="-23"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="SplashSunHeader" width="428" height="153"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

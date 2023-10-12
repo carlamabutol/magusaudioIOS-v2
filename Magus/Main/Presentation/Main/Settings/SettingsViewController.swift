@@ -43,6 +43,12 @@ class SettingsViewController: CommonViewController {
         }
     }
     
+    @IBOutlet var privacyButton: UIButton! {
+        didSet {
+            privacyButton.titleLabel?.font = .Montserrat.bold15
+        }
+    }
+    
     @IBOutlet var contactUsButton: UIButton! {
         didSet {
             contactUsButton.titleLabel?.font = .Montserrat.bold15
@@ -78,10 +84,61 @@ class SettingsViewController: CommonViewController {
             }
             .disposed(by: disposeBag)
         
+        subliminalGuideButton.rx.tap
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.goToSubliminalGuide()
+            }
+            .disposed(by: disposeBag)
+        
+        faqsButton.rx.tap
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.goToFAQs()
+            }
+            .disposed(by: disposeBag)
+        
+        termsButton.rx.tap
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.goToCompanyDocument(
+                    title: LocalisedStrings.Company.termsAndConditions,
+                    desc: LocalisedStrings.LoremIpsum.desc2
+                )
+            }
+            .disposed(by: disposeBag)
+        
+        privacyButton.rx.tap
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.goToCompanyDocument(
+                    title: LocalisedStrings.Company.privacyAndPolicy,
+                    desc: LocalisedStrings.LoremIpsum.desc2
+                )
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     private func goToHowItWorks() {
         let viewController = HowMagusWorksViewController.instantiate(from: .howMagusWorks)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    private func goToSubliminalGuide() {
+        let viewController = SubliminalGuideViewController.instantiate(from: .subliminalGuide)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    private func goToFAQs() {
+        let viewController = FAQsViewController.instantiate(from: .faqs)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    private func goToCompanyDocument(title: String, desc: String) {
+        let viewController = CompanyDocumentViewController.instantiate(from: .companyDocument) as! CompanyDocumentViewController
+        viewController.loadViewIfNeeded()
+        viewController.configure(title: title, desc: desc)
         navigationController?.pushViewController(viewController, animated: true)
     }
     

@@ -91,4 +91,12 @@ enum ImageAsset: String {
     case howMagusWorks1 = "how-magus-works-1"
     case howMagusWorks2 = "how-magus-works-2"
     
+    // Subliminal Guide
+    case guide1 = "guide-1"
+    case guide2 = "guide-2"
+    case guide3 = "guide-3"
+    
+    case collapsedDown = "collapsed-down"
+    case collapsedUp = "collapsed-up"
+    
 }
