@@ -77,6 +77,7 @@ struct LocalisedStrings {
     }
     
     enum HomeHeaderTitle {
+        static let mood = "Mood"
         static let category = "Category"
         static let recommendations = "Recommendations"
         static let featuredPlayList = "Featured Playlists"

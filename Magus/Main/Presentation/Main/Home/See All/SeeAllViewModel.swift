@@ -14,6 +14,7 @@ class SeeAllViewModel: ViewModel {
     private let titleRelay = BehaviorRelay<ModelType?>(value: nil)
     var titleObservable: Observable<ModelType> { titleRelay.compactMap { $0 }.asObservable() }
     private let networkService: NetworkService
+    private let categoryUseCase: CategoryUseCase
     private var user: () -> User?
     private let categoryRelay = BehaviorRelay<[CategoryCell.Model]>(value: [])
     private let recommendedSubliminals = BehaviorRelay<[CategoryCell.Model]>(value: [])
@@ -25,6 +26,7 @@ class SeeAllViewModel: ViewModel {
     var modelType: ModelType!
     
     init(sharedDependencies: HomeViewModel.Dependencies = .standard) {
+        categoryUseCase = sharedDependencies.categoryUseCase
         networkService = sharedDependencies.networkService
         user = sharedDependencies.user
         super.init()
@@ -47,13 +49,8 @@ class SeeAllViewModel: ViewModel {
     private func getAllCategory() {
         Task {
             do {
-                let response = try await networkService.getCategorySubliminal()
-                switch response {
-                case .success(let array):
-                    configureSectionCategory(with: array)
-                case .error(let errorResponse):
-                    Logger.warning(errorResponse.message, topic: .presentation)
-                }
+                let categories = try await categoryUseCase.getCategorySubliminal()
+                configureSectionCategory(with: categories)
             } catch {
                 Logger.warning(error.localizedDescription, topic: .presentation)
             }
@@ -97,7 +94,7 @@ class SeeAllViewModel: ViewModel {
         
     }
     
-    private func configureSectionCategory(with items: [CategorySubliminalElement]) {
+    private func configureSectionCategory(with items: [Category]) {
         let itemModels = items.map { CategoryCell.Model(id: String(describing: $0.id), title: $0.name, imageUrl: .init(string: $0.image ?? "")) }
         sections.accept([SectionViewModel(header: "", items: itemModels)])
     }
@@ -145,13 +142,15 @@ extension SeeAllViewModel {
         let router: Router
         let networkService: NetworkService
         let authenticationUseCase: AuthenticationUseCase
+        let categoryUseCase: CategoryUseCase
         
         static var standard: Dependencies {
             return .init(
                 user: { SharedDependencies.sharedDependencies.store.appState.user },
                 router: SharedDependencies.sharedDependencies.router,
                 networkService: SharedDependencies.sharedDependencies.networkService,
-                authenticationUseCase: SharedDependencies.sharedDependencies.useCases.authenticationUseCase
+                authenticationUseCase: SharedDependencies.sharedDependencies.useCases.authenticationUseCase,
+                categoryUseCase: SharedDependencies.sharedDependencies.useCases.categoryUseCase
             )
         }
     }

@@ -7,16 +7,19 @@
 
 import Foundation
 
-struct Mood: EndpointResponse, Equatable, Encodable {
+struct MoodResponse: EndpointResponse, Equatable, Encodable {
     typealias ErrorResponse = MoodErrorResponse
     
     let id: Int
     let name, description: String
+    let status: String
+    let isVisible: Int?
     let image: String
     let createdAt, updatedAt: String?
 
     enum CodingKeys: String, CodingKey {
-        case id, name, description, image
+        case id, name, description, image, status
+        case isVisible = "is_visible"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }

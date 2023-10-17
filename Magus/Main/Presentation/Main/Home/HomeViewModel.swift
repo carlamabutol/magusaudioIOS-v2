@@ -21,76 +21,44 @@ class HomeViewModel: ViewModel {
     var selectedFooterObservable: Observable<SeeAllViewModel.ModelType> { selectedFooter.asObservable() }
     private let selectedPlaylist = PublishRelay<Playlist>()
     var selectedPlaylistObservable: Observable<Playlist> { selectedPlaylist.asObservable() }
+    var currentMoodObservable: Observable<Mood?>
     
     private let networkService: NetworkService
+    private let categoryUseCase: CategoryUseCase
     private var user: () -> User?
     
     init(sharedDependencies: HomeViewModel.Dependencies = .standard) {
+        categoryUseCase = sharedDependencies.categoryUseCase
         networkService = sharedDependencies.networkService
         user = sharedDependencies.user
+        currentMoodObservable = sharedDependencies.currentMoodObservable
         super.init()
-        Observable.combineLatest(categoryRelay, recommendedSubliminals, playlistRelay)
-            .map { category, recommendedSub, playlist in
-                let cellPlaylist = playlist.map { self.configurePlaylistCell(with: $0) }
-                return (category, recommendedSub, cellPlaylist)
+        Observable.combineLatest(
+            currentMoodObservable,
+            categoryRelay,
+            recommendedSubliminals,
+            playlistRelay
+        ) { currentMood, category, recommendedSub, playlist -> (Mood?, [CategoryCell.Model], [CategoryCell.Model], [CategoryCell.Model]) in
+            let cellPlaylist = playlist.map { self.constructPlaylistCell(with: $0) }
+            return (currentMood, category, recommendedSub, cellPlaylist)
+        }.subscribe { [weak self] (currentMood, categories, subliminals, playlist) in
+            guard let self else { return }
+            var newSection: [SectionViewModel] = []
+            if let currentMood = currentMood {
+                newSection.append(self.constructMoodSection(currentMood: currentMood))
             }
-            .subscribe { [weak self] (categories, subliminals, playlist) in
-                guard let self else { return }
-                var newSection = self.sections.value
-                if newSection.isEmpty {
-                    newSection.insert(SectionViewModel(
-                        header: LocalisedStrings.HomeHeaderTitle.category,
-                        items: categories,
-                        footerTapHandler: {
-                            self.selectedFooter.accept(.category)
-                        }
-                    ), at: 0)
-                } else if !categories.isEmpty {
-                    newSection[0].items = categories
-                }
-                if self.user()?.info.moodsID != nil {
-                    if !subliminals.isEmpty {
-                        if let recommendationIndex = newSection.lastIndex(where: { $0.header == LocalisedStrings.HomeHeaderTitle.recommendations }) {
-                            newSection[recommendationIndex].items = subliminals
-                        } else if !categories.isEmpty {
-                            newSection.append(
-                                SectionViewModel(
-                                    header: LocalisedStrings.HomeHeaderTitle.recommendations,
-                                    items: subliminals,
-                                    footerTapHandler: {
-                                        self.selectedFooter.accept(.recommended)
-                                    }
-                                )
-                            )
-                        }
-                    } else {
-                        if let recommendationIndex = newSection.lastIndex(where: { $0.header == LocalisedStrings.HomeHeaderTitle.recommendations }) {
-                            newSection.remove(at: recommendationIndex)
-                        }
-                    }
-                }
-                if !playlist.isEmpty {
-                    if let playListIndex = newSection.lastIndex(where: { $0.header == LocalisedStrings.HomeHeaderTitle.featuredPlayList }) {
-                        newSection[playListIndex].items = playlist
-                    } else if !playlist.isEmpty {
-                        newSection.append(
-                            SectionViewModel(
-                                header: LocalisedStrings.HomeHeaderTitle.featuredPlayList,
-                                items: playlist,
-                                footerTapHandler: {
-                                    self.selectedFooter.accept(.featuredPlaylist)
-                                }
-                            )
-                        )
-                    }
-                } else {
-                    if let playListIndex = newSection.lastIndex(where: { $0.header == LocalisedStrings.HomeHeaderTitle.featuredPlayList }) {
-                        newSection.remove(at: playListIndex)
-                    }
-                }
-                self.sections.accept(newSection)
+            if !categories.isEmpty {
+                newSection.append(self.constructSection(headerTitle: LocalisedStrings.HomeHeaderTitle.category, cellModels: categories, footerType: .category))
             }
-            .disposed(by: disposeBag)
+            if !subliminals.isEmpty {
+                newSection.append(self.constructSection(headerTitle: LocalisedStrings.HomeHeaderTitle.recommendations, cellModels: subliminals, footerType: .recommended))
+            }
+            if !playlist.isEmpty {
+                newSection.append(self.constructSection(headerTitle: LocalisedStrings.HomeHeaderTitle.featuredPlayList, cellModels: playlist, footerType: .featuredPlaylist))
+            }
+            self.sections.accept(newSection)
+        }
+        .disposed(by: disposeBag)
     }
     
     func getHomeDetails() {
@@ -99,16 +67,36 @@ class HomeViewModel: ViewModel {
         getRecommendations()
     }
     
+    private func constructMoodSection(currentMood: Mood) -> SectionViewModel {
+        var title = Helper.checkTimeOfDay()
+        if let user = user() {
+            title += " \(user.info.firstName),"
+        }
+        
+        let modelCell = SelectedMoodCell.Model(id: String(currentMood.id), title: title, subTitle: currentMood.greeting, imageAsset: currentMood.status == .positive ? .positive : .negative)
+        return SectionViewModel(
+                header: LocalisedStrings.HomeHeaderTitle.mood,
+                items: [modelCell],
+                footerTapHandler: nil
+            )
+    }
+    
+    private func constructSection(headerTitle: String, cellModels: [ItemModel], footerType: SeeAllViewModel.ModelType) -> SectionViewModel {
+        return SectionViewModel(
+                header: headerTitle,
+                items: cellModels,
+                footerTapHandler: {
+                    self.selectedFooter.accept(footerType)
+                }
+            )
+    }
+    
     private func getAllCategory() {
         Task {
             do {
-                let response = try await networkService.getCategorySubliminal()
-                switch response {
-                case .success(let array):
-                    categoryRelay.accept(array.map { CategoryCell.Model(id: String(describing: $0.id), title: $0.name, imageUrl: .init(string: $0.image ?? "")) })
-                case .error(let errorResponse):
-                    Logger.warning(errorResponse.message, topic: .presentation)
-                }
+                let categories = try await categoryUseCase.getCategorySubliminal()
+                let cellModels = constructCategoryCell(categories: categories)
+                categoryRelay.accept(cellModels)
             } catch {
                 Logger.warning(error.localizedDescription, topic: .presentation)
             }
@@ -151,7 +139,13 @@ class HomeViewModel: ViewModel {
         
     }
     
-    private func configurePlaylistCell(with playlist: Playlist) -> CategoryCell.Model {
+    private func constructCategoryCell(categories: [Category]) -> [CategoryCell.Model] {
+        return categories.map {
+            CategoryCell.Model(id: String(describing: $0.id), title: $0.name, imageUrl: .init(string: $0.image ?? ""))
+        }
+    }
+    
+    private func constructPlaylistCell(with playlist: Playlist) -> CategoryCell.Model {
         return CategoryCell.Model(
             id: playlist.playlistID,
             title: playlist.title
@@ -169,13 +163,17 @@ extension HomeViewModel {
         let router: Router
         let networkService: NetworkService
         let authenticationUseCase: AuthenticationUseCase
+        let categoryUseCase: CategoryUseCase
+        let currentMoodObservable: Observable<Mood?>
         
         static var standard: Dependencies {
             return .init(
                 user: { SharedDependencies.sharedDependencies.store.appState.user },
                 router: SharedDependencies.sharedDependencies.router,
                 networkService: SharedDependencies.sharedDependencies.networkService,
-                authenticationUseCase: SharedDependencies.sharedDependencies.useCases.authenticationUseCase
+                authenticationUseCase: SharedDependencies.sharedDependencies.useCases.authenticationUseCase,
+                categoryUseCase: SharedDependencies.sharedDependencies.useCases.categoryUseCase,
+                currentMoodObservable: SharedDependencies.sharedDependencies.store.observable(of: \.selectedMood)
             )
         }
     }

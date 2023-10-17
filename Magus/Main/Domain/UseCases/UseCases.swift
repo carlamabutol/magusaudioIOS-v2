@@ -13,6 +13,8 @@ class UseCases {
     let profileUseCase: ProfileUseCase
     let subliminalUseCase: SubliminalUseCase
     let playlistUseCase: PlaylistUseCase
+    let categoryUseCase: CategoryUseCase
+    let moodUseCase: MoodUseCase
     
     init(store: Store, networkService: NetworkService, credentialsService: AuthenticationService, router: Router) {
         
@@ -35,6 +37,18 @@ class UseCases {
         )
         
         playlistUseCase = PlaylistUseCase(
+            store: store,
+            networkService: networkService,
+            credentialsService: credentialsService
+        )
+        
+        categoryUseCase = CategoryUseCase(
+            store: store,
+            networkService: networkService,
+            credentialsService: credentialsService
+        )
+        
+        moodUseCase = MoodUseCase(
             store: store,
             networkService: networkService,
             credentialsService: credentialsService

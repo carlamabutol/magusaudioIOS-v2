@@ -47,6 +47,7 @@ extension SharedDependencies {
             baseURL: Configuration.baseURL,
             credentialsService: credentialsService,
             getUserID: { store.appState.userId },
+            getMoodId: { store.appState.user?.info.moodsID },
             getSubscriptionID: { store.appState.user?.info.subscriptionID ?? 0  }
         )
         return .init(store: store, router: router, credentialsService: credentialsService, networkService: networkService)

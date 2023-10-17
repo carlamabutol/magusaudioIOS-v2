@@ -22,6 +22,7 @@ extension UIColor {
     
     enum TextColor {
         static let primaryBlack = UIColor(rgb: 0x2F3033)
+        static let otherBlack1 = UIColor(rgb: 0x272727)
         static let primaryBlue = UIColor(rgb: 0x427AB3)
         static let placeholderColor = UIColor(rgb: 0x69696978).withAlphaComponent(0.47)
     }

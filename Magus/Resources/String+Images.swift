@@ -52,6 +52,8 @@ enum ImageAsset: String {
     
     // MARK: Tab
     
+    case coverImage = "Cover Image"
+    
     case tabHomeUnselected = "TabHome"
     case tabHomeSelected = "TabHomeSelected"
     
@@ -86,6 +88,10 @@ enum ImageAsset: String {
     case edit = "edit profile"
     
     case delete = "Trash Delete"
+    
+    // mood
+    case positive
+    case negative
     
     // How Magus Works
     case howMagusWorks1 = "how-magus-works-1"

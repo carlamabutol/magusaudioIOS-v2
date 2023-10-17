@@ -20,6 +20,7 @@ class HomeViewController: CommonViewController {
         didSet {
             collectionView.register(HomeCustomCell.self, forCellWithReuseIdentifier: Self.item)
             collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
+            collectionView.register(SelectedMoodCell.instantiate(), forCellWithReuseIdentifier: SelectedMoodCell.identifier)
             collectionView.register(HeaderTitleView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderTitleView.identifier)
             collectionView.register(FooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterView.identifier)
             setupCompositionalLayout()
@@ -68,22 +69,32 @@ class HomeViewController: CommonViewController {
     
     private func setupDataSource() {
         let dataSource = RxCollectionViewSectionedReloadDataSource<SectionViewModel>(configureCell: { dataSource, collectionView, indexPath, item in
-            let cell: HomeCustomCell!
-            switch indexPath.section {
-            case 0:
-                cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
+            switch dataSource[indexPath.section].header {
+            case LocalisedStrings.HomeHeaderTitle.mood:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectedMoodCell.identifier, for: indexPath) as! SelectedMoodCell
                 
-                cell.configure(item: item)
-            case 1:
-                cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
-                
-                cell.configure(item: item)
+                cell.configure(model: item as! SelectedMoodCell.Model)
+                return cell
             default:
-                cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
                 
                 cell.configure(item: item)
+                return cell
             }
-            return cell
+//            switch indexPath.section {
+//            case 0:
+//                cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
+//
+//                cell.configure(item: item)
+//            case 1:
+//                cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
+//
+//                cell.configure(item: item)
+//            default:
+//                cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
+//
+//                cell.configure(item: item)
+//            }
         }, configureSupplementaryView: { dataSource, collectionView, title, indexPath in
             if title == UICollectionView.elementKindSectionHeader {
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: title, withReuseIdentifier: HeaderTitleView.identifier, for: indexPath) as! HeaderTitleView
@@ -104,14 +115,20 @@ class HomeViewController: CommonViewController {
     }
     
     private func setupCompositionalLayout() {
-        let layout = UICollectionViewCompositionalLayout { sectionIndex, enviroment in
-            switch sectionIndex {
-            case 0 :
+        let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, enviroment in
+            guard let self = self else { return self!.categorySection() }
+            let header = self.dataSource[sectionIndex].header
+            switch header {
+            case LocalisedStrings.HomeHeaderTitle.mood:
+                return self.moodSection()
+            case LocalisedStrings.HomeHeaderTitle.category:
                 return self.categorySection()
-            case 1 :
+            case LocalisedStrings.HomeHeaderTitle.recommendations:
                 return self.recommendationSection()
-            default:
+            case LocalisedStrings.HomeHeaderTitle.featuredPlayList:
                 return self.featuredPlaylistSection()
+            default:
+                return self.categorySection()
             }
         }
         collectionView.setCollectionViewLayout(layout, animated: true)
@@ -127,6 +144,21 @@ class HomeViewController: CommonViewController {
         let seeAllVC = SeeAllListViewController.instantiate(from: .seeAll) as! SeeAllListViewController
         seeAllVC.setupViewModel(for: modelType)
         navigationController?.pushViewController(seeAllVC, animated: true)
+    }
+    
+    func moodSection()-> NSCollectionLayoutSection {
+        let heightDimension = NSCollectionLayoutDimension.estimated(100)
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: heightDimension)
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: heightDimension)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
+        section.orthogonalScrollingBehavior = .none
+        return section
     }
     
     func categorySection()-> NSCollectionLayoutSection {

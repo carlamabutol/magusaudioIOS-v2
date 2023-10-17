@@ -11,10 +11,13 @@ import RxSwift
 protocol NetworkService {
     func signIn(email: String, password: String) async throws -> JSONAPIDictionaryResponse<SignInResponse>
     func signUp(name: String, email: String, password: String) async throws -> JSONAPIDictionaryResponse<SignUpResponse>
-    func getAllMoods() async throws -> JSONAPIArrayResponse<Mood>
+    
+    // MARK: MOODS
+    func getAllMoods() async throws -> JSONAPIArrayResponse<MoodResponse>
     func getMoodCalendar(userId: String) async throws -> JSONAPIArrayResponse<MoodCalendarResponse>
-    func updateSelectedMoods(userId: String, moodId: Int) async throws -> EmptyResponse
-    func getCategorySubliminal() async throws -> JSONAPIArrayResponse<CategorySubliminalElement>
+    func updateSelectedMoods(moodId: Int) async throws -> EmptyResponse
+    
+    func getCategorySubliminal(search: String) async throws -> JSONAPIArrayResponse<CategorySubliminalElement>
     func getRecommendations() async throws -> JSONAPIDictionaryResponse<RecommendationResponse>
     func getSubliminals() async throws -> JSONAPIDictionaryResponse<SubliminalArrayResponse>
     func getAllFavoriteSubliminals() async throws -> JSONAPIArrayResponse<SubliminalResponse>

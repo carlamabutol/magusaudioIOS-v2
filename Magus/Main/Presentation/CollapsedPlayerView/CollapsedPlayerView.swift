@@ -55,7 +55,7 @@ class CollapsedPlayerView: ReusableXibView {
     func configure(subliminal: Subliminal) {
         isHidden = false
         titleLabel.text = subliminal.title
-        subliminalImageView.sd_setImage(with: .init(string: subliminal.cover), placeholderImage: .init(named: "Cover Image"))
+        subliminalImageView.sd_setImage(with: .init(string: subliminal.cover), placeholderImage: .init(named: .coverImage))
         updateFavorite(isLiked: subliminal.isLiked == 1)
     }
     

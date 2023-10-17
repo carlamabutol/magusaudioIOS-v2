@@ -83,7 +83,7 @@ class CategoryCell: HomeCustomCell {
     
     override func configure(item: SectionViewModel.Item) {
         setTextWithShadow(text: item.title)
-        categoryImageView.sd_setImage(with: item.imageUrl, placeholderImage: .init(named: "Cover Image"), context: nil) { [weak self] _, _, url in
+        categoryImageView.sd_setImage(with: item.imageUrl, placeholderImage: .init(named: .coverImage), context: nil) { [weak self] _, _, url in
             
         }
         tapActionHandler = item.tapActionHandler

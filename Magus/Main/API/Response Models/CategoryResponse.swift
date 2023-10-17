@@ -12,10 +12,6 @@ struct CategorySubliminalResponse : EndpointResponse {
     let data: [CategorySubliminalElement]
 }
 
-struct CategorySubliminalErrorResponse: Decodable {
-    let message: String
-}
-
 // MARK: - CategorySubliminalElement
 struct CategorySubliminalElement: EndpointResponse {
     typealias ErrorResponse = CategorySubliminalErrorResponse
@@ -27,4 +23,8 @@ struct CategorySubliminalElement: EndpointResponse {
     enum CodingKeys: String, CodingKey {
         case id, name, description, image
     }
+}
+
+struct CategorySubliminalErrorResponse: Decodable {
+    let message: String
 }

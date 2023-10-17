@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7401797F2ADEB4AD00372093 /* CategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401797E2ADEB4AD00372093 /* CategoryUseCase.swift */; };
+		740179812ADEB9CD00372093 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740179802ADEB9CD00372093 /* Category.swift */; };
+		740179832ADEBC4B00372093 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740179822ADEBC4B00372093 /* Mood.swift */; };
+		740179852ADEBDBD00372093 /* MoodUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740179842ADEBDBD00372093 /* MoodUseCase.swift */; };
+		740179882ADEC83000372093 /* SelectedMoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740179872ADEC83000372093 /* SelectedMoodCell.swift */; };
+		7401798A2ADEC86500372093 /* SelectedMoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 740179892ADEC86500372093 /* SelectedMoodCell.xib */; };
 		740A26EA2A4DCE2500D96A1D /* PremiumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740A26E92A4DCE2500D96A1D /* PremiumViewModel.swift */; };
 		740C4D012A71F4DC00050D5A /* WeeklyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 740C4D002A71F4DC00050D5A /* WeeklyView.xib */; };
 		740C4D032A71F52800050D5A /* WeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740C4D022A71F52800050D5A /* WeeklyView.swift */; };
@@ -300,6 +306,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7401797E2ADEB4AD00372093 /* CategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryUseCase.swift; sourceTree = "<group>"; };
+		740179802ADEB9CD00372093 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		740179822ADEBC4B00372093 /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
+		740179842ADEBDBD00372093 /* MoodUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodUseCase.swift; sourceTree = "<group>"; };
+		740179872ADEC83000372093 /* SelectedMoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedMoodCell.swift; sourceTree = "<group>"; };
+		740179892ADEC86500372093 /* SelectedMoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedMoodCell.xib; sourceTree = "<group>"; };
 		740A26E92A4DCE2500D96A1D /* PremiumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumViewModel.swift; sourceTree = "<group>"; };
 		740C4D002A71F4DC00050D5A /* WeeklyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeeklyView.xib; sourceTree = "<group>"; };
 		740C4D022A71F52800050D5A /* WeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyView.swift; sourceTree = "<group>"; };
@@ -568,6 +580,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		740179862ADEC81B00372093 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				74F1DD192A49964A008F4680 /* Category */,
+				740179872ADEC83000372093 /* SelectedMoodCell.swift */,
+				740179892ADEC86500372093 /* SelectedMoodCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		740A26E82A4D7F6E00D96A1D /* Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -608,6 +630,8 @@
 				74CB03922A909AF3007A1A90 /* SubliminalAudioInfo.swift */,
 				74CB03942A90A221007A1A90 /* Playlist.swift */,
 				74EB5BC52ABB156600C3FF0C /* MoodCalendar.swift */,
+				740179802ADEB9CD00372093 /* Category.swift */,
+				740179822ADEBC4B00372093 /* Mood.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -647,6 +671,8 @@
 				741CB6B82A447F0A00975949 /* AuthenticationUseCase.swift */,
 				745FA79B2A8A3F5B00F068E4 /* SubliminalUseCase.swift */,
 				F8C40DB52ABEBA2D00A44312 /* PlaylistUseCase.swift */,
+				7401797E2ADEB4AD00372093 /* CategoryUseCase.swift */,
+				740179842ADEBDBD00372093 /* MoodUseCase.swift */,
 			);
 			path = "Main Use Cases";
 			sourceTree = "<group>";
@@ -842,8 +868,8 @@
 		7490E4472A40A00E00463582 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				740179862ADEC81B00372093 /* Cells */,
 				74BCFBFD2AD3F19E00855210 /* See All */,
-				74F1DD192A49964A008F4680 /* Category */,
 				7490E44C2A40A0D400463582 /* Home.storyboard */,
 				7490E44E2A40A0DF00463582 /* HomeViewController.swift */,
 				7490E4602A40A3A500463582 /* HomeViewModel.swift */,
@@ -1723,6 +1749,7 @@
 				F8C40DBB2ABEEC1700A44312 /* TabSelectionView.xib in Resources */,
 				F8A4D4102A87648C008F460F /* ProfileAlert.storyboard in Resources */,
 				74910E022AD82B6800F2D909 /* CollapsibleTextView.xib in Resources */,
+				7401798A2ADEC86500372093 /* SelectedMoodCell.xib in Resources */,
 				74C960A62A722F5D00391DDA /* WeeklyDayDetailView.xib in Resources */,
 				F8512C342A13B9EA0041C14F /* Assets.xcassets in Resources */,
 				7490E45D2A40A1A600463582 /* Profile.storyboard in Resources */,
@@ -1813,10 +1840,12 @@
 				7460D3342AC5DC00004863DE /* PlaylistCell.swift in Sources */,
 				F8669E3B2A0BE6CE004D28A1 /* Route.swift in Sources */,
 				F86F797D2A18C3C200298581 /* TappableLabel.swift in Sources */,
+				740179832ADEBC4B00372093 /* Mood.swift in Sources */,
 				741CB6A82A44799700975949 /* User+Init.swift in Sources */,
 				74BCFC032AD3F5D100855210 /* SeeAllViewModel.swift in Sources */,
 				74CFCCFB2A82460700DF8D1C /* DefaultAlertViewController.swift in Sources */,
 				748B40992A71589E00CA78CD /* DateTypeSelectionView.swift in Sources */,
+				740179852ADEBDBD00372093 /* MoodUseCase.swift in Sources */,
 				74EB5BC62ABB156600C3FF0C /* MoodCalendar.swift in Sources */,
 				74BAEAB92A8502E4000BB1E4 /* SettingsViewController.swift in Sources */,
 				F8511DF02A17D02000EFFFB4 /* FormButton.swift in Sources */,
@@ -1848,6 +1877,7 @@
 				F8F2A7E92AD6E7D700F40D36 /* HowMagusWorkInfoViewController.swift in Sources */,
 				74B9177A2A51B5C200B598EB /* SearchViewModel.swift in Sources */,
 				F80A38B82A18C09F0023D166 /* KeyboardManager.swift in Sources */,
+				7401797F2ADEB4AD00372093 /* CategoryUseCase.swift in Sources */,
 				7474B31C2A49BD5D00086600 /* HomeCustomCell.swift in Sources */,
 				F8669E362A0BE619004D28A1 /* LoginViewController.swift in Sources */,
 				F835B0042A06526200123A16 /* AppDelegate.swift in Sources */,
@@ -1892,6 +1922,7 @@
 				74910DF82AD8262200F2D909 /* CompanyDocumentViewController.swift in Sources */,
 				743750ED2AACF75100731791 /* SubliminalCollectionViewCell.swift in Sources */,
 				74910DFB2AD82A9200F2D909 /* FAQsViewController.swift in Sources */,
+				740179812ADEB9CD00372093 /* Category.swift in Sources */,
 				F848EF142A0BD46C0097F104 /* ViewController+Extension.swift in Sources */,
 				74576BFE2A7D5D91003D4211 /* FormTextFieldView.swift in Sources */,
 				741CB6AA2A4479B900975949 /* UserResponse.swift in Sources */,
@@ -1912,6 +1943,7 @@
 				F81ED0B02A162B9C0043E245 /* SplashScreenViewController.swift in Sources */,
 				745B623F2A66CF4E00289F95 /* LoginAlertViewController.swift in Sources */,
 				74733B9B2A30B034002FE613 /* MoodViewController.swift in Sources */,
+				740179882ADEC83000372093 /* SelectedMoodCell.swift in Sources */,
 				74C090892A71FC3E001B552E /* ProfileViewModel.swift in Sources */,
 				74ED5DAD2AA5C7F0006F6C8D /* HowMagusWorksViewController.swift in Sources */,
 				F8BABF542AC7FCAF009AD1F1 /* AddPlaylistViewController.swift in Sources */,

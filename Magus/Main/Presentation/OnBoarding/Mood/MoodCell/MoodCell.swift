@@ -28,7 +28,9 @@ class MoodCell: UICollectionViewCell {
     var handleSelection: (() -> Void)?
     
     func configure(model: MoodCell.Model) {
-        moodImageView.sd_setImage(with: URL(string: model.image), placeholderImage: .init(named: "Cover Image"))
+        if let image = model.image {
+            moodImageView.sd_setImage(with: URL(string: image), placeholderImage: .init(named: .coverImage))
+        }
         moodTitleLabel.text = model.title
         handleSelection = model.handleSelection
         if model.isSelected {
@@ -51,7 +53,7 @@ extension MoodCell {
     struct Model: Identifiable {
         let id: Int
         let title: String
-        let image: String
+        let image: String?
         let selectedColor: String
         var isSelected: Bool
         let handleSelection: () -> Void

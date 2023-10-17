@@ -14,15 +14,18 @@ class StandardNetworkService {
     private let credentialsService: AuthenticationService
     private let requestManager: Session
     private let getUserID: () -> String?
+    private let getMoodId: () -> String?
     private let getSubscriptionID: () -> Int
     private static let validStatusCodes: [Int] = (200 ..< 300) + [422]
     
     init(baseURL: URL,
          credentialsService: AuthenticationService,
          getUserID: @escaping () -> String?,
+         getMoodId: @escaping () -> String?,
          getSubscriptionID: @escaping () -> Int) {
         self.baseURL = baseURL
         self.credentialsService = credentialsService
+        self.getMoodId = getMoodId
         self.getUserID = getUserID
         self.getSubscriptionID = getSubscriptionID
         self.requestManager = Alamofire.Session(configuration: .default)
@@ -83,29 +86,32 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
-    func getAllMoods() async throws -> JSONAPIArrayResponse<Mood> {
+    func getAllMoods() async throws -> JSONAPIArrayResponse<MoodResponse> {
         let url = baseURL
             .appendingPathComponent("api")
             .appendingPathComponent("mood")
         
         let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
-            .serializingDecodable(JSONAPIArrayResponse<Mood>.self)
+            .serializingDecodable(JSONAPIArrayResponse<MoodResponse>.self)
         
         return try await task.value
     }
     
-    func updateSelectedMoods(userId: String, moodId: Int) async throws -> EmptyResponse {
+    func updateSelectedMoods(moodId: Int) async throws -> EmptyResponse {
         let url = baseURL
             .appendingPathComponent("api")
             .appendingPathComponent("user")
             .appendingPathComponent("mood")
             .appendingPathComponent("update")
         
-        let parameters: [String: Any] = [
-            "user_id": userId,
+        var parameters: [String: Any] = [
             "mood_id": moodId
         ]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
         
         let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
@@ -132,12 +138,27 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
-    func getCategorySubliminal() async throws -> JSONAPIArrayResponse<CategorySubliminalElement> {
+    func getCategorySubliminal(search: String) async throws -> JSONAPIArrayResponse<CategorySubliminalElement> {
         let url = baseURL
             .appendingPathComponent("api")
+            .appendingPathComponent("home")
             .appendingPathComponent("category")
+            .appendingPathComponent("search")
         
-        let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
+        var parameters: [String: String] = [
+            "subscription_id": String(describing: getSubscriptionID()),
+            "search": search
+        ]
+        
+        if let moodId = getMoodId() {
+            parameters["mood_id"] = moodId
+        }
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
             .serializingDecodable(JSONAPIArrayResponse<CategorySubliminalElement>.self)
         

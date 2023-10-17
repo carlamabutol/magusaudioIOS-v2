@@ -17,112 +17,139 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LPg-pz-eUE">
-                                <rect key="frame" x="20" y="78.999999999999972" width="353" height="420.33333333333326"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ads-mu-H06">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVi-nO-Dkz">
-                                        <rect key="frame" x="0.0" y="0.0" width="353" height="20.333333333333332"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyW-kL-3i9">
-                                        <rect key="frame" x="0.0" y="40.333333333333329" width="353" height="30"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6qo-cF-BN6">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="460.33333333333331"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LPg-pz-eUE">
+                                                <rect key="frame" x="20" y="20" width="353" height="420.33333333333331"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVi-nO-Dkz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyW-kL-3i9">
+                                                        <rect key="frame" x="0.0" y="40.333333333333329" width="353" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="0Mc-Kb-ivZ"/>
+                                                        </constraints>
+                                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="How Magus Works" image="how mag">
+                                                            <color key="titleColor" systemColor="labelColor"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXa-iA-WKU">
+                                                        <rect key="frame" x="0.0" y="90.333333333333343" width="353" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="fIk-wT-SQ5"/>
+                                                        </constraints>
+                                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Subliminal Guide" image="guide">
+                                                            <color key="titleColor" systemColor="labelColor"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tao-LX-f45">
+                                                        <rect key="frame" x="0.0" y="140.33333333333334" width="353" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="imD-aT-HyA"/>
+                                                        </constraints>
+                                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="FAQs" image="faqs">
+                                                            <color key="titleColor" systemColor="labelColor"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tFj-Kg-Zh7">
+                                                        <rect key="frame" x="0.0" y="190.33333333333331" width="353" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="pzA-87-XN2"/>
+                                                        </constraints>
+                                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Terms and Condition" image="terms and condition">
+                                                            <color key="titleColor" systemColor="labelColor"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sLm-xc-pCV">
+                                                        <rect key="frame" x="0.0" y="240.33333333333331" width="353" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="IK3-P2-NpA"/>
+                                                        </constraints>
+                                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Privacy and Policy" image="terms and condition">
+                                                            <color key="titleColor" systemColor="labelColor"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NKs-eM-5be">
+                                                        <rect key="frame" x="0.0" y="290.33333333333331" width="353" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="NRD-iC-MCi"/>
+                                                        </constraints>
+                                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Contact Us" image="profile contact">
+                                                            <color key="titleColor" systemColor="labelColor"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ucA-fu-gRv">
+                                                        <rect key="frame" x="0.0" y="340.33333333333331" width="353" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="tdw-gy-fz4"/>
+                                                        </constraints>
+                                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Rate Us" image="rate us">
+                                                            <color key="titleColor" systemColor="labelColor"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnh-ff-d1v">
+                                                        <rect key="frame" x="0.0" y="390.33333333333331" width="353" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="nqS-VZ-Tni"/>
+                                                        </constraints>
+                                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Log out" image="logout">
+                                                            <color key="titleColor" systemColor="labelColor"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="0Mc-Kb-ivZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="LPg-pz-eUE" secondAttribute="trailing" constant="20" id="PGb-5C-iud"/>
+                                            <constraint firstItem="LPg-pz-eUE" firstAttribute="top" secondItem="6qo-cF-BN6" secondAttribute="top" constant="20" id="weu-mD-Xch"/>
+                                            <constraint firstAttribute="bottom" secondItem="LPg-pz-eUE" secondAttribute="bottom" constant="20" id="y5x-Bg-pPr"/>
+                                            <constraint firstItem="LPg-pz-eUE" firstAttribute="leading" secondItem="6qo-cF-BN6" secondAttribute="leading" constant="20" id="zB1-99-9jz"/>
                                         </constraints>
-                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="How Magus Works" image="how mag">
-                                            <color key="titleColor" systemColor="labelColor"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXa-iA-WKU">
-                                        <rect key="frame" x="0.0" y="90.333333333333343" width="353" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="fIk-wT-SQ5"/>
-                                        </constraints>
-                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Subliminal Guide" image="guide">
-                                            <color key="titleColor" systemColor="labelColor"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tao-LX-f45">
-                                        <rect key="frame" x="0.0" y="140.33333333333334" width="353" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="imD-aT-HyA"/>
-                                        </constraints>
-                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="FAQs" image="faqs">
-                                            <color key="titleColor" systemColor="labelColor"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tFj-Kg-Zh7">
-                                        <rect key="frame" x="0.0" y="190.33333333333331" width="353" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="pzA-87-XN2"/>
-                                        </constraints>
-                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Terms and Condition" image="terms and condition">
-                                            <color key="titleColor" systemColor="labelColor"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sLm-xc-pCV">
-                                        <rect key="frame" x="0.0" y="240.33333333333331" width="353" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="IK3-P2-NpA"/>
-                                        </constraints>
-                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Privacy and Policy" image="terms and condition">
-                                            <color key="titleColor" systemColor="labelColor"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NKs-eM-5be">
-                                        <rect key="frame" x="0.0" y="290.33333333333331" width="353" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="NRD-iC-MCi"/>
-                                        </constraints>
-                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Contact Us" image="profile contact">
-                                            <color key="titleColor" systemColor="labelColor"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ucA-fu-gRv">
-                                        <rect key="frame" x="0.0" y="340.33333333333331" width="353" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="tdw-gy-fz4"/>
-                                        </constraints>
-                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Rate Us" image="rate us">
-                                            <color key="titleColor" systemColor="labelColor"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnh-ff-d1v">
-                                        <rect key="frame" x="0.0" y="390.33333333333331" width="353" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="nqS-VZ-Tni"/>
-                                        </constraints>
-                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Log out" image="logout">
-                                            <color key="titleColor" systemColor="labelColor"/>
-                                        </state>
-                                    </button>
+                                    </view>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="6qo-cF-BN6" firstAttribute="leading" secondItem="ads-mu-H06" secondAttribute="leading" id="2Co-M7-Bul"/>
+                                    <constraint firstItem="6qo-cF-BN6" firstAttribute="top" secondItem="ads-mu-H06" secondAttribute="top" id="Lv6-Ov-fKJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="6qo-cF-BN6" secondAttribute="bottom" id="Nwy-za-FFy"/>
+                                    <constraint firstAttribute="trailing" secondItem="6qo-cF-BN6" secondAttribute="trailing" id="lsU-77-9GD"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="kLD-0R-xs4"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="V7O-uV-BJD"/>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="LPg-pz-eUE" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="5rW-fV-GL1"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="LPg-pz-eUE" secondAttribute="trailing" constant="20" id="aED-oQ-LjE"/>
-                            <constraint firstItem="LPg-pz-eUE" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="keQ-1s-gdo"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ads-mu-H06" secondAttribute="trailing" id="Ga6-p1-FW6"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ads-mu-H06" secondAttribute="bottom" id="Qpz-sN-t6Z"/>
+                            <constraint firstItem="ads-mu-H06" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="R2G-Zx-hr2"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="top" secondItem="ads-mu-H06" secondAttribute="top" id="Tj1-fc-Gt8"/>
+                            <constraint firstItem="6qo-cF-BN6" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" id="neg-WS-JXN"/>
                         </constraints>
                     </view>
                     <connections>
