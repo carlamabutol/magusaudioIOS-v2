@@ -23,6 +23,8 @@ enum StoryboardString: String {
     
     case mood = "Mood"
     
+    case seeAll = "SeeAllList"
+    
     // Tabbar
     case mainTabBar = "MainTabBar"
     case home = "Home"
@@ -34,6 +36,8 @@ enum StoryboardString: String {
     case profileMood = "ProfileMood"
     case settings = "Settings"
     case mySubs = "MySubs"
+    case profilePlaylists = "ProfilePlaylists"
+    case profileFavorites = "ProfileFavorites"
     
     // Alert
     case defaultAlert = "DefaultAlert"
@@ -47,6 +51,15 @@ enum StoryboardString: String {
     
     // Player
     case player = "Player"
+    
+    // Settings
+    case howMagusWorks = "HowMagusWorks"
+    case howMagusWorksInfo = "HowMagusWorkInfo"
+    case playlist = "Playlist"
+    case addPlaylist = "AddPlaylist"
+    case subliminalGuide = "SubliminalGuide"
+    case companyDocument = "CompanyDocument"
+    case faqs = "FAQs"
     
 }
 

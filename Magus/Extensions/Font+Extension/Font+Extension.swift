@@ -35,10 +35,14 @@ extension UIFont {
         static let body1 = UIFont.montSerratRegular(with: 13)
         static let body2 = UIFont.montSerratRegular(with: 10)
         static let body3 = UIFont.montSerratRegular(with: 15)
+        static let body4 = UIFont.montSerratRegular(with: 14)
         
         // Medium
         static let medium1 = UIFont.montSerratSemiBold(with: 13)
         static let medium2 = UIFont.montSerratSemiBold(with: 15)
+        static let medium17 = UIFont.montSerratSemiBold(with: 17)
+        static let medium20 = UIFont.montSerratSemiBold(with: 20)
+        static let medium10 = UIFont.montSerratSemiBold(with: 10)
         
         // SemiBold
         static let semibold1 = UIFont.montSerratSemiBold(with: 13)

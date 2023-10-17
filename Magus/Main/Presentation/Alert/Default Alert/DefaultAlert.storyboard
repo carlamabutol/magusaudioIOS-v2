@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Default Alert View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="DefaultAlertViewController" customModule="Magus" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XcY-Bp-iCQ">
+                                <rect key="frame" x="29.333333333333343" y="237.66666666666666" width="334.33333333333326" height="401.66666666666674"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="rMf-bW-QO0">
+                                        <rect key="frame" x="25" y="30.000000000000028" width="284.33333333333331" height="341.66666666666674"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="pqN-bv-h80">
+                                                <rect key="frame" x="0.0" y="0.0" width="284.33333333333331" height="221.33333333333334"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mM-nT-ecR">
+                                                <rect key="frame" x="0.0" y="246.33333333333334" width="284.33333333333331" height="20.333333333333343"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5O5-13-HjO" customClass="FormButton" customModule="Magus" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="291.66666666666669" width="284.33333333333331" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="NwE-SU-AWt"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="rMf-bW-QO0" firstAttribute="leading" secondItem="XcY-Bp-iCQ" secondAttribute="leading" constant="25" id="aLx-Tr-P7D"/>
+                                    <constraint firstAttribute="bottom" secondItem="rMf-bW-QO0" secondAttribute="bottom" constant="30" id="nwX-gh-ID5"/>
+                                    <constraint firstAttribute="trailing" secondItem="rMf-bW-QO0" secondAttribute="trailing" constant="25" id="oV9-bC-yQv"/>
+                                    <constraint firstItem="rMf-bW-QO0" firstAttribute="top" secondItem="XcY-Bp-iCQ" secondAttribute="top" constant="30" id="tlN-1c-7Qh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XcY-Bp-iCQ" firstAttribute="centerY" secondItem="vDu-zF-Fre" secondAttribute="centerY" id="3Aw-zT-oL6"/>
+                            <constraint firstItem="XcY-Bp-iCQ" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.85" id="9hn-a4-YxJ"/>
+                            <constraint firstItem="pqN-bv-h80" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.259781" id="wkp-4x-jZf"/>
+                            <constraint firstItem="XcY-Bp-iCQ" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="x2P-DB-bHg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="confirmButton" destination="5O5-13-HjO" id="cCL-YP-DUC"/>
+                        <outlet property="containerView" destination="XcY-Bp-iCQ" id="3Ff-OF-BKJ"/>
+                        <outlet property="coverImageView" destination="pqN-bv-h80" id="n57-hl-n5f"/>
+                        <outlet property="messageLbl" destination="0mM-nT-ecR" id="PGG-1I-lhr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4" y="4"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="password" width="352" height="221"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

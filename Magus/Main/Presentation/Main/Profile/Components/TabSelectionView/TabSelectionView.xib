@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TabSelectionView" customModule="Magus" customModuleProvider="target">
+            <connections>
+                <outlet property="lineView" destination="inZ-6x-M0q" id="f42-0O-f7s"/>
+                <outlet property="tabStackView" destination="e2J-og-pDO" id="xUR-FS-1qu"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="32"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="e2J-og-pDO">
+                    <rect key="frame" x="0.0" y="59" width="393" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="cvF-F2-zlz"/>
+                    </constraints>
+                </stackView>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="inZ-6x-M0q">
+                    <rect key="frame" x="0.0" y="-48" width="393" height="128"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="6sU-aX-8Iv"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="inZ-6x-M0q" firstAttribute="top" secondItem="e2J-og-pDO" secondAttribute="bottom" constant="10" id="GGB-LY-a3e"/>
+                <constraint firstItem="e2J-og-pDO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="JuO-Pe-tXM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="e2J-og-pDO" secondAttribute="trailing" id="KWA-E0-NIX"/>
+                <constraint firstItem="inZ-6x-M0q" firstAttribute="leading" secondItem="e2J-og-pDO" secondAttribute="leading" id="W1c-ES-NpW"/>
+                <constraint firstItem="inZ-6x-M0q" firstAttribute="trailing" secondItem="e2J-og-pDO" secondAttribute="trailing" id="ipm-OF-gdg"/>
+                <constraint firstItem="inZ-6x-M0q" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="5" id="mKK-VO-Uxs"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="e2J-og-pDO" secondAttribute="top" id="vSk-1p-v43"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="50" y="0.0"/>
+        </view>
+    </objects>
+</document>
