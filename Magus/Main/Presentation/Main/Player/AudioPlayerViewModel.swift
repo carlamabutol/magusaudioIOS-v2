@@ -12,31 +12,33 @@ import RxSwift
 
 class AudioPlayerViewModel: ViewModel {
     static let shared = AudioPlayerViewModel()
+    private let appState: AppState
     private let store: Store
     private let audioPlayerManager = AudioPlayerManager.shared
     var selectedSubliminal: Subliminal?
-    var subliminals: [Subliminal] = []
     private let selectedSubliminalRelay = PublishRelay<Subliminal>()
     var selectedSubliminalObservable: Observable<Subliminal> { selectedSubliminalRelay.asObservable() }
-    private let selectedAudioPlayer = PublishRelay<AudioPlayer>()
+    private let selectedAudioPlayer = PublishRelay<CustomAudioPlayer>()
     var timeRelay = BehaviorRelay<String>(value: "--/--")
     var progressRelay = BehaviorRelay<Float>(value: 0)
-    let selectedPlayer = BehaviorRelay<Int>(value: 0)
-    let audioUrlRelay = BehaviorRelay<[URL]>(value: [])
     var progressObservable: Observable<Float> { progressRelay.asObservable() }
     
+    let repeatStatus = BehaviorRelay<Repeat>(value: .repeatAll)
     private let playerStatusRelay = BehaviorRelay<PlayerStatus>(value: .unknown)
     var playerStatusObservable: Observable<PlayerStatus> { playerStatusRelay.asObservable() }
     var playerStateObservable: Observable<AppState.PlayerState>
     var isRepealAllObservable: Observable<Bool>
     var playerDisposeBag = DisposeBag()
     private let subliminalUseCase: SubliminalUseCase
+    private let subliminals: () -> [Subliminal]
     
     init(dependencies: Dependencies = .standard) {
+        appState = dependencies.appState
         store = dependencies.store
         subliminalUseCase = dependencies.subliminalUseCase
         playerStateObservable = dependencies.playerState
         isRepealAllObservable = dependencies.isRepeatAll
+        subliminals = dependencies.subliminals
         super.init()
         audioPlayerManager.activePlayerObservable
             .subscribe { [weak self] player in
@@ -46,9 +48,9 @@ class AudioPlayerViewModel: ViewModel {
         
     }
     
-    var activePlayer: AudioPlayer?
+    var activePlayer: CustomAudioPlayer?
     
-    private func playBackSubscriber(audioPlayer: AudioPlayer) {
+    private func playBackSubscriber(audioPlayer: CustomAudioPlayer) {
         activePlayer = audioPlayer
         audioPlayer.progressObservable
             .distinctUntilChanged()
@@ -65,12 +67,18 @@ class AudioPlayerViewModel: ViewModel {
         
         audioPlayer.didEndObservable
             .subscribe { [weak self] _ in
-                if SharedDependencies.sharedDependencies.store.appState.isRepeatAll {
-                    self?.playAllAtStart()
+                self?.didEndPlayer()
+            }.disposed(by: playerDisposeBag)
+        
+        audioPlayer.playerStatusObservable
+            .subscribe { [weak self] status in
+                if status == .isPlaying {
+                    self?.store.appState.playerState = .isPlaying
                 } else {
-                    self?.pauseAllAudio()
+                    self?.store.appState.playerState = .isPaused
                 }
-            }.disposed(by: disposeBag)
+            }
+            .disposed(by: playerDisposeBag)
     }
     
     public func createArrayAudioPlayer(with subliminal: Subliminal) {
@@ -81,7 +89,7 @@ class AudioPlayerViewModel: ViewModel {
         selectedSubliminal = subliminal
         selectedSubliminalRelay.accept(subliminal)
         clearAudioPlayers()
-        audioPlayerManager.createAudioPlayers(with: subliminal, isPlaying: playerStatusRelay.value == .isPlaying)
+        audioPlayerManager.createAudioPlayers(with: subliminal, isPlaying: true)
     }
     
     func clearAudioPlayers() {
@@ -94,13 +102,11 @@ class AudioPlayerViewModel: ViewModel {
     }
     
     func playAll() {
-        store.appState.playerState = .isPlaying
         playerStatusRelay.accept(.isPlaying)
         audioPlayerManager.playAllAudioPlayers()
     }
     
     func playAllAtStart() {
-        store.appState.playerState = .isPlaying
         playerStatusRelay.accept(.isPlaying)
         audioPlayerManager.playAgainAllAudioPlayers()
     }
@@ -113,13 +119,24 @@ class AudioPlayerViewModel: ViewModel {
         }
     }
     
+    private func didEndPlayer() {
+        switch repeatStatus.value {
+        case .repeatOnce:
+            playAll()
+        case .repeatAll:
+            next()
+        case .noRepeat:
+            break
+        }
+    }
+    
     func pauseAllAudio() {
-        store.appState.playerState = .isPaused
         playerStatusRelay.accept(.isPaused)
         audioPlayerManager.pauseAllAudioPlayers()
     }
     
     func next() {
+        let subliminals = self.subliminals()
         var currentIndex = 0
         if let index = subliminals.firstIndex(where: { $0.subliminalID == selectedSubliminal?.subliminalID ?? ""}) {
             currentIndex = index
@@ -131,6 +148,7 @@ class AudioPlayerViewModel: ViewModel {
     }
     
     func previous() {
+        let subliminals = self.subliminals()
         var currentIndex = 0
         if let index = subliminals.firstIndex(where: { $0.subliminalID == selectedSubliminal?.subliminalID ?? ""}) {
             currentIndex = index
@@ -164,6 +182,27 @@ class AudioPlayerViewModel: ViewModel {
             }
         }
     }
+    
+    func updateRepat() {
+        switch repeatStatus.value {
+        case .repeatAll:
+            repeatStatus.accept(.repeatOnce)
+        case .repeatOnce:
+            repeatStatus.accept(.repeatAll)
+        case .noRepeat:
+            repeatStatus.accept(.repeatAll)
+        }
+    }
+}
+
+extension AudioPlayerViewModel {
+    
+    enum Repeat {
+        case repeatOnce
+        case repeatAll
+        case noRepeat
+    }
+    
 }
 
 extension AudioPlayerViewModel {
@@ -171,17 +210,21 @@ extension AudioPlayerViewModel {
     struct Dependencies {
         let networkService: NetworkService
         let subliminalUseCase: SubliminalUseCase
+        let appState: AppState
         let store: Store
         let playerState: Observable<AppState.PlayerState>
         let isRepeatAll: Observable<Bool>
+        let subliminals: () -> [Subliminal]
         
         static var standard: Dependencies {
             return .init(
                 networkService: SharedDependencies.sharedDependencies.networkService,
                 subliminalUseCase: SharedDependencies.sharedDependencies.useCases.subliminalUseCase,
+                appState: SharedDependencies.sharedDependencies.store.appState,
                 store: SharedDependencies.sharedDependencies.store,
                 playerState: SharedDependencies.sharedDependencies.store.observable(of: \.playerState),
-                isRepeatAll: SharedDependencies.sharedDependencies.store.observable(of: \.isRepeatAll)
+                isRepeatAll: SharedDependencies.sharedDependencies.store.observable(of: \.isRepeatAll),
+                subliminals: { SharedDependencies.sharedDependencies.store.appState.subliminals }
             )
         }
     }

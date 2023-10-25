@@ -81,20 +81,6 @@ class HomeViewController: CommonViewController {
                 cell.configure(item: item)
                 return cell
             }
-//            switch indexPath.section {
-//            case 0:
-//                cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
-//
-//                cell.configure(item: item)
-//            case 1:
-//                cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
-//
-//                cell.configure(item: item)
-//            default:
-//                cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
-//
-//                cell.configure(item: item)
-//            }
         }, configureSupplementaryView: { dataSource, collectionView, title, indexPath in
             if title == UICollectionView.elementKindSectionHeader {
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: title, withReuseIdentifier: HeaderTitleView.identifier, for: indexPath) as! HeaderTitleView
@@ -116,21 +102,22 @@ class HomeViewController: CommonViewController {
     
     private func setupCompositionalLayout() {
         let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, enviroment in
-            guard let self = self else { return self!.categorySection() }
+            guard let self = self else { return Self.categorySection() }
             let header = self.dataSource[sectionIndex].header
             switch header {
             case LocalisedStrings.HomeHeaderTitle.mood:
-                return self.moodSection()
+                return Self.moodSection()
             case LocalisedStrings.HomeHeaderTitle.category:
-                return self.categorySection()
+                return Self.categorySection()
             case LocalisedStrings.HomeHeaderTitle.recommendations:
-                return self.recommendationSection()
+                return Self.recommendationSection()
             case LocalisedStrings.HomeHeaderTitle.featuredPlayList:
-                return self.featuredPlaylistSection()
+                return Self.featuredPlaylistSection()
             default:
-                return self.categorySection()
+                return Self.categorySection()
             }
         }
+        collectionView.contentInset = .init(top: 0, left: 0, bottom: 100, right: 0)
         collectionView.setCollectionViewLayout(layout, animated: true)
     }
     
@@ -146,7 +133,7 @@ class HomeViewController: CommonViewController {
         navigationController?.pushViewController(seeAllVC, animated: true)
     }
     
-    func moodSection()-> NSCollectionLayoutSection {
+    private static func moodSection()-> NSCollectionLayoutSection {
         let heightDimension = NSCollectionLayoutDimension.estimated(100)
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: heightDimension)
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -161,7 +148,7 @@ class HomeViewController: CommonViewController {
         return section
     }
     
-    func categorySection()-> NSCollectionLayoutSection {
+    private static func categorySection()-> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
@@ -179,7 +166,7 @@ class HomeViewController: CommonViewController {
         return section
     }
     
-    func recommendationSection()-> NSCollectionLayoutSection {
+    private static func recommendationSection()-> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
@@ -197,7 +184,7 @@ class HomeViewController: CommonViewController {
         return section
     }
     
-    func featuredPlaylistSection()-> NSCollectionLayoutSection {
+    private static func featuredPlaylistSection()-> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         

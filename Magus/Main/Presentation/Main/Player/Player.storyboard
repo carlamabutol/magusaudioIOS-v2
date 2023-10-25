@@ -127,7 +127,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
                                         </constraints>
                                         <color key="tintColor" systemColor="tintColor"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="ic_repeat"/>
+                                        <state key="normal" image="repeat"/>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -185,9 +185,9 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
         </scene>
     </scenes>
     <resources>
-        <image name="ic_repeat" width="24" height="24"/>
         <image name="left arrow" width="19" height="27"/>
         <image name="option" width="6" height="28"/>
+        <image name="repeat" width="30" height="28"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

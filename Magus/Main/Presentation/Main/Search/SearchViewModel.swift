@@ -101,7 +101,8 @@ class SearchViewModel: ViewModel {
     private func configureSubliminalCell(with subliminal: Subliminal) -> CategoryCell.Model {
         return CategoryCell.Model(
             id: subliminal.subliminalID,
-            title: subliminal.title
+            title: subliminal.title,
+            imageUrl: .init(string: subliminal.cover)
         ) { [weak self] in
             self?.selectedSubliminal.accept(subliminal)
         }
@@ -110,7 +111,8 @@ class SearchViewModel: ViewModel {
     private func configurePlaylistCell(with playlist: Playlist) -> CategoryCell.Model {
         return CategoryCell.Model(
             id: playlist.playlistID,
-            title: playlist.title
+            title: playlist.title,
+            imageUrl: .init(string: playlist.cover)
         ) { [weak self] in
             self?.selectedPlaylist.accept(playlist)
         }

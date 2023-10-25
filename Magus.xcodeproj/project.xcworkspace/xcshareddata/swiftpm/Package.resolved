@@ -53,6 +53,15 @@
         "revision" : "c51ba84499268ea3020e6aee9e229c0f56b9d924",
         "version" : "5.16.0"
       }
+    },
+    {
+      "identity" : "swiftaudioex",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/doublesymmetry/SwiftAudioEx",
+      "state" : {
+        "revision" : "7fb762db9c60ee232223122ace798333d6add195",
+        "version" : "1.0.0"
+      }
     }
   ],
   "version" : 2

@@ -57,7 +57,7 @@ class MainTabBarViewController: UITabBarController {
     
     @objc private func showPlayer() {
         guard let selectedSubliminal = playerViewModel.selectedSubliminal else { return }
-        goToPlayer(subliminal: selectedSubliminal, list: viewModel.subliminals)
+        goToPlayer(subliminal: selectedSubliminal)
     }
     
     private func styleTabBar() {
@@ -190,7 +190,7 @@ extension MainTabBarViewController {
 
 extension MainTabBarViewController {
     
-    func goToPlayer(subliminal: Subliminal, list: [Subliminal]) {
+    func goToPlayer(subliminal: Subliminal) {
         let playerVC = PlayerViewController.instantiate(from: .player) as! PlayerViewController
         playerVC.tabViewModel = viewModel
         playerVC.audioPlayerViewModel = playerViewModel
@@ -198,7 +198,6 @@ extension MainTabBarViewController {
         playerVC.view.heroID = "sample"
         playerVC.isHeroEnabled = true
         playerVC.modalPresentationStyle = .currentContext
-        playerViewModel.subliminals = list
         playerVC.configure(subliminal: subliminal)
         navigationController?.present(playerVC, animated: true)
     }

@@ -103,6 +103,7 @@ class SearchViewController: CommonViewController {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, enviroment in
             return self.gridSection()
         }
+        collectionView.contentInset = .init(top: 0, left: 0, bottom: 100, right: 0)
         collectionView.setCollectionViewLayout(layout, animated: true)
     }
     

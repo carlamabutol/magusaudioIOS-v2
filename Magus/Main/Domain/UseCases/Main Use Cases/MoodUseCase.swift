@@ -34,6 +34,23 @@ final class MoodUseCase {
         }
     }
     
+    func getCurrentMood() async throws {
+        do {
+            let response = try await networkService.getCurrentMood()
+            switch response {
+            case .success(let data):
+                let allMoods = store.appState.allMoods
+                guard let currentMoodId = Int(data.first?.currentMood ?? "") else { return }
+                let selectedMood = allMoods.first(where: { $0.id == currentMoodId })
+                store.appState.selectedMood = selectedMood
+            case .error(_):
+                throw NetworkServiceError.jsonDecodingError
+            }
+        } catch {
+            throw MessageError.message(error.localizedDescription)
+        }
+    }
+    
     func updateSelectedMood(moodId: Int) async throws -> EmptyResponse {
         do {
             let response = try await networkService.updateSelectedMoods(moodId: moodId)

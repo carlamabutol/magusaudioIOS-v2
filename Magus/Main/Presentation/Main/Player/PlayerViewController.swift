@@ -153,6 +153,24 @@ class PlayerViewController: CommonViewController {
             }
             .disposed(by: disposeBag)
         
+        repeatView.rx.tap
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.audioPlayerViewModel.updateRepat()
+            }
+            .disposed(by: disposeBag)
+        
+        audioPlayerViewModel.repeatStatus.asObservable()
+            .subscribe { [weak self] repeatState in
+                switch repeatState {
+                case .repeatAll:
+                    self?.repeatView.setImage(UIImage(named: .repeatAll).withRenderingMode(.alwaysOriginal), for: .normal)
+                case .repeatOnce, .noRepeat:
+                    self?.repeatView.setImage(UIImage(named: .repeatOnce).withRenderingMode(.alwaysOriginal), for: .normal)
+                }
+            }
+            .disposed(by: disposeBag)
+        
         audioPlayerViewModel.playerStatusObservable
             .map {
                 $0 == .isPlaying || $0 == .isPaused || $0 == .isReadyToPlay

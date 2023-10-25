@@ -66,7 +66,7 @@ class PlaylistViewController: CommonViewController {
             layout.scrollDirection = .vertical
             layout.minimumLineSpacing = 18
             layout.minimumInteritemSpacing = 24
-            
+            collectionView.contentInset = .init(top: 0, left: 0, bottom: 70, right: 0)
             collectionView
                 .setCollectionViewLayout(layout, animated: true)
         }

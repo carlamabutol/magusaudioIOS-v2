@@ -86,6 +86,8 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
+    // MARK: MOODS
+    
     func getAllMoods() async throws -> JSONAPIArrayResponse<MoodResponse> {
         let url = baseURL
             .appendingPathComponent("api")
@@ -94,6 +96,25 @@ extension StandardNetworkService: NetworkService {
         let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
             .serializingDecodable(JSONAPIArrayResponse<MoodResponse>.self)
+        
+        return try await task.value
+    }
+    
+    func getCurrentMood() async throws -> JSONAPIArrayResponse<CurrentMoodResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("user")
+            .appendingPathComponent("mood")
+        
+        var parameters: [String: Any] = [:]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
+        let task = requestManager.request(url, method: .post, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<CurrentMoodResponse>.self)
         
         return try await task.value
     }
@@ -138,6 +159,8 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
+    // MARK: HOME
+    
     func getCategorySubliminal(search: String) async throws -> JSONAPIArrayResponse<CategorySubliminalElement> {
         let url = baseURL
             .appendingPathComponent("api")
@@ -165,13 +188,43 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
-    func getRecommendations() async throws -> JSONAPIDictionaryResponse<RecommendationResponse> {
+    func getRecommendations(search: String, categoryId: Int?, moodId: Int?) async throws -> JSONAPIDictionaryResponse<RecommendationResponse> {
         let url = baseURL
             .appendingPathComponent("api")
-            .appendingPathComponent("recommendations")
+            .appendingPathComponent("recommendation")
         
         var parameters: [String: String] = [
-            "subscription_id": String(describing: getSubscriptionID())
+            "subscription_id": String(describing: getSubscriptionID()),
+            "search": search
+        ]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
+        if let categoryId = categoryId {
+            parameters["category_id"] = String(describing: categoryId)
+        }
+        
+        if let moodId = moodId {
+            parameters["mood_id"] = String(describing: moodId)
+        }
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIDictionaryResponse<RecommendationResponse>.self)
+        
+        return try await task.value
+    }
+    
+    func getFeatured(search: String) async throws -> JSONAPIDictionaryResponse<FeaturedResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("featured")
+        
+        var parameters: [String: String] = [
+            "subscription_id": String(describing: getSubscriptionID()),
+            "search": search
         ]
         
         if let userID = getUserID() {
@@ -180,7 +233,7 @@ extension StandardNetworkService: NetworkService {
         
         let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
-            .serializingDecodable(JSONAPIDictionaryResponse<RecommendationResponse>.self)
+            .serializingDecodable(JSONAPIDictionaryResponse<FeaturedResponse>.self)
         
         return try await task.value
     }
@@ -313,28 +366,6 @@ extension StandardNetworkService: NetworkService {
         let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
             .serializingDecodable(EmptyResponse.self)
-        
-        return try await task.value
-    }
-    
-    // MARK: PLAYLIST
-    
-    func getFeaturedPlaylists() async throws -> JSONAPIDictionaryResponse<FeaturedPlaylistResponse> {
-        let url = baseURL
-            .appendingPathComponent("api")
-            .appendingPathComponent("featured")
-        
-        var parameters: [String: String] = [
-            "subscription_id": String(describing: getSubscriptionID())
-        ]
-        
-        if let userID = getUserID() {
-            parameters["user_id"] = userID
-        }
-        
-        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
-            .validate(statusCode: Self.validStatusCodes)
-            .serializingDecodable(JSONAPIDictionaryResponse<FeaturedPlaylistResponse>.self)
         
         return try await task.value
     }

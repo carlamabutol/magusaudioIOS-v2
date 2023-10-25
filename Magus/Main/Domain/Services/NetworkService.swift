@@ -15,10 +15,13 @@ protocol NetworkService {
     // MARK: MOODS
     func getAllMoods() async throws -> JSONAPIArrayResponse<MoodResponse>
     func getMoodCalendar(userId: String) async throws -> JSONAPIArrayResponse<MoodCalendarResponse>
+    func getCurrentMood() async throws -> JSONAPIArrayResponse<CurrentMoodResponse>
     func updateSelectedMoods(moodId: Int) async throws -> EmptyResponse
     
     func getCategorySubliminal(search: String) async throws -> JSONAPIArrayResponse<CategorySubliminalElement>
-    func getRecommendations() async throws -> JSONAPIDictionaryResponse<RecommendationResponse>
+    func getRecommendations(search: String, categoryId: Int?, moodId: Int?) async throws -> JSONAPIDictionaryResponse<RecommendationResponse>
+    func getFeatured(search: String) async throws -> JSONAPIDictionaryResponse<FeaturedResponse>
+    
     func getSubliminals() async throws -> JSONAPIDictionaryResponse<SubliminalArrayResponse>
     func getAllFavoriteSubliminals() async throws -> JSONAPIArrayResponse<SubliminalResponse>
     func getSubscriptions() async throws -> JSONAPIArrayResponse<SubscriptionResponse>
@@ -33,7 +36,6 @@ protocol NetworkService {
     func savePlaylist(playlistID: String, title: String) async throws -> JSONAPIArrayResponse<SearchPlaylistResponse>
     func deletePlaylist(playlistID: String) async throws -> JSONAPIArrayResponse<SearchPlaylistResponse>
     func getAllFavoritePlaylist() async throws -> JSONAPIArrayResponse<SearchPlaylistResponse>
-    func getFeaturedPlaylists() async throws -> JSONAPIDictionaryResponse<FeaturedPlaylistResponse>
 }
 
 enum FavoriteAPI: String{

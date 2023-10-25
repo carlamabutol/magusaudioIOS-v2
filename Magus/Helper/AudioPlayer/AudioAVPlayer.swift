@@ -11,17 +11,17 @@ import RxSwift
 import RxRelay
 
 class AudioPlayerManager {
-    typealias SubliminalTracks = [[SubliminalAudioInfo: AudioPlayer]]
+    typealias SubliminalTracks = [[SubliminalAudioInfo: CustomAudioPlayer]]
     static let shared = AudioPlayerManager()
     private var disposeBag = DisposeBag()
     
     var currentSubliminal: String = ""
     var currentTracks: Int = 0
-    var audioPlayers: [SubliminalAudioInfo: AudioPlayer] = [:]
+    var audioPlayers: [SubliminalAudioInfo: CustomAudioPlayer] = [:]
     private let playerStatusUpdate = PublishRelay<Void>()
-    private let activePlayer = BehaviorRelay<AudioPlayer?>(value: nil)
+    private let activePlayer = BehaviorRelay<CustomAudioPlayer?>(value: nil)
     private let isPlayingRelay = BehaviorRelay<Bool>(value: false)
-    var activePlayerObservable: Observable<AudioPlayer> {
+    var activePlayerObservable: Observable<CustomAudioPlayer> {
         activePlayer
             .compactMap{ $0 }
             .asObservable()
@@ -66,7 +66,7 @@ class AudioPlayerManager {
         }
     }
 
-    fileprivate func updatePlayerStatus(isPlaying: Bool, player: AudioPlayer) {
+    fileprivate func updatePlayerStatus(isPlaying: Bool, player: CustomAudioPlayer) {
         if isPlaying {
             player.play()
         } else {
@@ -77,6 +77,7 @@ class AudioPlayerManager {
     func createAudioPlayers(with subliminal: Subliminal, isPlaying: Bool = false) {
         currentSubliminal = subliminal.subliminalID
         currentTracks = 0
+        removePlayers()
         for audio in subliminal.info {
             guard let url = URL(string: audio.link ?? "") else {
                 Logger.info("Incorrect URL \(String(describing: audio.link))", topic: .presentation)
@@ -93,7 +94,7 @@ class AudioPlayerManager {
             return
         }
         
-        let newPlayer = AudioPlayer(url: url, isPlaying: isPlaying)
+        let newPlayer = CustomAudioPlayer(url: url, isPlaying: isPlaying)
         newPlayer.setDuration(duration: subliminalAudioInfo.duration)
         newPlayer.setVolume(volume: subliminalAudioInfo.volume)
         updatePlayerStatus(isPlaying: isPlaying, player: newPlayer)
@@ -106,8 +107,8 @@ class AudioPlayerManager {
         currentTracks += 1
     }
     
-    func getCurrentTracks() -> [AudioPlayer] {
-        return audioPlayers.filter { $0.key.subliminalID == currentSubliminal }.map { $0.value }
+    func getCurrentTracks() -> [CustomAudioPlayer] {
+        return audioPlayers.map { $0.value }
     }
     
     func playAllAudioPlayers() {
@@ -119,7 +120,10 @@ class AudioPlayerManager {
     }
     
     func pauseAllAudioPlayers() {
-        getCurrentTracks().forEach { $0.pause() }
+        getCurrentTracks().forEach {
+            $0.pause()
+            Logger.info("Player \($0.isPlaying)", topic: .domain)
+        }
     }
     
     func getLongestDuration() -> Double {

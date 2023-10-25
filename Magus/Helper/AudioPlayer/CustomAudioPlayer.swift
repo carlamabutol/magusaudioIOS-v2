@@ -9,6 +9,7 @@ import Foundation
 import AVFoundation
 import RxSwift
 import RxRelay
+import SwiftAudioEx
 
 protocol AudioPlayerDelegate: AnyObject {
     func audioPlayerDidStartPlaying()
@@ -17,9 +18,10 @@ protocol AudioPlayerDelegate: AnyObject {
     func audioPlayerDidUpdateCurrentTime(currentTime: TimeInterval)
 }
 
-class AudioPlayer {
+class CustomAudioPlayer {
     private var avUrlAsset: AVAsset?
     private var avPlayer: AVPlayer?
+    private var audioPlayer: AudioPlayer?
     private var timeObserver: Any?
     
     weak var delegate: AudioPlayerDelegate?
@@ -57,6 +59,10 @@ class AudioPlayer {
         let asset = AVAsset(url: url)
         let playerItem: AVPlayerItem = AVPlayerItem(asset: asset)
         avPlayer = AVPlayer(playerItem: playerItem)
+        
+//        audioPlayer = AudioPlayer()
+//        let audioItem = DefaultAudioItem(audioUrl: url.absoluteString, sourceType: .stream)
+//        audioPlayer?.load(item: audioItem, playWhenReady: true) // Load the item and start playing when the player is ready.
         repeatAllAudioPlayers()
         addTimeObserver()
         // Register as an observer of the player item's status property
@@ -67,7 +73,7 @@ class AudioPlayer {
             case .readyToPlay:
                 self.playerStatus.accept(.isReadyToPlay)
                 if isPlaying {
-                    self.avPlayer?.play()
+                    self.play()
                 }
             case .unknown:
                 self.playerStatus.accept(.unknown)
@@ -75,6 +81,7 @@ class AudioPlayer {
                 self.playerStatus.accept(.unknown)
             }
         })
+        
     }
     
     func setDuration(duration: Int) {
@@ -134,12 +141,8 @@ class AudioPlayer {
     }
     
     func play() {
-        if isPlaying {
-            pause()
-        } else {
-            playerStatus.accept(.isPlaying)
-            avPlayer?.play()
-        }
+        avPlayer?.play()
+        playerStatus.accept(.isPlaying)
     }
     
     func playAtStart() {

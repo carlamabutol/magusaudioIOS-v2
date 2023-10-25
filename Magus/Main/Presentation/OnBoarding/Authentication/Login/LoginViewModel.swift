@@ -14,6 +14,7 @@ class LoginViewModel {
     private let router: Router
     private let networkService: NetworkService
     private let authenticationUseCase: AuthenticationUseCase
+    private let moodUseCase: MoodUseCase
     
     let userName = BehaviorRelay<String>(value: "")
     var userNameObservable: Observable<String> { userName.asObservable() }
@@ -32,6 +33,7 @@ class LoginViewModel {
         router = dependencies.router
         networkService = dependencies.networkService
         authenticationUseCase = dependencies.authenticationUseCase
+        moodUseCase = dependencies.moodUseCase
     }
     
     func loginAction() {
@@ -45,14 +47,29 @@ class LoginViewModel {
             let result = await authenticationUseCase.signIn(email: userName.value, password: password.value)
             switch result {
             case .success:
-                DispatchQueue.main.async { [weak self] in
-                    self?.router.selectedRoute = .mood
-                }
+                getCurrentMood()
             case .failure(let error):
                 alertModel.accept(.init(message: error.errorMesasge, image: nil))
                 Logger.error("SignIn Network Error: \(error.errorMesasge)", topic: .network)
             }
             isLoading.accept(false)
+        }
+    }
+    
+    func getCurrentMood() {
+        Task {
+            do {
+                _ = try await moodUseCase.getCurrentMood()
+                DispatchQueue.main.async { [weak self] in
+                    if self?.store.appState.selectedMood != nil {
+                        self?.router.selectedRoute = .home
+                    } else {
+                        self?.router.selectedRoute = .mood
+                    }
+                }
+            } catch {
+                Logger.error(error.localizedDescription, topic: .presentation)
+            }
         }
     }
     
@@ -64,13 +81,15 @@ extension LoginViewModel {
         let router: Router
         let networkService: NetworkService
         let authenticationUseCase: AuthenticationUseCase
+        let moodUseCase: MoodUseCase
         
         static var standard: Dependencies {
             return .init(
                 store: SharedDependencies.sharedDependencies.store,
                 router: SharedDependencies.sharedDependencies.router,
                 networkService: SharedDependencies.sharedDependencies.networkService,
-                authenticationUseCase: SharedDependencies.sharedDependencies.useCases.authenticationUseCase
+                authenticationUseCase: SharedDependencies.sharedDependencies.useCases.authenticationUseCase,
+                moodUseCase: SharedDependencies.sharedDependencies.useCases.moodUseCase
             )
         }
     }

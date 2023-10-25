@@ -69,6 +69,7 @@ class MoodViewModel: ViewModel {
         Task {
             do {
                 let response = try await moodUseCase.updateSelectedMood(moodId: selectedMood.id)
+                store.appState.allMoods = moods 
                 store.appState.selectedMood = moods.first(where: { $0.id == selectedMood.id })
                 store.saveAppState()
                 router.selectedRoute = .home

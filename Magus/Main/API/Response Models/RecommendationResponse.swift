@@ -11,6 +11,7 @@ struct RecommendationResponse: EndpointResponse {
     typealias ErrorResponse = RecommendationResponseErrorResponse
     
     let subliminal: [SubliminalResponse]
+    let playlist: [SearchPlaylistResponse]
     
 }
 

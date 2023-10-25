@@ -41,12 +41,33 @@ class SelectedMoodCell: UICollectionViewCell {
         }
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initialiseTap()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        initialiseTap()
+    }
+    
+    var tapActionHandler: CompletionHandler?
+    
     func configure(model: SelectedMoodCell.Model) {
         titleLabel.text = model.title
         subtitleLabel.text = model.subTitle
         moodImageView.image = UIImage(named: model.imageAsset)
+        tapActionHandler = model.tapActionHandler
     }
     
+    private func initialiseTap() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func tapAction() {
+        tapActionHandler?()
+    }
 }
 
 extension SelectedMoodCell {
