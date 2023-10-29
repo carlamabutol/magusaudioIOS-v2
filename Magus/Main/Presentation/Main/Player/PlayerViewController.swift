@@ -115,6 +115,8 @@ class PlayerViewController: CommonViewController {
         }
     }
     
+    @IBOutlet var tracksStackView: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.bringSubviewToFront(optionStackView)
@@ -129,6 +131,7 @@ class PlayerViewController: CommonViewController {
             self?.coverImageView.contentMode = .scaleAspectFill
         }
         updateFavorite(isLiked: subliminal.isLiked == 0)
+        setupTracksVolumeViews(tracks: subliminal.info)
     }
     
     @objc private func panGesture(_ sender: UIGestureRecognizer) {
@@ -229,6 +232,60 @@ class PlayerViewController: CommonViewController {
             .disposed(by: disposeBag)
     }
     
+    private func setupTracksVolumeViews(tracks: [SubliminalAudioInfo]) {
+        tracksStackView.spacing = 10
+        let arrangedViews = tracksStackView.arrangedSubviews
+        arrangedViews
+            .forEach { [weak self] view in
+                self?.tracksStackView.removeArrangedSubview(view)
+            }
+        
+        tracks.forEach { info in
+            
+            let containerView = UIView()
+            
+            let stackView = UIStackView()
+            stackView.spacing = 5
+            stackView.axis = .vertical
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            
+            let label = UILabel()
+            label.text = String(info.volume)
+            label.font = UIFont.Montserrat.medium7
+            label.numberOfLines = 2
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.widthAnchor.constraint(lessThanOrEqualToConstant: 45).isActive = true
+            
+            let progressContainerView = UIView()
+            progressContainerView.backgroundColor = .clear
+            let progressView = VerticalProgressBar()
+            progressView.progress = CGFloat(info.volume) / 100
+            progressView.translatesAutoresizingMaskIntoConstraints = false
+            progressContainerView.addSubview(progressView)
+            
+            containerView.addSubview(stackView)
+            NSLayoutConstraint
+                .activate([
+                    stackView.topAnchor.constraint(equalTo: containerView.topAnchor),
+                    stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+                    stackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+                    stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+                    
+                    progressView.widthAnchor.constraint(equalToConstant: 15),
+                    progressView.centerXAnchor.constraint(equalTo: progressContainerView.centerXAnchor),
+                    progressView.topAnchor.constraint(equalTo: progressContainerView.topAnchor),
+                    progressView.bottomAnchor.constraint(equalTo: progressContainerView.bottomAnchor),
+                ])
+            
+            stackView.addArrangedSubview(progressContainerView)
+            stackView.addArrangedSubview(label)
+            
+            tracksStackView.addArrangedSubview(containerView)
+            
+        }
+        
+    }
+    
     private func updatePlayerStatus(status: AppState.PlayerState) {
         let image = UIImage(named: status == .isPlaying ? "pause" : "play")
         let newImage = image?.resizeImage(targetHeight: 59)
@@ -245,5 +302,83 @@ class PlayerViewController: CommonViewController {
     
     deinit {
         print("Deinit Player View Controller")
+    }
+}
+
+import UIKit
+
+class VerticalProgressBar: UIView {
+    private let progressView = UIView()
+    private var panGesture: UIPanGestureRecognizer!
+
+    var progress: CGFloat = 0 {
+        didSet {
+            updateProgressBar()
+        }
+    }
+
+    init() {
+        super.init(frame: .zero)
+        setupProgressBar()
+        setupPanGesture()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupProgressBar()
+        setupPanGesture()
+    }
+    
+    var progressViewHeightConstraint: NSLayoutConstraint!
+
+    private func setupProgressBar() {
+        backgroundColor = .lightGray
+
+        addSubview(progressView)
+        progressView.backgroundColor = .green
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            progressView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            progressView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            progressView.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ])
+        progressViewHeightConstraint = progressView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: progress)
+        progressViewHeightConstraint.isActive = true
+    }
+
+    private func updateProgressBar() {
+        progressViewHeightConstraint.isActive = false
+        progressViewHeightConstraint = progressView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: progress)
+        progressViewHeightConstraint.isActive = true
+    }
+
+    private func setupPanGesture() {
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+        addGestureRecognizer(panGesture)
+    }
+    
+    var initialTranslation: CGPoint = CGPoint(x: 0, y: 0)
+
+    @objc private func handlePan(_ gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self)
+        
+        // You can adjust the sensitivity factor to control the speed reduction.
+        let sensitivity: CGFloat = 0.5
+        
+        // Calculate the modified translation
+        let modifiedTranslation = CGPoint(
+            x: translation.x - (initialTranslation.x * sensitivity),
+            y: translation.y - (initialTranslation.y * sensitivity)
+        )
+        
+        initialTranslation = translation
+        
+        let newProgress = max(0, min(1, progress - modifiedTranslation.y / frame.height))
+        progress = newProgress
+
+        if gesture.state == .ended {
+            // You can handle any additional logic when the gesture ends here
+        }
     }
 }

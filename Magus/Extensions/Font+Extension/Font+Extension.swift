@@ -43,6 +43,7 @@ extension UIFont {
         static let medium17 = UIFont.montSerratSemiBold(with: 17)
         static let medium20 = UIFont.montSerratSemiBold(with: 20)
         static let medium10 = UIFont.montSerratSemiBold(with: 10)
+        static let medium7 = UIFont.montSerratSemiBold(with: 7)
         
         // SemiBold
         static let semibold1 = UIFont.montSerratSemiBold(with: 13)
