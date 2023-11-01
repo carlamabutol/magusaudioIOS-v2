@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -83,27 +83,42 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="RfG-kU-Dsd">
-                                                <rect key="frame" x="20" y="124.66666666666663" width="353" height="60"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="RfG-kU-Dsd">
+                                                <rect key="frame" x="40" y="124.66666666666663" width="313" height="60"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8la-df-3sg">
-                                                        <rect key="frame" x="0.0" y="0.0" width="66.666666666666671" height="60"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="31" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="31" id="Wcf-vk-x12"/>
+                                                        </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgA-3k-boV">
-                                                        <rect key="frame" x="71.666666666666657" y="0.0" width="66.666666666666657" height="60"/>
+                                                        <rect key="frame" x="64.666666666666671" y="0.0" width="45" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="45" id="xRh-lp-SOq"/>
+                                                        </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0DX-Nd-Tux">
-                                                        <rect key="frame" x="143.33333333333334" y="0.0" width="66.333333333333343" height="60"/>
+                                                        <rect key="frame" x="128" y="0.0" width="61" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="61" id="QXx-yU-tfh"/>
+                                                        </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpi-oz-DDD">
-                                                        <rect key="frame" x="214.66666666666666" y="0.0" width="66.666666666666657" height="60"/>
+                                                        <rect key="frame" x="207.66666666666666" y="0.0" width="45" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="45" id="pke-kh-mgg"/>
+                                                        </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAk-Wt-1zL">
-                                                        <rect key="frame" x="286.33333333333331" y="0.0" width="66.666666666666686" height="60"/>
+                                                        <rect key="frame" x="290" y="0.0" width="23" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="23" id="Dyh-vj-mck"/>
+                                                        </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     </button>
                                                 </subviews>
@@ -127,8 +142,8 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="YdU-cy-9ws" secondAttribute="trailing" constant="20" symbolic="YES" id="2Ws-q5-uWx"/>
                                             <constraint firstItem="wdY-Fm-uqW" firstAttribute="top" secondItem="hwn-Qk-ewz" secondAttribute="top" constant="20" id="7L6-NZ-84h"/>
-                                            <constraint firstItem="RfG-kU-Dsd" firstAttribute="trailing" secondItem="wdY-Fm-uqW" secondAttribute="trailing" id="97j-ye-uLz"/>
-                                            <constraint firstItem="RfG-kU-Dsd" firstAttribute="leading" secondItem="wdY-Fm-uqW" secondAttribute="leading" id="Qyw-uW-twZ"/>
+                                            <constraint firstItem="RfG-kU-Dsd" firstAttribute="trailing" secondItem="wdY-Fm-uqW" secondAttribute="trailing" constant="-20" id="97j-ye-uLz"/>
+                                            <constraint firstItem="RfG-kU-Dsd" firstAttribute="leading" secondItem="wdY-Fm-uqW" secondAttribute="leading" constant="20" id="Qyw-uW-twZ"/>
                                             <constraint firstAttribute="bottom" secondItem="YdU-cy-9ws" secondAttribute="bottom" constant="20" id="YJj-E1-yiP"/>
                                             <constraint firstItem="wdY-Fm-uqW" firstAttribute="leading" secondItem="hwn-Qk-ewz" secondAttribute="leading" constant="20" id="glu-lz-qd9"/>
                                             <constraint firstItem="YdU-cy-9ws" firstAttribute="leading" secondItem="hwn-Qk-ewz" secondAttribute="leading" constant="20" symbolic="YES" id="o6E-fr-NSN"/>
@@ -209,6 +224,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
                         <outlet property="descriptionLbl" destination="YdU-cy-9ws" id="75o-bq-kQs"/>
                         <outlet property="favoriteButton" destination="iAk-Wt-1zL" id="oyv-5s-14d"/>
                         <outlet property="nextButton" destination="bpi-oz-DDD" id="OKh-2N-ulI"/>
+                        <outlet property="optionButton" destination="4Bl-7K-SLD" id="JGg-Y1-xfi"/>
                         <outlet property="optionStackView" destination="7Tl-fV-abV" id="ozN-ZV-HiC"/>
                         <outlet property="playPauseButton" destination="0DX-Nd-Tux" id="6v6-7I-BGc"/>
                         <outlet property="previousButton" destination="JgA-3k-boV" id="pOb-sl-uXI"/>
@@ -217,7 +233,10 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
                         <outlet property="scrollView" destination="1g4-UH-yeN" id="wqs-3k-AQX"/>
                         <outlet property="timeLabel" destination="EaO-kX-WIH" id="JEN-OL-z89"/>
                         <outlet property="titleLbl" destination="fRK-xu-Lw8" id="ate-hH-G38"/>
+                        <outlet property="tracksContainerStackView" destination="xaO-Ld-kSV" id="8h8-oc-D72"/>
+                        <outlet property="tracksContainerView" destination="ZXn-MN-ysZ" id="MeL-Sk-xAu"/>
                         <outlet property="tracksStackView" destination="45P-ok-y7z" id="UId-DT-Yuo"/>
+                        <outlet property="tracksTitleLabel" destination="ifN-e9-z4b" id="q3T-06-jNt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

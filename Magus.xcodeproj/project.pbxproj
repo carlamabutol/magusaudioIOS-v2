@@ -87,6 +87,9 @@
 		749002682A7BE003007DACDF /* CalendarMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749002672A7BE003007DACDF /* CalendarMonth.swift */; };
 		7490026A2A7BE050007DACDF /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749002692A7BE050007DACDF /* Date+Extension.swift */; };
 		7490026C2A7BE32E007DACDF /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490026B2A7BE32E007DACDF /* Calendar+Extension.swift */; };
+		74906FBD2AEFA070004D5A27 /* PlayerOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74906FBC2AEFA070004D5A27 /* PlayerOptionViewController.swift */; };
+		74906FC12AEFA1AB004D5A27 /* PlayerOption.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74906FC02AEFA1AA004D5A27 /* PlayerOption.storyboard */; };
+		74906FC42AEFAFA2004D5A27 /* BlurCommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74906FC32AEFAFA2004D5A27 /* BlurCommonViewController.swift */; };
 		7490E4402A40574B00463582 /* MainTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490E43F2A40574B00463582 /* MainTabViewModel.swift */; };
 		7490E4422A4092F200463582 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490E4412A4092F200463582 /* AppState.swift */; };
 		7490E4442A40940300463582 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490E4432A40940300463582 /* Store.swift */; };
@@ -111,6 +114,7 @@
 		74910E022AD82B6800F2D909 /* CollapsibleTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74910E012AD82B6800F2D909 /* CollapsibleTextView.xib */; };
 		74910E042AD82C3D00F2D909 /* CollapsibleTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74910E032AD82C3C00F2D909 /* CollapsibleTextView.swift */; };
 		7493320A2A9652FE00EA559B /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749332092A9652FE00EA559B /* Int+Extension.swift */; };
+		7494C3192AEEA96000BB85F9 /* AdvanceVolumeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7494C3182AEEA96000BB85F9 /* AdvanceVolumeView.xib */; };
 		74A6C5752A5DA9A100D9DAED /* PlanView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74A6C5742A5DA9A100D9DAED /* PlanView.xib */; };
 		74A6C5772A5DA9BC00D9DAED /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A6C5762A5DA9BC00D9DAED /* PlanView.swift */; };
 		74B132422A766FF20056D740 /* ProfileMood.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74B132412A766FF20056D740 /* ProfileMood.storyboard */; };
@@ -386,6 +390,9 @@
 		749002672A7BE003007DACDF /* CalendarMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonth.swift; sourceTree = "<group>"; };
 		749002692A7BE050007DACDF /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		7490026B2A7BE32E007DACDF /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
+		74906FBC2AEFA070004D5A27 /* PlayerOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerOptionViewController.swift; sourceTree = "<group>"; };
+		74906FC02AEFA1AA004D5A27 /* PlayerOption.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlayerOption.storyboard; sourceTree = "<group>"; };
+		74906FC32AEFAFA2004D5A27 /* BlurCommonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurCommonViewController.swift; sourceTree = "<group>"; };
 		7490E43F2A40574B00463582 /* MainTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewModel.swift; sourceTree = "<group>"; };
 		7490E4412A4092F200463582 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7490E4432A40940300463582 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -410,6 +417,7 @@
 		74910E012AD82B6800F2D909 /* CollapsibleTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollapsibleTextView.xib; sourceTree = "<group>"; };
 		74910E032AD82C3C00F2D909 /* CollapsibleTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleTextView.swift; sourceTree = "<group>"; };
 		749332092A9652FE00EA559B /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		7494C3182AEEA96000BB85F9 /* AdvanceVolumeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvanceVolumeView.xib; sourceTree = "<group>"; };
 		74A6C5742A5DA9A100D9DAED /* PlanView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlanView.xib; sourceTree = "<group>"; };
 		74A6C5762A5DA9BC00D9DAED /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
 		74B132412A766FF20056D740 /* ProfileMood.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileMood.storyboard; sourceTree = "<group>"; };
@@ -873,6 +881,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		74906FBB2AEFA058004D5A27 /* Player Option */ = {
+			isa = PBXGroup;
+			children = (
+				74906FBC2AEFA070004D5A27 /* PlayerOptionViewController.swift */,
+				74906FC02AEFA1AA004D5A27 /* PlayerOption.storyboard */,
+			);
+			path = "Player Option";
+			sourceTree = "<group>";
+		};
+		74906FC22AEFAF94004D5A27 /* BlurCommonViewController */ = {
+			isa = PBXGroup;
+			children = (
+				74906FC32AEFAFA2004D5A27 /* BlurCommonViewController.swift */,
+			);
+			path = BlurCommonViewController;
+			sourceTree = "<group>";
+		};
 		7490E4472A40A00E00463582 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -900,6 +925,7 @@
 		7490E4492A40A0AE00463582 /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				7494C3172AEEA94A00BB85F9 /* Views */,
 				7490E4542A40A14300463582 /* Player.storyboard */,
 				7490E4562A40A14C00463582 /* PlayerViewController.swift */,
 				74CD22C12A8B903700B9D28A /* AudioPlayerViewModel.swift */,
@@ -977,6 +1003,14 @@
 				F835B0172A06527000123A16 /* Presentation */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		7494C3172AEEA94A00BB85F9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7494C3182AEEA96000BB85F9 /* AdvanceVolumeView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		74A6C5732A5DA98700D9DAED /* PlanView */ = {
@@ -1202,6 +1236,7 @@
 		F827D9812A10FAB40034B5AF /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				74906FBB2AEFA058004D5A27 /* Player Option */,
 				74910DF92AD82A8200F2D909 /* FAQs */,
 				74910DF42AD8253900F2D909 /* T & C and Privacy Policy */,
 				74910DEF2AD80F6400F2D909 /* Subliminal Guide */,
@@ -1454,6 +1489,7 @@
 		F8669E412A0BEC48004D28A1 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				74906FC22AEFAF94004D5A27 /* BlurCommonViewController */,
 				F835B01F2A0652D600123A16 /* CommonViewController */,
 				F825520F2A17940400ACD902 /* ReusableXibView.swift */,
 				F806560B2A179B7B006D53F8 /* CommonView.swift */,
@@ -1766,6 +1802,7 @@
 				F88A82FD2A13CEDA00D3E975 /* Montserrat-Light.ttf in Resources */,
 				F88A83022A13CEDA00D3E975 /* Montserrat-MediumItalic.ttf in Resources */,
 				74733B992A30B020002FE613 /* Mood.storyboard in Resources */,
+				74906FC12AEFA1AB004D5A27 /* PlayerOption.storyboard in Resources */,
 				7424ED6E2A7E84A80011C52E /* DeleteAccount.storyboard in Resources */,
 				7490E44D2A40A0D400463582 /* Home.storyboard in Resources */,
 				7490E4512A40A10800463582 /* Search.storyboard in Resources */,
@@ -1789,6 +1826,7 @@
 				740C4D012A71F4DC00050D5A /* WeeklyView.xib in Resources */,
 				F835B01C2A0652B400123A16 /* RootViewController.storyboard in Resources */,
 				F81ED0B22A162E5E0043E245 /* SplashScreen.storyboard in Resources */,
+				7494C3192AEEA96000BB85F9 /* AdvanceVolumeView.xib in Resources */,
 				F88A83052A13CEDA00D3E975 /* Montserrat-ExtraLightItalic.ttf in Resources */,
 				74E740FD2A71663C00A340A9 /* DateTypeSelectionView.xib in Resources */,
 				F88A82FB2A13CEDA00D3E975 /* Montserrat-Medium.ttf in Resources */,
@@ -1874,11 +1912,13 @@
 				F8D3D3912A223E8800AD7C2D /* ForgotPasswordViewModel.swift in Sources */,
 				F8BA02592ABF025C007C9128 /* SubliminalCollectionViewController.swift in Sources */,
 				F8512C422A13C3C60041C14F /* Colors.swift in Sources */,
+				74906FBD2AEFA070004D5A27 /* PlayerOptionViewController.swift in Sources */,
 				F827D9872A10FAE30034B5AF /* MainTabBarViewController.swift in Sources */,
 				F88A82E62A13CE8500D3E975 /* Font+Extension.swift in Sources */,
 				74CD22C02A8B8D8500B9D28A /* AudioCachingManager.swift in Sources */,
 				7419C45B2A209F6700DD86F2 /* TermsAndConditionViewController.swift in Sources */,
 				7490E4612A40A3A500463582 /* HomeViewModel.swift in Sources */,
+				74906FC42AEFAFA2004D5A27 /* BlurCommonViewController.swift in Sources */,
 				74B132442A76727D0056D740 /* ProfileMoodViewController.swift in Sources */,
 				742A81142A814C4E00F897EE /* PasswordRequirementView.swift in Sources */,
 				7424ED722A7E94820011C52E /* ChangePasswordViewModel.swift in Sources */,

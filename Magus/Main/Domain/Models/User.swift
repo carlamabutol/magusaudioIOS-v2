@@ -14,3 +14,11 @@ struct User: Codable, Equatable {
     let createdAt: String
     let info: UserInfo
 }
+
+extension User {
+    
+    var isPremium: Bool {
+        info.subscriptionID == 2
+    }
+    
+}

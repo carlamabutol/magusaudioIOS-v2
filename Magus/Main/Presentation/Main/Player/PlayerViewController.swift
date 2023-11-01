@@ -10,7 +10,7 @@ import RxSwift
 import SDWebImage
 import Hero
 
-class PlayerViewController: CommonViewController {
+class PlayerViewController: BlurCommonViewController {
     
     var tabViewModel: MainTabViewModel!
     var audioPlayerViewModel: AudioPlayerViewModel!
@@ -102,6 +102,7 @@ class PlayerViewController: CommonViewController {
     
     @IBOutlet var optionStackView: UIStackView!
     
+    @IBOutlet var optionButton: UIButton!
     @IBOutlet var repeatView: UIButton! {
         didSet {
             repeatView.setTitle("", for: .normal)
@@ -115,12 +116,23 @@ class PlayerViewController: CommonViewController {
         }
     }
     
-    @IBOutlet var tracksStackView: UIStackView!
+    @IBOutlet var tracksTitleLabel: UILabel! {
+        didSet {
+            tracksTitleLabel.text = "Advance Volume"
+            tracksTitleLabel.font = .Montserrat.bold3
+        }
+    }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.bringSubviewToFront(optionStackView)
-        view.bringSubviewToFront(closeButton)
+    @IBOutlet var tracksContainerView: UIView! {
+        didSet {
+            tracksContainerView.cornerRadius(with: 5)
+        }
+    }
+    @IBOutlet var tracksStackView: UIStackView!
+    @IBOutlet var tracksContainerStackView: UIStackView! {
+        didSet {
+            tracksContainerStackView.isHidden = true
+        }
     }
     
     func configure(subliminal: Subliminal) {
@@ -132,6 +144,11 @@ class PlayerViewController: CommonViewController {
         }
         updateFavorite(isLiked: subliminal.isLiked == 0)
         setupTracksVolumeViews(tracks: subliminal.info)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tracksContainerStackView.isUserInteractionEnabled = tabViewModel.user()?.isPremium == true
     }
     
     @objc private func panGesture(_ sender: UIGestureRecognizer) {
@@ -215,6 +232,12 @@ class PlayerViewController: CommonViewController {
             }
             .disposed(by: disposeBag)
         
+        advanceVolumeBtn.rx.tap
+            .subscribe { [weak self] _ in
+                self?.tracksContainerStackView.isHidden.toggle()
+            }
+            .disposed(by: disposeBag)
+        
         audioPlayerViewModel.progressObservable
             .bind(to: progressView.rx.progress)
             .disposed(by: disposeBag)
@@ -230,6 +253,22 @@ class PlayerViewController: CommonViewController {
                 self?.updatePlayerStatus(status: status)
             }
             .disposed(by: disposeBag)
+        
+        optionButton.rx.tap
+            .subscribe { [weak self] _ in
+                self?.showOptions()
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    @objc private func showOptions() {
+        let viewController = PlayerOptionViewController.instantiate(from: .playerOption) as! PlayerOptionViewController
+        presentModally(viewController, animated: true)
+        guard let subliminal = audioPlayerViewModel.selectedSubliminal else { return }
+        toggleBlurEffect(isHidden: false)
+        viewController.configure(subliminal: subliminal) {
+            self.toggleBlurEffect(isHidden: true)
+        }
     }
     
     private func setupTracksVolumeViews(tracks: [SubliminalAudioInfo]) {
@@ -243,6 +282,7 @@ class PlayerViewController: CommonViewController {
         tracks.forEach { info in
             
             let containerView = UIView()
+            containerView.translatesAutoresizingMaskIntoConstraints = false
             
             let stackView = UIStackView()
             stackView.spacing = 5
@@ -250,18 +290,21 @@ class PlayerViewController: CommonViewController {
             stackView.translatesAutoresizingMaskIntoConstraints = false
             
             let label = UILabel()
-            label.text = String(info.volume)
+            label.text = info.trackTitle
             label.font = UIFont.Montserrat.medium7
             label.numberOfLines = 2
             label.translatesAutoresizingMaskIntoConstraints = false
-            label.widthAnchor.constraint(lessThanOrEqualToConstant: 45).isActive = true
             
             let progressContainerView = UIView()
+            let progress = CGFloat(info.volume) / 100
             progressContainerView.backgroundColor = .clear
-            let progressView = VerticalProgressBar()
-            progressView.progress = CGFloat(info.volume) / 100
+            let progressView = VerticalProgressBar(minimumProgress: progress)
+            progressView.progress = progress
+            progressView.backgroundColor = .white
+            progressView.cornerBorderRadius(cornerRadius: 5, borderColor: .black, borderWidth: 0.5)
             progressView.translatesAutoresizingMaskIntoConstraints = false
             progressContainerView.addSubview(progressView)
+            progressView.setCornerRadius(2.5)
             
             containerView.addSubview(stackView)
             NSLayoutConstraint
@@ -273,8 +316,11 @@ class PlayerViewController: CommonViewController {
                     
                     progressView.widthAnchor.constraint(equalToConstant: 15),
                     progressView.centerXAnchor.constraint(equalTo: progressContainerView.centerXAnchor),
-                    progressView.topAnchor.constraint(equalTo: progressContainerView.topAnchor),
-                    progressView.bottomAnchor.constraint(equalTo: progressContainerView.bottomAnchor),
+                    progressView.centerYAnchor.constraint(equalTo: progressContainerView.centerYAnchor),
+                    progressView.heightAnchor.constraint(equalTo: progressContainerView.heightAnchor),
+                    
+                    containerView.widthAnchor.constraint(lessThanOrEqualToConstant: 35)
+                    
                 ])
             
             stackView.addArrangedSubview(progressContainerView)
@@ -310,6 +356,8 @@ import UIKit
 class VerticalProgressBar: UIView {
     private let progressView = UIView()
     private var panGesture: UIPanGestureRecognizer!
+    
+    let minimumProgress: CGFloat
 
     var progress: CGFloat = 0 {
         didSet {
@@ -317,13 +365,16 @@ class VerticalProgressBar: UIView {
         }
     }
 
-    init() {
+    init(minimumProgress: CGFloat) {
+        self.minimumProgress = minimumProgress
         super.init(frame: .zero)
         setupProgressBar()
         setupPanGesture()
+        progress = minimumProgress
     }
 
     required init?(coder: NSCoder) {
+        self.minimumProgress = 0
         super.init(coder: coder)
         setupProgressBar()
         setupPanGesture()
@@ -332,25 +383,31 @@ class VerticalProgressBar: UIView {
     var progressViewHeightConstraint: NSLayoutConstraint!
 
     private func setupProgressBar() {
-        backgroundColor = .lightGray
 
         addSubview(progressView)
-        progressView.backgroundColor = .green
+        
+        backgroundColor = .red
+        progressView.backgroundColor = UIColor.Background.primaryBlue
         progressView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            progressView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            progressView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            progressView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2.5),
+            progressView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2.5),
+            progressView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2.5),
         ])
-        progressViewHeightConstraint = progressView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: progress)
+        progressViewHeightConstraint = progressView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: progress, constant: -5)
         progressViewHeightConstraint.isActive = true
     }
 
     private func updateProgressBar() {
         progressViewHeightConstraint.isActive = false
-        progressViewHeightConstraint = progressView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: progress)
+        progressViewHeightConstraint = progressView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: progress, constant: -5)
         progressViewHeightConstraint.isActive = true
+    }
+    
+    func setCornerRadius(_ radius: CGFloat) {
+        cornerRadius(with: radius)
+        progressView.cornerRadius(with: radius)
     }
 
     private func setupPanGesture() {
@@ -375,7 +432,9 @@ class VerticalProgressBar: UIView {
         initialTranslation = translation
         
         let newProgress = max(0, min(1, progress - modifiedTranslation.y / frame.height))
-        progress = newProgress
+        if newProgress >= minimumProgress {
+            progress = newProgress
+        }
 
         if gesture.state == .ended {
             // You can handle any additional logic when the gesture ends here

@@ -57,7 +57,7 @@ class ProfileViewController: CommonViewController {
         didSet {
             subscriptionTypeLbl.font = .Montserrat.bold3
             subscriptionTypeLbl.textColor = .white
-            subscriptionTypeLbl.text = viewModel.user()?.info.subscriptionID == 2 ? "PREMIUM" : nil
+            subscriptionTypeLbl.text = viewModel.user()?.isPremium == true ? "PREMIUM" : nil
         }
     }
     
