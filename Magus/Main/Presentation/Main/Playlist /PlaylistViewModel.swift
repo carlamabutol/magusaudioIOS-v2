@@ -104,7 +104,7 @@ class PlaylistViewModel: ViewModel {
         Task {
             do {
                 _ = try await playlistUseCase.addToFavorite(id: id)
-                Logger.info("Successfully added to favorite", topic: .presentation)
+                Logger.info("Successfully added playlist to favorite", topic: .presentation)
             } catch {
                 Logger.info("Failed to update favorite \(error)", topic: .presentation)
             }
