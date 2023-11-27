@@ -11,10 +11,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlaylistCollectionViewController" customModule="Magus" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="MdM-xd-oiq" customClass="FavoritePlaylistCell" customModule="Magus" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="grH-Br-Mgd">
-                <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xOM-fC-BnY">
@@ -102,6 +102,7 @@
             </collectionViewCellContentView>
             <connections>
                 <outlet property="coverImageView" destination="KHP-cX-pWd" id="e79-vl-w4d"/>
+                <outlet property="descriptionLabel" destination="PCC-fx-rBo" id="GxP-PW-O4A"/>
                 <outlet property="durationLabel" destination="g1e-xJ-zhw" id="vMm-Of-j2X"/>
                 <outlet property="favoriteButton" destination="a8b-WD-s98" id="R4t-QJ-itc"/>
                 <outlet property="optionButton" destination="lCG-1a-dhc" id="L7W-1K-Jbw"/>

@@ -50,7 +50,7 @@ class FavoriteSubliminalCollectionViewCell: UICollectionViewCell {
     
     var favoriteButtonHandler: CompletionHandler?
     
-    func configure(item: SubliminalCollectionViewCell.SubliminalCellModel) {
+    func configure(item: FavoriteSubliminalCollectionViewCell.SubliminalCellModel) {
         coverImageView.sd_setImage(with: item.imageUrl)
         titleLabel.text = item.title
         durationLabel.text = item.duration
@@ -67,5 +67,21 @@ class FavoriteSubliminalCollectionViewCell: UICollectionViewCell {
     
     @objc private func favoriteButtonIsTapped() {
         favoriteButtonHandler?()
+    }
+}
+
+extension FavoriteSubliminalCollectionViewCell {
+    
+    struct SubliminalCellModel: ItemModel {
+        
+        var id: String
+        var title: String
+        var imageUrl: URL?
+        let duration: String
+        let isFavorite: Bool
+        var favoriteButtonHandler: () -> Void
+        var tapActionHandler: CompletionHandler?
+        var optionActionHandler: CompletionHandler?
+        
     }
 }

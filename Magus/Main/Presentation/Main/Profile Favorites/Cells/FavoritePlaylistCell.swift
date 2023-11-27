@@ -47,13 +47,20 @@ class FavoritePlaylistCell: UICollectionViewCell {
             optionButton.tintColor = .black
         }
     }
+    @IBOutlet var descriptionLabel: UILabel! {
+        didSet {
+            descriptionLabel.font = .Montserrat.body1
+            descriptionLabel.numberOfLines = 3
+        }
+    }
     
     var favoriteButtonHandler: CompletionHandler?
     
-    func configure(item: SubliminalCollectionViewCell.SubliminalCellModel) {
+    func configure(item: FavoritePlaylistCell.Model) {
         coverImageView.sd_setImage(with: item.imageUrl)
         titleLabel.text = item.title
         durationLabel.text = item.duration
+        descriptionLabel.text = item.description
         favoriteButtonHandler = item.favoriteButtonHandler
         configureFavoriteButton(isFavorite: item.isFavorite)
     }
@@ -69,3 +76,21 @@ class FavoritePlaylistCell: UICollectionViewCell {
         favoriteButtonHandler?()
     }
 }
+
+extension FavoritePlaylistCell {
+    
+    struct Model: ItemModel {
+        
+        var id: String
+        var title: String
+        var imageUrl: URL?
+        let duration: String
+        let description: String
+        let isFavorite: Bool
+        var favoriteButtonHandler: () -> Void
+        var tapActionHandler: CompletionHandler?
+        var optionActionHandler: CompletionHandler?
+        
+    }
+}
+
