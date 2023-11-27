@@ -46,7 +46,7 @@ class ProfileFavoritesViewController: CommonViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTextWithShadow(text: "Favorites")
+        titleLabel.setTextWithShadow(text: LocalisedStrings.Player.favorites)
         tabSelectionView.delegate = self
         tabSelectionView.configure(tabSelections: viewModel.tabSelectionModel)
         viewModel.getAllPlaylistFavorites()
@@ -98,18 +98,6 @@ class ProfileFavoritesViewController: CommonViewController {
         pageViewController.didMove(toParent: self)
         // Add the page view controller's gesture recognizers to the view controller's view so that the gestures are started more easily.
         pageView.gestureRecognizers = pageViewController.gestureRecognizers
-    }
-    
-    private func setTextWithShadow(text: String) {
-        let myShadow = NSShadow()
-        myShadow.shadowBlurRadius = 3
-        myShadow.shadowOffset = CGSize(width: 3, height: 3)
-        myShadow.shadowColor = UIColor.gray
-        let myAttribute = [NSAttributedString.Key.shadow: myShadow,
-                           NSAttributedString.Key.font: UIFont.Montserrat.title3,
-                           NSAttributedString.Key.foregroundColor: UIColor.white]
-        let myAttrString = NSAttributedString(string: text, attributes: myAttribute)
-        titleLabel.attributedText = myAttrString
     }
     
     private func goToPlaylist(playlist: Playlist) {

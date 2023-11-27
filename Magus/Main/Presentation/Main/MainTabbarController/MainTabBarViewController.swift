@@ -81,11 +81,13 @@ class MainTabBarViewController: UITabBarController {
             .disposed(by: disposeBag)
         
         playerViewModel.progressObservable
+            .observe(on: MainScheduler.instance)
             .subscribe { [weak self] progress in
                 self?.collapsedPlayerView.configureProgress(progress: progress)
             }.disposed(by: disposeBag)
         
         playerViewModel.timeRelay
+            .observe(on: MainScheduler.instance)
             .subscribe { [weak self] time in
                 self?.collapsedPlayerView.configureTime(time: time)
             }.disposed(by: disposeBag)

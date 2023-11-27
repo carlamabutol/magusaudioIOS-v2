@@ -121,5 +121,33 @@ final class PlaylistUseCase {
         }
     }
     
+    func addSubliminalToPlaylist(playlistId: String, subliminalId: String) async throws -> EmptyResponse {
+        do {
+            let response = try await networkService.addSubliminalToPlaylist(playlistId: playlistId, subliminalId: subliminalId)
+            switch response {
+            case .success:
+                return .init(success: true, message: "Added Subliminal to Playlist")
+            case.error(let error):
+                throw MessageError.message(error.message)
+            }
+        } catch {
+            throw error
+        }
+    }
+    
+    func deleteSubliminalToPlaylist(playlistId: String, subliminalId: String) async throws -> EmptyResponse {
+        do {
+            let response = try await networkService.deleteSubliminalToPlaylist(playlistId: playlistId, subliminalId: subliminalId)
+            switch response {
+            case .success:
+                return .init(success: true, message: "Deleted Subliminal to Playlist")
+            case .error(let error):
+                throw MessageError.message(error.message)
+            }
+        } catch {
+            throw error
+        }
+    }
+    
 }
 

@@ -118,12 +118,14 @@ extension ProfilePlaylistsViewModel {
     struct Dependencies {
         let store: Store
         let playlistUseCase: PlaylistUseCase
+        let subliminalUseCase: SubliminalUseCase
         let searchDebounceTime: RxTimeInterval
         
         static var standard: Dependencies {
             .init(
                 store: SharedDependencies.sharedDependencies.store,
                 playlistUseCase: SharedDependencies.sharedDependencies.useCases.playlistUseCase,
+                subliminalUseCase: SharedDependencies.sharedDependencies.useCases.subliminalUseCase,
                 searchDebounceTime: .milliseconds(200)
             )
         }

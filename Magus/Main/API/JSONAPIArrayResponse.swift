@@ -26,12 +26,14 @@ enum JSONAPIArrayResponse<Response: EndpointResponse>: Decodable {
                 let data = try values.decode([Response].self, forKey: .data)
                 self = .success(data)
             } catch {
+                Logger.error("Failed to decode response: \(String(describing: Response.self)), Error: \(error)", topic: .network)
                 throw NetworkServiceError.jsonDecodingError
             }
         } else if values.contains(.message) {
             let error = try Response.ErrorResponse(from: decoder)
             self = .error(error)
         } else {
+            Logger.error("Failed to decode response: \(String(describing: Response.self))", topic: .network)
             throw NetworkServiceError.jsonDecodingError
         }
     }

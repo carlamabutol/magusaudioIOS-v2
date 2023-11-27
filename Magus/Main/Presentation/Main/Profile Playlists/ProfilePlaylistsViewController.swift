@@ -45,10 +45,10 @@ class ProfilePlaylistsViewController: CommonViewController {
             model: .init(
                 leftButtonHandler: {[weak self] in
                     self?.navigationController?.popViewController(animated: true)
-                }, rightButtonHandler: { [weak self] in
+                }, rightButtonModel: .init(title: nil, image: .addPlaylist), rightButtonHandler: { [weak self] in
                     // TODO: ADD PLAYLIST
                     self?.pushAddPlaylistVC()
-                }, rightButtonModel: .init(title: nil, image: .addPlaylist)
+                }
             )
         )
     }

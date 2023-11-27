@@ -11,6 +11,7 @@ struct Subliminal: Codable, Equatable, Hashable {
     
     let id: Int
     let subliminalID, title: String
+    let playlistId: String?
     let cover: String
     let description: String?
     var isFeatured, isVisible, isLiked: Int?
@@ -25,29 +26,31 @@ extension Subliminal {
     init(subliminalReponse: SubliminalResponse) {
         id = subliminalReponse.id
         subliminalID = subliminalReponse.subliminalID
-        title = subliminalReponse.title
+        playlistId = subliminalReponse.playlistId
+        title = subliminalReponse.title ?? ""
         cover = subliminalReponse.cover
         description = subliminalReponse.description
         isFeatured = subliminalReponse.isFeatured
         isVisible = subliminalReponse.isVisible
         isLiked = subliminalReponse.isLiked
-        subscriptionID = subliminalReponse.subscriptionID
+        subscriptionID = subliminalReponse.subscriptionID ?? ""
         guide = subliminalReponse.guide
         moodsID = subliminalReponse.moodsID
-        info = subliminalReponse.tracks.map { SubliminalAudioInfo(infoResponse: $0) }
+        info = subliminalReponse.tracks?.map { SubliminalAudioInfo(infoResponse: $0) } ?? []
         
     }
     
     init(playlistSubliminalResponse: PlaylistSubliminalResponse) {
         id = playlistSubliminalResponse.id
         subliminalID = playlistSubliminalResponse.subliminalID
-        title = playlistSubliminalResponse.title
+        playlistId = playlistSubliminalResponse.playlistId
+        title = playlistSubliminalResponse.title ?? ""
         cover = playlistSubliminalResponse.cover
         description = playlistSubliminalResponse.description
         isFeatured = playlistSubliminalResponse.isFeatured
         isVisible = playlistSubliminalResponse.isVisible
         isLiked = playlistSubliminalResponse.isLiked
-        subscriptionID = playlistSubliminalResponse.subscriptionID
+        subscriptionID = playlistSubliminalResponse.subscriptionID ?? ""
         guide = playlistSubliminalResponse.guide
         moodsID = playlistSubliminalResponse.moodsID
         info = playlistSubliminalResponse.trackInfo.map { SubliminalAudioInfo(infoResponse: $0) }
@@ -57,6 +60,7 @@ extension Subliminal {
     init(searchSubliminalResponse: SearchSubliminalResponse) {
         id = searchSubliminalResponse.id
         subliminalID = searchSubliminalResponse.subliminalID
+        playlistId = searchSubliminalResponse.playlistID
         title = ""
         cover = ""
         description = ""

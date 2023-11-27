@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Category {
+struct Category: Codable, Equatable {
     let id: Int
     let name: String
     let description: String?

@@ -82,8 +82,23 @@ enum ImageAsset: String {
     case favoriteIsActive = "active heart"
     case repeatAll = "repeat"
     case repeatOnce = "repeat-once"
+    case advanceVolume = "advance volume"
+    case previous = "previous"
+    case next = "next"
+    case play = "play"
+    
+    // Player Option
+    case like = "OptionHeart"
+    case likeActive = "OptionHeartActive"
+    case addToPlaylist = "OptionAdd"
+    case addToPlaylistActive = "OptionAddActive"
+    case addToQueue = "OptionQueue"
+    case addToQueueActive = "OptionQueueActive"
     
     case addPlaylist = "add playlist"
+    
+    case addIcon = "AddIcon"
+    case removeIcon = "RemoveIcon"
     
     case trash = "trash can"
     case edit = "edit profile"
@@ -105,5 +120,6 @@ enum ImageAsset: String {
     
     case collapsedDown = "collapsed-down"
     case collapsedUp = "collapsed-up"
+    
     
 }

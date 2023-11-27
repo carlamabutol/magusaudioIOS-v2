@@ -27,6 +27,7 @@ class HomeViewController: CommonViewController {
             setupDataSource()
         }
     }
+    
     @IBOutlet var searchView: SearchView! {
         didSet {
             searchView.textField.isUserInteractionEnabled = false
@@ -51,6 +52,14 @@ class HomeViewController: CommonViewController {
     override func setupBinding() {
         super.setupBinding()
         
+        let refreshControl = UIRefreshControl()
+        collectionView.refreshControl = refreshControl
+        refreshControl.rx.controlEvent(.valueChanged)
+            .subscribe { [weak self] event in
+                self?.viewModel.getHomeDetails()
+            }
+            .disposed(by: disposeBag)
+        
         viewModel.selectedFooterObservable
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { [weak self] modelType in
@@ -65,6 +74,10 @@ class HomeViewController: CommonViewController {
             }
             .disposed(by: disposeBag)
         
+        viewModel.loadingObservable
+            .bind(to: refreshControl.rx.isRefreshing)
+            .disposed(by: disposeBag)
+        
     }
     
     private func setupDataSource() {
@@ -75,9 +88,13 @@ class HomeViewController: CommonViewController {
                 
                 cell.configure(model: item as! SelectedMoodCell.Model)
                 return cell
+            case LocalisedStrings.HomeHeaderTitle.category:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
+                let item = item as! CategoryCell.Model
+                cell.configure(item: item)
+                return cell
             default:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
-                
                 cell.configure(item: item)
                 return cell
             }

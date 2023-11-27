@@ -11,14 +11,19 @@ import RxRelay
 import RxSwift
 
 class AudioPlayerViewModel: ViewModel {
+    
     static let shared = AudioPlayerViewModel()
+    var playerDisposeBag = DisposeBag()
+    
     private let appState: AppState
     private let store: Store
     private let audioPlayerManager = AudioPlayerManager.shared
-    var selectedSubliminal: Subliminal?
+    private let subliminalUseCase: SubliminalUseCase
+    private let subliminals: () -> [Subliminal]
+    
     private let selectedSubliminalRelay = PublishRelay<Subliminal>()
+    var selectedSubliminal: Subliminal?
     var selectedSubliminalObservable: Observable<Subliminal> { selectedSubliminalRelay.asObservable() }
-    private let selectedAudioPlayer = PublishRelay<CustomAudioPlayer>()
     var timeRelay = BehaviorRelay<String>(value: "--/--")
     var progressRelay = BehaviorRelay<Float>(value: 0)
     var progressObservable: Observable<Float> { progressRelay.asObservable() }
@@ -28,9 +33,7 @@ class AudioPlayerViewModel: ViewModel {
     var playerStatusObservable: Observable<PlayerStatus> { playerStatusRelay.asObservable() }
     var playerStateObservable: Observable<AppState.PlayerState>
     var isRepealAllObservable: Observable<Bool>
-    var playerDisposeBag = DisposeBag()
-    private let subliminalUseCase: SubliminalUseCase
-    private let subliminals: () -> [Subliminal]
+    var repeatedSubliminals: [String] = []
     
     init(dependencies: Dependencies = .standard) {
         appState = dependencies.appState
@@ -45,12 +48,12 @@ class AudioPlayerViewModel: ViewModel {
                 self?.playerStatusRelay.accept(.isReadyToPlay)
                 self?.playBackSubscriber(audioPlayer: player)
             }.disposed(by: disposeBag)
-        
     }
     
     var activePlayer: CustomAudioPlayer?
     
     private func playBackSubscriber(audioPlayer: CustomAudioPlayer) {
+        playerDisposeBag = DisposeBag()
         activePlayer = audioPlayer
         audioPlayer.progressObservable
             .distinctUntilChanged()
@@ -59,7 +62,6 @@ class AudioPlayerViewModel: ViewModel {
         
         audioPlayer.timeObservable
             .map {
-                Logger.info("DURATION - \(audioPlayer.getDuration())", topic: .other)
                 return $0.toMinuteAndSeconds() + " - " + audioPlayer.getDuration().toMinuteAndSeconds()
             }
             .bind(to: timeRelay)
@@ -92,23 +94,14 @@ class AudioPlayerViewModel: ViewModel {
         audioPlayerManager.createAudioPlayers(with: subliminal, isPlaying: true)
     }
     
-    func clearAudioPlayers() {
-        pauseAllAudio()
-        playerStatusRelay.accept(.loading)
-        timeRelay.accept("--/--")
-        progressRelay.accept(0)
-        playerDisposeBag = DisposeBag()
-        audioPlayerManager.removePlayers()
-    }
-    
     func playAll() {
         playerStatusRelay.accept(.isPlaying)
         audioPlayerManager.playAllAudioPlayers()
     }
     
-    func playAllAtStart() {
+    func resetPlayer(playAgain: Bool) {
         playerStatusRelay.accept(.isPlaying)
-        audioPlayerManager.playAgainAllAudioPlayers()
+        audioPlayerManager.playAgainAllAudioPlayers(playAgain: playAgain)
     }
 
     func playAudio() {
@@ -121,12 +114,13 @@ class AudioPlayerViewModel: ViewModel {
     
     private func didEndPlayer() {
         switch repeatStatus.value {
-        case .repeatOnce:
-            playAll()
+        case .repeartCurrentlyPlaying:
+            resetPlayer(playAgain: true)
         case .repeatAll:
+            resetPlayer(playAgain: false)
             next()
-        case .noRepeat:
-            break
+//        case .noRepeat:
+//            resetPlayer(playAgain: false)
         }
     }
     
@@ -144,6 +138,8 @@ class AudioPlayerViewModel: ViewModel {
         let index = currentIndex + 1
         if index < (subliminals.count - 1) {
             createArrayAudioPlayer(with: subliminals[index])
+        } else if repeatStatus.value == .repeatAll {
+            createArrayAudioPlayer(with: subliminals[0])
         }
     }
     
@@ -186,21 +182,32 @@ class AudioPlayerViewModel: ViewModel {
     func updateRepat() {
         switch repeatStatus.value {
         case .repeatAll:
-            repeatStatus.accept(.repeatOnce)
-        case .repeatOnce:
-            repeatStatus.accept(.repeatAll)
-        case .noRepeat:
+            repeatStatus.accept(.repeartCurrentlyPlaying)
+        case .repeartCurrentlyPlaying:
             repeatStatus.accept(.repeatAll)
         }
+    }
+    
+    func updateVolume(level: Float, trackID: String) {
+        audioPlayerManager.updateVolume(level: level, trackID: trackID)
+    }
+    
+    func clearAudioPlayers() {
+        pauseAllAudio()
+        playerStatusRelay.accept(.loading)
+        timeRelay.accept("--/--")
+        progressRelay.accept(0)
+        playerDisposeBag = DisposeBag()
+        audioPlayerManager.removePlayers()
     }
 }
 
 extension AudioPlayerViewModel {
     
     enum Repeat {
-        case repeatOnce
+        case repeartCurrentlyPlaying
         case repeatAll
-        case noRepeat
+//        case noRepeat
     }
     
 }

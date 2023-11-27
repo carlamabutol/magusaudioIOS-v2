@@ -14,10 +14,13 @@ class PlayerViewController: BlurCommonViewController {
     
     var tabViewModel: MainTabViewModel!
     var audioPlayerViewModel: AudioPlayerViewModel!
+    var volumeDisposeBag = DisposeBag()
+    
+    @IBOutlet var gradientView: UIView!
     
     @IBOutlet var advanceVolumeBtn: UIButton! {
         didSet {
-            let image = UIImage(named: "advance volume")
+            let image = UIImage(named: .advanceVolume)
             let newImage = image?.resizeImage(targetHeight: 21)
             advanceVolumeBtn.setImage(newImage, for: .normal)
             advanceVolumeBtn.imageView?.contentMode = .scaleAspectFit
@@ -26,7 +29,7 @@ class PlayerViewController: BlurCommonViewController {
     
     @IBOutlet var previousButton: UIButton! {
         didSet {
-            let image = UIImage(named: "previous")
+            let image = UIImage(named: .previous)
             let newImage = image?.resizeImage(targetHeight: 49)
             previousButton.setImage(newImage, for: .normal)
             previousButton.imageView?.contentMode = .scaleAspectFit
@@ -35,7 +38,7 @@ class PlayerViewController: BlurCommonViewController {
     
     @IBOutlet var playPauseButton: UIButton! {
         didSet {
-            let image = UIImage(named: "play")
+            let image = UIImage(named: .play)
             let newImage = image?.resizeImage(targetHeight: 59)
             playPauseButton.setImage(newImage, for: .normal)
             playPauseButton.imageView?.contentMode = .scaleAspectFit
@@ -44,7 +47,7 @@ class PlayerViewController: BlurCommonViewController {
     
     @IBOutlet var nextButton: UIButton! {
         didSet {
-            let image = UIImage(named: "next")
+            let image = UIImage(named: .next)
             let newImage = image?.resizeImage(targetHeight: 49)
             nextButton.setImage(newImage, for: .normal)
             nextButton.imageView?.contentMode = .scaleAspectFit
@@ -146,6 +149,11 @@ class PlayerViewController: BlurCommonViewController {
         setupTracksVolumeViews(tracks: subliminal.info)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupGradientView(view: gradientView)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tracksContainerStackView.isUserInteractionEnabled = tabViewModel.user()?.isPremium == true
@@ -185,7 +193,7 @@ class PlayerViewController: BlurCommonViewController {
                 switch repeatState {
                 case .repeatAll:
                     self?.repeatView.setImage(UIImage(named: .repeatAll).withRenderingMode(.alwaysOriginal), for: .normal)
-                case .repeatOnce, .noRepeat:
+                case .repeartCurrentlyPlaying:
                     self?.repeatView.setImage(UIImage(named: .repeatOnce).withRenderingMode(.alwaysOriginal), for: .normal)
                 }
             }
@@ -262,13 +270,16 @@ class PlayerViewController: BlurCommonViewController {
     }
     
     @objc private func showOptions() {
-        let viewController = PlayerOptionViewController.instantiate(from: .playerOption) as! PlayerOptionViewController
-        presentModally(viewController, animated: true)
         guard let subliminal = audioPlayerViewModel.selectedSubliminal else { return }
-        toggleBlurEffect(isHidden: false)
+        let viewController = PlayerOptionViewController.instantiate(from: .playerOption) as! PlayerOptionViewController
+        let navController = UINavigationController(rootViewController: viewController)
+        navController.navigationBar.isHidden = true
+        presentModally(navController, animated: true)
+        viewController.loadViewIfNeeded()
         viewController.configure(subliminal: subliminal) {
             self.toggleBlurEffect(isHidden: true)
         }
+        toggleBlurEffect(isHidden: false)
     }
     
     private func setupTracksVolumeViews(tracks: [SubliminalAudioInfo]) {
@@ -277,7 +288,9 @@ class PlayerViewController: BlurCommonViewController {
         arrangedViews
             .forEach { [weak self] view in
                 self?.tracksStackView.removeArrangedSubview(view)
+                view.removeFromSuperview()
             }
+        volumeDisposeBag = DisposeBag()
         
         tracks.forEach { info in
             
@@ -301,10 +314,16 @@ class PlayerViewController: BlurCommonViewController {
             let progressView = VerticalProgressBar(minimumProgress: progress)
             progressView.progress = progress
             progressView.backgroundColor = .white
-            progressView.cornerBorderRadius(cornerRadius: 5, borderColor: .black, borderWidth: 0.5)
+            progressView.cornerBorderRadius(cornerRadius: 10, borderColor: .black, borderWidth: 0.2)
             progressView.translatesAutoresizingMaskIntoConstraints = false
             progressContainerView.addSubview(progressView)
-            progressView.setCornerRadius(2.5)
+            progressView.setCornerRadius(5)
+            
+            progressView.progressRelay.asObservable()
+                .subscribe { [weak self] progress in
+                    self?.audioPlayerViewModel.updateVolume(level: Float(progress), trackID: info.trackID)
+                }
+                .disposed(by: volumeDisposeBag)
             
             containerView.addSubview(stackView)
             NSLayoutConstraint
@@ -348,96 +367,5 @@ class PlayerViewController: BlurCommonViewController {
     
     deinit {
         print("Deinit Player View Controller")
-    }
-}
-
-import UIKit
-
-class VerticalProgressBar: UIView {
-    private let progressView = UIView()
-    private var panGesture: UIPanGestureRecognizer!
-    
-    let minimumProgress: CGFloat
-
-    var progress: CGFloat = 0 {
-        didSet {
-            updateProgressBar()
-        }
-    }
-
-    init(minimumProgress: CGFloat) {
-        self.minimumProgress = minimumProgress
-        super.init(frame: .zero)
-        setupProgressBar()
-        setupPanGesture()
-        progress = minimumProgress
-    }
-
-    required init?(coder: NSCoder) {
-        self.minimumProgress = 0
-        super.init(coder: coder)
-        setupProgressBar()
-        setupPanGesture()
-    }
-    
-    var progressViewHeightConstraint: NSLayoutConstraint!
-
-    private func setupProgressBar() {
-
-        addSubview(progressView)
-        
-        backgroundColor = .red
-        progressView.backgroundColor = UIColor.Background.primaryBlue
-        progressView.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2.5),
-            progressView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2.5),
-            progressView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2.5),
-        ])
-        progressViewHeightConstraint = progressView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: progress, constant: -5)
-        progressViewHeightConstraint.isActive = true
-    }
-
-    private func updateProgressBar() {
-        progressViewHeightConstraint.isActive = false
-        progressViewHeightConstraint = progressView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: progress, constant: -5)
-        progressViewHeightConstraint.isActive = true
-    }
-    
-    func setCornerRadius(_ radius: CGFloat) {
-        cornerRadius(with: radius)
-        progressView.cornerRadius(with: radius)
-    }
-
-    private func setupPanGesture() {
-        panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
-        addGestureRecognizer(panGesture)
-    }
-    
-    var initialTranslation: CGPoint = CGPoint(x: 0, y: 0)
-
-    @objc private func handlePan(_ gesture: UIPanGestureRecognizer) {
-        let translation = gesture.translation(in: self)
-        
-        // You can adjust the sensitivity factor to control the speed reduction.
-        let sensitivity: CGFloat = 0.5
-        
-        // Calculate the modified translation
-        let modifiedTranslation = CGPoint(
-            x: translation.x - (initialTranslation.x * sensitivity),
-            y: translation.y - (initialTranslation.y * sensitivity)
-        )
-        
-        initialTranslation = translation
-        
-        let newProgress = max(0, min(1, progress - modifiedTranslation.y / frame.height))
-        if newProgress >= minimumProgress {
-            progress = newProgress
-        }
-
-        if gesture.state == .ended {
-            // You can handle any additional logic when the gesture ends here
-        }
     }
 }

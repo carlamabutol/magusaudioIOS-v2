@@ -79,9 +79,11 @@ class ChangePasswordViewController: CommonViewController {
             model: .init(
                 leftButtonHandler: {[weak self] in
                     self?.navigationController?.popViewController(animated: true)
-                }, rightButtonHandler: { [weak self] in
+                },
+                rightButtonModel: .init(title: "Save", image: nil),
+                rightButtonHandler: { [weak self] in
                     self?.presentDefaultAlert()
-                }, rightButtonModel: .init(title: "Save", image: nil)
+                }
             )
         )
         configureForms()

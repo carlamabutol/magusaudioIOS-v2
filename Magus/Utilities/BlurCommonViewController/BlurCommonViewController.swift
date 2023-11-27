@@ -9,7 +9,7 @@ import UIKit
 
 class BlurCommonViewController: CommonViewController {
     
-    private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+    private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
     override func viewDidLoad() {
         super.viewDidLoad()

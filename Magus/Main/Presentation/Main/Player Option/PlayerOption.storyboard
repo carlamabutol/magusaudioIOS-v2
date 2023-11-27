@@ -30,10 +30,10 @@
                                 <rect key="frame" x="0.0" y="127" width="393" height="691"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Op-4s-cda">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="465.66666666666669"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="495.66666666666669"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="OR0-Qj-52o">
-                                                <rect key="frame" x="25" y="20" width="343" height="425.66666666666669"/>
+                                                <rect key="frame" x="25" y="20" width="343" height="455.66666666666669"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XpI-07-OCK">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="200"/>
@@ -51,28 +51,28 @@
                                                             <constraint firstItem="NB0-Nx-Cb2" firstAttribute="top" secondItem="XpI-07-OCK" secondAttribute="top" id="rta-nZ-9LH"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Zh-xH-30z">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Zh-xH-30z">
                                                         <rect key="frame" x="0.0" y="220" width="343" height="20.333333333333343"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1U5-BP-Hdg">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1U5-BP-Hdg">
                                                         <rect key="frame" x="0.0" y="260.33333333333331" width="343" height="20.333333333333314"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Cmv-FV-iRh">
-                                                        <rect key="frame" x="0.0" y="300.66666666666669" width="343" height="125"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Cmv-FV-iRh">
+                                                        <rect key="frame" x="0.0" y="300.66666666666669" width="343" height="155"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubU-zm-iJq">
                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" id="QRQ-qg-5h6"/>
                                                                 </constraints>
-                                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
                                                                 <state key="normal" title="Button" image="OptionHeart">
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
                                                                 </state>
@@ -81,22 +81,22 @@
                                                                 </buttonConfiguration>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Efw-Cw-ORN">
-                                                                <rect key="frame" x="0.0" y="45" width="343" height="35"/>
+                                                                <rect key="frame" x="0.0" y="60" width="343" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" id="Dvf-Ce-NWo"/>
                                                                 </constraints>
-                                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
                                                                 <state key="normal" title="Button" image="OptionAdd"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="OptionAdd" title="Button" imagePadding="20"/>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SLw-ud-7Bg">
-                                                                <rect key="frame" x="0.0" y="89.999999999999943" width="343" height="35"/>
+                                                                <rect key="frame" x="0.0" y="119.99999999999994" width="343" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" id="sBX-JD-a4Z"/>
                                                                 </constraints>
-                                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
                                                                 <state key="normal" title="Button" image="OptionQueue"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="OptionQueue" title="Button" imagePadding="20"/>
                                                             </button>
@@ -136,7 +136,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="closeButton" destination="38I-5N-9cu" id="5YP-7Z-AEg"/>
+                        <outlet property="addToPlaylistButton" destination="Efw-Cw-ORN" id="l4A-LH-wwe"/>
+                        <outlet property="addToQueueButton" destination="SLw-ud-7Bg" id="zr1-Ty-Qk4"/>
+                        <outlet property="closeButton" destination="38I-5N-9cu" id="MTd-Mk-nSk"/>
+                        <outlet property="coverImage" destination="NB0-Nx-Cb2" id="Pyk-k5-2lX"/>
+                        <outlet property="descriptionLabel" destination="1U5-BP-Hdg" id="im7-PU-yyk"/>
+                        <outlet property="likeButton" destination="ubU-zm-iJq" id="kUd-by-BJB"/>
+                        <outlet property="titleLabel" destination="3Zh-xH-30z" id="UHY-B9-qnZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

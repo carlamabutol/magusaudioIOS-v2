@@ -478,4 +478,54 @@ extension StandardNetworkService: NetworkService {
         
         return try await task.value
     }
+    
+    func addSubliminalToPlaylist(playlistId: String, subliminalId: String) async throws -> JSONAPIArrayResponse<SearchPlaylistResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("own")
+            .appendingPathComponent("playlist")
+            .appendingPathComponent("info")
+            .appendingPathComponent("add")
+        
+        var parameters: [String: String] = [
+            "subscription_id": String(describing: getSubscriptionID()),
+            "subliminal_id": subliminalId,
+            "playlist_id": playlistId
+        ]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<SearchPlaylistResponse>.self)
+        
+        return try await task.value
+    }
+    
+    func deleteSubliminalToPlaylist(playlistId: String, subliminalId: String) async throws -> JSONAPIArrayResponse<SearchPlaylistResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("own")
+            .appendingPathComponent("playlist")
+            .appendingPathComponent("info")
+            .appendingPathComponent("delete")
+        
+        var parameters: [String: String] = [
+            "subscription_id": String(describing: getSubscriptionID()),
+            "subliminal_id": subliminalId,
+            "playlist_id": playlistId
+        ]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<SearchPlaylistResponse>.self)
+        
+        return try await task.value
+    }
 }

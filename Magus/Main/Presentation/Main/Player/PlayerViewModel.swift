@@ -9,10 +9,10 @@ import UIKit
 
 class PlayerViewModel: ViewModel {
     
-    var subliminals: [Subliminal] = []
     
-    func updateSubliminals(subliminals: [Subliminal]) {
-        self.subliminals = subliminals
-    }
+    
+}
+
+extension PlayerViewModel {
     
 }

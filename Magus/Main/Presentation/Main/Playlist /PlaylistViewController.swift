@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxDataSources
 
-class PlaylistViewController: CommonViewController {
+class PlaylistViewController: BlurCommonViewController {
     private let playerViewModel = AudioPlayerViewModel.shared
     
     @IBOutlet var gradientView: UIView! {
@@ -66,11 +66,18 @@ class PlaylistViewController: CommonViewController {
             layout.scrollDirection = .vertical
             layout.minimumLineSpacing = 18
             layout.minimumInteritemSpacing = 24
-            collectionView.contentInset = .init(top: 0, left: 0, bottom: 70, right: 0)
             collectionView
                 .setCollectionViewLayout(layout, animated: true)
+            collectionView.contentInset = .init(top: 0, left: 20, bottom: 70, right: 20)
         }
     }
+    
+    lazy var emptyView: EmptyPlaylistView = {
+        let view = EmptyPlaylistView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .yellow
+        return view
+    }()
     
     func setPlaylist(playlist: Playlist) {
         viewModel.setPlaylist(playlist: playlist)
@@ -80,6 +87,9 @@ class PlaylistViewController: CommonViewController {
         super.viewDidLoad()
         setupDataSource()
         setupGradientView(view: gradientView)
+        
+        view.addSubview(emptyView)
+        emptyView.fillView(fromView: collectionView)
     }
     
     fileprivate func setupCollapsedPlayerView() {
@@ -129,6 +139,33 @@ class PlaylistViewController: CommonViewController {
             }
             .disposed(by: disposeBag)
         
+        viewModel.optionTapObservable
+            .subscribe { [weak self] (subliminal, playlist) in
+                self?.showOptions(selectedSubliminal: subliminal, playlist: playlist)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.subliminalCellModelObservable
+            .map { !$0.isEmpty }
+            .subscribe { [weak self] isHidden in
+                self?.emptyView.isHidden = isHidden
+            }
+            .disposed(by: disposeBag)
+        
+        emptyView.addButton.rx.tap
+            .subscribe { [weak self] _ in
+                self?.addSubliminal()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.subliminalCellModelObservable
+            .compactMap { $0.first?.imageUrl }
+            .subscribe { [weak self] imageUrl in
+                self?.coverImageView.sd_setImage(with: imageUrl)
+            }
+            .disposed(by: disposeBag)
+        
+        
         Observable
             .zip(
                 collectionView
@@ -140,11 +177,22 @@ class PlaylistViewController: CommonViewController {
             )
             .bind{ [unowned self] indexPath, model in
                 self.viewModel.selectedSubliminal(indexPath)
-                Logger.info("Selected Model - \(model)", topic: .presentation)
             }
             .disposed(by: disposeBag)
 
         
+    }
+    
+    private func showOptions(selectedSubliminal: Subliminal, playlist: Playlist) {
+        let viewController = PlayerOptionViewController.instantiate(from: .playerOption) as! PlayerOptionViewController
+        let navController = UINavigationController(rootViewController: viewController)
+        navController.navigationBar.isHidden = true
+        presentModally(navController, animated: true)
+        viewController.loadViewIfNeeded()
+        viewController.configure(subliminal: selectedSubliminal, playlistId: playlist.playlistID) {
+            self.toggleBlurEffect(isHidden: true)
+        }
+        toggleBlurEffect(isHidden: false)
     }
     
     private func setupDataSource() {
@@ -153,6 +201,13 @@ class PlaylistViewController: CommonViewController {
                 cell.configure(item: element)
             }
             .disposed(by: disposeBag)
+    }
+    
+    private func addSubliminal() {
+        guard let playlist = viewModel.playlist else { return }
+        let vc = SubliminalListViewController.instantiate(from: .subliminalList) as! SubliminalListViewController
+        navigationController?.pushViewController(vc, animated: true)
+        vc.configure(playlist: playlist)
     }
     
     func configure(playlist: Playlist) {

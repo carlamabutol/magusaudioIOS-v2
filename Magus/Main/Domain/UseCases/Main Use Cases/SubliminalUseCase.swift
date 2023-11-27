@@ -74,4 +74,18 @@ final class SubliminalUseCase {
         }
     }
     
+    func searchSubliminal(search: String) async throws -> [Subliminal] {
+        do {
+            let response = try await networkService.searchSubliminalAndPlaylist(search: search)
+            switch response {
+            case .success(let response):
+                return response.subliminal.map { Subliminal(subliminalReponse: $0) }
+            case .error(_):
+                throw NetworkServiceError.jsonDecodingError
+            }
+        } catch {
+            throw error
+        }
+    }
+    
 }

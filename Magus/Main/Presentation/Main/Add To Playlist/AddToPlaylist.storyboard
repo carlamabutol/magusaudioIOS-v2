@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Add To Playlist View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="AddToPlaylistViewController" customModule="Magus" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xP1-A3-V8G">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J6U-Po-NOa" customClass="ProfileNavigationBar" customModule="Magus" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="79" width="393" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="nej-Eh-Ztc"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C2w-sU-R1A" customClass="SearchView" customModule="Magus" customModuleProvider="target">
+                                <rect key="frame" x="20" y="149" width="353" height="56"/>
+                                <viewLayoutGuide key="safeArea" id="IFe-jm-zWn"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="vV3-Yo-vl1"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zWU-Ke-DeC">
+                                <rect key="frame" x="0.0" y="225" width="393" height="627"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MwH-vU-lVx">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlaylistCell" id="nU0-eH-3Ct" customClass="PlaylistCell" customModule="Magus" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hQm-oK-KkT">
+                                            <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3pz-lU-ArH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3pz-lU-ArH" firstAttribute="trailing" secondItem="C2w-sU-R1A" secondAttribute="trailing" constant="20" id="0kX-Pd-SBO"/>
+                            <constraint firstItem="3pz-lU-ArH" firstAttribute="trailing" secondItem="zWU-Ke-DeC" secondAttribute="trailing" id="96G-zG-MOz"/>
+                            <constraint firstItem="3pz-lU-ArH" firstAttribute="trailing" secondItem="J6U-Po-NOa" secondAttribute="trailing" id="J4e-SY-P1M"/>
+                            <constraint firstItem="C2w-sU-R1A" firstAttribute="leading" secondItem="3pz-lU-ArH" secondAttribute="leading" constant="20" id="N2r-E4-P5H"/>
+                            <constraint firstItem="C2w-sU-R1A" firstAttribute="top" secondItem="J6U-Po-NOa" secondAttribute="bottom" constant="20" id="UbE-Z9-Vhy"/>
+                            <constraint firstItem="J6U-Po-NOa" firstAttribute="leading" secondItem="3pz-lU-ArH" secondAttribute="leading" id="UfH-NV-fus"/>
+                            <constraint firstItem="J6U-Po-NOa" firstAttribute="top" secondItem="3pz-lU-ArH" secondAttribute="top" constant="20" id="hcb-ET-kIs"/>
+                            <constraint firstItem="zWU-Ke-DeC" firstAttribute="leading" secondItem="3pz-lU-ArH" secondAttribute="leading" id="myc-S2-co1"/>
+                            <constraint firstItem="zWU-Ke-DeC" firstAttribute="top" secondItem="C2w-sU-R1A" secondAttribute="bottom" constant="20" id="qby-sb-MFe"/>
+                            <constraint firstAttribute="bottom" secondItem="zWU-Ke-DeC" secondAttribute="bottom" id="yYE-Ry-mAO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="zWU-Ke-DeC" id="YQk-A9-qE5"/>
+                        <outlet property="navigationBar" destination="J6U-Po-NOa" id="8No-G9-6C4"/>
+                        <outlet property="searchView" destination="C2w-sU-R1A" id="fgJ-Rj-Mee"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="-23"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -11,13 +11,13 @@ import RxSwift
 import RxRelay
 
 class AudioPlayerManager {
-    typealias SubliminalTracks = [[SubliminalAudioInfo: CustomAudioPlayer]]
     static let shared = AudioPlayerManager()
     private var disposeBag = DisposeBag()
+    private var playerDisposeBag = DisposeBag()
     
     var currentSubliminal: String = ""
     var currentTracks: Int = 0
-    var audioPlayers: [SubliminalAudioInfo: CustomAudioPlayer] = [:]
+    var audioPlayers: [String: CustomAudioPlayer] = [:]
     private let playerStatusUpdate = PublishRelay<Void>()
     private let activePlayer = BehaviorRelay<CustomAudioPlayer?>(value: nil)
     private let isPlayingRelay = BehaviorRelay<Bool>(value: false)
@@ -25,7 +25,6 @@ class AudioPlayerManager {
         activePlayer
             .compactMap{ $0 }
             .asObservable()
-            .debounce(.seconds(1), scheduler: MainScheduler.asyncInstance)
         
     }
     var playerStatusObservable: Observable<Void> { playerStatusUpdate.asObservable() }
@@ -57,10 +56,11 @@ class AudioPlayerManager {
     }
     
     private func setActiveLongestDurationPlayer() {
+        Logger.info("SET ACTIVE LONGEST DURATION -x \(audioPlayers.map { $0.value.getDuration() })", topic: .other)
         let player = audioPlayers.max { old, new in
-            return old.value.getDuration() > new.value.getDuration()
+            return new.value.getDuration() > old.value.getDuration()
         }?.value
-        
+        Logger.info("SET ACTIVE LONGEST DURATION 1 - \(player)", topic: .other)
         if getCurrentTracks().count == currentTracks {
             activePlayer.accept(player)
         }
@@ -79,6 +79,7 @@ class AudioPlayerManager {
         currentTracks = 0
         removePlayers()
         for audio in subliminal.info {
+            /// sample url https://samplelib.com/lib/preview/mp3/sample-15s.mp3
             guard let url = URL(string: audio.link ?? "") else {
                 Logger.info("Incorrect URL \(String(describing: audio.link))", topic: .presentation)
                 continue
@@ -88,22 +89,21 @@ class AudioPlayerManager {
     }
     
     func createAudioPlayer(with subliminalAudioInfo: SubliminalAudioInfo, url: URL, isPlaying: Bool = false) {
-        if let player = audioPlayers.first(where: { $0.key.id == subliminalAudioInfo.id })?.value {
+        if let player = audioPlayers.first(where: { $0.key == subliminalAudioInfo.trackID })?.value {
             updatePlayerStatus(isPlaying: isPlaying, player: player)
             currentTracks += 1
             return
         }
-        
+        playerDisposeBag = DisposeBag()
         let newPlayer = CustomAudioPlayer(url: url, isPlaying: isPlaying)
         newPlayer.setDuration(duration: subliminalAudioInfo.duration)
-        newPlayer.setVolume(volume: subliminalAudioInfo.volume)
-        updatePlayerStatus(isPlaying: isPlaying, player: newPlayer)
+        newPlayer.setVolume(volume: Float(subliminalAudioInfo.volume))
         newPlayer.playerStatusObservable
             .subscribe { [weak self] status in
                 guard status == .isReadyToPlay else { return }
                 self?.setActiveLongestDurationPlayer()
-            }.disposed(by: disposeBag)
-        audioPlayers[subliminalAudioInfo] = newPlayer
+            }.disposed(by: playerDisposeBag)
+        audioPlayers[subliminalAudioInfo.trackID] = newPlayer
         currentTracks += 1
     }
     
@@ -115,14 +115,13 @@ class AudioPlayerManager {
         getCurrentTracks().forEach { $0.play() }
     }
     
-    func playAgainAllAudioPlayers() {
-        getCurrentTracks().forEach { $0.playAtStart() }
+    func playAgainAllAudioPlayers(playAgain: Bool) {
+        getCurrentTracks().forEach { $0.playAtStart(playAgain: playAgain) }
     }
     
     func pauseAllAudioPlayers() {
         getCurrentTracks().forEach {
             $0.pause()
-            Logger.info("Player \($0.isPlaying)", topic: .domain)
         }
     }
     
@@ -133,5 +132,13 @@ class AudioPlayerManager {
     func removePlayers() {
         audioPlayers.removeAll()
         disposeBag = DisposeBag()
+    }
+    
+    func updateVolume(level: Float, trackID: String) {
+        guard let player = audioPlayers[trackID] as? CustomAudioPlayer else {
+            Logger.error("No Audio Player is associated with track ID \(trackID)", topic: .configuration)
+            return
+        }
+        player.setVolume(volume: level)
     }
 }

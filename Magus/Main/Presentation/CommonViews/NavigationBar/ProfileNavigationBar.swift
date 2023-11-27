@@ -58,8 +58,8 @@ class ProfileNavigationBar: ReusableXibView {
     
     struct Model {
         let leftButtonHandler: CompletionHandler
-        let rightButtonHandler: CompletionHandler?
         let rightButtonModel: ButtonModel?
+        let rightButtonHandler: CompletionHandler?
         
     }
     
@@ -71,8 +71,8 @@ class ProfileNavigationBar: ReusableXibView {
     static func saveButtonModel(backHandler: @escaping CompletionHandler, saveHandler: @escaping CompletionHandler, title: String) -> Model {
         Model(
             leftButtonHandler: backHandler,
-            rightButtonHandler: saveHandler,
-            rightButtonModel: .init(title: title, image: nil)
+            rightButtonModel: .init(title: title, image: nil),
+            rightButtonHandler: saveHandler
         )
     }
     

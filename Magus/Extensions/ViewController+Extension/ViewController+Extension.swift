@@ -20,9 +20,10 @@ extension UIViewController {
     }
     
     func presentModally(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
+        let rootViewContorller = UIApplication.shared.keyWindow?.rootViewController ?? self
         viewController.modalTransitionStyle = .crossDissolve
         viewController.modalPresentationStyle = .overFullScreen
-        present(viewController, animated: animated)
+        rootViewContorller.present(viewController, animated: animated)
     }
     
     @discardableResult
@@ -66,6 +67,14 @@ extension UIViewController {
         return (topPadding, bottomPadding)
     }
     
+    func popViewController() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+}
+
+extension UIViewController {
+    
     func setupGradientView(view: UIView) {
         view.layoutIfNeeded()
         let gradientLayer = CAGradientLayer()
@@ -81,9 +90,4 @@ extension UIViewController {
         view.layer.insertSublayer(gradientLayer, at: 0)
         view.applyShadow(color: UIColor.white.withAlphaComponent(0.5), shadowOpacity: 0.2)
     }
-    
-    func popViewController() {
-        navigationController?.popViewController(animated: true)
-    }
-    
 }

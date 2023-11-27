@@ -49,22 +49,10 @@ class SeeAllViewModel: ViewModel {
         switch modelType {
         case .featuredPlaylist, .featuredSubliminal:
             getFeaturedPlaylists(modelType: modelType)
-        case .recommended(let categoryId):
+        case .recommendations(let categoryId):
             getRecommendations(categoriyId: categoryId)
-        case .category:
-            getAllCategory()
-        }
-    }
-    
-    private func getAllCategory() {
-        Task {
-            do {
-                let categories = try await categoryUseCase.searchCategory()
-                configureSectionCategory(with: categories)
-            } catch {
-                Logger.warning(error.localizedDescription, topic: .presentation)
-            }
-            
+        case .category(let categoryId):
+            getRecommendations(categoriyId: categoryId)
         }
     }
     
@@ -91,11 +79,6 @@ class SeeAllViewModel: ViewModel {
                 Logger.warning(error.localizedDescription, topic: .presentation)
             }
         }
-    }
-    
-    private func configureSectionCategory(with items: [Category]) {
-        let itemModels = items.map { CategoryCell.Model(id: String(describing: $0.id), title: $0.name, imageUrl: .init(string: $0.image ?? "")) }
-        sections.accept([SectionViewModel(header: "", items: itemModels)])
     }
     
     private func configureSectionRecommendations(subliminalsAndPlaylist: SubliminalsAndPlaylist) {
@@ -130,8 +113,8 @@ class SeeAllViewModel: ViewModel {
         sections.accept(newSection)
     }
     
-    private func constructPlaylistCell(with playlist: Playlist) -> CategoryCell.Model {
-        return CategoryCell.Model(
+    private func constructPlaylistCell(with playlist: Playlist) -> CommonCell.Model {
+        return CommonCell.Model(
             id: playlist.playlistID,
             title: playlist.title,
             imageUrl: .init(string: playlist.cover)
@@ -140,8 +123,8 @@ class SeeAllViewModel: ViewModel {
         }
     }
     
-    private func constructSubliminalCell(with subliminal: Subliminal) -> CategoryCell.Model {
-        return CategoryCell.Model(
+    private func constructSubliminalCell(with subliminal: Subliminal) -> CommonCell.Model {
+        return CommonCell.Model(
             id: subliminal.subliminalID,
             title: subliminal.title,
             imageUrl: .init(string: subliminal.cover)
@@ -152,7 +135,7 @@ class SeeAllViewModel: ViewModel {
     
     private func updateSelectedSubliminal(subliminal: Subliminal) {
         switch modelType {
-        case .recommended:
+        case .recommendations:
             store.appState.subliminals = recommendations.value?.subliminal ?? []
         case .featuredSubliminal:
             store.appState.subliminals = featuredRelay.value?.subliminal ?? []
@@ -200,8 +183,8 @@ extension SeeAllViewModel {
     enum ModelType {
         case featuredSubliminal
         case featuredPlaylist
-        case recommended(categoriyId: Int? = nil)
-        case category
+        case recommendations(categoriyId: Int? = nil)
+        case category(categoriyId: Int? = nil)
         
         var title: String {
             switch self {
@@ -209,7 +192,7 @@ extension SeeAllViewModel {
                 return "Featured Playlist"
             case .featuredSubliminal:
                 return "Featured Subliminal"
-            case .recommended:
+            case .recommendations:
                 return "Recommendations"
             case .category:
                 return "Category"

@@ -36,6 +36,10 @@ protocol NetworkService {
     func savePlaylist(playlistID: String, title: String) async throws -> JSONAPIArrayResponse<SearchPlaylistResponse>
     func deletePlaylist(playlistID: String) async throws -> JSONAPIArrayResponse<SearchPlaylistResponse>
     func getAllFavoritePlaylist() async throws -> JSONAPIArrayResponse<SearchPlaylistResponse>
+    
+    // MARK: ADD SUBLIMINAL TO PLAYLIST
+    func addSubliminalToPlaylist(playlistId: String, subliminalId: String) async throws -> JSONAPIArrayResponse<SearchPlaylistResponse>
+    func deleteSubliminalToPlaylist(playlistId: String, subliminalId: String) async throws -> JSONAPIArrayResponse<SearchPlaylistResponse>
 }
 
 enum FavoriteAPI: String{

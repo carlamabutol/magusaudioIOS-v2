@@ -42,9 +42,9 @@ class SearchViewModel: ViewModel {
         super.init()
         Observable.combineLatest(subliminalRelay, playlistRelay)
             .map({ [weak self] subliminals, playlists in
-                guard let self = self else { return ([CategoryCell.Model](), [CategoryCell.Model]()) }
-                let subliminalCells: [CategoryCell.Model]  = subliminals.map { self.configureSubliminalCell(with: $0) }
-                let playlistCell: [CategoryCell.Model] = playlists.map { self.configurePlaylistCell(with: $0) }
+                guard let self = self else { return ([ItemModel](), [ItemModel]()) }
+                let subliminalCells: [ItemModel]  = subliminals.map { self.configureSubliminalCell(with: $0) }
+                let playlistCell: [ItemModel] = playlists.map { self.configurePlaylistCell(with: $0) }
                 return (subliminalCells, playlistCell)
             })
             .subscribe { [weak self] (subliminals, playlist) in
@@ -94,12 +94,11 @@ class SearchViewModel: ViewModel {
             } catch {
                 debugPrint("Network Error Response - \(error.localizedDescription)")
             }
-            
         }
     }
     
-    private func configureSubliminalCell(with subliminal: Subliminal) -> CategoryCell.Model {
-        return CategoryCell.Model(
+    private func configureSubliminalCell(with subliminal: Subliminal) -> CommonCell.Model {
+        return CommonCell.Model(
             id: subliminal.subliminalID,
             title: subliminal.title,
             imageUrl: .init(string: subliminal.cover)
@@ -108,8 +107,8 @@ class SearchViewModel: ViewModel {
         }
     }
     
-    private func configurePlaylistCell(with playlist: Playlist) -> CategoryCell.Model {
-        return CategoryCell.Model(
+    private func configurePlaylistCell(with playlist: Playlist) -> CommonCell.Model {
+        return CommonCell.Model(
             id: playlist.playlistID,
             title: playlist.title,
             imageUrl: .init(string: playlist.cover)

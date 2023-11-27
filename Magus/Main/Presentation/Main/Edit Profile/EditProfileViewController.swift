@@ -79,9 +79,9 @@ class EditProfileViewController: CommonViewController {
             model: .init(
                 leftButtonHandler: {[weak self] in
                     self?.navigationController?.popViewController(animated: true)
-                }, rightButtonHandler: { [weak self] in
+                }, rightButtonModel: .init(title: "Save", image: nil), rightButtonHandler: { [weak self] in
                     self?.viewModel.updateUserDetails()
-                }, rightButtonModel: .init(title: "Save", image: nil)
+                }
             )
         )
         

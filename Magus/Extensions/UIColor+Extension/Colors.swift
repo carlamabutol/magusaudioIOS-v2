@@ -18,6 +18,7 @@ extension UIColor {
         static let buttonGray = UIColor(rgb: 0xC6C6C6)
         static let profileAlertBG = UIColor(rgb: 0xEAFBF6)
         static let subscriptionBG = UIColor(rgb: 0xFABA6F)
+        static let lightBlue = UIColor(rgb: 0xDDEAF5)
     }
     
     enum TextColor {

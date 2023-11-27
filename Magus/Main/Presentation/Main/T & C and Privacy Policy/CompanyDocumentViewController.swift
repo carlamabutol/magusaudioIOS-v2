@@ -15,7 +15,7 @@ class CompanyDocumentViewController: CommonViewController {
             navigationBar.configure(
                 model: .init(leftButtonHandler: { [weak self] in
                     self?.navigationController?.popViewController(animated: true)
-                }, rightButtonHandler: nil, rightButtonModel: nil)
+                }, rightButtonModel: nil, rightButtonHandler: nil)
             )
         }
     }

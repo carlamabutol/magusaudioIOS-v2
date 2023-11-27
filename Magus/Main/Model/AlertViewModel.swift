@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum AlertModel {
+    case loading(Bool)
+    case alertModal(AlertViewModel)
+}
+
 struct AlertViewModel {
     let title: String
     let message: String

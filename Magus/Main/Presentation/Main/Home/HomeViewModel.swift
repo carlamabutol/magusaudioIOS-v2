@@ -14,7 +14,7 @@ class HomeViewModel: ViewModel {
     
     let sections = BehaviorRelay<[SectionViewModel]>(value: [])
     
-    private let categoryRelay = BehaviorRelay<[CategoryCell.Model]>(value: [])
+    private let categoryRelay = BehaviorRelay<[Category]>(value: [])
     private let recommendations = BehaviorRelay<SubliminalsAndPlaylist?>(value: nil)
     private let featuredRelay = BehaviorRelay<SubliminalsAndPlaylist?>(value: nil)
     private let selectedFooter = PublishRelay<SeeAllViewModel.ModelType>()
@@ -23,6 +23,9 @@ class HomeViewModel: ViewModel {
     var selectedPlaylistObservable: Observable<Playlist> { selectedPlaylist.asObservable() }
     var currentMoodObservable: Observable<Mood?>
     var currentMoodId: Int?
+    var selectedCategoryId: Int?
+    private let loadingRelay = BehaviorRelay<Bool>(value: true)
+    var loadingObservable: Observable<Bool> { loadingRelay.asObservable() }
     
     private let store: Store
     private let router: Router
@@ -41,26 +44,36 @@ class HomeViewModel: ViewModel {
         currentMoodObservable = sharedDependencies.currentMoodObservable
         super.init()
         
-        let categorySection = categoryRelay
-            .map { [weak self] cellModels -> [SectionViewModel] in
+        sharedDependencies.selectedCategoryObservable
+            .compactMap { $0 }
+            .subscribe { [weak self] in
+                self?.selectedCategoryId = $0.id
+                self?.getRecommendations(categoryId: $0.id)
+            }
+            .disposed(by: disposeBag)
+        
+        let categorySection = Observable.combineLatest(categoryRelay, sharedDependencies.selectedCategoryObservable)
+            .map { [weak self] categories, _ -> [SectionViewModel] in
                 guard let self = self else { return [] }
+                
+                let cellModels = self.constructCategoryCell(categories: categories)
                 if cellModels.isEmpty {
                     return []
                 }
                 return [
-                    self.constructSection(headerTitle: LocalisedStrings.HomeHeaderTitle.category, cellModels: cellModels, footerType: .category)
+                    self.constructSection(headerTitle: LocalisedStrings.HomeHeaderTitle.category, cellModels: cellModels, footerType: .category())
                 ]
             }
         
         let recommendationSection = recommendations
             .map { [weak self] model -> [SectionViewModel] in
                 guard let self = self else { return [] }
-                let subliminalCellModels = model?.subliminal.compactMap { self.constructSubliminalCell(with: $0) } ?? []
+                let subliminalCellModels = model?.subliminal.compactMap { self.constructSubliminalCell(with: $0, type: .recommendations()) } ?? []
                 if subliminalCellModels.isEmpty {
                     return []
                 }
                 return [
-                    self.constructSection(headerTitle: "Recommendations", cellModels: subliminalCellModels, footerType: .recommended())
+                    self.constructSection(headerTitle: LocalisedStrings.HomeHeaderTitle.recommendations, cellModels: subliminalCellModels, footerType: .recommendations())
                 ]
             }
         
@@ -68,15 +81,15 @@ class HomeViewModel: ViewModel {
             .map { [weak self] model -> [SectionViewModel] in
                 guard let self = self else { return [] }
                 let playlistCellModels = model?.playlist.compactMap { self.constructPlaylistCell(with: $0) } ?? []
-                let subliminalCellModels = model?.subliminal.compactMap { self.constructSubliminalCell(with: $0) } ?? []
+                let subliminalCellModels = model?.subliminal.compactMap { self.constructSubliminalCell(with: $0, type: .featuredSubliminal) } ?? []
                 var sections: [SectionViewModel] = []
                 
                 if !subliminalCellModels.isEmpty {
-                    sections.append(self.constructSection(headerTitle: "Featured Subliminal", cellModels: subliminalCellModels, footerType: .featuredSubliminal))
+                    sections.append(self.constructSection(headerTitle: LocalisedStrings.HomeHeaderTitle.featuredSubliminal, cellModels: subliminalCellModels, footerType: .featuredSubliminal))
                 }
                 
                 if !playlistCellModels.isEmpty {
-                    sections.append(self.constructSection(headerTitle: "Featured Playlist", cellModels: playlistCellModels, footerType: .featuredPlaylist))
+                    sections.append(self.constructSection(headerTitle: LocalisedStrings.HomeHeaderTitle.featuredPlayList, cellModels: playlistCellModels, footerType: .featuredPlaylist))
                 }
                 
                 return sections
@@ -92,6 +105,7 @@ class HomeViewModel: ViewModel {
             return (currentMood, categories, recommendedSub, featured)
         }.subscribe { [weak self] (currentMood, categories, recommendations, featured) in
             guard let self else { return }
+            self.loadingRelay.accept(false)
             self.currentMoodId = currentMood?.id
             var newSection: [SectionViewModel] = []
             if let currentMood = currentMood {
@@ -108,15 +122,14 @@ class HomeViewModel: ViewModel {
     func getHomeDetails() {
         getAllCategory()
         getFeaturedPlaylists()
-        getRecommendations()
     }
     
     private func getAllCategory() {
         Task {
             do {
                 let categories = try await categoryUseCase.searchCategory()
-                let cellModels = constructCategoryCell(categories: categories)
-                categoryRelay.accept(cellModels)
+                store.appState.selectedCategory = categories.first
+                categoryRelay.accept(categories)
             } catch {
                 Logger.warning(error.localizedDescription, topic: .presentation)
             }
@@ -136,10 +149,10 @@ class HomeViewModel: ViewModel {
         
     }
     
-    private func getRecommendations() {
+    private func getRecommendations(categoryId: Int) {
         Task {
             do {
-                let response = try await categoryUseCase.searchRecommended(categoryId: nil, moodId: currentMoodId)
+                let response = try await categoryUseCase.searchRecommended(categoryId: categoryId, moodId: currentMoodId)
                 recommendations.accept(response)
             } catch {
                 Logger.warning(error.localizedDescription, topic: .presentation)
@@ -180,13 +193,15 @@ class HomeViewModel: ViewModel {
     }
     
     private func constructCategoryCell(categories: [Category]) -> [CategoryCell.Model] {
+        let categoryId = selectedCategoryId
         return categories.map { category in
             CategoryCell.Model(
                 id: String(describing: category.id),
                 title: category.name,
-                imageUrl: .init(string: category.image ?? "")
+                imageUrl: .init(string: category.image ?? ""),
+                isSelected: categoryId == category.id
             ) { [weak self] in
-                self?.selectedFooter.accept(.recommended(categoriyId: category.id))
+                self?.store.appState.selectedCategory = category
             }
         }
     }
@@ -195,18 +210,28 @@ class HomeViewModel: ViewModel {
         return CategoryCell.Model(
             id: playlist.playlistID,
             title: playlist.title,
-            imageUrl: .init(string: playlist.cover)
+            imageUrl: .init(string: playlist.cover),
+            isSelected: false
         ) { [weak self] in
             self?.selectedPlaylist.accept(playlist)
         }
     }
     
-    private func constructSubliminalCell(with subliminal: Subliminal) -> CategoryCell.Model {
+    private func constructSubliminalCell(with subliminal: Subliminal, type: SeeAllViewModel.ModelType) -> CategoryCell.Model {
         return CategoryCell.Model(
             id: subliminal.subliminalID,
             title: subliminal.title,
-            imageUrl: .init(string: subliminal.cover)
+            imageUrl: .init(string: subliminal.cover),
+            isSelected: false
         ) { [weak self] in
+            switch type {
+            case .featuredSubliminal:
+                self?.store.appState.subliminals = self?.featuredRelay.value?.subliminal ?? []
+            case .recommendations:
+                self?.store.appState.subliminals = self?.recommendations.value?.subliminal ?? []
+            default:
+                break
+            }
             self?.store.appState.selectedSubliminal = subliminal
         }
     }
@@ -224,6 +249,7 @@ extension HomeViewModel {
         let categoryUseCase: CategoryUseCase
         let moodUseCase: MoodUseCase
         let currentMoodObservable: Observable<Mood?>
+        let selectedCategoryObservable: Observable<Category?>
         
         static var standard: Dependencies {
             return .init(
@@ -234,7 +260,8 @@ extension HomeViewModel {
                 authenticationUseCase: SharedDependencies.sharedDependencies.useCases.authenticationUseCase,
                 categoryUseCase: SharedDependencies.sharedDependencies.useCases.categoryUseCase,
                 moodUseCase: SharedDependencies.sharedDependencies.useCases.moodUseCase,
-                currentMoodObservable: SharedDependencies.sharedDependencies.store.observable(of: \.selectedMood)
+                currentMoodObservable: SharedDependencies.sharedDependencies.store.observable(of: \.selectedMood),
+                selectedCategoryObservable: SharedDependencies.sharedDependencies.store.observable(of: \.selectedCategory)
             )
         }
     }

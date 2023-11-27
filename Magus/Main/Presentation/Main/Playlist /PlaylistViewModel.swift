@@ -15,13 +15,15 @@ class PlaylistViewModel: ViewModel {
     private let store: Store
     private let playlistUseCase: PlaylistUseCase
     
-    private var playlist: Playlist?
+    var playlist: Playlist?
     private let playlistRelay = BehaviorRelay<Playlist?>(value: nil)
     var playlistObservable: Observable<Playlist> { playlistRelay.compactMap { $0 }.asObservable() }
     
     private let subliminalCellModelRelay = BehaviorRelay<[SubliminalCollectionViewCell.SubliminalCellModel]>(value: [])
     var subliminalCellModelObservable: Observable<[SubliminalCollectionViewCell.SubliminalCellModel]> { subliminalCellModelRelay.asObservable() }
     private let updatedSubliminalRelay = PublishRelay<Subliminal>()
+    private let optionTapRelay = PublishRelay<(Subliminal, Playlist)>()
+    var optionTapObservable: Observable<(Subliminal, Playlist)> { optionTapRelay.asObservable()}
     
     init(dependencies: PlaylistViewModel.Dependencies = .standard) {
         store = dependencies.store
@@ -66,6 +68,10 @@ class PlaylistViewModel: ViewModel {
                 isFavorite: subliminal.isLiked == 1,
                 favoriteButtonHandler: { [weak self] in
                     self?.favoriteButtonIsTapped(subliminal)
+                },
+                optionActionHandler: { [weak self] in
+                    guard let playlist = self?.playlist else { return }
+                    self?.optionTapRelay.accept((subliminal, playlist))
                 }
             )
         }

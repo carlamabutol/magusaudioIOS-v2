@@ -82,11 +82,15 @@ class CategoryCell: HomeCustomCell {
     var tapActionHandler: CompletionHandler?
     
     override func configure(item: SectionViewModel.Item) {
+        
         setTextWithShadow(text: item.title)
         categoryImageView.sd_setImage(with: item.imageUrl, placeholderImage: .init(named: .coverImage), context: nil) { [weak self] _, _, url in
             
         }
         tapActionHandler = item.tapActionHandler
+        if let item = item as? CategoryCell.Model {
+            containerView.cornerBorderRadius(cornerRadius: 5, borderColor: item.isSelected ? UIColor.Background.primaryBlue : UIColor.clear, borderWidth: 5)
+        }
     }
     
     private func setTextWithShadow(text: String) {
@@ -116,5 +120,14 @@ extension CategoryCell {
         var title: String
         var imageUrl: URL?
         var tapActionHandler: CompletionHandler?
+        let isSelected: Bool
+        
+        init(id: String, title: String, imageUrl: URL? = nil, isSelected: Bool, tapActionHandler: CompletionHandler? = nil) {
+            self.id = id
+            self.title = title
+            self.imageUrl = imageUrl
+            self.tapActionHandler = tapActionHandler
+            self.isSelected = isSelected
+        }
     }
 }

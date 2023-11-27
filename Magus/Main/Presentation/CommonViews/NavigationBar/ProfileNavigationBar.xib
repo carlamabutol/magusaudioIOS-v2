@@ -35,9 +35,6 @@
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOd-0U-qJy">
                             <rect key="frame" x="308" y="0.0" width="45" height="60"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="45" id="Kuu-bg-gSj"/>
-                            </constraints>
                             <color key="tintColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal">
