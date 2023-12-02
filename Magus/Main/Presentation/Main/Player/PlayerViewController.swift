@@ -145,7 +145,7 @@ class PlayerViewController: BlurCommonViewController {
             self?.coverImageView.image = image
             self?.coverImageView.contentMode = .scaleAspectFill
         }
-        updateFavorite(isLiked: subliminal.isLiked == 0)
+        updateFavorite(isLiked: subliminal.isLiked == 1)
         setupTracksVolumeViews(tracks: subliminal.info)
     }
     
@@ -276,7 +276,7 @@ class PlayerViewController: BlurCommonViewController {
         navController.navigationBar.isHidden = true
         presentModally(navController, animated: true)
         viewController.loadViewIfNeeded()
-        viewController.configure(subliminal: subliminal) {
+        viewController.configure(subliminal: subliminal, playlistId: subliminal.playlistId) {
             self.toggleBlurEffect(isHidden: true)
         }
         toggleBlurEffect(isHidden: false)

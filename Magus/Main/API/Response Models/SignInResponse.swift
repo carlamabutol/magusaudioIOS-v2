@@ -21,3 +21,8 @@ struct SignInResponse: EndpointResponse {
 struct SignInErrorResponse: Decodable {
     let message: String
 }
+
+
+extension String: EndpointResponse {
+    typealias ErrorResponse = SignInErrorResponse
+}

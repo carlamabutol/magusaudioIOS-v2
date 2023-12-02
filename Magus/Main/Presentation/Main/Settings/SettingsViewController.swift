@@ -101,20 +101,14 @@ class SettingsViewController: CommonViewController {
         termsButton.rx.tap
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { [weak self] _ in
-                self?.goToCompanyDocument(
-                    title: LocalisedStrings.Company.termsAndConditions,
-                    desc: LocalisedStrings.LoremIpsum.desc2
-                )
+                self?.goToCompanyDocument(docutype: .terms)
             }
             .disposed(by: disposeBag)
         
         privacyButton.rx.tap
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { [weak self] _ in
-                self?.goToCompanyDocument(
-                    title: LocalisedStrings.Company.privacyAndPolicy,
-                    desc: LocalisedStrings.LoremIpsum.desc2
-                )
+                self?.goToCompanyDocument(docutype: .privacy)
             }
             .disposed(by: disposeBag)
         
@@ -135,10 +129,10 @@ class SettingsViewController: CommonViewController {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    private func goToCompanyDocument(title: String, desc: String) {
+    private func goToCompanyDocument(docutype: CompanyDocumentViewModel.DocuType) {
         let viewController = CompanyDocumentViewController.instantiate(from: .companyDocument) as! CompanyDocumentViewController
         viewController.loadViewIfNeeded()
-        viewController.configure(title: title, desc: desc)
+        viewController.configure(docutype: docutype)
         navigationController?.pushViewController(viewController, animated: true)
     }
     

@@ -70,7 +70,6 @@ class AddToPlaylistViewModel: ViewModel {
     
     private func constructDataSource(playlist: [Playlist]) -> [Section] {
         let cellModels = playlist
-            .filter({ $0.isOwnPlaylist == 1 })
             .map { [weak self] playlist in
                 let subtitle = "\(playlist.subliminals.count) Subliminals"
                 return AddToPlaylistCell.Model(imageUrl: URL(string: playlist.cover), title: playlist.title, subtitle: subtitle, tapHandler: {

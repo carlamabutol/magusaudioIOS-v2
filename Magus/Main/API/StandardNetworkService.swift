@@ -14,14 +14,14 @@ class StandardNetworkService {
     private let credentialsService: AuthenticationService
     private let requestManager: Session
     private let getUserID: () -> String?
-    private let getMoodId: () -> String?
+    private let getMoodId: () -> Int?
     private let getSubscriptionID: () -> Int
     private static let validStatusCodes: [Int] = (200 ..< 300) + [422]
     
     init(baseURL: URL,
          credentialsService: AuthenticationService,
          getUserID: @escaping () -> String?,
-         getMoodId: @escaping () -> String?,
+         getMoodId: @escaping () -> Int?,
          getSubscriptionID: @escaping () -> Int) {
         self.baseURL = baseURL
         self.credentialsService = credentialsService
@@ -174,7 +174,7 @@ extension StandardNetworkService: NetworkService {
         ]
         
         if let moodId = getMoodId() {
-            parameters["mood_id"] = moodId
+            parameters["mood_id"] = String(describing: moodId)
         }
         
         if let userID = getUserID() {
@@ -527,5 +527,35 @@ extension StandardNetworkService: NetworkService {
             .serializingDecodable(JSONAPIArrayResponse<SearchPlaylistResponse>.self)
         
         return try await task.value
+    }
+    
+    // MARK: SETTINGS
+    
+    func getTermsAndCondition() async throws -> JSONAPIDictionaryResponse<String> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("magus")
+            .appendingPathComponent("terms")
+        
+        let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIDictionaryResponse<String>.self)
+        
+        return try await task.value
+        
+    }
+    
+    func getPrivacy() async throws -> JSONAPIDictionaryResponse<String> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("magus")
+            .appendingPathComponent("privacy")
+        
+        let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIDictionaryResponse<String>.self)
+        
+        return try await task.value
+        
     }
 }

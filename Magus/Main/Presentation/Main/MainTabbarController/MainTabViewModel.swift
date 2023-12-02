@@ -16,7 +16,6 @@ class MainTabViewModel: ViewModel {
     var subliminals: [Subliminal] = []
     private var store: Store
     private let selectedSubRelay = BehaviorRelay<Subliminal?>(value: nil)
-//    var selectedSubliminalObservable: Observable<Subliminal> { selectedSubRelay.compactMap{ $0 }.asObservable() }
     var user: () -> User?
     private let subliminalUseCase: SubliminalUseCase
     private let subliminalAudios = PublishRelay<[String]>()
@@ -30,14 +29,6 @@ class MainTabViewModel: ViewModel {
         user = sharedDependencies.user
         subliminalUseCase = sharedDependencies.subliminalUseCase
         selectedSubliminalObservable = sharedDependencies.selectedSubliminal
-        super.init()
-        
-//        selectedSubliminalObservable
-//            .subscribe { subliminal in
-//                AudioPlayerManager.shared.createArrayAudioPlayer(with: subliminal)
-//            }
-//            .disposed(by: disposeBag)
-        
     }
     
     func profileImage() -> URL? {

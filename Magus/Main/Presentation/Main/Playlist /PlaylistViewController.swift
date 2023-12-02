@@ -149,6 +149,7 @@ class PlaylistViewController: BlurCommonViewController {
             .map { !$0.isEmpty }
             .subscribe { [weak self] isHidden in
                 self?.emptyView.isHidden = isHidden
+                self?.controlButton.isHidden = !isHidden
             }
             .disposed(by: disposeBag)
         

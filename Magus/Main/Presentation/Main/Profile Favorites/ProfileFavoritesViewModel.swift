@@ -20,12 +20,14 @@ class ProfileFavoritesViewModel: ViewModel {
     private let playlistRelay = BehaviorRelay<[Playlist]>(value: [])
     private let firstSubliminalRelay = PublishRelay<Subliminal>()
     private let selectedPlaylistRelay = PublishRelay<Playlist>()
+    private let selectedOptionRelay = PublishRelay<Subliminal>()
     private let subliminalCellModelRelay = BehaviorRelay<[FavoriteSubliminalCollectionViewCell.SubliminalCellModel]>(value: [])
     var subliminalsObservable: Observable<[FavoriteSubliminalCollectionViewCell.SubliminalCellModel]> { subliminalCellModelRelay.asObservable() }
     private let playlistCellModelRelay = BehaviorRelay<[FavoritePlaylistCell.Model]>(value: [])
     var playlistObservable: Observable<[FavoritePlaylistCell.Model]> { playlistCellModelRelay.asObservable() }
     var firstSubliminalObservable: Observable<Subliminal> { firstSubliminalRelay.asObservable() }
     var selectedPlaylistObservable: Observable<Playlist> { selectedPlaylistRelay.asObservable() }
+    var selectedOptionObservable: Observable<Subliminal> { selectedOptionRelay.asObservable() }
     
     let tabSelectionModel = [
         TabSelectionView.TabSelectionModel(index: 0, title: "Subs"),
@@ -37,6 +39,14 @@ class ProfileFavoritesViewModel: ViewModel {
         subliminalUseCase = dependencies.subliminalUseCase
         playlistUseCase = dependencies.playlistUseCase
         super.init()
+        
+        // Needed to add a listener from the selectedSubliminal so we can update the status on the subliminal list
+        dependencies.subminalObservable
+            .distinctUntilChanged()
+            .subscribe { [weak self] subliminal in
+                self?.updatedSubliminalRelay.accept(subliminal)
+            }
+            .disposed(by: disposeBag)
         
         updatedSubliminalRelay.asObservable()
             .compactMap { [weak self] updatedSubliminal in
@@ -106,8 +116,10 @@ class ProfileFavoritesViewModel: ViewModel {
                 isFavorite: subliminal.isLiked == 1,
                 favoriteButtonHandler: { [weak self] in
                     self?.favoriteButtonIsTapped(subliminal)
-                }
-            )
+                },
+                optionActionHandler: { [weak self] in
+                    self?.selectedOptionRelay.accept(subliminal)
+                })
         }
     }
     
@@ -131,6 +143,7 @@ class ProfileFavoritesViewModel: ViewModel {
         var updatedSubliminal = subliminal
         updatedSubliminal.isLiked = subliminal.isLiked == 0 ? 1 : 0
         updatedSubliminalRelay.accept(updatedSubliminal)
+        store.appState.selectedSubliminal = updatedSubliminal
         updateFavorite(updatedSubliminal)
     }
     
@@ -170,11 +183,11 @@ class ProfileFavoritesViewModel: ViewModel {
         Task {
             do {
                 if selectedSubliminal.isLiked == 0 {
-                    let _ = try await subliminalUseCase.addToFavorite(id: selectedSubliminal.subliminalID)
-                    Logger.info("Successfully added to favorite", topic: .presentation)
-                } else {
                     let _ = try await subliminalUseCase.deleteToFavorite(id: selectedSubliminal.subliminalID)
                     Logger.info("Successfully removed from favorite", topic: .presentation)
+                } else {
+                    let _ = try await subliminalUseCase.addToFavorite(id: selectedSubliminal.subliminalID)
+                    Logger.info("Successfully added to favorite", topic: .presentation)
                 }
             } catch {
                 Logger.info("Failed to update favorite \(error)", topic: .presentation)
@@ -228,12 +241,14 @@ extension ProfileFavoritesViewModel {
         let store: Store
         let subliminalUseCase: SubliminalUseCase
         let playlistUseCase: PlaylistUseCase
+        let subminalObservable: Observable<Subliminal>
         
         static var standard: Dependencies {
             return .init(
                 store: SharedDependencies.sharedDependencies.store,
                 subliminalUseCase: SharedDependencies.sharedDependencies.useCases.subliminalUseCase,
-                playlistUseCase: SharedDependencies.sharedDependencies.useCases.playlistUseCase
+                playlistUseCase: SharedDependencies.sharedDependencies.useCases.playlistUseCase,
+                subminalObservable: SharedDependencies.sharedDependencies.store.observable(of: \.selectedSubliminal).compactMap({ $0 })
             )
         }
     }
