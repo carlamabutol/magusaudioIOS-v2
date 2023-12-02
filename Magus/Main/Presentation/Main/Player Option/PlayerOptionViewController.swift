@@ -160,7 +160,9 @@ class PlayerOptionViewController: CommonViewController {
     }
     
     private func goToAddToPlaylist() {
-        let vc = AddToPlaylistViewController.instantiate(from: .addToPlaylist)
+        guard let subliminal = viewModel.subliminal else { return }
+        let vc = AddToPlaylistViewController.instantiate(from: .addToPlaylist) as! AddToPlaylistViewController
+        vc.configure(subliminal: subliminal, playlistId: viewModel.playlistId)
         navigationController?.pushViewController(vc, animated: true)
     }
     

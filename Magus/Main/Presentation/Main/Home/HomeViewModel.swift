@@ -54,26 +54,26 @@ class HomeViewModel: ViewModel {
         
         let categorySection = Observable.combineLatest(categoryRelay, sharedDependencies.selectedCategoryObservable)
             .map { [weak self] categories, _ -> [SectionViewModel] in
-                guard let self = self else { return [] }
+                guard let self = self, let selectedCategoryId = self.selectedCategoryId else { return [] }
                 
                 let cellModels = self.constructCategoryCell(categories: categories)
                 if cellModels.isEmpty {
                     return []
                 }
                 return [
-                    self.constructSection(headerTitle: LocalisedStrings.HomeHeaderTitle.category, cellModels: cellModels, footerType: .category())
+                    self.constructSection(headerTitle: LocalisedStrings.HomeHeaderTitle.category, cellModels: cellModels, footerType: .recommendations(categoryId: selectedCategoryId))
                 ]
             }
         
         let recommendationSection = recommendations
             .map { [weak self] model -> [SectionViewModel] in
-                guard let self = self else { return [] }
+                guard let self = self, let selectedCategoryId = self.selectedCategoryId else { return [] }
                 let subliminalCellModels = model?.subliminal.compactMap { self.constructSubliminalCell(with: $0, type: .recommendations()) } ?? []
                 if subliminalCellModels.isEmpty {
                     return []
                 }
                 return [
-                    self.constructSection(headerTitle: LocalisedStrings.HomeHeaderTitle.recommendations, cellModels: subliminalCellModels, footerType: .recommendations())
+                    self.constructSection(headerTitle: LocalisedStrings.HomeHeaderTitle.recommendations, cellModels: subliminalCellModels, footerType: .recommendations(categoryId: selectedCategoryId))
                 ]
             }
         

@@ -159,10 +159,13 @@ class AudioPlayerViewModel: ViewModel {
     
     func updateFavorite() {
         guard let selectedSubliminal = selectedSubliminal else { return }
+        var subliminal = selectedSubliminal
+        subliminal.isLiked = subliminal.isLiked == 0 ? 1 : 0
+        selectedSubliminalRelay.accept(subliminal)
+        self.selectedSubliminal = subliminal
+        self.store.appState.selectedSubliminal = subliminal
         Task {
             do {
-                var subliminal = selectedSubliminal
-                subliminal.isLiked = subliminal.isLiked == 0 ? 1 : 0
                 if selectedSubliminal.isLiked == 0 {
                     let _ = try await subliminalUseCase.addToFavorite(id: selectedSubliminal.subliminalID)
                     Logger.info("Successfully added to favorite", topic: .presentation)
@@ -170,9 +173,6 @@ class AudioPlayerViewModel: ViewModel {
                     let _ = try await subliminalUseCase.deleteToFavorite(id: selectedSubliminal.subliminalID)
                     Logger.info("Successfully removed from favorite", topic: .presentation)
                 }
-                self.selectedSubliminal = subliminal
-                self.selectedSubliminalRelay.accept(subliminal)
-                self.store.appState.selectedSubliminal = subliminal
             } catch {
                 Logger.info("Failed to update favorite \(error)", topic: .presentation)
             }

@@ -91,6 +91,7 @@
 		7474B31C2A49BD5D00086600 /* HomeCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7474B31B2A49BD5D00086600 /* HomeCustomCell.swift */; };
 		7477DD9B2AE6B57A006CD07A /* SwiftAudioEx in Frameworks */ = {isa = PBXBuildFile; productRef = 7477DD9A2AE6B57A006CD07A /* SwiftAudioEx */; };
 		7477E46E2AC5DF7B00CE5979 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7477E46D2AC5DF7B00CE5979 /* UILabel+Extension.swift */; };
+		747A75EA2B1B45E000ECC483 /* CompanyDocumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747A75E92B1B45E000ECC483 /* CompanyDocumentViewModel.swift */; };
 		747C4EB42B00E83D00D10D1F /* AVPlayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C4EB32B00E83D00D10D1F /* AVPlayer+Extension.swift */; };
 		7480EDFA2A7CF01B000206B1 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7480EDF92A7CF01B000206B1 /* Calendar.storyboard */; };
 		7480EDFC2A7CF02E000206B1 /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7480EDFB2A7CF02E000206B1 /* MonthlyView.swift */; };
@@ -413,6 +414,7 @@
 		7474B3192A49B7BE00086600 /* HeaderTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTitleView.swift; sourceTree = "<group>"; };
 		7474B31B2A49BD5D00086600 /* HomeCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCustomCell.swift; sourceTree = "<group>"; };
 		7477E46D2AC5DF7B00CE5979 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		747A75E92B1B45E000ECC483 /* CompanyDocumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDocumentViewModel.swift; sourceTree = "<group>"; };
 		747C4EB32B00E83D00D10D1F /* AVPlayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Extension.swift"; sourceTree = "<group>"; };
 		7480EDF92A7CF01B000206B1 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		7480EDFB2A7CF02E000206B1 /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
@@ -1068,6 +1070,7 @@
 			children = (
 				74910DF52AD8261600F2D909 /* CompanyDocument.storyboard */,
 				74910DF72AD8262200F2D909 /* CompanyDocumentViewController.swift */,
+				747A75E92B1B45E000ECC483 /* CompanyDocumentViewModel.swift */,
 			);
 			path = "T & C and Privacy Policy";
 			sourceTree = "<group>";
@@ -2058,6 +2061,7 @@
 				74910E042AD82C3D00F2D909 /* CollapsibleTextView.swift in Sources */,
 				F82552102A17940400ACD902 /* ReusableXibView.swift in Sources */,
 				F848EF082A0BC9EC0097F104 /* CommonViewController.swift in Sources */,
+				747A75EA2B1B45E000ECC483 /* CompanyDocumentViewModel.swift in Sources */,
 				F81A48182A17736200D72E73 /* TextFieldView.swift in Sources */,
 				7437A0BF2AA7483300DEA0D1 /* String+extensions.swift in Sources */,
 				7490E44F2A40A0DF00463582 /* HomeViewController.swift in Sources */,

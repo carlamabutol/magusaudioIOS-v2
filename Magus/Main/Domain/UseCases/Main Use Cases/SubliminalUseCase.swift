@@ -59,6 +59,7 @@ final class SubliminalUseCase {
     func addToFavorite(id: String) async throws -> EmptyResponse {
         do {
             let response = try await networkService.updateFavorite(id: id, api: .subliminal, isLiked: true)
+            store.appState.selectedSubliminal?.isLiked = 1
             return response
         } catch {
             throw error
@@ -68,6 +69,7 @@ final class SubliminalUseCase {
     func deleteToFavorite(id: String) async throws -> EmptyResponse {
         do {
             let response = try await networkService.updateFavorite(id: id, api: .subliminal, isLiked: false)
+            store.appState.selectedSubliminal?.isLiked = 0
             return response
         } catch {
             throw error

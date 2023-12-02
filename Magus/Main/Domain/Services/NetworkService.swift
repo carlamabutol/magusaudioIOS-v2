@@ -40,6 +40,10 @@ protocol NetworkService {
     // MARK: ADD SUBLIMINAL TO PLAYLIST
     func addSubliminalToPlaylist(playlistId: String, subliminalId: String) async throws -> JSONAPIArrayResponse<SearchPlaylistResponse>
     func deleteSubliminalToPlaylist(playlistId: String, subliminalId: String) async throws -> JSONAPIArrayResponse<SearchPlaylistResponse>
+    
+    // MARK: SETTINGS
+    func getTermsAndCondition() async throws -> JSONAPIDictionaryResponse<String>
+    func getPrivacy() async throws -> JSONAPIDictionaryResponse<String>
 }
 
 enum FavoriteAPI: String{

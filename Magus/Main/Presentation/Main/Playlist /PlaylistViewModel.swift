@@ -85,6 +85,7 @@ class PlaylistViewModel: ViewModel {
     private func favoriteButtonIsTapped(_ subliminal: Subliminal) {
         var updatedSubliminal = subliminal
         updatedSubliminal.isLiked = subliminal.isLiked == 0 ? 1 : 0
+        store.appState.selectedSubliminal = updatedSubliminal
         updatedSubliminalRelay.accept(updatedSubliminal)
     }
     

@@ -6,8 +6,18 @@
 //
 
 import UIKit
+import WebKit
+import RxSwift
 
 class CompanyDocumentViewController: CommonViewController {
+    
+    private let viewModel = CompanyDocumentViewModel()
+    
+    @IBOutlet var titleLabel: UILabel! {
+        didSet {
+            titleLabel.font = .Montserrat.title1
+        }
+    }
     
     @IBOutlet var navigationBar: ProfileNavigationBar! {
         didSet {
@@ -20,22 +30,26 @@ class CompanyDocumentViewController: CommonViewController {
         }
     }
     
-    @IBOutlet var titleLabel: UILabel! {
+    @IBOutlet var webView: WKWebView! {
         didSet {
-            titleLabel.font = .Montserrat.title1
+            webView.backgroundColor = .clear
+            webView.isOpaque = false
         }
     }
     
-    @IBOutlet var descriptionLabel: UILabel! {
-        didSet {
-            descriptionLabel.font = .Montserrat.body3
-            descriptionLabel.numberOfLines = 0
-        }
+    func configure(docutype: CompanyDocumentViewModel.DocuType) {
+        viewModel.getDocument(type: docutype)
+        titleLabel.text = docutype.rawValue
     }
     
-    func configure(title: String, desc: String) {
-        titleLabel.text = title
-        descriptionLabel.text = desc
+    override func setupBinding() {
+        super.setupBinding()
+        viewModel.documentObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] document  in
+                self?.webView.loadHTMLString(document, baseURL: nil)
+            }
+            .disposed(by: disposeBag)
     }
     
 }

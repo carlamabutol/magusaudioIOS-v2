@@ -72,7 +72,7 @@ class SeeAllViewModel: ViewModel {
     private func getRecommendations(categoriyId: Int?) {
         Task {
             do {
-                let response = try await categoryUseCase.searchRecommended(categoryId: nil, moodId: currentMood())
+                let response = try await categoryUseCase.searchRecommended(categoryId: categoriyId, moodId: currentMood())
                 recommendations.accept(response)
                 configureSectionRecommendations(subliminalsAndPlaylist: response)
             } catch {
@@ -183,8 +183,8 @@ extension SeeAllViewModel {
     enum ModelType {
         case featuredSubliminal
         case featuredPlaylist
-        case recommendations(categoriyId: Int? = nil)
-        case category(categoriyId: Int? = nil)
+        case recommendations(categoryId: Int? = nil)
+        case category(categoryId: Int? = nil)
         
         var title: String {
             switch self {

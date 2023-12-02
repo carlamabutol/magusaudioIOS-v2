@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxRelay
 
-class ProfileFavoritesViewController: CommonViewController {
+class ProfileFavoritesViewController: BlurCommonViewController {
     
     private let viewModel = ProfileFavoritesViewModel()
     @IBOutlet var backButton: UIButton!
@@ -77,6 +77,13 @@ class ProfileFavoritesViewController: CommonViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.selectedOptionObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe (onNext: { [weak self] subliminal in
+                self?.goToOptions(subliminal: subliminal)
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     private func configure(subliminal: Subliminal) {
@@ -104,6 +111,18 @@ class ProfileFavoritesViewController: CommonViewController {
         let playlistVC = PlaylistViewController.instantiate(from: .playlist) as! PlaylistViewController
         navigationController?.pushViewController(playlistVC, animated: true)
         playlistVC.setPlaylist(playlist: playlist)
+    }
+    
+    private func goToOptions(subliminal: Subliminal) {
+        let viewController = PlayerOptionViewController.instantiate(from: .playerOption) as! PlayerOptionViewController
+        let navController = UINavigationController(rootViewController: viewController)
+        navController.navigationBar.isHidden = true
+        viewController.loadViewIfNeeded()
+        viewController.configure(subliminal: subliminal, playlistId: subliminal.playlistId) {
+            self.toggleBlurEffect(isHidden: true)
+        }
+        toggleBlurEffect(isHidden: false)
+        tabBarController?.presentModally(navController, animated: true)
     }
 }
 

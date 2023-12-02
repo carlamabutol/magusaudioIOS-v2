@@ -45,16 +45,19 @@ class FavoriteSubliminalCollectionViewCell: UICollectionViewCell {
             optionButton.setImage(UIImage(named: .option).withRenderingMode(.alwaysTemplate), for: .normal)
             optionButton.imageView?.contentMode = .scaleAspectFit
             optionButton.tintColor = .black
+            optionButton.addTarget(self, action: #selector(optionButtonIsTapped), for: .touchUpInside)
         }
     }
     
     var favoriteButtonHandler: CompletionHandler?
+    var optionButtonHandler: CompletionHandler?
     
     func configure(item: FavoriteSubliminalCollectionViewCell.SubliminalCellModel) {
         coverImageView.sd_setImage(with: item.imageUrl)
         titleLabel.text = item.title
         durationLabel.text = item.duration
         favoriteButtonHandler = item.favoriteButtonHandler
+        optionButtonHandler = item.optionActionHandler
         configureFavoriteButton(isFavorite: item.isFavorite)
     }
     
@@ -67,6 +70,10 @@ class FavoriteSubliminalCollectionViewCell: UICollectionViewCell {
     
     @objc private func favoriteButtonIsTapped() {
         favoriteButtonHandler?()
+    }
+    
+    @objc private func optionButtonIsTapped() {
+        optionButtonHandler?()
     }
 }
 
