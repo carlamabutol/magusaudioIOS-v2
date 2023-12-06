@@ -7,44 +7,47 @@
 
 import Foundation
 import RxSwift
+import RxRelay
 
 class ProfileMoodViewModel: ViewModel {
     
-    
-    
-    let weeklyData: [WeeklyData] = [
-        .init(day: "20", dayString: "Sun"),
-        .init(day: "19", dayString: "Sat"),
-        .init(day: "18", dayString: "Fri"),
-        .init(day: "17", dayString: "Thu"),
-        .init(day: "16", dayString: "Wed"),
-        .init(day: "15", dayString: "Tue"),
-        .init(day: "14", dayString: "Mon"),
-    ]
-    
+    private let dateTodayRelay = PublishRelay<Date>()
+    private let weeklyDataRelay = PublishRelay<[WeeklyData]>()
+    var weeklyDataObservable: Observable<[WeeklyData]> { weeklyDataRelay.asObservable()}
     private let networkService: NetworkService
     private let getUserID: () -> String?
+    private let moodUseCase: MoodUseCase
+    let calendar = Calendar.current
+    var now: Date {
+        get {
+            return Date()
+        }
+    }
     
     init(dependency: ProfileMoodViewModel.Dependencies = .standard) {
         networkService = dependency.networkService
         getUserID = dependency.getUserID
+        moodUseCase = dependency.moodUseCase
         super.init()
         getAllMoods()
     }
     
+    private func getWeeklyDates() {
+        let startOfCurrentWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now))!x`
+        let endOfCurrentWeek = calendar.date(byAdding: .day, value: 6, to: startOfCurrentWeek)!
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+    }
+    
     func getAllMoods() {
-        guard let userId = getUserID() else { return }
         Task {
             do {
-                let response = try await networkService.getMoodCalendar(userId: userId)
-                switch response {
-                case .success(let array):
-                    Logger.info("Moods - \(array)", topic: .presentation)
-                case .error(let errorResponse):
-                    Logger.info("Moods ErrorResponse - \(errorResponse)", topic: .presentation)
-                }
+                let calendarResponse = try await moodUseCase.getMoodCalendar()
+                let weeklyMoods = calendarResponse.weekly.map { WeeklyData(day: $0.day, dayString: $0.date, mood: $0.mood)}
+                weeklyDataRelay.accept(weeklyMoods)
             } catch {
-                Logger.error("Moods ErrorResponse - \(error.localizedDescription)", topic: .presentation)
+                Logger.error("Calendar ErrorResponse - \(error.localizedDescription)", topic: .presentation)
             }
         }
         
@@ -58,6 +61,7 @@ extension ProfileMoodViewModel {
         let store: Store
         let router: Router
         let networkService: NetworkService
+        let moodUseCase: MoodUseCase
         let getUserID: () -> String?
         
         static var standard: Dependencies {
@@ -65,6 +69,7 @@ extension ProfileMoodViewModel {
                 store: SharedDependencies.sharedDependencies.store,
                 router: SharedDependencies.sharedDependencies.router,
                 networkService: SharedDependencies.sharedDependencies.networkService,
+                moodUseCase: SharedDependencies.sharedDependencies.useCases.moodUseCase,
                 getUserID: { SharedDependencies.sharedDependencies.store.appState.userId }
             )
         }

@@ -226,9 +226,9 @@ class HomeViewModel: ViewModel {
         ) { [weak self] in
             switch type {
             case .featuredSubliminal:
-                self?.store.appState.subliminals = self?.featuredRelay.value?.subliminal ?? []
+                self?.store.appState.subliminalQueue = self?.featuredRelay.value?.subliminal ?? []
             case .recommendations:
-                self?.store.appState.subliminals = self?.recommendations.value?.subliminal ?? []
+                self?.store.appState.subliminalQueue = self?.recommendations.value?.subliminal ?? []
             default:
                 break
             }

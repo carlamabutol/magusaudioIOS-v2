@@ -63,6 +63,7 @@ enum StoryboardString: String {
     case subliminalGuide = "SubliminalGuide"
     case companyDocument = "CompanyDocument"
     case faqs = "FAQs"
+    case contactUs = "ContactUs"
     
 }
 

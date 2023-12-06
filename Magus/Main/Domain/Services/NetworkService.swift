@@ -14,7 +14,7 @@ protocol NetworkService {
     
     // MARK: MOODS
     func getAllMoods() async throws -> JSONAPIArrayResponse<MoodResponse>
-    func getMoodCalendar(userId: String) async throws -> JSONAPIArrayResponse<MoodCalendarResponse>
+    func getMoodCalendar() async throws -> JSONAPIDictionaryResponse<MoodCalendarResponse>
     func getCurrentMood() async throws -> JSONAPIArrayResponse<CurrentMoodResponse>
     func updateSelectedMoods(moodId: Int) async throws -> EmptyResponse
     
@@ -44,6 +44,9 @@ protocol NetworkService {
     // MARK: SETTINGS
     func getTermsAndCondition() async throws -> JSONAPIDictionaryResponse<String>
     func getPrivacy() async throws -> JSONAPIDictionaryResponse<String>
+    func getFAQs(search: String) async throws -> JSONAPIArrayResponse<FAQsResponse>
+    func getGuides() async throws -> JSONAPIArrayResponse<GuideResponse>
+    func getIPO() async throws -> JSONAPIArrayResponse<IPOResponse>
 }
 
 enum FavoriteAPI: String{

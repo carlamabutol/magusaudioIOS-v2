@@ -12,10 +12,19 @@ import RxDataSources
 class PlaylistViewController: BlurCommonViewController {
     private let playerViewModel = AudioPlayerViewModel.shared
     
-    @IBOutlet var gradientView: UIView! {
+    @IBOutlet var gradientView: UIView!
+    
+    @IBOutlet var addSubButton: UIButton! {
         didSet {
+            let image = UIImage(named: .addIcon)
+            let newImage = image?.resizeImage(targetHeight: 22)
+            addSubButton.setTitle("", for: .normal)
+            addSubButton.setImage(newImage?.withRenderingMode(.alwaysTemplate), for: .normal)
+            addSubButton.imageView?.contentMode = .scaleAspectFit
+            addSubButton.tintColor = .black
         }
     }
+    
     @IBOutlet var favoriteButton: UIButton! {
         didSet {
             favoriteButton.setTitle("", for: .normal)
@@ -28,6 +37,12 @@ class PlaylistViewController: BlurCommonViewController {
         }
     }
     
+    @IBOutlet var repeatButton: UIButton! {
+        didSet {
+            repeatButton.setTitle("", for: .normal)
+            repeatButton.setImage(UIImage(named: .repeatOnce).withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+    }
     private let viewModel: PlaylistViewModel = PlaylistViewModel()
     
     lazy var collapsedPlayerView: CollapsedPlayerView = {
@@ -149,8 +164,15 @@ class PlaylistViewController: BlurCommonViewController {
             .map { !$0.isEmpty }
             .subscribe { [weak self] isHidden in
                 self?.emptyView.isHidden = isHidden
-                self?.controlButton.isHidden = !isHidden
             }
+            .disposed(by: disposeBag)
+        
+        viewModel.subliminalCellModelObservable
+            .map { $0.isEmpty }
+            .bind(to: repeatButton.rx.isHidden,
+                  addSubButton.rx.isHidden,
+                  controlButton.rx.isHidden
+            )
             .disposed(by: disposeBag)
         
         emptyView.addButton.rx.tap

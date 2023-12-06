@@ -97,7 +97,7 @@ class ProfileFavoritesViewModel: ViewModel {
     
     func selectedSubliminal(_ indexPath: IndexPath) {
         let subliminal = subliminalsRelay.value[indexPath.row]
-        store.appState.subliminals = subliminalsRelay.value
+        store.appState.subliminalQueue = subliminalsRelay.value
         store.appState.selectedSubliminal = subliminal
     }
     

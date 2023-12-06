@@ -60,6 +60,7 @@ class CustomAudioPlayer {
         let asset = AVAsset(url: url)
         let playerItem: AVPlayerItem = AVPlayerItem(asset: asset)
         avPlayer = AVPlayer(playerItem: playerItem)
+        avPlayer?.automaticallyWaitsToMinimizeStalling = false
         repeatAllAudioPlayers()
         addTimeObserver() 
         // Register as an observer of the player item's status property

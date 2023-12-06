@@ -112,6 +112,14 @@ class SettingsViewController: CommonViewController {
             }
             .disposed(by: disposeBag)
         
+        contactUsButton.rx.tap
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.goToContactUs()
+            }
+            .disposed(by: disposeBag)
+        
+        
     }
     
     private func goToHowItWorks() {
@@ -133,6 +141,11 @@ class SettingsViewController: CommonViewController {
         let viewController = CompanyDocumentViewController.instantiate(from: .companyDocument) as! CompanyDocumentViewController
         viewController.loadViewIfNeeded()
         viewController.configure(docutype: docutype)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    private func goToContactUs() {
+        let viewController = ContactUsViewController.instantiate(from: .contactUs)
         navigationController?.pushViewController(viewController, animated: true)
     }
     

@@ -15,6 +15,7 @@ class UseCases {
     let playlistUseCase: PlaylistUseCase
     let categoryUseCase: CategoryUseCase
     let moodUseCase: MoodUseCase
+    let settingsUseCase: SettingsUseCase
     
     init(store: Store, networkService: NetworkService, credentialsService: AuthenticationService, router: Router) {
         
@@ -49,6 +50,12 @@ class UseCases {
         )
         
         moodUseCase = MoodUseCase(
+            store: store,
+            networkService: networkService,
+            credentialsService: credentialsService
+        )
+        
+        settingsUseCase = SettingsUseCase(
             store: store,
             networkService: networkService,
             credentialsService: credentialsService

@@ -12,7 +12,6 @@ struct AppState: Codable, Equatable {
     var user: User?
     var selectedMood: Mood?
     var selectedCategory: Category?
-    var subliminals: [Subliminal] = []
     var selectedSubliminal: Subliminal?
     var allMoods: [Mood] = []
     
@@ -20,8 +19,12 @@ struct AppState: Codable, Equatable {
         return user?.userID
     }
     
+    var playlistQueue: [Subliminal] = []
+    var subliminalQueue: [Subliminal] = []
+    var addedQueue: [Subliminal] = []
+    
     var playerState: PlayerState = .isPaused
-    var isRepeatAll: Bool = false
+    var playerRepeatAll: Bool = false
  
     enum PlayerState: Int, Codable, Hashable, Equatable {
         case isPlaying

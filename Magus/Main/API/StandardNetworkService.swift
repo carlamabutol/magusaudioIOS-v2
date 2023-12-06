@@ -50,6 +50,7 @@ class StandardNetworkService {
 
 extension StandardNetworkService: NetworkService {
     
+    
     func signIn(email: String, password: String) async throws -> JSONAPIDictionaryResponse<SignInResponse> {
         let url = baseURL
             .appendingPathComponent("api")
@@ -141,20 +142,22 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
-    func getMoodCalendar(userId: String) async throws -> JSONAPIArrayResponse<MoodCalendarResponse> {
+    func getMoodCalendar() async throws -> JSONAPIDictionaryResponse<MoodCalendarResponse> {
         let url = baseURL
             .appendingPathComponent("api")
             .appendingPathComponent("user")
             .appendingPathComponent("mood")
             .appendingPathComponent("calendar")
         
-        let parameters: [String: Any] = [
-            "user_id": userId
-        ]
+        var parameters: [String: Any] = [:]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
         
         let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
-            .serializingDecodable(JSONAPIArrayResponse<MoodCalendarResponse>.self)
+            .serializingDecodable(JSONAPIDictionaryResponse<MoodCalendarResponse>.self)
         
         return try await task.value
     }
@@ -557,5 +560,44 @@ extension StandardNetworkService: NetworkService {
         
         return try await task.value
         
+    }
+    
+    func getFAQs(search: String) async throws -> JSONAPIArrayResponse<FAQsResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("magus")
+            .appendingPathComponent("faqs")
+        
+        let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<FAQsResponse>.self)
+        
+        return try await task.value
+    }
+    
+    func getGuides() async throws -> JSONAPIArrayResponse<GuideResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("magus")
+            .appendingPathComponent("guide")
+        
+        let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<GuideResponse>.self)
+        
+        return try await task.value
+    }
+    
+    func getIPO() async throws -> JSONAPIArrayResponse<IPOResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("magus")
+            .appendingPathComponent("ipo")
+        
+        let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIArrayResponse<IPOResponse>.self)
+        
+        return try await task.value
     }
 }

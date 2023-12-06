@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import SDWebImage
 import Hero
+import WebKit
 
 class PlayerViewController: BlurCommonViewController {
     
@@ -138,9 +139,16 @@ class PlayerViewController: BlurCommonViewController {
         }
     }
     
+    @IBOutlet var webView: WKWebView! {
+        didSet {
+            webView.backgroundColor = .clear
+            webView.isOpaque = false
+        }
+    }
+    
     func configure(subliminal: Subliminal) {
         titleLbl.text = subliminal.title
-        descriptionLbl.text = subliminal.guide
+        webView.loadHTMLString(subliminal.guide ?? "", baseURL: nil)
         coverImageView.sd_setImage(with: .init(string: subliminal.cover)) { [weak self] image, error, _, _ in
             self?.coverImageView.image = image
             self?.coverImageView.contentMode = .scaleAspectFill

@@ -10,8 +10,16 @@ import Foundation
 struct MoodCalendarResponse: EndpointResponse {
     typealias ErrorResponse = MoodCalendarErrorResponse
     
+    let monthly, weekly: [MonthlyResponse]
+}
+
+// MARK: - Monthly
+struct MonthlyResponse: EndpointResponse {
+    typealias ErrorResponse = MoodCalendarErrorResponse
     let date: String
-    let moods: String
+    let id: Int?
+    let day: String
+    let mood: [MoodResponse]
 }
 
 struct MoodCalendarErrorResponse: Decodable {

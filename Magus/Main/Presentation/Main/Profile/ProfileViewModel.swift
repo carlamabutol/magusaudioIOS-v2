@@ -10,17 +10,6 @@ import RxSwift
 import RxRelay
 
 class ProfileViewModel: ViewModel {
-    
-    let weeklyData: [WeeklyData] = [
-        .init(day: "20", dayString: "Sun"),
-        .init(day: "19", dayString: "Sat"),
-        .init(day: "18", dayString: "Fri"),
-        .init(day: "17", dayString: "Thu"),
-        .init(day: "16", dayString: "Wed"),
-        .init(day: "15", dayString: "Tue"),
-        .init(day: "14", dayString: "Mon"),
-    ]
-    
     let tabSelections: [TabSelection] = [.mood, .sub, .settings]
     private let moodViewTypeRelay = BehaviorRelay<MoodViewType>(value: .weekly)
     var moodViewTypeObservable: Observable<MoodViewType> { moodViewTypeRelay.asObservable() }
@@ -140,6 +129,7 @@ extension ProfileViewModel {
 struct WeeklyData: Identifiable {
     let day: String
     let dayString: String
+    let mood: Mood?
     
     var id: String {
         return day
