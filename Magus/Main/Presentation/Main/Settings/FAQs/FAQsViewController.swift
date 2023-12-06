@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import RxSwift
 
 class FAQsViewController: CommonViewController {
+    
+    private let viewModel = SettingsViewModel()
+    
     @IBOutlet var navigationBar: ProfileNavigationBar! {
         didSet {
             navigationBar.backgroundColor = .clear
@@ -69,6 +73,17 @@ class FAQsViewController: CommonViewController {
                 )
             )
         }
+    }
+    
+    override func setupBinding() {
+        super.setupBinding()
+        
+        viewModel.guideObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] guides in
+//                self?.createViewControllers(guides: guides)
+            }
+            .disposed(by: disposeBag)
     }
     
 }

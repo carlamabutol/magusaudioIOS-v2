@@ -60,11 +60,7 @@ class Store {
     }
     
     var subliminalsObservable: Observable<[Subliminal]> {
-        return observable(of: \.subliminals)
-    }
-    
-    var isLikedObservable: Observable<Bool> {
-        return observable(of: \.selectedSubliminal?.isLiked).map { $0 == 1 }
+        return observable(of: \.subliminalQueue)
     }
     
 }

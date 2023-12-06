@@ -74,4 +74,17 @@ final class MoodUseCase {
         }
     }
     
+    func getMoodCalendar() async throws -> MoodCalendar {
+        do {
+            let response = try await networkService.getMoodCalendar()
+            switch response {
+            case .success(let calendar):
+                return MoodCalendar(moodCalendar: calendar)
+            case .error(_):
+                throw NetworkServiceError.jsonDecodingError
+            }
+        } catch {
+            throw error
+        }
+    }
 }

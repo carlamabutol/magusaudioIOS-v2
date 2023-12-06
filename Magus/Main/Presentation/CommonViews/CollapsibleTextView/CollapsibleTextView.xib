@@ -13,6 +13,7 @@
                 <outlet property="collapsedView" destination="5jE-eD-tVv" id="gYc-WQ-WZZ"/>
                 <outlet property="descLabel" destination="m5D-ep-RZP" id="SCV-5d-yOp"/>
                 <outlet property="titleLabel" destination="i2Y-0a-DX2" id="gto-qI-mZ6"/>
+                <outlet property="webView" destination="5Xa-M1-aMO" id="udQ-WZ-OFA"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -20,23 +21,23 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="40"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7pm-uO-HUT">
-                    <rect key="frame" x="20" y="20" width="363" height="0.0"/>
+                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7pm-uO-HUT">
+                    <rect key="frame" x="20" y="20" width="363" height="188"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3L4-it-YOp">
-                            <rect key="frame" x="0.0" y="0.0" width="363" height="0.0"/>
+                            <rect key="frame" x="0.0" y="0.0" width="363" height="50"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2Y-0a-DX2">
-                                    <rect key="frame" x="0.0" y="0.0" width="333" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="14.999999999999998" width="333" height="20.333333333333329"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5jE-eD-tVv">
-                                    <rect key="frame" x="333" y="0.0" width="30" height="0.0"/>
+                                    <rect key="frame" x="333" y="0.0" width="30" height="50"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="stB-Na-znw">
-                                            <rect key="frame" x="7.6666666666666856" y="-5" width="15" height="10"/>
+                                            <rect key="frame" x="7.6666666666666856" y="20" width="15" height="10"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="10" id="Rwd-cC-INl"/>
                                                 <constraint firstAttribute="width" constant="15" id="dkh-kv-ZkQ"/>
@@ -56,11 +57,22 @@
                             </subviews>
                         </stackView>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5D-ep-RZP">
-                            <rect key="frame" x="0.0" y="0.0" width="363" height="0.0"/>
+                            <rect key="frame" x="0.0" y="55" width="363" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Xa-M1-aMO">
+                            <rect key="frame" x="0.0" y="60" width="363" height="128"/>
+                            <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="128" id="WAN-HS-ztM"/>
+                            </constraints>
+                            <wkWebViewConfiguration key="configuration">
+                                <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                <wkPreferences key="preferences"/>
+                            </wkWebViewConfiguration>
+                        </wkWebView>
                     </subviews>
                 </stackView>
             </subviews>

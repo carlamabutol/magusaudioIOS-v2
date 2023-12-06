@@ -59,11 +59,14 @@ class WeeklyView: ReusableXibView {
             ])
             weeklyDateStackView.addArrangedSubview(view)
             
+            guard let mood = data.mood else {
+                return
+            }
+            
             let weeklyView = WeeklyDayDetailView(frame: frame)
-            weeklyView.configure(url: nil, mood: "HAPPY", desc: "Lorem Ipsum")
+            weeklyView.configure(url: URL(string: mood.image ?? ""), mood: mood.name, desc: mood.description)
             weeklyInfoStackView.addArrangedSubview(weeklyView)
         }
-        
         
         self.addSubview(lineView)
         NSLayoutConstraint.activate([

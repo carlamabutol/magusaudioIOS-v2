@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Contact Us View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="ContactUsViewController" customModule="Magus" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashSunHeader" translatesAutoresizingMaskIntoConstraints="NO" id="cMN-Wt-cOe">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="153"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="153" id="YOP-gz-3Lw"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mFs-CK-RW9" customClass="ProfileNavigationBar" customModule="Magus" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="59" width="393" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6B1-oQ-OMt"/>
+                                </constraints>
+                            </view>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UOy-WN-oTo">
+                                <rect key="frame" x="0.0" y="109" width="393" height="709"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="mFs-CK-RW9" secondAttribute="trailing" id="6yv-gK-cKU"/>
+                            <constraint firstItem="cMN-Wt-cOe" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="HHx-Lb-feu"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="UOy-WN-oTo" secondAttribute="trailing" id="TNI-Kf-ym7"/>
+                            <constraint firstItem="UOy-WN-oTo" firstAttribute="top" secondItem="mFs-CK-RW9" secondAttribute="bottom" id="Teu-rZ-Sgb"/>
+                            <constraint firstItem="mFs-CK-RW9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="WWD-sf-T4Q"/>
+                            <constraint firstItem="mFs-CK-RW9" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="YIf-BP-1yb"/>
+                            <constraint firstItem="UOy-WN-oTo" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="p7Z-0A-6zn"/>
+                            <constraint firstItem="cMN-Wt-cOe" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="quo-Rm-fgj"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="UOy-WN-oTo" secondAttribute="bottom" id="sJ2-sn-ul7"/>
+                            <constraint firstItem="cMN-Wt-cOe" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="yVV-tt-uel"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="UOy-WN-oTo" id="sw3-Y8-ffW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="23.664122137404579" y="-17.605633802816904"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="SplashSunHeader" width="428" height="153"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

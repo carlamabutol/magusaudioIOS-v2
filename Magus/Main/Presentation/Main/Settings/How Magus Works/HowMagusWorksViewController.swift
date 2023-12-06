@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import RxSwift
 
 class HowMagusWorksViewController: CommonViewController {
+    
+    let viewModel: SettingsViewModel = SettingsViewModel()
     
     @IBOutlet var navigationBar: ProfileNavigationBar! {
         didSet {
@@ -26,11 +29,13 @@ class HowMagusWorksViewController: CommonViewController {
             titleLabel.text = LocalisedStrings.HowMagusWorks.title
         }
     }
+    
     @IBOutlet var pageView: UIView! {
         didSet {
             pageView.backgroundColor = .clear
         }
     }
+    
     var viewControllers: [UIViewController] = []
     var pageViewController: UIPageViewController!
     
@@ -39,13 +44,22 @@ class HowMagusWorksViewController: CommonViewController {
         setupPageController()
     }
     
+    override func setupBinding() {
+        super.setupBinding()
+        
+        viewModel.ipoObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] ipos in
+                self?.createViewControllers(ipos: ipos)
+            }
+            .disposed(by: disposeBag)
+        
+    }
+    
     private func setupPageController() {
         pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         pageViewController.delegate = self
         
-        createViewControllers()
-        
-        pageViewController.setViewControllers([viewControllerAtIndex(0)!], direction: .forward, animated: true, completion: nil)
         pageViewController.dataSource = self
         
         addChild(pageViewController)
@@ -56,12 +70,21 @@ class HowMagusWorksViewController: CommonViewController {
         pageView.gestureRecognizers = pageViewController.gestureRecognizers
     }
     
-    private func createViewControllers() {
-        viewControllers.append(createViewController(with: HowMagusWorksViewModel.first))
-        viewControllers.append(createViewController(with: HowMagusWorksViewModel.second))
+    private func createViewControllers(ipos: [IPO]) {
+        for ipo in ipos {
+            viewControllers.append(createViewController(with: ipo))
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.setViewControllers()
+        }
     }
     
-    func createViewController(with model: HowMagusWorksViewModel.Model) -> HowMagusWorkInfoViewController {
+    private func setViewControllers() {
+        guard let viewController = viewControllerAtIndex(0) else { return }
+        pageViewController.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
+    }
+    
+    func createViewController(with model: IPO) -> HowMagusWorkInfoViewController {
         let viewController = HowMagusWorkInfoViewController.instantiate(from: .howMagusWorksInfo) as! HowMagusWorkInfoViewController
         viewController.loadViewIfNeeded()
         viewController.configure(with: model)
@@ -73,14 +96,14 @@ class HowMagusWorksViewController: CommonViewController {
 // MARK: - Helpers
 extension HowMagusWorksViewController {
     
-    fileprivate func viewControllerAtIndex(_ index: Int) -> UIViewController? {
+    private func viewControllerAtIndex(_ index: Int) -> UIViewController? {
         if viewControllers.count == 0 || index >= viewControllers.count {
             return nil
         }
         return viewControllers[index]
     }
     
-    fileprivate func indexOfViewController(_ viewController: UIViewController) -> Int {
+    private func indexOfViewController(_ viewController: UIViewController) -> Int {
         return viewControllers.firstIndex(of: viewController) ?? NSNotFound
     }
     

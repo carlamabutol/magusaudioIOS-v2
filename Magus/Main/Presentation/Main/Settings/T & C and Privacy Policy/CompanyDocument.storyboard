@@ -30,7 +30,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0rg-Ds-4h9">
-                                <rect key="frame" x="0.0" y="214" width="393" height="604"/>
+                                <rect key="frame" x="20" y="214" width="353" height="604"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -49,7 +49,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="0rg-Ds-4h9" firstAttribute="top" secondItem="OPc-M4-7U9" secondAttribute="bottom" constant="20" id="0Dl-mL-606"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="0rg-Ds-4h9" secondAttribute="trailing" id="3go-hE-LPu"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="0rg-Ds-4h9" secondAttribute="trailing" constant="20" id="3go-hE-LPu"/>
                             <constraint firstItem="NgG-HE-xTF" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="6yY-wP-jma"/>
                             <constraint firstItem="OPc-M4-7U9" firstAttribute="top" secondItem="oVe-9O-kDb" secondAttribute="bottom" constant="20" id="8Fp-pg-Nej"/>
                             <constraint firstItem="NgG-HE-xTF" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="BsZ-Rt-OSy"/>
@@ -59,7 +59,7 @@
                             <constraint firstItem="oVe-9O-kDb" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="StS-KF-q9J"/>
                             <constraint firstItem="OPc-M4-7U9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="cHv-ga-FbB"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="OPc-M4-7U9" secondAttribute="trailing" constant="20" id="e9A-Kl-gvJ"/>
-                            <constraint firstItem="0rg-Ds-4h9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="fsD-Iz-vPW"/>
+                            <constraint firstItem="0rg-Ds-4h9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="fsD-Iz-vPW"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="0rg-Ds-4h9" secondAttribute="bottom" id="ijv-XR-g4x"/>
                         </constraints>
                     </view>

@@ -230,8 +230,8 @@ extension AudioPlayerViewModel {
                 appState: SharedDependencies.sharedDependencies.store.appState,
                 store: SharedDependencies.sharedDependencies.store,
                 playerState: SharedDependencies.sharedDependencies.store.observable(of: \.playerState),
-                isRepeatAll: SharedDependencies.sharedDependencies.store.observable(of: \.isRepeatAll),
-                subliminals: { SharedDependencies.sharedDependencies.store.appState.subliminals }
+                isRepeatAll: SharedDependencies.sharedDependencies.store.observable(of: \.playerRepeatAll),
+                subliminals: { SharedDependencies.sharedDependencies.store.appState.subliminalQueue }
             )
         }
     }

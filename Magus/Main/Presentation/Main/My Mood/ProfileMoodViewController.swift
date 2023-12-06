@@ -31,7 +31,6 @@ class ProfileMoodViewController: CommonViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        weeklyView.configure(profileViewModel.weeklyData)
     }
     
     override func setupBinding() {
@@ -52,6 +51,13 @@ class ProfileMoodViewController: CommonViewController {
                         self?.monthlyView.isHidden = false
                     }
                 }
+            }
+            .disposed(by: disposeBag)
+    
+        viewModel.weeklyDataObservable
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] weeklyMood in
+                self?.weeklyView.configure(weeklyMood)
             }
             .disposed(by: disposeBag)
     }

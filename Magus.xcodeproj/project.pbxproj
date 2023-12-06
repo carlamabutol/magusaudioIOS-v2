@@ -23,6 +23,11 @@
 		740D637A2A30CE030080DBE9 /* MoodResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740D63792A30CE030080DBE9 /* MoodResponse.swift */; };
 		7419C4592A209B0200DD86F2 /* TermsAndCondition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7419C4582A209B0200DD86F2 /* TermsAndCondition.storyboard */; };
 		7419C45B2A209F6700DD86F2 /* TermsAndConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419C45A2A209F6700DD86F2 /* TermsAndConditionViewController.swift */; };
+		741AC3512B1CB70D00EA4890 /* FAQsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741AC3502B1CB70D00EA4890 /* FAQsResponse.swift */; };
+		741AC3532B1CB78C00EA4890 /* GuideResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741AC3522B1CB78C00EA4890 /* GuideResponse.swift */; };
+		741AC3552B1CB81700EA4890 /* FAQs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741AC3542B1CB81700EA4890 /* FAQs.swift */; };
+		741AC3572B1CB82F00EA4890 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741AC3562B1CB82F00EA4890 /* Guide.swift */; };
+		741AC3592B1CB96600EA4890 /* SettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741AC3582B1CB96600EA4890 /* SettingsUseCase.swift */; };
 		741CB69B2A4475E900975949 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741CB69A2A4475E900975949 /* AuthenticationService.swift */; };
 		741CB69D2A44763900975949 /* StandardCredentialsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741CB69C2A44763900975949 /* StandardCredentialsService.swift */; };
 		741CB6A02A4476F400975949 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 741CB69F2A4476F400975949 /* KeychainAccess */; };
@@ -195,6 +200,11 @@
 		74ED5DAD2AA5C7F0006F6C8D /* HowMagusWorksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED5DAC2AA5C7F0006F6C8D /* HowMagusWorksViewController.swift */; };
 		74F1DD1B2A4996AF008F4680 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F1DD1A2A4996AF008F4680 /* CategoryCell.xib */; };
 		74F1DD1D2A4996C6008F4680 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1DD1C2A4996C6008F4680 /* CategoryCell.swift */; };
+		74F3A0322B1E24A60066238A /* AppPlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F3A0312B1E24A60066238A /* AppPlayerState.swift */; };
+		74F68E022B1F28E20024439C /* IPOResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F68E012B1F28E20024439C /* IPOResponse.swift */; };
+		74F68E042B1F29060024439C /* IPO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F68E032B1F29060024439C /* IPO.swift */; };
+		74F68E072B1F4F280024439C /* ContactUs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74F68E062B1F4F280024439C /* ContactUs.storyboard */; };
+		74F68E092B1F4F460024439C /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F68E082B1F4F460024439C /* ContactUsViewController.swift */; };
 		F806560C2A179B7B006D53F8 /* CommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F806560B2A179B7B006D53F8 /* CommonView.swift */; };
 		F80A38B82A18C09F0023D166 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80A38B72A18C09F0023D166 /* KeyboardManager.swift */; };
 		F81A48162A17725300D72E73 /* TextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F81A48152A17725300D72E73 /* TextFieldView.xib */; };
@@ -349,6 +359,11 @@
 		740D63792A30CE030080DBE9 /* MoodResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodResponse.swift; sourceTree = "<group>"; };
 		7419C4582A209B0200DD86F2 /* TermsAndCondition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TermsAndCondition.storyboard; sourceTree = "<group>"; };
 		7419C45A2A209F6700DD86F2 /* TermsAndConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionViewController.swift; sourceTree = "<group>"; };
+		741AC3502B1CB70D00EA4890 /* FAQsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQsResponse.swift; sourceTree = "<group>"; };
+		741AC3522B1CB78C00EA4890 /* GuideResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideResponse.swift; sourceTree = "<group>"; };
+		741AC3542B1CB81700EA4890 /* FAQs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQs.swift; sourceTree = "<group>"; };
+		741AC3562B1CB82F00EA4890 /* Guide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
+		741AC3582B1CB96600EA4890 /* SettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUseCase.swift; sourceTree = "<group>"; };
 		741CB69A2A4475E900975949 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		741CB69C2A44763900975949 /* StandardCredentialsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardCredentialsService.swift; sourceTree = "<group>"; };
 		741CB6A22A44791000975949 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -516,6 +531,11 @@
 		74ED5DAC2AA5C7F0006F6C8D /* HowMagusWorksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowMagusWorksViewController.swift; sourceTree = "<group>"; };
 		74F1DD1A2A4996AF008F4680 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
 		74F1DD1C2A4996C6008F4680 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		74F3A0312B1E24A60066238A /* AppPlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPlayerState.swift; sourceTree = "<group>"; };
+		74F68E012B1F28E20024439C /* IPOResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPOResponse.swift; sourceTree = "<group>"; };
+		74F68E032B1F29060024439C /* IPO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPO.swift; sourceTree = "<group>"; };
+		74F68E062B1F4F280024439C /* ContactUs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContactUs.storyboard; sourceTree = "<group>"; };
+		74F68E082B1F4F460024439C /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		F806560B2A179B7B006D53F8 /* CommonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonView.swift; sourceTree = "<group>"; };
 		F80A38B72A18C09F0023D166 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		F81A48152A17725300D72E73 /* TextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldView.xib; sourceTree = "<group>"; };
@@ -715,6 +735,9 @@
 				740179802ADEB9CD00372093 /* Category.swift */,
 				740179822ADEBC4B00372093 /* Mood.swift */,
 				74BCB71B2AE3ACFC006461D9 /* SubliminalsAndPlaylist.swift */,
+				741AC3542B1CB81700EA4890 /* FAQs.swift */,
+				741AC3562B1CB82F00EA4890 /* Guide.swift */,
+				74F68E032B1F29060024439C /* IPO.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -756,6 +779,7 @@
 				F8C40DB52ABEBA2D00A44312 /* PlaylistUseCase.swift */,
 				7401797E2ADEB4AD00372093 /* CategoryUseCase.swift */,
 				740179842ADEBDBD00372093 /* MoodUseCase.swift */,
+				741AC3582B1CB96600EA4890 /* SettingsUseCase.swift */,
 			);
 			path = "Main Use Cases";
 			sourceTree = "<group>";
@@ -933,6 +957,9 @@
 				74BED2382AA4C4F400D31009 /* RecommendationResponse.swift */,
 				74EB5BC32ABB151C00C3FF0C /* MoodCalendarResponse.swift */,
 				74BCB7192AE37159006461D9 /* CurrentMoodResponse.swift */,
+				741AC3502B1CB70D00EA4890 /* FAQsResponse.swift */,
+				741AC3522B1CB78C00EA4890 /* GuideResponse.swift */,
+				74F68E012B1F28E20024439C /* IPOResponse.swift */,
 			);
 			path = "Response Models";
 			sourceTree = "<group>";
@@ -1163,6 +1190,10 @@
 		74BAEAB52A8502D1000BB1E4 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				74F68E052B1F4F150024439C /* Contact Us */,
+				74ED5DA92AA5C77B006F6C8D /* How Magus Works */,
+				74910DF42AD8253900F2D909 /* T & C and Privacy Policy */,
+				74910DF92AD82A8200F2D909 /* FAQs */,
 				74BAEAB62A8502DA000BB1E4 /* Settings.storyboard */,
 				74BAEAB82A8502E4000BB1E4 /* SettingsViewController.swift */,
 				748ED5002A8E1FA1005608FE /* SettingsViewModel.swift */,
@@ -1299,6 +1330,15 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		74F68E052B1F4F150024439C /* Contact Us */ = {
+			isa = PBXGroup;
+			children = (
+				74F68E062B1F4F280024439C /* ContactUs.storyboard */,
+				74F68E082B1F4F460024439C /* ContactUsViewController.swift */,
+			);
+			path = "Contact Us";
+			sourceTree = "<group>";
+		};
 		F80A38B62A18C0910023D166 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -1349,8 +1389,6 @@
 				7422787A2B11E77F004EBE7A /* Subliminal List to Playlist */,
 				74019B452B024DF300882BF2 /* Add To Playlist */,
 				74906FBB2AEFA058004D5A27 /* Player Option */,
-				74910DF92AD82A8200F2D909 /* FAQs */,
-				74910DF42AD8253900F2D909 /* T & C and Privacy Policy */,
 				74910DEF2AD80F6400F2D909 /* Subliminal Guide */,
 				74EB5BCA2ABB1D3900C3FF0C /* Profile Playlists */,
 				74EB5BC92ABB1D2C00C3FF0C /* Profile Favorites */,
@@ -1359,7 +1397,6 @@
 				74B132402A766FE00056D740 /* My Mood */,
 				F8BABF502AC7FC92009AD1F1 /* Add Playlist */,
 				743C4E352AACE10800D3BF77 /* Playlist  */,
-				74ED5DA92AA5C77B006F6C8D /* How Magus Works */,
 				7464B6222A7E802B007A4DFD /* Delete Account */,
 				7464B6212A7E8024007A4DFD /* Change Password */,
 				74C0908A2A7206DC001B552E /* Edit Profile */,
@@ -1579,6 +1616,7 @@
 				F827D97C2A10F6BB0034B5AF /* SharedDependencies.swift */,
 				7490E4412A4092F200463582 /* AppState.swift */,
 				7490E4432A40940300463582 /* Store.swift */,
+				74F3A0312B1E24A60066238A /* AppPlayerState.swift */,
 			);
 			path = AppLifeCycle;
 			sourceTree = "<group>";
@@ -1885,6 +1923,7 @@
 				F835B00B2A06526200123A16 /* Main.storyboard in Resources */,
 				F88A83062A13CEDA00D3E975 /* Montserrat-ExtraBold.ttf in Resources */,
 				F827D9852A10FAD70034B5AF /* MainTabBar.storyboard in Resources */,
+				74F68E072B1F4F280024439C /* ContactUs.storyboard in Resources */,
 				F88A83042A13CEDA00D3E975 /* Montserrat-SemiBold.ttf in Resources */,
 				742A81122A814C4400F897EE /* PasswordRequirementView.xib in Resources */,
 				7467C1132A388B9300DFF86D /* MoodCell.xib in Resources */,
@@ -2017,6 +2056,7 @@
 				748B40992A71589E00CA78CD /* DateTypeSelectionView.swift in Sources */,
 				740179852ADEBDBD00372093 /* MoodUseCase.swift in Sources */,
 				74EB5BC62ABB156600C3FF0C /* MoodCalendar.swift in Sources */,
+				741AC3592B1CB96600EA4890 /* SettingsUseCase.swift in Sources */,
 				74BAEAB92A8502E4000BB1E4 /* SettingsViewController.swift in Sources */,
 				F8511DF02A17D02000EFFFB4 /* FormButton.swift in Sources */,
 				745B62412A66DFB500289F95 /* SearchPlaylistAndSubliminalResponse.swift in Sources */,
@@ -2041,6 +2081,7 @@
 				F88A82E62A13CE8500D3E975 /* Font+Extension.swift in Sources */,
 				74C438DA2AF3DACC006B3262 /* PlayerOptionViewModel.swift in Sources */,
 				74CD22C02A8B8D8500B9D28A /* AudioCachingManager.swift in Sources */,
+				741AC3532B1CB78C00EA4890 /* GuideResponse.swift in Sources */,
 				7419C45B2A209F6700DD86F2 /* TermsAndConditionViewController.swift in Sources */,
 				7490E4612A40A3A500463582 /* HomeViewModel.swift in Sources */,
 				74906FC42AEFAFA2004D5A27 /* BlurCommonViewController.swift in Sources */,
@@ -2075,6 +2116,7 @@
 				74C090952A720BB0001B552E /* Helper.swift in Sources */,
 				7431D8122A24837C00F79E48 /* StandardNetworkService.swift in Sources */,
 				742278852B11EF9B004EBE7A /* SubliminalListViewModel.swift in Sources */,
+				741AC3512B1CB70D00EA4890 /* FAQsResponse.swift in Sources */,
 				74E3BAD32A5042AB00CB0005 /* FeaturedResponse.swift in Sources */,
 				74BAEABB2A85494E000BB1E4 /* ProfileUseCase.swift in Sources */,
 				F8512C3F2A13BDC90041C14F /* WelcomeViewModel.swift in Sources */,
@@ -2085,10 +2127,13 @@
 				F835B01E2A0652D100123A16 /* RootViewController.swift in Sources */,
 				742278792B11E670004EBE7A /* UIButton+Animation.swift in Sources */,
 				7490E4442A40940300463582 /* Store.swift in Sources */,
+				74F68E042B1F29060024439C /* IPO.swift in Sources */,
 				74DD402B2A6FDF48004BC382 /* SearchView.swift in Sources */,
+				74F68E092B1F4F460024439C /* ContactUsViewController.swift in Sources */,
 				742278772B11DEE5004EBE7A /* UIView+Anchor.swift in Sources */,
 				7490026C2A7BE32E007DACDF /* Calendar+Extension.swift in Sources */,
 				74EB5BC82ABB162400C3FF0C /* ProfileMoodViewModel.swift in Sources */,
+				74F68E022B1F28E20024439C /* IPOResponse.swift in Sources */,
 				7490E4402A40574B00463582 /* MainTabViewModel.swift in Sources */,
 				74C2B4D22AA32B580000E8D8 /* PlayerViewModel.swift in Sources */,
 				74D86EFF2B03D3D400AC3A99 /* AddToPlaylistCell.swift in Sources */,
@@ -2139,11 +2184,13 @@
 				74BCB71A2AE37159006461D9 /* CurrentMoodResponse.swift in Sources */,
 				74CB03932A909AF3007A1A90 /* SubliminalAudioInfo.swift in Sources */,
 				741CB6B12A447C9B00975949 /* UseCases.swift in Sources */,
+				741AC3552B1CB81700EA4890 /* FAQs.swift in Sources */,
 				74DDE9E92A5A6B5F00EA0929 /* SubscriptionResponse.swift in Sources */,
 				7490E4422A4092F200463582 /* AppState.swift in Sources */,
 				746FA5FC2A260D18006CE52C /* Presentation.swift in Sources */,
 				F8BA02602ABF0619007C9128 /* FavoriteSubliminalCollectionViewCell.swift in Sources */,
 				7480EDFE2A7D0411000206B1 /* CalendarViewController.swift in Sources */,
+				74F3A0322B1E24A60066238A /* AppPlayerState.swift in Sources */,
 				74019B412B0224C100882BF2 /* FeaturedPlaylistCell.swift in Sources */,
 				741CB69D2A44763900975949 /* StandardCredentialsService.swift in Sources */,
 				F8F2A7E42AD6E0B500F40D36 /* HowMagusWorksViewModel.swift in Sources */,
@@ -2176,6 +2223,7 @@
 				743C4E3B2AACE17500D3BF77 /* PlaylistViewController.swift in Sources */,
 				743C4E3D2AACE18B00D3BF77 /* PlaylistViewModel.swift in Sources */,
 				7429E7D52A530E6600E8E750 /* PremiumFeatureCell.swift in Sources */,
+				741AC3572B1CB82F00EA4890 /* Guide.swift in Sources */,
 				746FA5F72A260488006CE52C /* SignInResponse.swift in Sources */,
 				745FA79C2A8A3F5B00F068E4 /* SubliminalUseCase.swift in Sources */,
 			);

@@ -136,9 +136,9 @@ class SeeAllViewModel: ViewModel {
     private func updateSelectedSubliminal(subliminal: Subliminal) {
         switch modelType {
         case .recommendations:
-            store.appState.subliminals = recommendations.value?.subliminal ?? []
+            store.appState.subliminalQueue = recommendations.value?.subliminal ?? []
         case .featuredSubliminal:
-            store.appState.subliminals = featuredRelay.value?.subliminal ?? []
+            store.appState.subliminalQueue = featuredRelay.value?.subliminal ?? []
         default:
             break
         }

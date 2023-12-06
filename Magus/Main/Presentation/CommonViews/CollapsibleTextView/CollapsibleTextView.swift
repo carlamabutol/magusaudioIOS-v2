@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import WebKit
 
 class CollapsibleTextView: ReusableXibView {
     
@@ -37,6 +38,13 @@ class CollapsibleTextView: ReusableXibView {
         }
     }
     
+    @IBOutlet var webView: WKWebView! {
+        didSet {
+            webView.backgroundColor = .clear
+            webView.isOpaque = false
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -62,6 +70,7 @@ class CollapsibleTextView: ReusableXibView {
     @objc private func tapAction() {
         UIView.animate(withDuration: 0.2) {
             self.descLabel.isHidden = !self.descLabel.isHidden
+            self.webView.isHidden = !self.webView.isHidden
             self.setCollapsedButton(isCollapsed: !self.descLabel.isHidden)
             self.layoutIfNeeded()
         }

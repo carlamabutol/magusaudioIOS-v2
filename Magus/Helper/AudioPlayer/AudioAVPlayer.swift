@@ -132,6 +132,7 @@ class AudioPlayerManager {
     func removePlayers() {
         audioPlayers.removeAll()
         disposeBag = DisposeBag()
+        playerDisposeBag = DisposeBag()
     }
     
     func updateVolume(level: Float, trackID: String) {
