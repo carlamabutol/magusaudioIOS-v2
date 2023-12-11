@@ -142,14 +142,18 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
-    func getMoodCalendar() async throws -> JSONAPIDictionaryResponse<MoodCalendarResponse> {
+    func getMoodCalendar(month: String) async throws -> JSONAPIDictionaryResponse<MoodCalendarResponse> {
         let url = baseURL
             .appendingPathComponent("api")
             .appendingPathComponent("user")
             .appendingPathComponent("mood")
+            .appendingPathComponent("audio")
             .appendingPathComponent("calendar")
         
-        var parameters: [String: Any] = [:]
+        var parameters: [String: Any] = [
+            "subscription_id": String(describing: getSubscriptionID()),
+            "month": month
+        ]
         
         if let userID = getUserID() {
             parameters["user_id"] = userID

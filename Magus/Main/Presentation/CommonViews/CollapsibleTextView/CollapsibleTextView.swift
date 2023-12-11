@@ -18,13 +18,6 @@ class CollapsibleTextView: ReusableXibView {
         }
     }
     
-    @IBOutlet var descLabel: UILabel! {
-        didSet {
-            descLabel.font = .Montserrat.body3
-            descLabel.numberOfLines = 0
-        }
-    }
-    
     @IBOutlet var collapsedView: UIView! {
         didSet {
             collapsedView.isUserInteractionEnabled = true
@@ -37,11 +30,16 @@ class CollapsibleTextView: ReusableXibView {
             collapseButton.setImage(UIImage(named: .collapsedDown), for: .normal)
         }
     }
+    @IBOutlet var webViewHeightConstraint: NSLayoutConstraint!
+    
+    var webViewHeight: CGFloat = 0
     
     @IBOutlet var webView: WKWebView! {
         didSet {
             webView.backgroundColor = .clear
             webView.isOpaque = false
+            webView.navigationDelegate = self
+            webView.isHidden = true
         }
     }
     
@@ -69,11 +67,17 @@ class CollapsibleTextView: ReusableXibView {
     
     @objc private func tapAction() {
         UIView.animate(withDuration: 0.2) {
-            self.descLabel.isHidden = !self.descLabel.isHidden
             self.webView.isHidden = !self.webView.isHidden
-            self.setCollapsedButton(isCollapsed: !self.descLabel.isHidden)
-            self.layoutIfNeeded()
+            self.setCollapsedButton(isCollapsed: !self.webView.isHidden)
+            self.setupWebViewHeight(isHidden: self.webView.isHidden)
         }
+    }
+    
+    private func setupWebViewHeight(isHidden: Bool) {
+        let webViewHeight: CGFloat = self.webViewHeight == 0 ? 110 : 0
+        let height = isHidden ? 0 : webViewHeight
+        webViewHeightConstraint.constant = height
+        self.layoutIfNeeded()
     }
     
     private func setCollapsedButton(isCollapsed: Bool) {
@@ -82,11 +86,27 @@ class CollapsibleTextView: ReusableXibView {
     
     func configure(with model: Model) {
         titleLabel.text = model.title
-        descLabel.text = model.description
+//        descLabel.text = model.description
+        webView.loadHTMLString(model.description, baseURL: nil)
     }
     
     struct Model {
         let title: String
         let description: String
     }
+}
+
+extension CollapsibleTextView: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        self.webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
+            if complete != nil {
+                self.webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { [weak self](height, error) in
+                    self?.webViewHeight = height as! CGFloat
+                    Logger.info("web view height \(height)", topic: .presentation)
+                })
+            }
+        })
+    }
+    
 }

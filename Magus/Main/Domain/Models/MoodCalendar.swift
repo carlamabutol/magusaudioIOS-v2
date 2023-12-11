@@ -25,13 +25,13 @@ extension MoodCalendar {
             Monthly(date: $0.day,
                     id: $0.id,
                     day: $0.day,
-                    mood: $0.mood.first.map { Mood(moodResponse: $0)})
+                    mood: $0.mood.map { Mood(moodResponse: $0)})
         }
         weekly = moodCalendar.weekly.map {
             Monthly(date: $0.day,
                     id: $0.id,
                     day: $0.day,
-                    mood: $0.mood.first.map { Mood(moodResponse: $0)})
+                    mood: $0.mood.map { Mood(moodResponse: $0)})
         }
     }
 }

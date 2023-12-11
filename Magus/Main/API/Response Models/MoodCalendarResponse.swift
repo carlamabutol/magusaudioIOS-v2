@@ -19,7 +19,8 @@ struct MonthlyResponse: EndpointResponse {
     let date: String
     let id: Int?
     let day: String
-    let mood: [MoodResponse]
+    let week: String
+    let mood: MoodResponse?
 }
 
 struct MoodCalendarErrorResponse: Decodable {

@@ -96,6 +96,7 @@ class AudioPlayerManager {
         }
         playerDisposeBag = DisposeBag()
         let newPlayer = CustomAudioPlayer(url: url, isPlaying: isPlaying)
+        Logger.info("Track Duration - \(subliminalAudioInfo.duration)", topic: .presentation)
         newPlayer.setDuration(duration: subliminalAudioInfo.duration)
         newPlayer.setVolume(volume: Float(subliminalAudioInfo.volume))
         newPlayer.playerStatusObservable

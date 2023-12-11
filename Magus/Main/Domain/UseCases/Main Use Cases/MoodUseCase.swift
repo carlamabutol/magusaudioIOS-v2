@@ -74,9 +74,10 @@ final class MoodUseCase {
         }
     }
     
-    func getMoodCalendar() async throws -> MoodCalendar {
+    // Ex. "2012-12"
+    func getMoodCalendar(month: String) async throws -> MoodCalendar {
         do {
-            let response = try await networkService.getMoodCalendar()
+            let response = try await networkService.getMoodCalendar(month: month)
             switch response {
             case .success(let calendar):
                 return MoodCalendar(moodCalendar: calendar)

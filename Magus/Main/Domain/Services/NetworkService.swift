@@ -14,7 +14,7 @@ protocol NetworkService {
     
     // MARK: MOODS
     func getAllMoods() async throws -> JSONAPIArrayResponse<MoodResponse>
-    func getMoodCalendar() async throws -> JSONAPIDictionaryResponse<MoodCalendarResponse>
+    func getMoodCalendar(month: String) async throws -> JSONAPIDictionaryResponse<MoodCalendarResponse>
     func getCurrentMood() async throws -> JSONAPIArrayResponse<CurrentMoodResponse>
     func updateSelectedMoods(moodId: Int) async throws -> EmptyResponse
     

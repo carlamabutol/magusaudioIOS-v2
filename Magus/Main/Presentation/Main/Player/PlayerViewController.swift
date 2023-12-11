@@ -16,6 +16,7 @@ class PlayerViewController: BlurCommonViewController {
     var tabViewModel: MainTabViewModel!
     var audioPlayerViewModel: AudioPlayerViewModel!
     var volumeDisposeBag = DisposeBag()
+    var lastContentOffset: CGFloat = 0
     
     @IBOutlet var gradientView: UIView!
     
@@ -143,6 +144,7 @@ class PlayerViewController: BlurCommonViewController {
         didSet {
             webView.backgroundColor = .clear
             webView.isOpaque = false
+            webView.scrollView.delegate = self
         }
     }
     
@@ -376,4 +378,22 @@ class PlayerViewController: BlurCommonViewController {
     deinit {
         print("Deinit Player View Controller")
     }
+}
+
+extension PlayerViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+        if translation.y > 0 {
+            Logger.info("Swipe from top to bottom - \(translation.y)", topic: .presentation)
+            // swipes from top to bottom of screen -> down
+        } else {
+            Logger.info("Swipe from bottom to top - \(translation.y)", topic: .presentation)
+            // swipes from bottom to top of screen -> up
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    }
+    
 }

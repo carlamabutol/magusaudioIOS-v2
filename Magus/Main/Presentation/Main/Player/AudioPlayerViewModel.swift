@@ -41,7 +41,7 @@ class AudioPlayerViewModel: ViewModel {
         subliminalUseCase = dependencies.subliminalUseCase
         playerStateObservable = dependencies.playerState
         isRepealAllObservable = dependencies.isRepeatAll
-        subliminals = dependencies.subliminals
+        subliminals = dependencies.subliminalQueue
         super.init()
         audioPlayerManager.activePlayerObservable
             .subscribe { [weak self] player in
@@ -221,7 +221,9 @@ extension AudioPlayerViewModel {
         let store: Store
         let playerState: Observable<AppState.PlayerState>
         let isRepeatAll: Observable<Bool>
-        let subliminals: () -> [Subliminal]
+        let subliminalQueue: () -> [Subliminal]
+        let playlistQeueu: () -> [Subliminal]
+        let addedQueue: () -> [Subliminal]
         
         static var standard: Dependencies {
             return .init(
@@ -231,7 +233,9 @@ extension AudioPlayerViewModel {
                 store: SharedDependencies.sharedDependencies.store,
                 playerState: SharedDependencies.sharedDependencies.store.observable(of: \.playerState),
                 isRepeatAll: SharedDependencies.sharedDependencies.store.observable(of: \.playerRepeatAll),
-                subliminals: { SharedDependencies.sharedDependencies.store.appState.subliminalQueue }
+                subliminalQueue: { SharedDependencies.sharedDependencies.store.appState.subliminalQueue },
+                playlistQeueu: { SharedDependencies.sharedDependencies.store.appState.playlistQueue },
+                addedQueue: { SharedDependencies.sharedDependencies.store.appState.addedQueue }
             )
         }
     }

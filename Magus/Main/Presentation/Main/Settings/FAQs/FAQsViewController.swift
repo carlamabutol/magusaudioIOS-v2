@@ -12,6 +12,7 @@ class FAQsViewController: CommonViewController {
     
     private let viewModel = SettingsViewModel()
     
+    @IBOutlet var stackView: UIStackView!
     @IBOutlet var navigationBar: ProfileNavigationBar! {
         didSet {
             navigationBar.backgroundColor = .clear
@@ -30,60 +31,79 @@ class FAQsViewController: CommonViewController {
             titleLabel.numberOfLines = 2
         }
     }
-    
-    @IBOutlet var whatIsMagusView: CollapsibleTextView! {
-        didSet {
-            whatIsMagusView.configure(
-                with: .init(
-                    title: LocalisedStrings.FAQs.whatIsMagus,
-                    description: LocalisedStrings.LoremIpsum.desc1
-                )
-            )
-        }
-    }
-    
-    @IBOutlet var whatIsSubAudioView: CollapsibleTextView! {
-        didSet {
-            whatIsSubAudioView.configure(
-                with: .init(
-                    title: LocalisedStrings.FAQs.whatIsSubliminalAudio,
-                    description: LocalisedStrings.LoremIpsum.desc1
-                )
-            )
-        }
-    }
-    
-    @IBOutlet var whatAreBenefitsView: CollapsibleTextView! {
-        didSet {
-            whatAreBenefitsView.configure(
-                with: .init(
-                    title: LocalisedStrings.FAQs.benefits,
-                    description: LocalisedStrings.LoremIpsum.desc1
-                )
-            )
-        }
-    }
-    
-    @IBOutlet var isSubliminalAudioSafeView: CollapsibleTextView! {
-        didSet {
-            isSubliminalAudioSafeView.configure(
-                with: .init(
-                    title: LocalisedStrings.FAQs.audiosSafe,
-                    description: LocalisedStrings.LoremIpsum.desc1
-                )
-            )
-        }
-    }
+//
+//    @IBOutlet var whatIsMagusView: CollapsibleTextView! {
+//        didSet {
+//            whatIsMagusView.configure(
+//                with: .init(
+//                    title: LocalisedStrings.FAQs.whatIsMagus,
+//                    description: LocalisedStrings.LoremIpsum.desc1
+//                )
+//            )
+//        }
+//    }
+//
+//    @IBOutlet var whatIsSubAudioView: CollapsibleTextView! {
+//        didSet {
+//            whatIsSubAudioView.configure(
+//                with: .init(
+//                    title: LocalisedStrings.FAQs.whatIsSubliminalAudio,
+//                    description: LocalisedStrings.LoremIpsum.desc1
+//                )
+//            )
+//        }
+//    }
+//
+//    @IBOutlet var whatAreBenefitsView: CollapsibleTextView! {
+//        didSet {
+//            whatAreBenefitsView.configure(
+//                with: .init(
+//                    title: LocalisedStrings.FAQs.benefits,
+//                    description: LocalisedStrings.LoremIpsum.desc1
+//                )
+//            )
+//        }
+//    }
+//
+//    @IBOutlet var isSubliminalAudioSafeView: CollapsibleTextView! {
+//        didSet {
+//            isSubliminalAudioSafeView.configure(
+//                with: .init(
+//                    title: LocalisedStrings.FAQs.audiosSafe,
+//                    description: LocalisedStrings.LoremIpsum.desc1
+//                )
+//            )
+//        }
+//    }
     
     override func setupBinding() {
         super.setupBinding()
         
-        viewModel.guideObservable
+        viewModel.faqsObservable
             .observe(on: MainScheduler.asyncInstance)
-            .subscribe { [weak self] guides in
-//                self?.createViewControllers(guides: guides)
+            .subscribe { [weak self] faqs in
+                self?.setupFAQs(faqs: faqs)
             }
             .disposed(by: disposeBag)
+    }
+    
+    private func setupFAQs(faqs: [FAQs]) {
+        stackView.arrangedSubviews.forEach { view in
+            stackView.removeArrangedSubview(view)
+        }
+        let frame: CGRect = .init(origin: .zero, size: .init(width: self.stackView.width, height: 57))
+        for faq in faqs {
+            let view = CollapsibleTextView(frame: frame)
+            view.configure(with: .init(title: faq.question, description: faq.answer))
+            view.backgroundColor = .white
+            view.roundCorners(corners: .allCorners, radius: 5)
+            view.translatesAutoresizingMaskIntoConstraints = false
+            stackView.addArrangedSubview(view)
+            
+            view.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
+            view.heightAnchor.constraint(greaterThanOrEqualToConstant: 110).isActive = true
+        }
+        stackView.insertArrangedSubview(titleLabel, at: 0)
     }
     
 }

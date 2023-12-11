@@ -30,20 +30,36 @@ class ProfileMoodViewModel: ViewModel {
         moodUseCase = dependency.moodUseCase
         super.init()
         getAllMoods()
+        getWeeklyDates()
     }
     
     private func getWeeklyDates() {
-        let startOfCurrentWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now))!x`
-        let endOfCurrentWeek = calendar.date(byAdding: .day, value: 6, to: startOfCurrentWeek)!
+        let weeklyDates = getAllDatesInWeek(forDate: now).map { WeeklyData(day: $0.dayToday(with: "EE"), dayString: $0.dayToday(with: "dd"), mood: nil) }
+        Logger.info("WeeklyDates \(weeklyDates)", topic: .presentation)
+    }
+    
+    func getAllDatesInWeek(forDate date: Date) -> [Date] {
+        let calendar = Calendar.current
+        let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date))!
+        let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek)!
 
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        var currentDay = startOfWeek
+        var allDatesInWeek: [Date] = []
+
+        while currentDay <= endOfWeek {
+            allDatesInWeek.append(currentDay)
+            currentDay = calendar.date(byAdding: .day, value: 1, to: currentDay)!
+        }
+
+        return allDatesInWeek
     }
     
     func getAllMoods() {
         Task {
             do {
-                let calendarResponse = try await moodUseCase.getMoodCalendar()
+                let month = now.getDateFormat(with: "yyyy-MM")
+                Logger.info("Selected Month \(month)", topic: .presentation)
+                let calendarResponse = try await moodUseCase.getMoodCalendar(month: month)
                 let weeklyMoods = calendarResponse.weekly.map { WeeklyData(day: $0.day, dayString: $0.date, mood: $0.mood)}
                 weeklyDataRelay.accept(weeklyMoods)
             } catch {
