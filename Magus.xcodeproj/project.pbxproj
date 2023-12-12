@@ -101,6 +101,7 @@
 		7480EDFA2A7CF01B000206B1 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7480EDF92A7CF01B000206B1 /* Calendar.storyboard */; };
 		7480EDFC2A7CF02E000206B1 /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7480EDFB2A7CF02E000206B1 /* MonthlyView.swift */; };
 		7480EDFE2A7D0411000206B1 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7480EDFD2A7D0411000206B1 /* CalendarViewController.swift */; };
+		748120032B2744EF00EEBBB3 /* FAQsSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748120022B2744EF00EEBBB3 /* FAQsSwiftUIView.swift */; };
 		748B40992A71589E00CA78CD /* DateTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748B40982A71589E00CA78CD /* DateTypeSelectionView.swift */; };
 		748ED5012A8E1FA1005608FE /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748ED5002A8E1FA1005608FE /* SettingsViewModel.swift */; };
 		749002642A7BDFED007DACDF /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749002632A7BDFED007DACDF /* Day.swift */; };
@@ -198,6 +199,7 @@
 		74EB5BD22ABB20DB00C3FF0C /* ProfileFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EB5BD12ABB20DB00C3FF0C /* ProfileFavoritesViewController.swift */; };
 		74ED5DAB2AA5C78F006F6C8D /* HowMagusWorks.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74ED5DAA2AA5C78F006F6C8D /* HowMagusWorks.storyboard */; };
 		74ED5DAD2AA5C7F0006F6C8D /* HowMagusWorksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED5DAC2AA5C7F0006F6C8D /* HowMagusWorksViewController.swift */; };
+		74F1AAF52B26F6F700C829C3 /* FAQsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1AAF42B26F6F700C829C3 /* FAQsCell.swift */; };
 		74F1DD1B2A4996AF008F4680 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F1DD1A2A4996AF008F4680 /* CategoryCell.xib */; };
 		74F1DD1D2A4996C6008F4680 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1DD1C2A4996C6008F4680 /* CategoryCell.swift */; };
 		74F3A0322B1E24A60066238A /* AppPlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F3A0312B1E24A60066238A /* AppPlayerState.swift */; };
@@ -434,6 +436,7 @@
 		7480EDF92A7CF01B000206B1 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		7480EDFB2A7CF02E000206B1 /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
 		7480EDFD2A7D0411000206B1 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		748120022B2744EF00EEBBB3 /* FAQsSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQsSwiftUIView.swift; sourceTree = "<group>"; };
 		748B40982A71589E00CA78CD /* DateTypeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTypeSelectionView.swift; sourceTree = "<group>"; };
 		748ED5002A8E1FA1005608FE /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		749002632A7BDFED007DACDF /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
@@ -529,6 +532,7 @@
 		74EB5BD12ABB20DB00C3FF0C /* ProfileFavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFavoritesViewController.swift; sourceTree = "<group>"; };
 		74ED5DAA2AA5C78F006F6C8D /* HowMagusWorks.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HowMagusWorks.storyboard; sourceTree = "<group>"; };
 		74ED5DAC2AA5C7F0006F6C8D /* HowMagusWorksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowMagusWorksViewController.swift; sourceTree = "<group>"; };
+		74F1AAF42B26F6F700C829C3 /* FAQsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQsCell.swift; sourceTree = "<group>"; };
 		74F1DD1A2A4996AF008F4680 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
 		74F1DD1C2A4996C6008F4680 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		74F3A0312B1E24A60066238A /* AppPlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPlayerState.swift; sourceTree = "<group>"; };
@@ -984,6 +988,14 @@
 			path = Mood;
 			sourceTree = "<group>";
 		};
+		748120012B2744D900EEBBB3 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				748120022B2744EF00EEBBB3 /* FAQsSwiftUIView.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 		748B40952A7157AD00CA78CD /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -1105,6 +1117,8 @@
 		74910DF92AD82A8200F2D909 /* FAQs */ = {
 			isa = PBXGroup;
 			children = (
+				748120012B2744D900EEBBB3 /* SwiftUI */,
+				74F1AAF32B26F65400C829C3 /* Cells */,
 				74910DFA2AD82A9200F2D909 /* FAQsViewController.swift */,
 				74910DFC2AD82A9B00F2D909 /* FAQs.storyboard */,
 			);
@@ -1190,6 +1204,7 @@
 		74BAEAB52A8502D1000BB1E4 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				74910DEF2AD80F6400F2D909 /* Subliminal Guide */,
 				74F68E052B1F4F150024439C /* Contact Us */,
 				74ED5DA92AA5C77B006F6C8D /* How Magus Works */,
 				74910DF42AD8253900F2D909 /* T & C and Privacy Policy */,
@@ -1320,6 +1335,14 @@
 			path = "How Magus Works";
 			sourceTree = "<group>";
 		};
+		74F1AAF32B26F65400C829C3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				74F1AAF42B26F6F700C829C3 /* FAQsCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		74F1DD192A49964A008F4680 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -1389,7 +1412,6 @@
 				7422787A2B11E77F004EBE7A /* Subliminal List to Playlist */,
 				74019B452B024DF300882BF2 /* Add To Playlist */,
 				74906FBB2AEFA058004D5A27 /* Player Option */,
-				74910DEF2AD80F6400F2D909 /* Subliminal Guide */,
 				74EB5BCA2ABB1D3900C3FF0C /* Profile Playlists */,
 				74EB5BC92ABB1D2C00C3FF0C /* Profile Favorites */,
 				74BAEAB52A8502D1000BB1E4 /* Settings */,
@@ -2121,6 +2143,7 @@
 				74BAEABB2A85494E000BB1E4 /* ProfileUseCase.swift in Sources */,
 				F8512C3F2A13BDC90041C14F /* WelcomeViewModel.swift in Sources */,
 				74CD22BE2A8B8D5B00B9D28A /* CustomAudioPlayer.swift in Sources */,
+				748120032B2744EF00EEBBB3 /* FAQsSwiftUIView.swift in Sources */,
 				74C090932A720868001B552E /* ProfileNavigationBar.swift in Sources */,
 				746FA5F12A25FE76006CE52C /* JSONAPIArrayResponse.swift in Sources */,
 				74B16A182A90DAA8003E8A2D /* CollapsedPlayerView.swift in Sources */,
@@ -2204,6 +2227,7 @@
 				741CB6AC2A4479D300975949 /* UserInfoResponse.swift in Sources */,
 				F81C8FF22AC9920500E40FF5 /* PlaylistOptionCell.swift in Sources */,
 				F8512C442A13C4120041C14F /* Colors+Hex.swift in Sources */,
+				74F1AAF52B26F6F700C829C3 /* FAQsCell.swift in Sources */,
 				7434B0882AFCD39900FE7068 /* VerticalProgressBar.swift in Sources */,
 				740C4D032A71F52800050D5A /* WeeklyView.swift in Sources */,
 				741CB69B2A4475E900975949 /* AuthenticationService.swift in Sources */,

@@ -571,8 +571,13 @@ extension StandardNetworkService: NetworkService {
             .appendingPathComponent("api")
             .appendingPathComponent("magus")
             .appendingPathComponent("faqs")
+            .appendingPathComponent("search")
         
-        let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
+        let parameters: [String: String] = [
+            "search": search
+        ]
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
             .serializingDecodable(JSONAPIArrayResponse<FAQsResponse>.self)
         

@@ -53,6 +53,7 @@ class ProfileFavoritesViewController: BlurCommonViewController {
         viewModel.getAllSubliminalFavorites()
         setupGradientView(view: gradientView)
         setupPageController()
+        removeSwipeGesture()
     }
     
     override func setupBinding() {
@@ -88,6 +89,14 @@ class ProfileFavoritesViewController: BlurCommonViewController {
     
     private func configure(subliminal: Subliminal) {
         coverImageView.sd_setImage(with: .init(string: subliminal.cover))
+    }
+    
+    private func removeSwipeGesture(){
+        for view in self.pageViewController!.view.subviews {
+            if let subView = view as? UIScrollView {
+                subView.isScrollEnabled = false
+            }
+        }
     }
     
     private func setupPageController() {
@@ -212,6 +221,8 @@ extension ProfileFavoritesViewController: TabSelectionDelegate {
     
     func selectedTabIndex(_ selectedIndex: Int) {
         pageViewController.setViewControllers([viewControllerAtIndex(selectedIndex)!], direction: selectedIndex == 0 ? .reverse : .forward, animated: true, completion: nil)
+        playButton.layer.opacity = selectedIndex == 1 ? 0 : 1
+        repeatButton.layer.opacity = selectedIndex == 1 ? 0 : 1
     }
     
 }

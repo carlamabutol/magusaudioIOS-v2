@@ -79,7 +79,6 @@ class TabSelectionView: ReusableXibView {
         UIView.animate(withDuration: 0.2) {
             self.layoutIfNeeded()
         }
-//        pageViewController.setViewControllers([viewControllerAtIndex(selectedIndex)!], direction: .forward, animated: false, completion: nil)
         
     }
 }
