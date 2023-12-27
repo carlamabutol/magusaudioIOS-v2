@@ -74,9 +74,7 @@ class PlayerOptionViewController: CommonViewController {
         updatePlaylist(isAdded: playlistId != nil)
         dismissCompletion = dismiss
         coverImage.sd_setImage(with: .init(string: subliminal.cover))
-        viewModel.isLikeRelay.accept(subliminal.isLiked == 1)
-        viewModel.subliminal = subliminal
-        viewModel.playlistId = playlistId
+        viewModel.configure(subliminal: subliminal, playlistId: playlistId)
     }
     
     override func viewDidLoad() {
@@ -106,6 +104,18 @@ class PlayerOptionViewController: CommonViewController {
                 } else {
                     self.goToAddToPlaylist()
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        addToQueueButton.rx.tap
+            .subscribe { [weak self] _ in
+                self?.viewModel.addToQueueSubliminal()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.addedToQueueObservable
+            .subscribe { [weak self] inQueue in
+                self?.updateQueue(inQueue: inQueue)
             }
             .disposed(by: disposeBag)
         
@@ -150,6 +160,15 @@ class PlayerOptionViewController: CommonViewController {
         likeButton.imageView?.contentMode = .scaleAspectFit
     }
     
+    private func updateQueue(inQueue: Bool) {
+        let image = UIImage(named: inQueue ? .addToQueueActive : .addToQueue)
+        let newImage = image?.resizeImage(targetHeight: 34)
+        addToQueueButton.setImage(newImage, for: .normal)
+        addToQueueButton.imageView?.contentMode = .scaleAspectFit
+        let title = inQueue ? LocalisedStrings.Player.addedToQueue : LocalisedStrings.Player.addToQueue
+        addToQueueButton.setTitle(title, for: .normal)
+    }
+    
     private func updatePlaylist(isAdded: Bool) {
         let image = UIImage(named: isAdded ? .addToPlaylistActive : .addToPlaylist)
         let newImage = image?.resizeImage(targetHeight: 34)
@@ -160,9 +179,9 @@ class PlayerOptionViewController: CommonViewController {
     }
     
     private func goToAddToPlaylist() {
-        guard let subliminal = viewModel.subliminal else { return }
+        guard let subliminal = viewModel.subliminalRelay.value else { return }
         let vc = AddToPlaylistViewController.instantiate(from: .addToPlaylist) as! AddToPlaylistViewController
-        vc.configure(subliminal: subliminal, playlistId: viewModel.playlistId)
+        vc.configure(subliminal: subliminal, playlistId: viewModel.playlistIdRelay.value)
         navigationController?.pushViewController(vc, animated: true)
     }
     

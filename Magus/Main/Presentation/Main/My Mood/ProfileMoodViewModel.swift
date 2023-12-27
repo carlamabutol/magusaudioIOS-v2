@@ -60,7 +60,7 @@ class ProfileMoodViewModel: ViewModel {
                 let month = now.getDateFormat(with: "yyyy-MM")
                 Logger.info("Selected Month \(month)", topic: .presentation)
                 let calendarResponse = try await moodUseCase.getMoodCalendar(month: month)
-                let weeklyMoods = calendarResponse.weekly.map { WeeklyData(day: $0.day, dayString: $0.date, mood: $0.mood)}
+                let weeklyMoods = calendarResponse.weekly.map { WeeklyData(day: $0.day, dayString: $0.week, mood: $0.mood)}
                 weeklyDataRelay.accept(weeklyMoods)
             } catch {
                 Logger.error("Calendar ErrorResponse - \(error.localizedDescription)", topic: .presentation)

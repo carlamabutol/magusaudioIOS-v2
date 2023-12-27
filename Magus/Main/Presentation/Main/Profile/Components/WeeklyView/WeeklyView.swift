@@ -23,9 +23,6 @@ class WeeklyView: ReusableXibView {
     func configure(_ weeklyData: [WeeklyData]) {
         let frame: CGRect = .init(origin: .zero, size: .init(width: self.frame.width, height: 57))
         for data in weeklyData {
-            let horizontalStackView = UIStackView()
-            horizontalStackView.axis = .horizontal
-            horizontalStackView.alignment = .center
             let stackView = UIStackView()
             stackView.translatesAutoresizingMaskIntoConstraints = false
             stackView.axis = .vertical
@@ -58,14 +55,13 @@ class WeeklyView: ReusableXibView {
                 stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             ])
             weeklyDateStackView.addArrangedSubview(view)
-            
-            guard let mood = data.mood else {
-                return
-            }
-            
-            let weeklyView = WeeklyDayDetailView(frame: frame)
-            weeklyView.configure(url: URL(string: mood.image ?? ""), mood: mood.name, desc: mood.description)
+
+            let weeklyView = WeeklyDayDetailView()
+            weeklyView.translatesAutoresizingMaskIntoConstraints = false
+            weeklyView.heightAnchor.constraint(equalToConstant: 57).isActive = true
+            let desc = data.mood == nil ? "-" : "Sign in: 8:00am"
             weeklyInfoStackView.addArrangedSubview(weeklyView)
+            weeklyView.configure(url: URL(string: data.mood?.image ?? ""), mood: data.mood?.name ?? "-", desc: desc)
         }
         
         self.addSubview(lineView)

@@ -11,6 +11,7 @@ import RxSwift
 class ForgotPasswordViewController: CommonViewController {
     
     private let viewModel: ForgotPasswordViewModel = ForgotPasswordViewModel()
+    private var loadingVC: UIViewController?
     
     @IBOutlet var forgotPasswordScrollView: UIScrollView!
     
@@ -55,6 +56,48 @@ class ForgotPasswordViewController: CommonViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    }
+    
+    override func setupBinding() {
+        super.setupBinding()
+        
+        viewModel.submitButtonIsEnabled
+            .bind(to: submitButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        viewModel.backRelay.asObservable()
+            .subscribe { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.alertRelay.asObservable()
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] alertEnum in
+                switch alertEnum {
+                case .loading(let isLoading):
+                    if isLoading {
+                        self?.loadingVC = self?.presentLoading()
+                    }
+                case .alertModal(let model):
+                    if self?.loadingVC == nil {
+                        self?.presentAlert(title: model.title, message: model.message, tapOKHandler: model.actionHandler)
+                    } else {
+                        self?.loadingVC?.dismiss(animated: true, completion: {
+                            self?.loadingVC = nil
+                            self?.presentAlert(title: model.title, message: model.message, tapOKHandler: model.actionHandler)
+                        })
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        submitButton.rx.tap
+            .subscribe { [weak self] _ in
+                self?.viewModel.forgotPassword()
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     private func gotoSignup() {

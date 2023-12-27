@@ -27,7 +27,6 @@ class ProfileMoodViewController: CommonViewController {
     @IBOutlet var weeklyView: WeeklyView!
     
     @IBOutlet var monthlyView: WeeklyView!
-
     
     override func viewDidLoad() {
         super.viewDidLoad()

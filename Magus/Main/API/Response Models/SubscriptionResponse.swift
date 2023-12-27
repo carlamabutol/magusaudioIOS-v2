@@ -14,8 +14,8 @@ struct SubscriptionResponse: EndpointResponse {
     let id: Int
     let name, description, createdAt, updatedAt: String
     let amount, period: Int
-    let periodType: String?
-    let status, amountYear: Int
+    let periodType: String
+    let isVisible, amountYear: Int
 
     enum CodingKeys: String, CodingKey {
         case id, name, description
@@ -23,7 +23,7 @@ struct SubscriptionResponse: EndpointResponse {
         case updatedAt = "updated_at"
         case amount, period
         case periodType = "period_type"
-        case status
+        case isVisible = "is_visible"
         case amountYear = "amount_year"
     }
 }

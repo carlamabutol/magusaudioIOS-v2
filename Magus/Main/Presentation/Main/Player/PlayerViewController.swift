@@ -203,7 +203,7 @@ class PlayerViewController: BlurCommonViewController {
                 switch repeatState {
                 case .repeatAll:
                     self?.repeatView.setImage(UIImage(named: .repeatAll).withRenderingMode(.alwaysOriginal), for: .normal)
-                case .repeartCurrentlyPlaying:
+                case .repeatCurrentlyPlaying:
                     self?.repeatView.setImage(UIImage(named: .repeatOnce).withRenderingMode(.alwaysOriginal), for: .normal)
                 }
             }

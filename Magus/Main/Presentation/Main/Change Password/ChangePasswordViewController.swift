@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import RxSwift
 
 class ChangePasswordViewController: CommonViewController {
     
     private let viewModel = ChangePasswordViewModel()
+    private var loadingVC: UIViewController?
     
     @IBOutlet var navigationBar: ProfileNavigationBar!
     
@@ -55,23 +57,13 @@ class ChangePasswordViewController: CommonViewController {
         }
     }
     
-    @IBOutlet var firstPasswordReqView: PasswordRequirementView! {
-        didSet {
-            firstPasswordReqView.configure(text: LocalisedStrings.ChangePassword.contain8Characters)
-        }
-    }
+    @IBOutlet var contains8CharacterReqView: PasswordRequirementView!
     
-    @IBOutlet var secondPasswordReqView: PasswordRequirementView! {
-        didSet {
-            secondPasswordReqView.configure(text: LocalisedStrings.ChangePassword.includeOneUppercase)
-        }
-    }
+    @IBOutlet var containsLowercaseReqView: PasswordRequirementView!
     
-    @IBOutlet var thirdPasswordReqView: PasswordRequirementView! {
-        didSet {
-            thirdPasswordReqView.configure(text: LocalisedStrings.ChangePassword.includeOneNumber)
-        }
-    }
+    @IBOutlet var containsUppercaseReqView: PasswordRequirementView!
+
+    @IBOutlet var containsNumberReqView: PasswordRequirementView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +79,59 @@ class ChangePasswordViewController: CommonViewController {
             )
         )
         configureForms()
+    }
+    
+    override func setupBinding() {
+        super.setupBinding()
+        
+        viewModel.saveButtonIsEnabled
+            .bind(to: navigationBar.saveButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        viewModel.alertRelay.asObservable()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] alertEnum in
+                switch alertEnum {
+                case .loading(let isLoading):
+                    if isLoading {
+                        self?.loadingVC = self?.presentLoading()
+                    }
+                case .alertModal(let model):
+                    if self?.loadingVC == nil {
+                        self?.presentAlert(title: model.title, message: model.message, tapOKHandler: model.actionHandler)
+                    } else {
+                        self?.loadingVC?.dismiss(animated: false, completion: {
+                            self?.loadingVC = nil
+                            self?.presentAlert(title: model.title, message: model.message, tapOKHandler: model.actionHandler)
+                        })
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.contains8CharacterObservable
+            .subscribe { [weak self] model in
+                self?.contains8CharacterReqView.configure(model: model)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.includeLowerCharacterObservable
+            .subscribe { [weak self] model in
+                self?.containsLowercaseReqView.configure(model: model)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.includeUppercaseCharacterObservable
+            .subscribe { [weak self] model in
+                self?.containsUppercaseReqView.configure(model: model)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.includeNumberCharacterObservable
+            .subscribe { [weak self] model in
+                self?.containsNumberReqView.configure(model: model)
+            }
+            .disposed(by: disposeBag)
     }
     
     private func configureForms() {
@@ -113,6 +158,7 @@ class ChangePasswordViewController: CommonViewController {
         alertVC.modalPresentationStyle = .overCurrentContext
         present(alertVC, animated: true)
         alertVC.configure(.init(title: "", message: "Are you sure you want to change your password?", actionHandler: { [weak self] in
+            self?.viewModel.changePassword()
             self?.dismiss(animated: true)
         }))
     }

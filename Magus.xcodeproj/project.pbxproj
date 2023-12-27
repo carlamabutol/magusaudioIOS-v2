@@ -267,6 +267,7 @@
 		F827D9802A10F7460034B5AF /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = F827D97F2A10F7460034B5AF /* Router.swift */; };
 		F827D9852A10FAD70034B5AF /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F827D9842A10FAD70034B5AF /* MainTabBar.storyboard */; };
 		F827D9872A10FAE30034B5AF /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F827D9862A10FAE30034B5AF /* MainTabBarViewController.swift */; };
+		F8295EC62B2C22780023E8B2 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8295EC52B2C22780023E8B2 /* ResponseModel.swift */; };
 		F82BDDF42A41EAE1002E29E5 /* CategoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82BDDF32A41EAE1002E29E5 /* CategoryResponse.swift */; };
 		F82CA4F22A19B4A5007EDFAE /* ViewController+Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82CA4F12A19B4A4007EDFAE /* ViewController+Storyboard+Extension.swift */; };
 		F8315DE52A1CE9C100634DA1 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8315DE42A1CE9C100634DA1 /* SignUpViewModel.swift */; };
@@ -296,6 +297,8 @@
 		F8669E382A0BE623004D28A1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E372A0BE623004D28A1 /* LoginViewModel.swift */; };
 		F8669E3B2A0BE6CE004D28A1 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E3A2A0BE6CE004D28A1 /* Route.swift */; };
 		F8669E3E2A0BE84F004D28A1 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8669E3D2A0BE84F004D28A1 /* RootViewModel.swift */; };
+		F86A1C802B2885550045D51F /* SubliminalGuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86A1C7F2B2885550045D51F /* SubliminalGuideCell.swift */; };
+		F86A1C822B288B6F0045D51F /* CustomWKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86A1C812B288B6F0045D51F /* CustomWKWebView.swift */; };
 		F86F797D2A18C3C200298581 /* TappableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86F797C2A18C3C200298581 /* TappableLabel.swift */; };
 		F88A82E62A13CE8500D3E975 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88A82E52A13CE8500D3E975 /* Font+Extension.swift */; };
 		F88A82FA2A13CEDA00D3E975 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F88A82E82A13CEDA00D3E975 /* Montserrat-LightItalic.ttf */; };
@@ -553,6 +556,7 @@
 		F827D97F2A10F7460034B5AF /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		F827D9842A10FAD70034B5AF /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
 		F827D9862A10FAE30034B5AF /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		F8295EC52B2C22780023E8B2 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		F82BDDF32A41EAE1002E29E5 /* CategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryResponse.swift; sourceTree = "<group>"; };
 		F82CA4F12A19B4A4007EDFAE /* ViewController+Storyboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Storyboard+Extension.swift"; sourceTree = "<group>"; };
 		F8315DE42A1CE9C100634DA1 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -581,6 +585,8 @@
 		F8669E372A0BE623004D28A1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		F8669E3A2A0BE6CE004D28A1 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		F8669E3D2A0BE84F004D28A1 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		F86A1C7F2B2885550045D51F /* SubliminalGuideCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SubliminalGuideCell.swift; path = "../../../../../../../../../../../Creative Cloud Files/SubliminalGuideCell.swift"; sourceTree = "<group>"; };
+		F86A1C812B288B6F0045D51F /* CustomWKWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWKWebView.swift; sourceTree = "<group>"; };
 		F86F797C2A18C3C200298581 /* TappableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableLabel.swift; sourceTree = "<group>"; };
 		F88A82E52A13CE8500D3E975 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		F88A82E82A13CEDA00D3E975 /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -843,6 +849,7 @@
 				746FA5EC2A25F479006CE52C /* JSONAPIDictionaryResponse.swift */,
 				746FA5F02A25FE76006CE52C /* JSONAPIArrayResponse.swift */,
 				7437A0BC2AA7436F00DEA0D1 /* SignUpResponse.swift */,
+				F8295EC52B2C22780023E8B2 /* ResponseModel.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1072,7 +1079,7 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
-		7490E44A2A40A0BB00463582 /* Premium */ = {
+		7490E44A2A40A0BB00463582 /* Subscription */ = {
 			isa = PBXGroup;
 			children = (
 				74A6C5732A5DA98700D9DAED /* PlanView */,
@@ -1081,7 +1088,7 @@
 				7490E45A2A40A17A00463582 /* PremiumViewController.swift */,
 				740A26E92A4DCE2500D96A1D /* PremiumViewModel.swift */,
 			);
-			path = Premium;
+			path = Subscription;
 			sourceTree = "<group>";
 		};
 		7490E44B2A40A0BF00463582 /* Profile */ = {
@@ -1098,6 +1105,7 @@
 		74910DEF2AD80F6400F2D909 /* Subliminal Guide */ = {
 			isa = PBXGroup;
 			children = (
+				F86A1C7E2B2885470045D51F /* Cells */,
 				74910DF02AD8158D00F2D909 /* SubliminalGuideViewController.swift */,
 				74910DF22AD815AA00F2D909 /* SubliminalGuide.storyboard */,
 			);
@@ -1368,6 +1376,7 @@
 				74CD22BC2A8B8D4B00B9D28A /* AudioPlayer */,
 				F80A38B72A18C09F0023D166 /* KeyboardManager.swift */,
 				74C090942A720BB0001B552E /* Helper.swift */,
+				F86A1C812B288B6F0045D51F /* CustomWKWebView.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1423,7 +1432,7 @@
 				7464B6212A7E8024007A4DFD /* Change Password */,
 				74C0908A2A7206DC001B552E /* Edit Profile */,
 				7490E44B2A40A0BF00463582 /* Profile */,
-				7490E44A2A40A0BB00463582 /* Premium */,
+				7490E44A2A40A0BB00463582 /* Subscription */,
 				7490E4492A40A0AE00463582 /* Player */,
 				7490E4482A40A04F00463582 /* Search */,
 				7490E4472A40A00E00463582 /* Home */,
@@ -1671,6 +1680,14 @@
 				7490E4452A4096FC00463582 /* Logger.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		F86A1C7E2B2885470045D51F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F86A1C7F2B2885550045D51F /* SubliminalGuideCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		F88A82E42A13CE7A00D3E975 /* Font+Extension */ = {
@@ -2141,6 +2158,7 @@
 				741AC3512B1CB70D00EA4890 /* FAQsResponse.swift in Sources */,
 				74E3BAD32A5042AB00CB0005 /* FeaturedResponse.swift in Sources */,
 				74BAEABB2A85494E000BB1E4 /* ProfileUseCase.swift in Sources */,
+				F86A1C802B2885550045D51F /* SubliminalGuideCell.swift in Sources */,
 				F8512C3F2A13BDC90041C14F /* WelcomeViewModel.swift in Sources */,
 				74CD22BE2A8B8D5B00B9D28A /* CustomAudioPlayer.swift in Sources */,
 				748120032B2744EF00EEBBB3 /* FAQsSwiftUIView.swift in Sources */,
@@ -2188,6 +2206,7 @@
 				F8315DE52A1CE9C100634DA1 /* SignUpViewModel.swift in Sources */,
 				74CD22C42A8BD2D900B9D28A /* AudioAVPlayer.swift in Sources */,
 				7480EDFC2A7CF02E000206B1 /* MonthlyView.swift in Sources */,
+				F8295EC62B2C22780023E8B2 /* ResponseModel.swift in Sources */,
 				741CB6B92A447F0A00975949 /* AuthenticationUseCase.swift in Sources */,
 				F81ED0B02A162B9C0043E245 /* SplashScreenViewController.swift in Sources */,
 				745B623F2A66CF4E00289F95 /* LoginAlertViewController.swift in Sources */,
@@ -2217,6 +2236,7 @@
 				74019B412B0224C100882BF2 /* FeaturedPlaylistCell.swift in Sources */,
 				741CB69D2A44763900975949 /* StandardCredentialsService.swift in Sources */,
 				F8F2A7E42AD6E0B500F40D36 /* HowMagusWorksViewModel.swift in Sources */,
+				F86A1C822B288B6F0045D51F /* CustomWKWebView.swift in Sources */,
 				74F1DD1D2A4996C6008F4680 /* CategoryCell.swift in Sources */,
 				F8512C352A13B9EA0041C14F /* String+Images.swift in Sources */,
 				F8669E302A0BDAB8004D28A1 /* LocalisedStrings.swift in Sources */,

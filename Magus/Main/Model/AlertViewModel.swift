@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AlertModel {
+enum AlertModelEnum {
     case loading(Bool)
     case alertModal(AlertViewModel)
 }

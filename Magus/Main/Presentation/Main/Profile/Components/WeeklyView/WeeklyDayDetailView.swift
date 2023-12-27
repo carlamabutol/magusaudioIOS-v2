@@ -13,13 +13,13 @@ class WeeklyDayDetailView: ReusableXibView {
     @IBOutlet var moodImageView: UIImageView!
     @IBOutlet var moodLbl: UILabel! {
         didSet {
-            
+            moodLbl.font = .Montserrat.bold17
         }
     }
     
     @IBOutlet var descriptionLbl: UILabel! {
         didSet {
-            
+            descriptionLbl.font = .Montserrat.body1
         }
     }
     

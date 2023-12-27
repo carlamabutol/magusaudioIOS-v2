@@ -15,7 +15,7 @@ protocol NetworkService {
     // MARK: MOODS
     func getAllMoods() async throws -> JSONAPIArrayResponse<MoodResponse>
     func getMoodCalendar(month: String) async throws -> JSONAPIDictionaryResponse<MoodCalendarResponse>
-    func getCurrentMood() async throws -> JSONAPIArrayResponse<CurrentMoodResponse>
+    func getCurrentMood() async throws -> JSONAPIArrayResponse<MoodResponse>
     func updateSelectedMoods(moodId: Int) async throws -> EmptyResponse
     
     func getCategorySubliminal(search: String) async throws -> JSONAPIArrayResponse<CategorySubliminalElement>
@@ -47,6 +47,8 @@ protocol NetworkService {
     func getFAQs(search: String) async throws -> JSONAPIArrayResponse<FAQsResponse>
     func getGuides() async throws -> JSONAPIArrayResponse<GuideResponse>
     func getIPO() async throws -> JSONAPIArrayResponse<IPOResponse>
+    func changePassword(currentPassword: String, newPassword: String, newPasswordConf: String) async throws -> EmptyResponse
+    func forgotPassowrd(email: String) async throws -> ResponseModel
 }
 
 enum FavoriteAPI: String{

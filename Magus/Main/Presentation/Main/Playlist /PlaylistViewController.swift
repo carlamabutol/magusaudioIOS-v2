@@ -142,6 +142,10 @@ class PlaylistViewController: BlurCommonViewController {
             .subscribe { [weak self] _ in self?.popViewController() }
             .disposed(by: disposeBag)
         
+        addSubButton.rx.tap
+            .subscribe { [weak self] _ in self?.addSubliminal() }
+            .disposed(by: disposeBag)
+        
         controlButton.rx.tap
             .subscribe { [weak self] _ in
                 self?.viewModel.playPlaylist()
@@ -187,7 +191,6 @@ class PlaylistViewController: BlurCommonViewController {
                 self?.coverImageView.sd_setImage(with: imageUrl)
             }
             .disposed(by: disposeBag)
-        
         
         Observable
             .zip(

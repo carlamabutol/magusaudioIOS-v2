@@ -24,5 +24,21 @@ class Helper {
             return "Good day!"
         }
     }
+    
+    func containsSpecialCharacter(text: String) -> Bool {
+        text.range(of: ".*[^A-Za-z0-9].*", options: .regularExpression) != nil
+    }
+    
+    func containsNumberCharacter(text: String) -> Bool {
+        text.range(of: ".*[0-9].*", options: .regularExpression) != nil
+    }
+    
+    func containsUppercaseCharacter(text: String) -> Bool {
+        text.range(of: ".*[A-Z].*", options: .regularExpression) != nil
+    }
+    
+    func containsLowercaseCharacter(text: String) -> Bool {
+        text.range(of: ".*[a-z].*", options: .regularExpression) != nil
+    }
 
 }

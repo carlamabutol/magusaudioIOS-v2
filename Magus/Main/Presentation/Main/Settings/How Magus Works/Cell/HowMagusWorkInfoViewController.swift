@@ -13,7 +13,7 @@ class HowMagusWorkInfoViewController: CommonViewController {
     
     @IBOutlet var imageView: UIImageView!
     
-    @IBOutlet var webView: WKWebView! {
+    @IBOutlet var webView: CustomWKWebView! {
         didSet {
             webView.backgroundColor = .clear
             webView.isOpaque = false
@@ -23,7 +23,7 @@ class HowMagusWorkInfoViewController: CommonViewController {
     func configure(with model: IPO) {
         imageView.sd_setImage(with: .init(string: model.image))
         imageView.contentMode = .scaleAspectFit
-        webView.loadHTMLString(model.description, baseURL: nil)
+        webView.jomLoadHTMLString(htmlString: model.description)
     }
     
 }

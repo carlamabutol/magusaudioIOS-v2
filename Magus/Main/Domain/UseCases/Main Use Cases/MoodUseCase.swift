@@ -40,7 +40,7 @@ final class MoodUseCase {
             switch response {
             case .success(let data):
                 let allMoods = store.appState.allMoods
-                guard let currentMoodId = Int(data.first?.currentMood ?? "") else { return }
+                guard let currentMoodId = data.first?.id else { return }
                 let selectedMood = allMoods.first(where: { $0.id == currentMoodId })
                 store.appState.selectedMood = selectedMood
             case .error(_):

@@ -20,11 +20,11 @@ class AddToPlaylistViewModel: ViewModel {
     private let searchRelay = BehaviorRelay<String>(value: "")
     private let searchDebounceTime: RxTimeInterval
     private let loadingRelay = BehaviorRelay<Bool>(value: true)
-    private let alertRelay = PublishRelay<AlertModel>()
+    private let alertRelay = PublishRelay<AlertModelEnum>()
     private let backRelay = PublishRelay<Void>()
     var backObservable: Observable<Void> { backRelay.asObservable() }
     var loadingObservable: Observable<Bool> { loadingRelay.asObservable() }
-    var alertObservable: Observable<AlertModel> { alertRelay.asObservable() }
+    var alertObservable: Observable<AlertModelEnum> { alertRelay.asObservable() }
     let fullScreenLoadingRelay = PublishRelay<Bool>()
     let dataSource = BehaviorRelay<[Section]>(value: [])
     

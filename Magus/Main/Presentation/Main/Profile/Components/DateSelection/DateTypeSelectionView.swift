@@ -31,6 +31,7 @@ class DateTypeSelectionView: ReusableXibView {
     @IBOutlet var monthlyContainerView: UIView! {
         didSet {
             monthlyContainerView.roundCorners(corners: [.topRight, .bottomRight], radius: 5)
+            monthlyContainerView.layer.opacity = 0
         }
     }
     

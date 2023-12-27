@@ -68,6 +68,7 @@ class LoginViewModel {
                     }
                 }
             } catch {
+                router.selectedRoute = .mood
                 Logger.error(error.localizedDescription, topic: .presentation)
             }
         }

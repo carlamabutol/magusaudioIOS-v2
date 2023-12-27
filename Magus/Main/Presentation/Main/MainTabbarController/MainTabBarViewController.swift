@@ -100,6 +100,7 @@ class MainTabBarViewController: UITabBarController {
             .disposed(by: disposeBag)
         
         viewModel.selectedSubliminalObservable
+            .observe(on: MainScheduler.asyncInstance)
             .subscribe { [weak self] subliminal in
                 self?.collapsedPlayerView.configure(subliminal: subliminal)
                 self?.playerViewModel.createArrayAudioPlayer(with: subliminal)

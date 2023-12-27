@@ -11,7 +11,7 @@ class ProfileNavigationBar: ReusableXibView {
     
     @IBOutlet private var backButton: UIButton!
     
-    @IBOutlet private var saveButton: UIButton!
+    @IBOutlet var saveButton: UIButton!
     
     private var goBackHandler: CompletionHandler?
     private var saveHandler: CompletionHandler?

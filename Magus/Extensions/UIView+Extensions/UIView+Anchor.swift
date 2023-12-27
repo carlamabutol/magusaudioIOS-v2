@@ -41,6 +41,7 @@ extension UIView {
         }
     }
     
+    @discardableResult
     // MARK: - Add "self.view" Leading Anchor to FromView
     public func addLeadingConstraint(fromView: UIView, useSafeAreaLayoutGuide: Bool = false, layoutAnchor: XLayoutAnchor = .leading, constant: CGFloat = 0, isActive: Bool = true) -> NSLayoutConstraint {
         var constraint: NSLayoutConstraint
@@ -59,6 +60,7 @@ extension UIView {
         return constraint
     }
     
+    @discardableResult
     // MARK: - Add "self.view" Trailing Anchor to FromView
     public func addTrailingConstraint(fromView: UIView, useSafeAreaLayoutGuide: Bool = false, layoutAnchor: XLayoutAnchor = .trailing, constant: CGFloat = 0, isActive: Bool = true) -> NSLayoutConstraint {
         var constraint: NSLayoutConstraint
@@ -78,6 +80,7 @@ extension UIView {
     }
     
     // MARK: - Add "self.view" Top Anchor to FromView
+    @discardableResult
     public func addTopConstraint(fromView: UIView, useSafeAreaLayoutGuide: Bool = false, layoutAnchor: YLayoutAnchor = .top, constant: CGFloat = 0, isActive: Bool = true) -> NSLayoutConstraint {
         var constraint: NSLayoutConstraint
         if #available(iOS 11.0, *), useSafeAreaLayoutGuide {
@@ -96,6 +99,7 @@ extension UIView {
     }
     
     // MARK: - Add "self.view" Bottom Anchor to FromView
+    @discardableResult
     public func addBottomConstraint(fromView: UIView, useSafeAreaLayoutGuide: Bool = false, layoutAnchor: YLayoutAnchor = .bottom, constant: CGFloat = 0, isActive: Bool = true) -> NSLayoutConstraint {
         var constraint: NSLayoutConstraint
         if #available(iOS 11.0, *), useSafeAreaLayoutGuide {
@@ -113,6 +117,7 @@ extension UIView {
         return constraint
     }
     
+    @discardableResult
     public func addCenterXConstraint(fromView: UIView, constant: CGFloat = 0, isActive: Bool = true) -> NSLayoutConstraint {
         var constraint: NSLayoutConstraint
         constraint = centerXAnchor.constraint(equalTo: fromView.centerXAnchor, constant: constant)
@@ -120,6 +125,7 @@ extension UIView {
         return constraint
     }
     
+    @discardableResult
     public func addCenterYConstraint(fromView: UIView, constant: CGFloat = 0, isActive: Bool = true) -> NSLayoutConstraint {
         var constraint: NSLayoutConstraint
         constraint = centerYAnchor.constraint(equalTo: fromView.centerYAnchor, constant: constant)
@@ -127,6 +133,7 @@ extension UIView {
         return constraint
     }
     
+    @discardableResult
     public func addHeightConstraint(fromView: UIView? = nil, constant: CGFloat = 0, multiplier: CGFloat = 1, isActive: Bool = true) -> NSLayoutConstraint {
         var constraint: NSLayoutConstraint
         guard let fromView = fromView else {
@@ -140,6 +147,7 @@ extension UIView {
         return constraint
     }
     
+    @discardableResult
     public func addWidthConstraint(fromView: UIView? = nil, constant: CGFloat = 0, multiplier: CGFloat = 1, isActive: Bool = true) -> NSLayoutConstraint {
         var constraint: NSLayoutConstraint
         guard let fromView = fromView else {

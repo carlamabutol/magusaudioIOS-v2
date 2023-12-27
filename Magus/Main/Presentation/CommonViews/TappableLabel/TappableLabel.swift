@@ -12,6 +12,7 @@ class TappableLabel: UILabel {
     
     var tappableRange: NSRange?
     var tappableHandler: TappableTextHandler?
+    var nonTappablelHandler: TappableTextHandler?
     var tappableAttrb: NSAttributedString?
     
     override class func awakeFromNib() {
@@ -28,6 +29,8 @@ class TappableLabel: UILabel {
                 let abc = attributedText?.attributedSubstring(from: tappableRange)
                 tappableAttrb = abc
                 tappableHandler?()
+            } else {
+                nonTappablelHandler?()
             }
         }
     }

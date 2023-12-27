@@ -69,6 +69,9 @@ class SignUpViewController: CommonViewController {
             termsAndConditionLabel.tappableHandler = { [weak self] in
                 self?.presentTermsAndCondition()
             }
+            termsAndConditionLabel.nonTappablelHandler = { [weak self] in
+                self?.tapCheckbox()
+            }
         }
     }
     

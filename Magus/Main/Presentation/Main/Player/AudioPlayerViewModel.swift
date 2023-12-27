@@ -19,7 +19,9 @@ class AudioPlayerViewModel: ViewModel {
     private let store: Store
     private let audioPlayerManager = AudioPlayerManager.shared
     private let subliminalUseCase: SubliminalUseCase
-    private let subliminals: () -> [Subliminal]
+    private let subliminalQueue: () -> [Subliminal]
+    private let addedQueue: () -> [Subliminal]
+    private let playlistQueue: () -> [Subliminal]
     
     private let selectedSubliminalRelay = PublishRelay<Subliminal>()
     var selectedSubliminal: Subliminal?
@@ -41,7 +43,9 @@ class AudioPlayerViewModel: ViewModel {
         subliminalUseCase = dependencies.subliminalUseCase
         playerStateObservable = dependencies.playerState
         isRepealAllObservable = dependencies.isRepeatAll
-        subliminals = dependencies.subliminalQueue
+        subliminalQueue = dependencies.subliminalQueue
+        addedQueue = dependencies.addedQueue
+        playlistQueue = dependencies.playlistQeueu
         super.init()
         audioPlayerManager.activePlayerObservable
             .subscribe { [weak self] player in
@@ -114,7 +118,7 @@ class AudioPlayerViewModel: ViewModel {
     
     private func didEndPlayer() {
         switch repeatStatus.value {
-        case .repeartCurrentlyPlaying:
+        case .repeatCurrentlyPlaying:
             resetPlayer(playAgain: true)
         case .repeatAll:
             resetPlayer(playAgain: false)
@@ -130,30 +134,62 @@ class AudioPlayerViewModel: ViewModel {
     }
     
     func next() {
-        let subliminals = self.subliminals()
+        let subliminalQueue = self.subliminalQueue()
+        let addedQueue = self.addedQueue()
         var currentIndex = 0
-        if let index = subliminals.firstIndex(where: { $0.subliminalID == selectedSubliminal?.subliminalID ?? ""}) {
+        if let index = subliminalQueue.firstIndex(where: { $0.subliminalID == selectedSubliminal?.subliminalID ?? ""}) {
             currentIndex = index
         }
-        let index = currentIndex + 1
-        if index < (subliminals.count - 1) {
-            createArrayAudioPlayer(with: subliminals[index])
-        } else if repeatStatus.value == .repeatAll {
-            createArrayAudioPlayer(with: subliminals[0])
+        currentIndex += 1
+        switch repeatStatus.value {
+        case .repeatAll:
+            if currentIndex < (subliminalQueue.count - 1) {
+                store.appState.selectedSubliminal = subliminalQueue[currentIndex]
+            } else if currentIndex == (subliminalQueue.count - 1) {
+                if let addedQueueIndex = addedQueue.firstIndex(where: { $0.subliminalID == selectedSubliminal?.subliminalID ?? ""}) {
+                    currentIndex = addedQueueIndex
+                }
+                if currentIndex < (subliminalQueue.count - 1) {
+                    store.appState.selectedSubliminal = addedQueue[currentIndex]
+                } else {
+                    store.appState.selectedSubliminal = subliminalQueue[0]
+                }
+            } else {
+                store.appState.selectedSubliminal = subliminalQueue[0]
+            }
+        case .repeatCurrentlyPlaying:
+            guard let selectedSubliminal = self.selectedSubliminal else { return }
+            createArrayAudioPlayer(with: selectedSubliminal)
         }
     }
     
     func previous() {
-        let subliminals = self.subliminals()
+        let subliminalQueue = self.subliminalQueue()
+        let addedQueue = self.addedQueue()
         var currentIndex = 0
-        if let index = subliminals.firstIndex(where: { $0.subliminalID == selectedSubliminal?.subliminalID ?? ""}) {
+        if let index = subliminalQueue.firstIndex(where: { $0.subliminalID == selectedSubliminal?.subliminalID ?? ""}) {
             currentIndex = index
         }
         let index = currentIndex - 1
-        if index < (subliminals.count - 1) {
-            createArrayAudioPlayer(with: subliminals[index])
-        } else {
-            
+        switch repeatStatus.value {
+        case .repeatAll:
+            if currentIndex < (subliminalQueue.count - 1) {
+                store.appState.selectedSubliminal = subliminalQueue[currentIndex]
+            } else if currentIndex == (subliminalQueue.count - 1) {
+                if let addedQueueIndex = addedQueue.firstIndex(where: { $0.subliminalID == selectedSubliminal?.subliminalID ?? ""}) {
+                    currentIndex = addedQueueIndex
+                }
+                if currentIndex < (subliminalQueue.count - 1) {
+                    store.appState.selectedSubliminal = addedQueue[currentIndex]
+                } else {
+                    store.appState.selectedSubliminal = subliminalQueue[0]
+                }
+            } else {
+                store.appState.selectedSubliminal = subliminalQueue[0]
+            }
+        case .repeatCurrentlyPlaying:
+            guard let selectedSubliminal = self.selectedSubliminal else { return }
+            createArrayAudioPlayer(with: selectedSubliminal)
         }
     }
     
@@ -182,8 +218,8 @@ class AudioPlayerViewModel: ViewModel {
     func updateRepat() {
         switch repeatStatus.value {
         case .repeatAll:
-            repeatStatus.accept(.repeartCurrentlyPlaying)
-        case .repeartCurrentlyPlaying:
+            repeatStatus.accept(.repeatCurrentlyPlaying)
+        case .repeatCurrentlyPlaying:
             repeatStatus.accept(.repeatAll)
         }
     }
@@ -205,7 +241,7 @@ class AudioPlayerViewModel: ViewModel {
 extension AudioPlayerViewModel {
     
     enum Repeat {
-        case repeartCurrentlyPlaying
+        case repeatCurrentlyPlaying
         case repeatAll
 //        case noRepeat
     }

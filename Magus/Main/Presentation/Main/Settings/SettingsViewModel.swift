@@ -16,12 +16,12 @@ class SettingsViewModel: ViewModel {
     private let store: Store
     private let settingsUseCase: SettingsUseCase
     let faqsRelay = BehaviorRelay<[FAQsSection]>(value: [])
-    private let guideRelay = BehaviorRelay<[Guide]>(value: [])
+    let guideRelay = BehaviorRelay<[GuideModel]>(value: [])
     private let ipoRelay = BehaviorRelay<[IPO]>(value: [])
     let searchFAQsRelay = BehaviorRelay<String>(value: "")
     var ipoObservable: Observable<[IPO]> { ipoRelay.asObservable() }
     var faqsObservable: Observable<[FAQsSection]> { faqsRelay.asObservable() }
-    var guideObservable: Observable<[Guide]> { guideRelay.asObservable() }
+    var guideObservable: Observable<[GuideModel]> { guideRelay.asObservable() }
     
     init(dependencies: SettingsViewModel.Dependencies = .standard) {
         router = dependencies.router
@@ -57,7 +57,9 @@ class SettingsViewModel: ViewModel {
                     response.map { faqs in
                         FAQsSection(
                             items: [
-                                FAQsModel(description: faqs.answer, potentialHeight: 0)
+                                FAQsModel(description: faqs.answer, potentialHeight: 0, didLoadScrollHeight: { [weak self] scrollHeight in
+                                    self?.updateHeight(faqs: faqs, height: scrollHeight)
+                                })
                             ],
                             title: faqs.question,
                             isCollapsed: false,
@@ -84,15 +86,44 @@ class SettingsViewModel: ViewModel {
         faqsRelay.accept(faqs)
     }
     
+    private func updateHeight(faqs: FAQs, height: CGFloat) {
+        guard let index = faqsRelay.value.firstIndex(where: { $0.title == faqs.question}) else { return }
+        let old = faqsRelay.value[index]
+        let oldItem = old.items[0]
+        let item = FAQsModel(description: oldItem.description, potentialHeight: height)
+        let section = FAQsSection(items: [item], title: faqs.question, isCollapsed: faqsRelay.value[index].isCollapsed, tapHandler: { [weak self] in
+            self?.updateIsCollapsed(faqs: faqs)
+        })
+        var faqs = faqsRelay.value
+        faqs[index] = section
+        faqsRelay.accept(faqs)
+    }
+    
     func getGuide() {
         Task {
             do {
                 let response = try await settingsUseCase.getGuide()
-                guideRelay.accept(response)
+                guideRelay.accept(
+                    response.map { guide in
+                        GuideModel(image: guide.image, description: guide.description, potentialHeight: 0) { [weak self] scrollHeight in
+                            self?.updateHeight(guide: guide, height: scrollHeight)
+                        }
+                        
+                    }
+                )
             } catch(let error) {
                 Logger.error("Fetching of Guide failed \(error.localizedDescription)", topic: .network)
             }
         }
+    }
+    
+    private func updateHeight(guide: Guide, height: CGFloat) {
+        guard let index = guideRelay.value.firstIndex(where: { $0.description == guide.description}) else { return }
+        let old = guideRelay.value[index]
+        let item = GuideModel(image: old.image, description: old.description, potentialHeight: height)
+        var guides = guideRelay.value
+        guides[index] = item
+        guideRelay.accept(guides)
     }
     
     func getIPO() {
@@ -159,5 +190,14 @@ extension SettingsViewModel {
     struct FAQsModel {
         let description: String
         var potentialHeight: CGFloat
+        var didLoadScrollHeight: ((_ scrollHeight: CGFloat) -> Void)?
     }
+    
+    struct GuideModel {
+        let image: String
+        let description: String
+        var potentialHeight: CGFloat
+        var didLoadScrollHeight: ((_ scrollHeight: CGFloat) -> Void)?
+    }
+    
 }

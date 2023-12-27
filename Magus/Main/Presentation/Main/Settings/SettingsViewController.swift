@@ -43,12 +43,6 @@ class SettingsViewController: CommonViewController {
         }
     }
     
-    @IBOutlet var privacyButton: UIButton! {
-        didSet {
-            privacyButton.titleLabel?.font = .Montserrat.bold15
-        }
-    }
-    
     @IBOutlet var contactUsButton: UIButton! {
         didSet {
             contactUsButton.titleLabel?.font = .Montserrat.bold15
@@ -105,20 +99,12 @@ class SettingsViewController: CommonViewController {
             }
             .disposed(by: disposeBag)
         
-        privacyButton.rx.tap
-            .observe(on: MainScheduler.asyncInstance)
-            .subscribe { [weak self] _ in
-                self?.goToCompanyDocument(docutype: .privacy)
-            }
-            .disposed(by: disposeBag)
-        
         contactUsButton.rx.tap
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { [weak self] _ in
                 self?.goToContactUs()
             }
             .disposed(by: disposeBag)
-        
         
     }
     

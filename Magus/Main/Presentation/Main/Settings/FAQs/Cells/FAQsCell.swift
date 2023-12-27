@@ -12,15 +12,27 @@ class FAQsCell: UICollectionViewCell {
     
     static let identifier = "FAQsCell"
     
-    @IBOutlet var webView: WKWebView! {
+    @IBOutlet var webView: CustomWKWebView! {
         didSet {
             webView.backgroundColor = .clear
             webView.isOpaque = false
         }
     }
     
-    func configure(description: String) {
-        webView.loadHTMLString(description, baseURL: nil)
+    func configure(model: SettingsViewModel.FAQsModel) {
+        webView.scrollContentHeight = { height in
+            model.didLoadScrollHeight?(height)
+        }
+        webView.jomLoadHTMLString(htmlString: model.description, baseUrl: nil)
+        
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
     
     override func layoutSubviews() {

@@ -34,7 +34,7 @@ struct LocalisedStrings {
     }
     
     enum SignUp {
-        static let title = "Welcome back!"
+        static let title = "Unleash Your Mind's Potential"
         static let description = "Sign up and transform your life today."
         static let termsAndCondition = "Terms and Conditions"
         static let iAgreeWithTermsAndCondition = "I agree with the Terms and Conditions"
@@ -113,6 +113,7 @@ struct LocalisedStrings {
     enum ChangePassword {
         static let contain8Characters = "Contain at least 8 characters"
         static let includeOneUppercase = "Include at least one uppercase letter (A-Z)"
+        static let includeOneLowercase = "Include at least one lowercase letter (a-z)"
         static let includeOneNumber = "Include at least one number (0-9)"
         static let passwordMust = "Password must:"
     }
@@ -145,6 +146,7 @@ struct LocalisedStrings {
         static let favorite = "Favorite"
         static let like = "Like"
         static let addToQueue = "Add to Queue"
+        static let addedToQueue = "Added to Queue"
         static let addToPlaylist = "Add to Playlist"
         static let removeFromPlaylist = "Remove from Playlist"
     }

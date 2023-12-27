@@ -83,24 +83,6 @@ class FAQsViewController: CommonViewController {
         }
     }
     
-    private func setupDataSource() {
-        
-        let dataSource = RxCollectionViewSectionedReloadDataSource<SettingsViewModel.FAQsSection>(configureCell: { dataSource, collectionView, indexPath, item in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FAQsCell.identifier, for: indexPath) as! FAQsCell
-            cell.configure(description: item.description)
-            return cell
-        }, configureSupplementaryView: { dataSource, collectionView, title, indexPath in
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: title, withReuseIdentifier: HeaderTitleRightButtonView.identifier, for: indexPath) as! HeaderTitleRightButtonView
-            let model = dataSource.sectionModels[indexPath.section]
-            view.configure(text: model.title ?? "", tapAction: model.tapHandler)
-            return view
-        })
-
-        viewModel.faqsObservable
-            .bind(to: collectionView.rx.items(dataSource: dataSource))
-            .disposed(by: disposeBag)
-    }
-    
 }
 
 extension FAQsViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -118,7 +100,7 @@ extension FAQsViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let model = viewModel.faqsRelay.value[indexPath.section]
         let item = model.items[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FAQsCell.identifier, for: indexPath) as! FAQsCell
-        cell.configure(description: item.description)
+        cell.configure(model: item)
         return cell
     }
     
@@ -139,14 +121,15 @@ extension FAQsViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let width = collectionView.frame.width - 40 - imageWidth
         let height = model.title?.heigh1t(withConstrainedWidth: width - 20, font: .Montserrat.bold17) ?? 0
         let finalHeight = height > 50 ? height + 20 : 50
-        print("HEADER HEIGHT \(model.title) - \(height) - \(finalHeight)")
         return .init(width: width, height: height + 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = collectionView.frame.width - 40
-        return .init(width: width, height: 100)
+        let model = viewModel.faqsRelay.value[indexPath.section]
+        let item = model.items[indexPath.row]
+        return .init(width: width, height: item.potentialHeight == 0 ? 100 : item.potentialHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

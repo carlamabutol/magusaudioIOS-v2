@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import RxSwift
 
 class SubliminalGuideViewController: CommonViewController {
+    
+    private let viewModel = SettingsViewModel()
+    
     @IBOutlet var navigationBar: ProfileNavigationBar! {
         didSet {
             navigationBar.backgroundColor = .clear
@@ -19,57 +23,49 @@ class SubliminalGuideViewController: CommonViewController {
         }
     }
     
-    @IBOutlet var guideTitleLabel1: UILabel! {
+    @IBOutlet var collectionView: UICollectionView! {
         didSet {
-            guideTitleLabel1.font = .Montserrat.medium17
-            guideTitleLabel1.text = LocalisedStrings.LoremIpsum.title
-            guideTitleLabel1.numberOfLines = 0
+            collectionView.register(SubliminalGuideCell.self, forCellWithReuseIdentifier: SubliminalGuideCell.identifier)
+            collectionView.contentInset = .init(top: 0, left: 20, bottom: 0, right: 20)
+            collectionView.backgroundColor = .clear
+            collectionView.dataSource = self
+            collectionView.delegate = self
         }
     }
     
-    @IBOutlet var guideDescLabel1: UILabel! {
-        didSet {
-            guideDescLabel1.font = .Montserrat.body4
-            guideDescLabel1.text = LocalisedStrings.LoremIpsum.desc1
-            guideDescLabel1.numberOfLines = 0
-        }
+    override func setupBinding() {
+        super.setupBinding()
+        
+        viewModel.guideObservable
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.collectionView.reloadData()
+            }.disposed(by: disposeBag)
+        
     }
     
-    @IBOutlet var guideTitleLabel2: UILabel! {
-        didSet {
-            guideTitleLabel2.font = .Montserrat.medium17
-            guideTitleLabel2.text = LocalisedStrings.LoremIpsum.title
-            guideTitleLabel2.numberOfLines = 0
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.getGuide()
     }
+    
+}
 
-    @IBOutlet var guideDescLabel2: UILabel! {
-        didSet {
-            guideDescLabel2.font = .Montserrat.body4
-            guideDescLabel2.text = LocalisedStrings.LoremIpsum.desc2
-            guideDescLabel2.numberOfLines = 0
-        }
+extension SubliminalGuideViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.guideRelay.value.count
     }
     
-    @IBOutlet var guideTitleLabel3: UILabel! {
-        didSet {
-            guideTitleLabel3.font = .Montserrat.medium17
-            guideTitleLabel3.text = LocalisedStrings.LoremIpsum.title
-            guideTitleLabel3.numberOfLines = 0
-        }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SubliminalGuideCell.identifier, for: indexPath) as? SubliminalGuideCell else { fatalError() }
+        let model = viewModel.guideRelay.value[indexPath.row]
+        cell.configure(index: indexPath.row, guide: model)
+        return cell
     }
     
-    @IBOutlet var guideDescLabel3: UILabel! {
-        didSet {
-            guideDescLabel3.font = .Montserrat.body4
-            guideDescLabel3.text = LocalisedStrings.LoremIpsum.desc1
-            guideDescLabel3.numberOfLines = 0
-        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let model = viewModel.guideRelay.value[indexPath.row]
+        return .init(width: collectionView.frame.width - 40, height: model.potentialHeight == 0 ? 152 : model.potentialHeight)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-    
 }

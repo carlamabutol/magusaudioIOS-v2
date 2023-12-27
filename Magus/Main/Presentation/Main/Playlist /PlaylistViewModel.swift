@@ -125,13 +125,13 @@ class PlaylistViewModel: ViewModel {
     
     func selectedSubliminal(_ indexPath: IndexPath) {
         let subliminal = playlist?.subliminals[indexPath.row]
-        store.appState.subliminalQueue = playlist?.subliminals ?? []
+        store.appState.playlistQueue = playlist?.subliminals ?? []
         store.appState.selectedSubliminal = subliminal
     }
     
     func playPlaylist() {
         guard let firstSub = playlist?.subliminals.first else { return }
-        store.appState.subliminalQueue = playlist?.subliminals ?? []
+        store.appState.playlistQueue = playlist?.subliminals ?? []
         store.appState.selectedSubliminal = firstSub
     }
     

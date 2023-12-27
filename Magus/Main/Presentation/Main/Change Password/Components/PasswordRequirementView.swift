@@ -18,12 +18,9 @@ class PasswordRequirementView: ReusableXibView {
     
     @IBOutlet var stateButton: UIImageView!
     
-    func configure(text: String) {
-        titleLabel.text = text
-    }
-    
-    func isCheckRequirements(_ isCheck: Bool) {
-        stateButton.image = UIImage(named: isCheck ? .check : .cross)
+    func configure(model: ChangePasswordViewModel.PasswordRequirementModel) {
+        titleLabel.text = model.text
+        stateButton.image = UIImage(named: model.imageName)
     }
     
 }

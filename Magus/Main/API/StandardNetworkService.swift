@@ -101,7 +101,7 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
-    func getCurrentMood() async throws -> JSONAPIArrayResponse<CurrentMoodResponse> {
+    func getCurrentMood() async throws -> JSONAPIArrayResponse<MoodResponse> {
         let url = baseURL
             .appendingPathComponent("api")
             .appendingPathComponent("user")
@@ -115,7 +115,7 @@ extension StandardNetworkService: NetworkService {
         
         let task = requestManager.request(url, method: .post, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
-            .serializingDecodable(JSONAPIArrayResponse<CurrentMoodResponse>.self)
+            .serializingDecodable(JSONAPIArrayResponse<MoodResponse>.self)
         
         return try await task.value
     }
@@ -606,6 +606,49 @@ extension StandardNetworkService: NetworkService {
         let task = requestManager.request(url, method: .get, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
             .serializingDecodable(JSONAPIArrayResponse<IPOResponse>.self)
+        
+        return try await task.value
+    }
+    
+    func changePassword(currentPassword: String, newPassword: String, newPasswordConf: String) async throws -> EmptyResponse {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("user")
+            .appendingPathComponent("change")
+            .appendingPathComponent("password")
+        
+        var parameters: [String: String] = [
+            "current_password": currentPassword,
+            "new_password": newPassword,
+            "new_password_confirmation": newPasswordConf
+        ]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(EmptyResponse.self)
+        
+        return try await task.value
+    }
+    
+    func forgotPassowrd(email: String) async throws -> ResponseModel {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("user")
+            .appendingPathComponent("reset")
+            .appendingPathComponent("password")
+            .appendingPathComponent("email")
+        
+        let parameters: [String: String] = [
+            "email": email
+        ]
+        
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: getUnauthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(ResponseModel.self)
         
         return try await task.value
     }

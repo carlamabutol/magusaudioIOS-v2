@@ -14,25 +14,42 @@ class PlayerOptionViewModel: ViewModel {
     private let subliminalUseCase: SubliminalUseCase
     private let playlistUseCase: PlaylistUseCase
     private let store: Store
-    var playlistId: String?
-    var subliminal: Subliminal?
-    var isLikeRelay = BehaviorRelay<Bool>(value: false)
+    let playlistIdRelay = BehaviorRelay<String?>(value: nil)
+    let subliminalRelay = BehaviorRelay<Subliminal?>(value: nil)
+    private let isLikeRelay = BehaviorRelay<Bool>(value: false)
     var isLikedObservable: Observable<Bool> { isLikeRelay.asObservable() }
     private let loadingRelay = BehaviorRelay<Bool>(value: true)
-    private let alertRelay = PublishRelay<AlertModel>()
+    private let alertRelay = PublishRelay<AlertModelEnum>()
     private let backRelay = PublishRelay<Void>()
     var backObservable: Observable<Void> { backRelay.asObservable() }
     var loadingObservable: Observable<Bool> { loadingRelay.asObservable() }
-    var alertObservable: Observable<AlertModel> { alertRelay.asObservable() }
+    var alertObservable: Observable<AlertModelEnum> { alertRelay.asObservable() }
+    
+    private let addedToQueuePublisher = PublishRelay<Bool>()
+    var addedToQueueObservable: Observable<Bool> { addedToQueuePublisher.asObservable()}
+    let queueSubliminal: () -> [Subliminal]
+    let addedSubliminal: () -> [Subliminal]
     
     init(dependencies: PlayerOptionViewModel.Dependencies = .standard) {
         store = dependencies.store
         subliminalUseCase = dependencies.subliminalUseCase
         playlistUseCase = dependencies.playlistUseCase
+        queueSubliminal = dependencies.queueSubliminal
+        addedSubliminal = dependencies.addedQueue
+        
+    }
+    
+    func configure(subliminal: Subliminal, playlistId: String?) {
+        subliminalRelay.accept(subliminal)
+        playlistIdRelay.accept(playlistId)
+        isLikeRelay.accept(subliminal.isLiked == 1)
+        
+        let alreadyInQueue = addedSubliminal().contains(where: { $0.id == subliminal.id })
+        addedToQueuePublisher.accept(alreadyInQueue)
     }
     
     func updateFavorite() {
-        guard let selectedSubliminal = subliminal else { return }
+        guard let selectedSubliminal = subliminalRelay.value else { return }
         Task {
             do {
                 var subliminal = selectedSubliminal
@@ -45,7 +62,7 @@ class PlayerOptionViewModel: ViewModel {
                     Logger.info("Successfully removed from favorite", topic: .presentation)
                 }
                 isLikeRelay.accept(subliminal.isLiked == 1)
-                self.subliminal = subliminal
+                self.subliminalRelay.accept(subliminal)
             } catch {
                 Logger.info("Failed to update favorite \(error)", topic: .presentation)
             }
@@ -53,7 +70,7 @@ class PlayerOptionViewModel: ViewModel {
     }
     
     func removeSubliminalToPlaylist() {
-        guard let subliminalId = subliminal?.subliminalID, let playlistId = playlistId else {
+        guard let subliminalId = subliminalRelay.value?.subliminalID, let playlistId = playlistIdRelay.value else {
             return
         }
         alertRelay.accept(.loading(true))
@@ -82,6 +99,25 @@ class PlayerOptionViewModel: ViewModel {
             }
         }
     }
+    
+    func addToQueueSubliminal() {
+        guard let subliminal = subliminalRelay.value,
+              queueSubliminal().first(where: { $0.id == subliminal.id }) == nil,
+              addedSubliminal().first(where: { $0.id == subliminal.id }) == nil else {
+            return
+        }
+        store.appState.addedQueue.append(subliminal)
+        addedToQueuePublisher.accept(true)
+        alertRelay.accept(.alertModal(
+            AlertViewModel(
+                title: "",
+                message: "Added to Queue",
+                actionHandler: {
+                
+                }
+            )
+        ))
+    }
      
 }
 
@@ -92,13 +128,17 @@ extension PlayerOptionViewModel {
         let user: () -> User?
         let subliminalUseCase: SubliminalUseCase
         let playlistUseCase: PlaylistUseCase
+        let queueSubliminal: () -> [Subliminal]
+        let addedQueue: () -> [Subliminal]
         
         static var standard: Dependencies {
             return .init(
                 store: SharedDependencies.sharedDependencies.store,
                 user: { SharedDependencies.sharedDependencies.store.appState.user },
                 subliminalUseCase: SharedDependencies.sharedDependencies.useCases.subliminalUseCase,
-                playlistUseCase: SharedDependencies.sharedDependencies.useCases.playlistUseCase
+                playlistUseCase: SharedDependencies.sharedDependencies.useCases.playlistUseCase,
+                queueSubliminal: { SharedDependencies.sharedDependencies.store.appState.subliminalQueue },
+                addedQueue: { SharedDependencies.sharedDependencies.store.appState.addedQueue }
             )
         }
     }

@@ -65,6 +65,26 @@ final class AuthenticationUseCase {
         }
     }
     
+    func forgotPassword(email: String) async throws -> ResponseModel {
+        do {
+            let response = try await networkService.forgotPassowrd(email: email)
+            return response
+        } catch {
+            Logger.error("Signin Error: Unable to complete network request - \(error.localizedDescription)", topic: .network)
+            throw error
+        }
+    }
+    
+    func changePassword(currentPassword: String, newPassword: String, confirmPassword: String) async throws -> EmptyResponse {
+        do {
+            let response = try await networkService.changePassword(currentPassword: currentPassword, newPassword: newPassword, newPasswordConf: confirmPassword)
+            return response
+        } catch {
+            Logger.error("ChangePassword Error: Unable to complete network request - \(error.localizedDescription)", topic: .network)
+            throw error
+        }
+    }
+    
 }
 
 extension AuthenticationUseCase {

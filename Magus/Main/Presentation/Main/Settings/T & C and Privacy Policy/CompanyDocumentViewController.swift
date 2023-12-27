@@ -30,7 +30,7 @@ class CompanyDocumentViewController: CommonViewController {
         }
     }
     
-    @IBOutlet var webView: WKWebView! {
+    @IBOutlet var webView: CustomWKWebView! {
         didSet {
             webView.backgroundColor = .clear
             webView.isOpaque = false
@@ -47,7 +47,7 @@ class CompanyDocumentViewController: CommonViewController {
         viewModel.documentObservable
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { [weak self] document  in
-                self?.webView.loadHTMLString(document, baseURL: nil)
+                self?.webView.jomLoadHTMLString(htmlString: document)
             }
             .disposed(by: disposeBag)
     }
