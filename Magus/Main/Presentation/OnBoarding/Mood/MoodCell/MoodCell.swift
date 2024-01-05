@@ -29,7 +29,7 @@ class MoodCell: UICollectionViewCell {
     
     func configure(model: MoodCell.Model) {
         if let image = model.image {
-            moodImageView.sd_setImage(with: URL(string: image), placeholderImage: .init(named: .coverImage))
+            moodImageView.sd_setImage(with: URL(string: image), placeholderImage: .init(named: .appIcon))
         }
         moodTitleLabel.text = model.title
         handleSelection = model.handleSelection

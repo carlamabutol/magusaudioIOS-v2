@@ -33,6 +33,7 @@ class ProfileViewController: CommonViewController {
             emailLbl.font = .Montserrat.body2
         }
     }
+    
     @IBOutlet var scrollViewContentView: UIView!
     @IBOutlet var tabStackView: UIStackView!
     
@@ -57,7 +58,7 @@ class ProfileViewController: CommonViewController {
         didSet {
             subscriptionTypeLbl.font = .Montserrat.bold3
             subscriptionTypeLbl.textColor = .white
-            subscriptionTypeLbl.text = viewModel.user()?.isPremium == true ? "PREMIUM" : nil
+            subscriptionTypeLbl.text = viewModel.user()?.isPremium == true ? "PREMIUM" : "FREE"
         }
     }
     

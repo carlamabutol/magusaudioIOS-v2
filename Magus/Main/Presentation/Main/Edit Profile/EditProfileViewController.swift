@@ -46,6 +46,7 @@ class EditProfileViewController: CommonViewController {
     
     @IBOutlet var emailForm: FormTextFieldView! {
         didSet {
+            emailForm.isUserInteractionEnabled = false
             emailForm.backgroundColor = .white
         }
     }

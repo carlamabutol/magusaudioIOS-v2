@@ -16,13 +16,14 @@ class FAQsCell: UICollectionViewCell {
         didSet {
             webView.backgroundColor = .clear
             webView.isOpaque = false
+            webView.navigationDelegate = self
         }
     }
     
+    var didLoadScrollHeight: ((_ scrollHeight: CGFloat) -> Void)?
+    
     func configure(model: SettingsViewModel.FAQsModel) {
-        webView.scrollContentHeight = { height in
-            model.didLoadScrollHeight?(height)
-        }
+        didLoadScrollHeight = model.didLoadScrollHeight
         webView.jomLoadHTMLString(htmlString: model.description, baseUrl: nil)
         
     }
@@ -41,4 +42,17 @@ class FAQsCell: UICollectionViewCell {
         contentView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 10)
     }
     
+}
+
+extension FAQsCell: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        webView.evaluateJavaScript("document.readyState", completionHandler: { [weak self] (complete, error) in
+            if complete != nil {
+                webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { (height, error) in
+                    guard let height = height as? CGFloat else { return}
+                    self?.didLoadScrollHeight?(height)
+                })
+            }
+        })
+    }
 }

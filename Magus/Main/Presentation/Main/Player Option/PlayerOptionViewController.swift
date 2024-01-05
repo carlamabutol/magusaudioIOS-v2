@@ -70,6 +70,7 @@ class PlayerOptionViewController: CommonViewController {
     
     func configure(subliminal: Subliminal, playlistId: String? = nil, dismiss: @escaping CompletionHandler) {
         titleLabel.setTextWithShadow(text: subliminal.title)
+        descriptionLabel.text = subliminal.description
         isAlreadyAddedInPlaylist = playlistId != nil
         updatePlaylist(isAdded: playlistId != nil)
         dismissCompletion = dismiss
@@ -172,7 +173,8 @@ class PlayerOptionViewController: CommonViewController {
     private func updatePlaylist(isAdded: Bool) {
         let image = UIImage(named: isAdded ? .addToPlaylistActive : .addToPlaylist)
         let newImage = image?.resizeImage(targetHeight: 34)
-        let title = isAdded ? LocalisedStrings.Player.removeFromPlaylist : LocalisedStrings.Player.addToPlaylist
+        let title = LocalisedStrings.Player.addToPlaylist
+//        let title = isAdded ? LocalisedStrings.Player.removeFromPlaylist : LocalisedStrings.Player.addToPlaylist
         addToPlaylistButton.setTitle(title, for: .normal)
         addToPlaylistButton.setImage(newImage, for: .normal)
         addToPlaylistButton.imageView?.contentMode = .scaleAspectFit

@@ -29,6 +29,7 @@ class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         styleTabBar()
         setupBindings()
+        registerForKeyboardNotifications()
         hideKeyboardOnTap()
         setupCollapsedPlayerView()
     }
@@ -38,13 +39,17 @@ class MainTabBarViewController: UITabBarController {
         collapsedPlayerView.isHidden = playerViewModel.selectedSubliminal == nil
     }
     
+    var playerBottomConstraint: NSLayoutConstraint!
+    var paddingBottom: CGFloat = 0
+    
     fileprivate func setupCollapsedPlayerView() {
         let padding: CGFloat = 10
         let bottom = getSafeAreaLayoutGuide().1
-        let paddingBottom = bottom + tabBar.height + padding
+        paddingBottom = bottom + tabBar.height + padding
         view.addSubview(collapsedPlayerView)
+        playerBottomConstraint = collapsedPlayerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -paddingBottom)
         NSLayoutConstraint.activate([
-            collapsedPlayerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -paddingBottom),
+            playerBottomConstraint,
             collapsedPlayerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             collapsedPlayerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             collapsedPlayerView.heightAnchor.constraint(equalToConstant: 90)
@@ -181,6 +186,68 @@ extension MainTabBarViewController {
         tabItem.accessibilityHint = item.title
         tabItem.title = item.title
         return tabItem
+    }
+    
+}
+
+extension MainTabBarViewController {
+    
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowWrapper), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideWrapper), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardWillShowWrapper(notification: NSNotification) {
+        keyboardWillShow(notification: notification)
+    }
+    
+    @objc private func keyboardWillHideWrapper(notification: NSNotification) {
+        keyboardWillHide(notification: notification)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo: [AnyHashable: Any] = notification.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as?
+                NSValue,
+              let firstResponder = view.firstResponder, // The text field
+              let containerView = firstResponder.superview,
+              let windowHeight = view.window?.height
+                
+        else {
+            return
+        }
+        
+        let keyboardHeight = keyboardFrame.cgRectValue.size.height
+        let padding: CGFloat = 65
+        let existingBottomInset = view.frame.height - (collapsedPlayerView.frame.origin.y +
+                                                       collapsedPlayerView.frame.size.height)
+        let containerViewYPositionInWindow =
+        containerView.convert(firstResponder.frame.origin, to: nil).y
+        let containerViewYPositionDifference = (containerViewYPositionInWindow +
+                                               firstResponder.frame.size.height) - (windowHeight - keyboardHeight)
+        UIView.animate(withDuration: 0.3) {
+            self.playerBottomConstraint.constant = -(keyboardHeight + padding - existingBottomInset)
+            
+//            if containerViewYPositionDifference > 0 {
+//                self.scrollView.contentOffset.y += containerViewYPositionDifference + padding
+//            }
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        guard let userinfo: [AnyHashable: Any] = notification.userInfo,
+              let keyboardFrame = userinfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
+        
+        let keyboardHeight = keyboardFrame.cgRectValue.size.height
+        let padding: CGFloat = 65
+        let existingBottomInset = view.frame.height - (collapsedPlayerView.frame.origin.y +  collapsedPlayerView.frame.size.height)
+        
+        UIView.animate(withDuration: 0.3) {
+            self.playerBottomConstraint.constant = -self.paddingBottom
+        }
     }
     
 }

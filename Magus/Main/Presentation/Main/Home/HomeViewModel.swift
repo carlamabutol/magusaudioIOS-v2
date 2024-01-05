@@ -61,7 +61,7 @@ class HomeViewModel: ViewModel {
                     return []
                 }
                 return [
-                    self.constructSection(headerTitle: LocalisedStrings.HomeHeaderTitle.category, cellModels: cellModels, footerType: .recommendations(categoryId: selectedCategoryId))
+                    self.constructSection(headerTitle: LocalisedStrings.HomeHeaderTitle.category, cellModels: cellModels, footerType: .category(categoryId: selectedCategoryId))
                 ]
             }
         

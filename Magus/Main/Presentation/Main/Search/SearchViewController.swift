@@ -23,6 +23,7 @@ class SearchViewController: CommonViewController {
             searchView.backgroundColor = .white
             searchView.cornerRadius(with: 10)
             searchView.applyShadow(radius: 5)
+            searchView.textField.autocorrectionType = .no
         }
     }
     

@@ -140,7 +140,7 @@ class PlayerViewController: BlurCommonViewController {
         }
     }
     
-    @IBOutlet var webView: WKWebView! {
+    @IBOutlet var webView: CustomWKWebView! {
         didSet {
             webView.backgroundColor = .clear
             webView.isOpaque = false
@@ -150,7 +150,7 @@ class PlayerViewController: BlurCommonViewController {
     
     func configure(subliminal: Subliminal) {
         titleLbl.text = subliminal.title
-        webView.loadHTMLString(subliminal.guide ?? "", baseURL: nil)
+        webView.jomLoadHTMLString(htmlString: subliminal.guide ?? "")
         coverImageView.sd_setImage(with: .init(string: subliminal.cover)) { [weak self] image, error, _, _ in
             self?.coverImageView.image = image
             self?.coverImageView.contentMode = .scaleAspectFill
@@ -159,9 +159,13 @@ class PlayerViewController: BlurCommonViewController {
         setupTracksVolumeViews(tracks: subliminal.info)
     }
     
+    @IBOutlet var topConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGradientView(view: gradientView)
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
+        gradientView.addGestureRecognizer(panGesture)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -170,8 +174,23 @@ class PlayerViewController: BlurCommonViewController {
     }
     
     @objc private func panGesture(_ sender: UIGestureRecognizer) {
-        let location = sender.location(in: scrollView)
-        Logger.info("gesture - \(location)", topic: .presentation)
+        let translation = sender.location(in: gradientView)
+        let imageFrame = coverImageView.frame.height
+        if translation.y > 0 {
+            UIView.animate(withDuration: 0.1) {
+                self.topConstraint.constant = -98
+                self.view.layoutIfNeeded()
+            }
+            Logger.info("Swipe from top to bottom - \(translation.y)", topic: .presentation)
+            // swipes from top to bottom of screen -> down
+        } else {
+                UIView.animate(withDuration: 0.1) {
+                    self.topConstraint.constant = -(imageFrame - 150)
+                    self.view.layoutIfNeeded()
+                }
+            Logger.info("Swipe from bottom to top - \(translation.y)", topic: .presentation)
+            // swipes from bottom to top of screen -> up
+        }
     }
     
     override func setupBinding() {

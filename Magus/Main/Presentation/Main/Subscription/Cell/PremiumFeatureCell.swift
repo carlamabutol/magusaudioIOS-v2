@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WebKit
 
 class PremiumFeatureCell: UICollectionViewCell {
     
@@ -19,27 +20,41 @@ class PremiumFeatureCell: UICollectionViewCell {
         }
     }
     
-    @IBOutlet var titleLabel: UILabel! {
+    @IBOutlet var webView: CustomWKWebView! {
         didSet {
-            titleLabel.font = UIFont.Montserrat.body3
-            titleLabel.textAlignment = .center
-            titleLabel.numberOfLines = 0
+            webView.backgroundColor = .clear
+            webView.isOpaque = false
+            webView.navigationDelegate = self
         }
     }
+    
+    
     @IBOutlet var stackView: UIStackView! {
         didSet {
             stackView.axis = .vertical
         }
     }
     
-    override class func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
+    var didLoadScrollHeight: ((_ scrollHeight: CGFloat) -> Void)?
+
     
     func configure(item: PremiumViewModel.PremiumFeatures) {
-        titleLabel.text = item.title
-        featureImageView.image = UIImage(named: item.image)
+        featureImageView.sd_setImage(with: .init(string: item.image))
+        didLoadScrollHeight = item.webViewHeight
+        webView.jomLoadHTMLString(htmlString: item.title, baseUrl: nil)
     }
     
+}
+
+extension PremiumFeatureCell: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        webView.evaluateJavaScript("document.readyState", completionHandler: { [weak self] (complete, error) in
+            if complete != nil {
+                webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { (height, error) in
+                    guard let height = height as? CGFloat else { return}
+                    self?.didLoadScrollHeight?(height)
+                })
+            }
+        })
+    }
 }

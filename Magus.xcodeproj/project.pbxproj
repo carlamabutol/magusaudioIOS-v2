@@ -342,6 +342,16 @@
 		F8D3D3912A223E8800AD7C2D /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3D3902A223E8800AD7C2D /* ForgotPasswordViewModel.swift */; };
 		F8E4CCE92A19ED5F002C388C /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8E4CCE82A19ED5F002C388C /* SignUp.storyboard */; };
 		F8E4CCEB2A19ED74002C388C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4CCEA2A19ED74002C388C /* SignUpViewController.swift */; };
+		F8ECA0F92B43F17C00DC7DAA /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81A48172A17736200D72E73 /* TextFieldView.swift */; };
+		F8ECA0FA2B43F18700DC7DAA /* FormButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8511DEF2A17D02000EFFFB4 /* FormButton.swift */; };
+		F8ECA0FB2B43F18D00DC7DAA /* TappableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86F797C2A18C3C200298581 /* TappableLabel.swift */; };
+		F8ECA0FC2B43F19400DC7DAA /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80A38B72A18C09F0023D166 /* KeyboardManager.swift */; };
+		F8ECA0FD2B43F1AD00DC7DAA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4CCEA2A19ED74002C388C /* SignUpViewController.swift */; };
+		F8ECA0FE2B43F1BF00DC7DAA /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3D38E2A223E8000AD7C2D /* ForgotPasswordViewController.swift */; };
+		F8ECA0FF2B43F1C600DC7DAA /* LoginAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745B623E2A66CF4E00289F95 /* LoginAlertViewController.swift */; };
+		F8ECA1002B43F1E200DC7DAA /* ViewController+Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82CA4F12A19B4A4007EDFAE /* ViewController+Storyboard+Extension.swift */; };
+		F8ECA1012B43F1F500DC7DAA /* ReusableXibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F825520F2A17940400ACD902 /* ReusableXibView.swift */; };
+		F8ECA1022B43F2A100DC7DAA /* CommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F806560B2A179B7B006D53F8 /* CommonView.swift */; };
 		F8F2A7E42AD6E0B500F40D36 /* HowMagusWorksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F2A7E32AD6E0B500F40D36 /* HowMagusWorksViewModel.swift */; };
 		F8F2A7E92AD6E7D700F40D36 /* HowMagusWorkInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F2A7E82AD6E7D700F40D36 /* HowMagusWorkInfoViewController.swift */; };
 		F8F2A7EB2AD6E7E800F40D36 /* HowMagusWorkInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8F2A7EA2AD6E7E800F40D36 /* HowMagusWorkInfo.storyboard */; };
@@ -2047,20 +2057,30 @@
 				F81ED0762A16160E0043E245 /* RootViewModel.swift in Sources */,
 				F81ED0772A16160E0043E245 /* WelcomeViewController.swift in Sources */,
 				F81ED0782A16160E0043E245 /* Route.swift in Sources */,
+				F8ECA1002B43F1E200DC7DAA /* ViewController+Storyboard+Extension.swift in Sources */,
 				F81ED0792A16160E0043E245 /* Colors.swift in Sources */,
+				F8ECA1012B43F1F500DC7DAA /* ReusableXibView.swift in Sources */,
+				F8ECA0FD2B43F1AD00DC7DAA /* SignUpViewController.swift in Sources */,
 				F81ED07B2A16160E0043E245 /* MainTabBarViewController.swift in Sources */,
+				F8ECA0FA2B43F18700DC7DAA /* FormButton.swift in Sources */,
 				F81ED07C2A16160E0043E245 /* Font+Extension.swift in Sources */,
 				F81ED07D2A16160E0043E245 /* LoginViewController.swift in Sources */,
 				F81ED07E2A16160E0043E245 /* AppDelegate.swift in Sources */,
+				F8ECA0FE2B43F1BF00DC7DAA /* ForgotPasswordViewController.swift in Sources */,
+				F8ECA0F92B43F17C00DC7DAA /* TextFieldView.swift in Sources */,
 				F81ED07F2A16160E0043E245 /* CommonViewController.swift in Sources */,
+				F8ECA0FF2B43F1C600DC7DAA /* LoginAlertViewController.swift in Sources */,
 				F81ED0802A16160E0043E245 /* WelcomeViewModel.swift in Sources */,
+				F8ECA1022B43F2A100DC7DAA /* CommonView.swift in Sources */,
 				F81ED0812A16160E0043E245 /* RootViewController.swift in Sources */,
 				F81ED0822A16160E0043E245 /* LoginViewModel.swift in Sources */,
 				F81ED0832A16160E0043E245 /* ViewController+Extension.swift in Sources */,
 				F81ED0842A16160E0043E245 /* SharedDependencies.swift in Sources */,
+				F8ECA0FB2B43F18D00DC7DAA /* TappableLabel.swift in Sources */,
 				F81ED0852A16160E0043E245 /* UIView+Extension.swift in Sources */,
 				F81ED0862A16160E0043E245 /* String+Images.swift in Sources */,
 				F81ED0872A16160E0043E245 /* LocalisedStrings.swift in Sources */,
+				F8ECA0FC2B43F19400DC7DAA /* KeyboardManager.swift in Sources */,
 				F81ED0882A16160E0043E245 /* Colors+Hex.swift in Sources */,
 				F81ED0892A16160E0043E245 /* SceneDelegate.swift in Sources */,
 				F81ED08A2A16160E0043E245 /* Router.swift in Sources */,

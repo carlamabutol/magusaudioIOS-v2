@@ -97,6 +97,18 @@ class SearchViewModel: ViewModel {
         }
     }
     
+//    private func getFeaturedPlaylists() {
+//        Task {
+//            do {
+//                let response = try await categoryUseCase.searchFeatured()
+//                featuredRelay.accept(response)
+//            } catch {
+//                Logger.warning(error.localizedDescription, topic: .presentation)
+//            }
+//        }
+//        
+//    }
+    
     private func configureSubliminalCell(with subliminal: Subliminal) -> CommonCell.Model {
         return CommonCell.Model(
             id: subliminal.subliminalID,

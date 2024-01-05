@@ -88,6 +88,13 @@ class ChangePasswordViewController: CommonViewController {
             .bind(to: navigationBar.saveButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
+        viewModel.backRelay
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.dismiss(animated: true)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.alertRelay.asObservable()
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] alertEnum in

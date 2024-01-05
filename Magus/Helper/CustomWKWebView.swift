@@ -30,13 +30,13 @@ class CustomWKWebView: WKWebView {
 
 extension CustomWKWebView: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        evaluateJavaScript("document.readyState", completionHandler: { [weak self] (complete, error) in
-                if complete != nil {
-                    self?.evaluateJavaScript("document.body.scrollHeight", completionHandler: { (height, error) in
-                        guard let height = height as? CGFloat else { return}
-                        self?.scrollContentHeight?(height)
-                    })
-                }
+        webView.evaluateJavaScript("document.readyState", completionHandler: { [weak self] (complete, error) in
+            if complete != nil {
+                webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { (height, error) in
+                    guard let height = height as? CGFloat else { return}
+                    self?.scrollContentHeight?(height)
                 })
+            }
+        })
     }
 }

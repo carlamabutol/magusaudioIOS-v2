@@ -41,7 +41,7 @@ class AddPlaylistViewModel: ViewModel {
                     .init(
                         title: "",
                         message: "Added to playlist succesfully.",
-                        actionHandler: { [weak self] in self?.backRelay.accept(())}
+                        actionHandler: { }
                     )
                 )
             } catch MessageError.message(let message){

@@ -53,6 +53,7 @@ enum ImageAsset: String {
     // MARK: Tab
     
     case coverImage = "Cover Image"
+    case appIcon = "AppIcon"
     
     case tabHomeUnselected = "TabHome"
     case tabHomeSelected = "TabHomeSelected"
@@ -121,5 +122,7 @@ enum ImageAsset: String {
     case collapsedDown = "collapsed-down"
     case collapsedUp = "collapsed-up"
     
+    case premiumMonthlyBG = "premiumMonthlyBG"
+    case premiumAnnuallyBG = "premiumAnnuallyBG"
     
 }

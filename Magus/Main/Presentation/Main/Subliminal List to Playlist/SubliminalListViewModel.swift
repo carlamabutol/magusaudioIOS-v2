@@ -72,22 +72,24 @@ class SubliminalListViewModel: ViewModel {
     private func constructDataSource(subliminals: [Subliminal]) -> [Section] {
         let cellModels = subliminals
             .map { [weak self] subliminal in
-                return AddSubliminalCell.Model(imageUrl: URL(string: subliminal.cover), title: subliminal.title, actionImage: .addIcon, tapHandler: {
-                    self?.addSubliminalToPlaylist(subliminalId: subliminal.subliminalID)
+                let isAlreadyAdded = self?.playlist?.subliminals.contains(where: { $0.subliminalID == subliminal.subliminalID}) ?? false
+                return AddSubliminalCell.Model(imageUrl: URL(string: subliminal.cover), title: subliminal.title, actionImage: isAlreadyAdded ? .addToPlaylistActive : .addIcon, tapHandler: {
+                    self?.addSubliminalToPlaylist(subliminal: subliminal)
                 })
             }
         return [.init(items: cellModels, title: PlaylistGroupTitle.isOwnPlaylist.title)]
     }
     
-    private func addSubliminalToPlaylist(subliminalId: String) {
+    private func addSubliminalToPlaylist(subliminal: Subliminal) {
         guard let playlistId = playlist?.playlistID else {
             return
         }
         alertRelay.accept(.loading(true))
         Task {
             do {
-                let message = try await playlistUseCase.addSubliminalToPlaylist(playlistId: playlistId, subliminalId: subliminalId)
+                let message = try await playlistUseCase.addSubliminalToPlaylist(playlistId: playlistId, subliminalId: subliminal.subliminalID)
                 Logger.info(message.message, topic: .presentation)
+                playlist?.subliminals.append(subliminal)
                 alertRelay.accept(
                     .alertModal(.init(
                         title: "",

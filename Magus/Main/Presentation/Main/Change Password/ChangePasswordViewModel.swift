@@ -18,6 +18,7 @@ class ChangePasswordViewModel: ViewModel {
     var alertModelObservable: Observable<LoginAlertViewController.AlertModel> { alertModel.compactMap{ $0 }.asObservable() }
     let saveButtonIsEnabled: Observable<Bool>
     let alertRelay = PublishRelay<AlertModelEnum>()
+    let backRelay = PublishRelay<Void>()
     
     let contains8CharacterObservable: Observable<ChangePasswordViewModel.PasswordRequirementModel>
     let includeNumberCharacterObservable: Observable<ChangePasswordViewModel.PasswordRequirementModel>
@@ -102,7 +103,9 @@ class ChangePasswordViewModel: ViewModel {
                 )
                 alertRelay.accept(
                     .alertModal(
-                        .init(title: "", message: response.message, actionHandler: {})
+                        .init(title: "", message: response.message, actionHandler: { [weak self] in
+                            self?.backRelay.accept(())
+                        })
                     )
                 )
             } catch {

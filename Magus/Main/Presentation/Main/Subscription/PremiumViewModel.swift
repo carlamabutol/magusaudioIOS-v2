@@ -11,8 +11,11 @@ import RxCocoa
 
 class PremiumViewModel {
     
-    let premiumFeatures = BehaviorRelay(value: PremiumViewModel.PremiumFeatures.sample)
+    private static let partialHeight: CGFloat = 105
+    
+    let premiumFeatures = BehaviorRelay<[PremiumFeatures]>(value: [])
     let planRelay = BehaviorRelay<[PremiumPlan]>(value: [])
+    let finalHeightRelay = BehaviorRelay<CGFloat>(value: PremiumViewModel.partialHeight)
     
     private let networkService: NetworkService
     
@@ -29,14 +32,17 @@ class PremiumViewModel {
                 case .success(let array):
                     guard let premium = array.first(where: { $0.name == "Premium" }) else { return}
                     let subscriptions: [PremiumPlan] = [
-                        .init(premiumId: premium.id, premiumType: .monthly, amount: Float(premium.amount), isSelected: false, tapHandler: {
-                            
+                        .init(premiumId: UUID().uuidString, premiumType: .monthly, amount: Float(premium.amountMonthly), isSelected: false, tapHandler: { [weak self] in
+                            self?.didSelectPlan(type: .monthly)
                         }),
-                        .init(premiumId: premium.id, premiumType: .yearly, amount: Float(premium.amountYear), isSelected: false, tapHandler: {
-                            
+                        .init(premiumId: UUID().uuidString, premiumType: .yearly, amount: Float(premium.amountYearly), isSelected: false, tapHandler: { [weak self] in
+                            self?.didSelectPlan(type: .yearly)
                         })
                     ]
                     planRelay.accept(subscriptions)
+                    premiumFeatures.accept(premium.description.map { PremiumFeatures(title: $0.description, image: $0.image) { [weak self] height in
+                        self?.updateHeight(height: height)
+                    }})
                 case .error(let errorResponse):
                     Logger.warning(errorResponse.message, topic: .presentation)
                 }
@@ -44,6 +50,26 @@ class PremiumViewModel {
                 Logger.warning(error.localizedDescription, topic: .presentation)
             }
             
+        }
+    }
+    
+    private func didSelectPlan(type: PremiumType) {
+        guard let planIndex = planRelay.value.lastIndex(where: { $0.premiumType == type }) else { return }
+        var subscriptions = planRelay.value
+        subscriptions = subscriptions.map({ plan in
+            var plan = plan
+            plan.isSelected = false
+            return plan
+        })
+        subscriptions[planIndex].isSelected = true
+        planRelay.accept(subscriptions)
+    }
+    
+    private func updateHeight(height: CGFloat) {
+        let possibleHeight = height + Self.partialHeight
+        let existingHeight = finalHeightRelay.value
+        if possibleHeight > existingHeight {
+            finalHeightRelay.accept(possibleHeight)
         }
     }
     
@@ -55,12 +81,12 @@ extension PremiumViewModel {
         case monthly = "Monthly"
         case yearly = "Yearly"
         
-        var coverImage: String {
+        var coverImage: ImageAsset {
             switch self {
             case .monthly:
-                return "premiumFeature1"
+                return .premiumMonthlyBG
             case .yearly:
-                return "premiumFeature2"
+                return .premiumAnnuallyBG
             }
         }
     }
@@ -68,23 +94,15 @@ extension PremiumViewModel {
     struct PremiumFeatures {
         let title: String
         let image: String
+        let webViewHeight: (_ height: CGFloat) -> Void
     }
     
     struct PremiumPlan {
-        let premiumId: Int
+        let premiumId: String
         let premiumType: PremiumType
         let amount: Float
         var isSelected: Bool
         var tapHandler: () -> Void
     }
     
-}
-
-extension PremiumViewModel.PremiumFeatures {
-    static let sample: [PremiumViewModel.PremiumFeatures] = [
-        .init(title: "Exclusive Playlist\njust for you", image: "premiumFeature1"),
-        .init(title: "More Advance\nVolume Controls", image: "premiumFeature2"),
-        .init(title: "Exclusive Playlist\njust for you", image: "premiumFeature1"),
-        .init(title: "More Advance\nVolume Controls", image: "premiumFeature2"),
-    ]
 }

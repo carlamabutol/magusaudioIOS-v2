@@ -17,7 +17,7 @@ class SeeAllViewModel: ViewModel {
     private let networkService: NetworkService
     private let categoryUseCase: CategoryUseCase
     private var user: () -> User?
-    private let categoryRelay = BehaviorRelay<[CategoryCell.Model]>(value: [])
+    private let categoryRelay = BehaviorRelay<[Category]>(value: [])
     private let recommendations = BehaviorRelay<SubliminalsAndPlaylist?>(value: nil)
     private let featuredRelay = BehaviorRelay<SubliminalsAndPlaylist?>(value: nil)
     private let recommendedSubliminals = BehaviorRelay<[CategoryCell.Model]>(value: [])
@@ -29,6 +29,7 @@ class SeeAllViewModel: ViewModel {
     
     let sections = BehaviorRelay<[SectionViewModel]>(value: [])
     var modelType: ModelType!
+    private var selectedCategoryId: Int?
     
     init(sharedDependencies: SeeAllViewModel.Dependencies = .standard) {
         store = sharedDependencies.store
@@ -37,6 +38,14 @@ class SeeAllViewModel: ViewModel {
         user = sharedDependencies.user
         currentMood = sharedDependencies.currentMood
         super.init()
+        
+        sharedDependencies.currentCategoryId
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] category in
+                self?.selectedCategoryId = category.id
+                self?.reloadCategoryCells()
+            }
+            .disposed(by: disposeBag)
     }
     
     func setup(for modelType: ModelType) {
@@ -52,7 +61,39 @@ class SeeAllViewModel: ViewModel {
         case .recommendations(let categoryId):
             getRecommendations(categoriyId: categoryId)
         case .category(let categoryId):
-            getRecommendations(categoriyId: categoryId)
+            selectedCategoryId = categoryId
+            getAllCategory()
+        }
+    }
+    
+    private func reloadCategoryCells() {
+        let categoryCells = constructCategoryCell(categories: categoryRelay.value)
+        sections.accept([SectionViewModel(header: LocalisedStrings.HomeHeaderTitle.category, items: categoryCells)])
+    }
+    
+    private func getAllCategory() {
+        Task {
+            do {
+                let categories = try await categoryUseCase.searchCategory()
+                categoryRelay.accept(categories)
+                reloadCategoryCells()
+            } catch {
+                Logger.warning(error.localizedDescription, topic: .presentation)
+            }
+            
+        }
+    }
+    
+    private func constructCategoryCell(categories: [Category]) -> [CategoryCell.Model] {
+        return categories.map { category in
+            CategoryCell.Model(
+                id: UUID().uuidString,
+                title: category.name,
+                imageUrl: .init(string: category.image ?? ""),
+                isSelected: selectedCategoryId == category.id
+            ) { [weak self] in
+                self?.store.appState.selectedCategory = category
+            }
         }
     }
     
@@ -166,6 +207,7 @@ extension SeeAllViewModel {
         let authenticationUseCase: AuthenticationUseCase
         let categoryUseCase: CategoryUseCase
         let currentMood: () -> Int?
+        let currentCategoryId: Observable<Category>
         
         static var standard: Dependencies {
             return .init(
@@ -175,7 +217,8 @@ extension SeeAllViewModel {
                 networkService: SharedDependencies.sharedDependencies.networkService,
                 authenticationUseCase: SharedDependencies.sharedDependencies.useCases.authenticationUseCase,
                 categoryUseCase: SharedDependencies.sharedDependencies.useCases.categoryUseCase,
-                currentMood: { SharedDependencies.sharedDependencies.store.appState.selectedMood?.id }
+                currentMood: { SharedDependencies.sharedDependencies.store.appState.selectedMood?.id },
+                currentCategoryId: SharedDependencies.sharedDependencies.store.observable(of: \.selectedCategory).compactMap { $0 }
             )
         }
     }

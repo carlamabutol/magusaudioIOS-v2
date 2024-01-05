@@ -281,7 +281,7 @@ extension StandardNetworkService: NetworkService {
     func getSubscriptions() async throws -> JSONAPIArrayResponse<SubscriptionResponse> {
         let url = baseURL
             .appendingPathComponent("api")
-            .appendingPathComponent("subscription")
+            .appendingPathComponent("premium")
         
         var parameters: [String: String] = [:]
         

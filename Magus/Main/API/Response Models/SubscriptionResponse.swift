@@ -11,21 +11,29 @@ import Foundation
 struct SubscriptionResponse: EndpointResponse {
     typealias ErrorResponse = SubscriptionErrorResponse
     
-    let id: Int
-    let name, description, createdAt, updatedAt: String
-    let amount, period: Int
+    let name: String
+    let amountMonthly, amountYearly, period: Int
     let periodType: String
-    let isVisible, amountYear: Int
-
+    let description: [Description]
+    
     enum CodingKeys: String, CodingKey {
-        case id, name, description
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
-        case amount, period
+        case name
+        case amountMonthly = "amount_monthly"
+        case amountYearly = "amount_yearly"
+        case period
         case periodType = "period_type"
-        case isVisible = "is_visible"
-        case amountYear = "amount_year"
+        case description
     }
+}
+
+extension SubscriptionResponse {
+    
+    // MARK: - Description
+    struct Description: Codable {
+        let image: String
+        let description: String
+    }
+
 }
 
 struct SubscriptionErrorResponse: Decodable {

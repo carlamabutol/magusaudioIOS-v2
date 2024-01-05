@@ -132,7 +132,7 @@
                                                             <constraint firstAttribute="height" constant="60" id="5ZX-d6-Vox"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tfQ-GY-UgJ">
+                                                    <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tfQ-GY-UgJ" customClass="CustomWKWebView" customModule="Magus" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="184.66666666666663" width="353" height="221.33333333333337"/>
                                                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <wkWebViewConfiguration key="configuration">
@@ -243,6 +243,7 @@
                         <outlet property="repeatView" destination="bBt-P3-LMJ" id="RY0-0a-zYb"/>
                         <outlet property="timeLabel" destination="EaO-kX-WIH" id="JEN-OL-z89"/>
                         <outlet property="titleLbl" destination="fRK-xu-Lw8" id="ate-hH-G38"/>
+                        <outlet property="topConstraint" destination="1Db-Pp-9HG" id="BpB-6w-h7f"/>
                         <outlet property="tracksContainerStackView" destination="xaO-Ld-kSV" id="8h8-oc-D72"/>
                         <outlet property="tracksContainerView" destination="ZXn-MN-ysZ" id="MeL-Sk-xAu"/>
                         <outlet property="tracksStackView" destination="45P-ok-y7z" id="UId-DT-Yuo"/>

@@ -154,8 +154,10 @@ class AudioPlayerViewModel: ViewModel {
                 } else {
                     store.appState.selectedSubliminal = subliminalQueue[0]
                 }
-            } else {
+            } else if !subliminalQueue.isEmpty {
                 store.appState.selectedSubliminal = subliminalQueue[0]
+            } else {
+                
             }
         case .repeatCurrentlyPlaying:
             guard let selectedSubliminal = self.selectedSubliminal else { return }
@@ -184,8 +186,10 @@ class AudioPlayerViewModel: ViewModel {
                 } else {
                     store.appState.selectedSubliminal = subliminalQueue[0]
                 }
-            } else {
+            } else if !subliminalQueue.isEmpty {
                 store.appState.selectedSubliminal = subliminalQueue[0]
+            } else {
+                
             }
         case .repeatCurrentlyPlaying:
             guard let selectedSubliminal = self.selectedSubliminal else { return }
