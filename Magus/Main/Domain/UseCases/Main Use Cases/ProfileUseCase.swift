@@ -39,4 +39,23 @@ class ProfileUseCase {
         }
     }
     
+    func updateProfilePhoto(photo: Data) async -> EmptyResponse {
+        do {
+            let response = try await networkService.updateProfilePhoto(photo: photo)
+            
+            switch response {
+            case let .success(response):
+                store.appState.user =  User(response: response)
+                store.saveAppState()
+                return .init(success: true, message: "")
+            case .error(let errorResponse):
+                Logger.error(errorResponse.message, topic: .domain)
+                return .init(success: false, message: errorResponse.message)
+            }
+        } catch {
+            Logger.error("updateProfileDetails Error: Unable to complete network request - \(error.localizedDescription)", topic: .network)
+            return .init(success: false, message: "Failed")
+        }
+    }
+    
 }

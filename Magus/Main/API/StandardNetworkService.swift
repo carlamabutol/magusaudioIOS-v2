@@ -50,7 +50,6 @@ class StandardNetworkService {
 
 extension StandardNetworkService: NetworkService {
     
-    
     func signIn(email: String, password: String) async throws -> JSONAPIDictionaryResponse<SignInResponse> {
         let url = baseURL
             .appendingPathComponent("api")
@@ -87,6 +86,31 @@ extension StandardNetworkService: NetworkService {
         return try await task.value
     }
     
+    func updateProfilePhoto(photo: Data) async throws -> JSONAPIDictionaryResponse<UserResponse> {
+        let url = baseURL
+            .appendingPathComponent("api")
+            .appendingPathComponent("mobile")
+            .appendingPathComponent("cover")
+            .appendingPathComponent("upload")
+        
+        var parameters: [String: String] = [:]
+        
+        if let userID = getUserID() {
+            parameters["user_id"] = userID
+        }
+        
+        let task = requestManager.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(photo, withName: "file", fileName: "file.jpg", mimeType: "image/jpeg")
+            for (key, value) in parameters {
+                multipartFormData.append(Data(value.utf8), withName: key)
+            }
+        }, to: url, method: .post, headers: try getAuthenticatedHeaders())
+            .validate(statusCode: Self.validStatusCodes)
+            .serializingDecodable(JSONAPIDictionaryResponse<UserResponse>.self)
+        
+        return try await task.value
+    }
+    
     // MARK: MOODS
     
     func getAllMoods() async throws -> JSONAPIArrayResponse<MoodResponse> {
@@ -107,13 +131,13 @@ extension StandardNetworkService: NetworkService {
             .appendingPathComponent("user")
             .appendingPathComponent("mood")
         
-        var parameters: [String: Any] = [:]
+        var parameters: [String: String] = [:]
         
         if let userID = getUserID() {
             parameters["user_id"] = userID
         }
         
-        let task = requestManager.request(url, method: .post, headers: try getAuthenticatedHeaders())
+        let task = requestManager.request(url, method: .post, parameters: parameters, headers: try getAuthenticatedHeaders())
             .validate(statusCode: Self.validStatusCodes)
             .serializingDecodable(JSONAPIArrayResponse<MoodResponse>.self)
         

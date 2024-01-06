@@ -277,6 +277,7 @@
 		F835B0102A06526300123A16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F835B00E2A06526300123A16 /* LaunchScreen.storyboard */; };
 		F835B01C2A0652B400123A16 /* RootViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F835B01B2A0652B400123A16 /* RootViewController.storyboard */; };
 		F835B01E2A0652D100123A16 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F835B01D2A0652D100123A16 /* RootViewController.swift */; };
+		F83C13442B47ECE500B7F85D /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = F83C13432B47ECE500B7F85D /* YPImagePicker */; };
 		F848EF082A0BC9EC0097F104 /* CommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F848EF072A0BC9EC0097F104 /* CommonViewController.swift */; };
 		F848EF0B2A0BD3530097F104 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = F848EF0A2A0BD3530097F104 /* RxCocoa */; };
 		F848EF0D2A0BD3530097F104 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F848EF0C2A0BD3530097F104 /* RxSwift */; };
@@ -667,6 +668,7 @@
 				F848EF0D2A0BD3530097F104 /* RxSwift in Frameworks */,
 				74DFB6AE2A386EAC00FD99CE /* RxDataSources in Frameworks */,
 				74D0DC672A925F2D00749A0C /* Hero in Frameworks */,
+				F83C13442B47ECE500B7F85D /* YPImagePicker in Frameworks */,
 				F848EF0B2A0BD3530097F104 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1876,6 +1878,7 @@
 				741CB69F2A4476F400975949 /* KeychainAccess */,
 				74D0DC662A925F2D00749A0C /* Hero */,
 				7477DD9A2AE6B57A006CD07A /* SwiftAudioEx */,
+				F83C13432B47ECE500B7F85D /* YPImagePicker */,
 			);
 			productName = Magus;
 			productReference = F835B0002A06526200123A16 /* Magus.app */;
@@ -1913,6 +1916,7 @@
 				741CB69E2A4476F400975949 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				74D0DC652A925F2D00749A0C /* XCRemoteSwiftPackageReference "Hero" */,
 				7477DD992AE6B57A006CD07A /* XCRemoteSwiftPackageReference "SwiftAudioEx" */,
+				F83C13422B47ECE500B7F85D /* XCRemoteSwiftPackageReference "YPImagePicker" */,
 			);
 			productRefGroup = F835B0012A06526200123A16 /* Products */;
 			projectDirPath = "";
@@ -2388,6 +2392,8 @@
 				INFOPLIST_FILE = Magus/Configuration/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Magus: Subliminal Audio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requests access to your camera.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requests access to your photo library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2638,6 +2644,8 @@
 				INFOPLIST_FILE = Magus/Configuration/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Magus: Subliminal Audio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requests access to your camera.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requests access to your photo library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2673,6 +2681,8 @@
 				INFOPLIST_FILE = Magus/Configuration/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Magus: Subliminal Audio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requests access to your camera.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requests access to your photo library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2788,6 +2798,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		F83C13422B47ECE500B7F85D /* XCRemoteSwiftPackageReference "YPImagePicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Yummypets/YPImagePicker";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		F848EF092A0BD3530097F104 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -2846,6 +2864,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F81ED0742A16160E0043E245 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		F83C13432B47ECE500B7F85D /* YPImagePicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F83C13422B47ECE500B7F85D /* XCRemoteSwiftPackageReference "YPImagePicker" */;
+			productName = YPImagePicker;
 		};
 		F848EF0A2A0BD3530097F104 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;

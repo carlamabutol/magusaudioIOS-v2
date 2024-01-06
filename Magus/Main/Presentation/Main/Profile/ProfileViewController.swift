@@ -71,7 +71,6 @@ class ProfileViewController: CommonViewController {
     
     @IBOutlet var profileImageView: UIImageView! {
         didSet {
-            profileImageView.sd_setImage(with: tabViewModel.profileImage(), placeholderImage: .init(named: .coverImage))
             profileImageView.circle()
             profileImageView.clipsToBounds = true
         }
@@ -100,6 +99,7 @@ class ProfileViewController: CommonViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        profileImageView.sd_setImage(with: tabViewModel.profileImage(), placeholderImage: .init(named: .coverImage))
         updateUserDetails()
     }
     

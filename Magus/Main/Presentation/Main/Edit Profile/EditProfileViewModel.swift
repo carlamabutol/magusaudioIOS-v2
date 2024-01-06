@@ -8,6 +8,8 @@
 import Foundation
 import RxSwift
 import RxRelay
+import Photos
+import AVFoundation
 
 class EditProfileViewModel: ViewModel {
     
@@ -65,6 +67,18 @@ class EditProfileViewModel: ViewModel {
                 Logger.info("Updated User \(user)", topic: .presentation)
             case .failure(let error):
                 Logger.error("updateUserDetails Network Error: \(error.localizedDescription)", topic: .network)
+            }
+        }
+    }
+    
+    func changeProfilePhoto(_ data: Data) {
+        Task {
+            do {
+                let result = await profileUseCase.updateProfilePhoto(photo: data)
+                self.alertModel.accept(.init(message: "Profile Photo successfully updated.", image: .goodPassword))
+                Logger.info("updateProfilePhoto \(result)", topic: .presentation)
+            } catch {
+                Logger.error("updateProfilePhoto Network Error: \(error.localizedDescription)", topic: .network)
             }
         }
     }

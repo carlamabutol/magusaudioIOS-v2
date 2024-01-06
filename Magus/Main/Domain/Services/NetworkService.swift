@@ -11,6 +11,7 @@ import RxSwift
 protocol NetworkService {
     func signIn(email: String, password: String) async throws -> JSONAPIDictionaryResponse<SignInResponse>
     func signUp(name: String, email: String, password: String) async throws -> JSONAPIDictionaryResponse<SignUpResponse>
+    func updateProfilePhoto(photo: Data) async throws -> JSONAPIDictionaryResponse<UserResponse> 
     
     // MARK: MOODS
     func getAllMoods() async throws -> JSONAPIArrayResponse<MoodResponse>

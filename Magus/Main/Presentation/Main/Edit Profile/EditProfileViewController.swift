@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import YPImagePicker
 
 class EditProfileViewController: CommonViewController {
     
@@ -75,6 +76,7 @@ class EditProfileViewController: CommonViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addImageTapInitialiser()
         hideKeyboardOnTap()
         profileNavigationBar.configure(
             model: .init(
@@ -131,9 +133,19 @@ class EditProfileViewController: CommonViewController {
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { [weak self] model in
                 self?.showAlert(alertModel: model)
+                self?.updateProfile()
             }
             .disposed(by: disposeBag)
         
+    }
+    
+    private func updateProfile() {
+        profileImageView.sd_setImage(with: viewModel.profileImage(), placeholderImage: .init(named: .coverImage))
+    }
+    
+    private func addImageTapInitialiser() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeProfilePhoto))
+        containerProfileImageView.addGestureRecognizer(tapGesture)
     }
     
     private func pushToChangePasswordViewController() {
@@ -154,6 +166,26 @@ class EditProfileViewController: CommonViewController {
         let alertVC = ProfileAlertViewController.instantiate(from: .profileAlert) as! ProfileAlertViewController
         presentModally(alertVC, animated: true)
         alertVC.configure(alertModel: alertModel)
+    }
+    
+    @objc private func changeProfilePhoto() {
+        let picker = YPImagePicker()
+        picker.didFinishPicking { [weak self] items, _ in
+            if let photo = items.singlePhoto {
+                print(photo.fromCamera) // Image source (camera or library)
+                print(photo.image) // Final image selected by the user
+                print(photo.originalImage) // original image selected by the user, unfiltered
+                print(photo.modifiedImage) // Transformed image, can be nil
+                print(photo.exifMeta) // Print exif meta data of original image.
+                if let dataImage = photo.image.jpegData(compressionQuality: 0.9) {
+                    self?.viewModel.changeProfilePhoto(dataImage)
+                } else {
+                    
+                }
+            }
+            picker.dismiss(animated: true, completion: nil)
+        }
+        present(picker, animated: true, completion: nil)
     }
     
 }
