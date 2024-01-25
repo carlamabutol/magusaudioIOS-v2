@@ -23,7 +23,7 @@ class ProfileFavoritesViewController: BlurCommonViewController {
     @IBOutlet var titleLabel: UILabel! {
         didSet {
             titleLabel.font = .Montserrat.title3
-            titleLabel.numberOfLines = 2
+            titleLabel.numberOfLines = 1
         }
     }
     @IBOutlet var repeatButton: UIButton! {

@@ -14,6 +14,17 @@ class PlaylistViewController: BlurCommonViewController {
     
     @IBOutlet var gradientView: UIView!
     
+    @IBOutlet weak var optionButton: UIButton! {
+        didSet {
+            let image = UIImage(named: .option)
+            let newImage = image?.resizeImage(targetHeight: 25)
+            optionButton.setTitle("", for: .normal)
+            optionButton.setImage(newImage?.withRenderingMode(.alwaysTemplate), for: .normal)
+            optionButton.imageView?.contentMode = .scaleAspectFill
+            optionButton.tintColor = .black
+        }
+    }
+
     @IBOutlet var addSubButton: UIButton! {
         didSet {
             let image = UIImage(named: .addIcon)
@@ -90,7 +101,6 @@ class PlaylistViewController: BlurCommonViewController {
     lazy var emptyView: EmptyPlaylistView = {
         let view = EmptyPlaylistView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .yellow
         return view
     }()
     
@@ -105,6 +115,10 @@ class PlaylistViewController: BlurCommonViewController {
         
         view.addSubview(emptyView)
         emptyView.fillView(fromView: collectionView)
+    }
+    
+    override func viewIsAppearing(_ animated: Bool) {
+        viewModel.getPlaylist()
     }
     
     fileprivate func setupCollapsedPlayerView() {
@@ -130,8 +144,10 @@ class PlaylistViewController: BlurCommonViewController {
                 self?.addSubButton.isHidden = playlist.isOwnPlaylist == 0
                 if(playlist.isOwnPlaylist == 0){
                    self?.addSubButton.layer.transform = CATransform3DMakeScale(0, 0, 0);
+                    self?.optionButton.layer.transform = CATransform3DMakeScale(0, 0, 0);
                 }else{
                     self?.addSubButton.layer.transform = CATransform3DIdentity
+                    self?.optionButton.layer.transform = CATransform3DIdentity
                 }
                 self?.configure(playlist: playlist)
             }
@@ -151,6 +167,11 @@ class PlaylistViewController: BlurCommonViewController {
         addSubButton.rx.tap
             .subscribe { [weak self] _ in self?.addSubliminal() }
             .disposed(by: disposeBag)
+        
+        optionButton.rx.tap
+            .subscribe { [weak self] _ in self?.addSubliminal() }
+        .disposed(by: disposeBag)
+
         
         controlButton.rx.tap
             .subscribe { [weak self] _ in

@@ -53,6 +53,10 @@ class ProfilePlaylistsViewController: CommonViewController {
         )
     }
     
+    override func viewIsAppearing(_ animated: Bool) {
+        viewModel.search()
+    }
+    
     override func setupBinding() {
         super.setupBinding()
         let refreshControl = UIRefreshControl()
@@ -105,7 +109,7 @@ class ProfilePlaylistsViewController: CommonViewController {
         let playlistVC = AddPlaylistViewController.instantiate(from: .addPlaylist) as! AddPlaylistViewController
         navigationController?.pushViewController(playlistVC, animated: true)
         playlistVC.loadViewIfNeeded()
-        playlistVC.configure(playlist: playlist)
+        playlistVC.configure(playlist: playlist, subliminal: nil)
     }
     
     private func setupDataSource() {

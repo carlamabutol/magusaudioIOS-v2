@@ -52,7 +52,8 @@ class AddPlaylistViewController: CommonViewController {
         )
     }
     
-    func configure(playlist: Playlist? = nil) {
+    func configure(playlist: Playlist? = nil, subliminal: Subliminal?) {
+            viewModel.subliminalRelay.accept(subliminal)
         viewModel.playlist = playlist
         viewModel.playlistTitle.accept(playlist?.title ?? "")
         tableView.isHidden = playlist == nil

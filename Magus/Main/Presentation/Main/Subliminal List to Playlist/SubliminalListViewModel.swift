@@ -90,13 +90,12 @@ class SubliminalListViewModel: ViewModel {
                 let message = try await playlistUseCase.addSubliminalToPlaylist(playlistId: playlistId, subliminalId: subliminal.subliminalID)
                 Logger.info(message.message, topic: .presentation)
                 playlist?.subliminals.append(subliminal)
+                search()
                 alertRelay.accept(
                     .alertModal(.init(
                         title: "",
                         message: message.message,
-                        actionHandler: { [weak self] in
-                            self?.backRelay.accept(())
-                        }
+                        actionHandler: {}
                     ))
                 )
             } catch MessageError.message(let message){
@@ -158,7 +157,7 @@ extension SubliminalListViewModel {
         var title: String {
             switch self {
             case .madeByMagus: return "Made By Magus"
-            case .isOwnPlaylist: return "My Playlist"
+            case .isOwnPlaylist: return "Subliminal"
             }
         }
     }

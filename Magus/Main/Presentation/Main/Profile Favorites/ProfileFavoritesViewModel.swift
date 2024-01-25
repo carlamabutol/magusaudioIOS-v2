@@ -52,10 +52,11 @@ class ProfileFavoritesViewModel: ViewModel {
             .compactMap { [weak self] updatedSubliminal in
                 let newSubliminals = self?.subliminalsRelay.value.map { subliminal in
                     var newSubliminal = subliminal
-                    let isLiked = subliminal.subliminalID == updatedSubliminal.subliminalID ? updatedSubliminal.isLiked : subliminal.isLiked
+                    /*let isLiked = subliminal.subliminalID == updatedSubliminal.subliminalID ? updatedSubliminal.isLiked : subliminal.isLiked
                     newSubliminal.isLiked = isLiked
-                    return newSubliminal
+                    */return newSubliminal
                 }
+                self?.updateFavorite(updatedSubliminal)
                 return newSubliminals
             }
             .map { self.setupSubliminalCellModels(subliminals: $0) }

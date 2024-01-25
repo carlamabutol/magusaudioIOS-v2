@@ -20,6 +20,8 @@ class AddPlaylistViewModel: ViewModel {
     var alertObservable: Observable<AlertViewModel> { alertRelay.asObservable() }
     var backObservable: Observable<Void> { backRelay.asObservable() }
     let playlistTitle = BehaviorRelay<String>(value: "")
+    let subliminalRelay = BehaviorRelay<Subliminal?>(value: nil)
+    private let magusPlaylistRelay = PublishRelay<[Playlist]>()
     
     init(dependencies: AddPlaylistViewModel.Dependencies = .standard) {
         playlistUseCase = dependencies.playlistUseCase
@@ -29,32 +31,61 @@ class AddPlaylistViewModel: ViewModel {
     
     func addPlaylist() {
         isLoadingRelay.accept(true)
-        if let playlistID = playlist?.playlistID {
-            savePlaylist(playlistID: playlistID)
-            return
-        }
-        Task {
-            do {
-                _ = try await playlistUseCase.addPlaylist(title: playlistTitle.value)
-                Logger.info("Added to playlist succesfully.", topic: .presentation)
-                alertRelay.accept(
-                    .init(
-                        title: "",
-                        message: "Added to playlist succesfully.",
-                        actionHandler: { }
+        if(subliminalRelay.value == nil) {
+                    if let playlistID = playlist?.playlistID {
+                        savePlaylist(playlistID: playlistID)
+                        return
+                    }
+                    Task {
+                        do {
+                            _ = try await playlistUseCase.addPlaylist(title: playlistTitle.value)
+                            Logger.info("Added to playlist successfully.", topic: .presentation)
+                            alertRelay.accept(
+                                .init(
+                                    title: "",
+                                    message: "Creating playlist, please wait...",
+                                    actionHandler: { [weak self] in self?.backRelay.accept(())}
+                                )
                     )
-                )
-            } catch MessageError.message(let message){
-                alertRelay.accept(
-                    .init(
-                        title: "",
-                        message: message,
-                        actionHandler: { }
+                        } catch MessageError.message(let message){
+                                           alertRelay.accept(
+                                               .init(
+                                                   title: "",
+                                                   message: message,
+                                                   actionHandler: { }
+                                               )
                     )
-                )
-                Logger.warning("Failed to add Playlist \(message)", topic: .presentation)
+                            Logger.warning("Failed to add Playlist \(message)", topic: .presentation)
+                                            }
+                                            isLoadingRelay.accept(false)
+                                        }
+                                    }else{
+                                        guard let subliminalID = subliminalRelay.value?.subliminalID else { return }
+                                        Task {
+                                            do {
+                                                _ = try await playlistUseCase.addPlaylistSubliminal(title: playlistTitle.value, subliminal_id: subliminalID)
+                                                Logger.info("Added to playlist succesfully.", topic: .presentation)
+                                                alertRelay.accept(
+                                                    .init(
+                                                        title: "",
+                                                        message: "Added to new playlist successfully.",
+                                                        actionHandler: { [weak self] in self?.backRelay.accept(())}
+                                                    )
+                                                )
+                                            } catch MessageError.message(let message){
+                                                alertRelay.accept(
+                                                    .init(
+                                                        title: "",
+                                                        message: message,
+                                                        actionHandler: { }
+                                                    )
+                                                )
+                                                Logger.warning("Failed to add Playlist \(message)", topic: .presentation)
+                                            }
+                                            isLoadingRelay.accept(false)
+                                            let playlist = try await playlistUseCase.searchPlaylists(search: "")
+                                            magusPlaylistRelay.accept(playlist)
             }
-            isLoadingRelay.accept(false)
         }
     }
     

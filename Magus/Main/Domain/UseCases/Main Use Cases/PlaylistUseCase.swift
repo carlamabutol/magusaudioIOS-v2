@@ -93,6 +93,34 @@ final class PlaylistUseCase {
         }
     }
     
+    func getOnePlaylist(id: String) async throws -> [Playlist] {
+        do {
+            let response = try await networkService.getOnePlaylist(playlistID: id)
+            switch response {
+            case .success(let response):
+                return response.map { Playlist(searchPlaylistResponse: $0) }
+            case .error(_):
+                throw NetworkServiceError.jsonDecodingError
+            }
+        } catch {
+            throw error
+        }
+    }
+    
+    func addPlaylistSubliminal(title: String, subliminal_id: String) async throws -> EmptyResponse {
+        do {
+            let response = try await networkService.addPlaylistSubliminal(title: title, subliminal_id: subliminal_id)
+            switch response {
+            case .success:
+                return .init(success: true, message: "Successfully Added to New Playlist.")
+            case.error(let error):
+                throw MessageError.message(error.message)
+            }
+        } catch {
+            throw error
+        }
+    }
+    
     func savePlaylist(playlistID: String, title: String) async throws -> EmptyResponse {
         do {
             let response = try await networkService.savePlaylist(playlistID: playlistID, title: title)

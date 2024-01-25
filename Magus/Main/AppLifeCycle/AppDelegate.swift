@@ -22,7 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarAppearance.configureWithDefaultBackground()
         tabBarAppearance.backgroundColor = UIColor.white
         UITabBar.appearance().standardAppearance = tabBarAppearance
-
+        
+        do {
+            try AVAudioSession.sharedInstance()
+            .setCategory(.playback, mode: .moviePlayback, options: .duckOthers)
+        } catch {
+            print("AppDelegate Debug - Error setting AVAudioSession category. Because of this, there may be no sound. \(error)")
+        }
+        
         if #available(iOS 15.0, *) {
             UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
         }

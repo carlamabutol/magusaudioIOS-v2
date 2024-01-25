@@ -37,7 +37,7 @@ class ProfileMoodViewModel: ViewModel {
     
     private func getWeeklyDates() {
         let weeklyDates = getAllDatesInWeek(forDate: now).map { WeeklyData(day: $0.dayToday(with: "EE"), dayString: $0.dayToday(with: "dd"), mood: nil, subliminal: nil) }
-        Logger.info("WeeklyDates \(weeklyDates)", topic: .presentation)
+        //Logger.info("WeeklyDates \(weeklyDates)", topic: .presentation)
     }
     
     func getAllDatesInWeek(forDate date: Date) -> [Date] {
@@ -60,7 +60,7 @@ class ProfileMoodViewModel: ViewModel {
         Task {
             do {
                 let month = now.getDateFormat(with: "yyyy-MM")
-                Logger.info("Selected Month \(month)", topic: .presentation)
+                //Logger.info("Selected Month \(month)", topic: .presentation)
                 let calendarResponse = try await moodUseCase.getMoodCalendar(month: month)
                 let weeklyMoods = calendarResponse.weekly.map { WeeklyData(day: $0.day, dayString: $0.week, mood: $0.mood, subliminal: $0.subliminal)}
                 let monthlyMoods = calendarResponse.monthly.map { Monthly(date: $0.date, id: $0.id, day: $0.day, week: $0.week, mood: $0.mood, subliminal: $0.subliminal)}

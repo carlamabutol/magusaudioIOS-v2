@@ -11,6 +11,8 @@ import RxRelay
 
 class PlayerOptionViewModel: ViewModel {
     
+    private let audioPlayerView = AudioPlayerViewModel.shared
+        
     private let subliminalUseCase: SubliminalUseCase
     private let playlistUseCase: PlaylistUseCase
     private let store: Store
@@ -50,7 +52,12 @@ class PlayerOptionViewModel: ViewModel {
     
     func updateFavorite() {
         guard let selectedSubliminal = subliminalRelay.value else { return }
-        Task {
+        var subliminal = selectedSubliminal
+        subliminal.isLiked = subliminal.isLiked == 0 ? 1 : 0
+        self.isLikeRelay.accept(subliminal.isLiked == 1)
+        self.subliminalRelay.accept(subliminal)
+        self.audioPlayerView.updateFavorite()
+        /*Task {
             do {
                 var subliminal = selectedSubliminal
                 subliminal.isLiked = subliminal.isLiked == 0 ? 1 : 0
@@ -66,7 +73,7 @@ class PlayerOptionViewModel: ViewModel {
             } catch {
                 Logger.info("Failed to update favorite \(error)", topic: .presentation)
             }
-        }
+        }*/
     }
     
     func removeSubliminalToPlaylist() {

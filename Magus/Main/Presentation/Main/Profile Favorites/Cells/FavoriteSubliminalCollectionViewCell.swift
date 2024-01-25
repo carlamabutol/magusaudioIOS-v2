@@ -27,7 +27,7 @@ class FavoriteSubliminalCollectionViewCell: UICollectionViewCell {
     @IBOutlet var titleLabel: UILabel! {
         didSet {
             titleLabel.font = .Montserrat.bold15
-            titleLabel.numberOfLines = 2
+            titleLabel.numberOfLines = 1
         }
     }
     

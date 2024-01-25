@@ -84,6 +84,18 @@ class PlaylistViewModel: ViewModel {
         playlistRelay.accept(playlist)
     }
     
+    func getPlaylist(){
+        Task {
+            do {
+                let playlist = try await playlistUseCase.getOnePlaylist(id: playlistRelay.value?.playlistID ?? "")
+                setPlaylist(playlist: playlist[0])
+
+            } catch {
+                Logger.info("Failed to update favorite \(error)", topic: .presentation)
+            }
+        }
+    }
+    
     private func favoriteButtonIsTapped(_ subliminal: Subliminal) {
         var updatedSubliminal = subliminal
         updatedSubliminal.isLiked = subliminal.isLiked == 0 ? 1 : 0

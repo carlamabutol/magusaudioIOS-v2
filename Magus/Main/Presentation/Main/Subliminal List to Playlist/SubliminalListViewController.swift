@@ -125,7 +125,7 @@ class SubliminalListViewController: CommonViewController {
         let playlistVC = AddPlaylistViewController.instantiate(from: .addPlaylist) as! AddPlaylistViewController
         navigationController?.pushViewController(playlistVC, animated: true)
         playlistVC.loadViewIfNeeded()
-        playlistVC.configure(playlist: playlist)
+        playlistVC.configure(playlist: playlist, subliminal: nil)
     }
     
     private func setupDataSource() {

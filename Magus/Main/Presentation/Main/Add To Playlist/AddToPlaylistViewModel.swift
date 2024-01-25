@@ -17,7 +17,7 @@ class AddToPlaylistViewModel: ViewModel {
     private let store: Store
     private let playlistUseCase: PlaylistUseCase
     private let magusPlaylistRelay = PublishRelay<[Playlist]>()
-    private let searchRelay = BehaviorRelay<String>(value: "")
+    let searchRelay = BehaviorRelay<String>(value: "")
     private let searchDebounceTime: RxTimeInterval
     private let loadingRelay = BehaviorRelay<Bool>(value: true)
     private let alertRelay = PublishRelay<AlertModelEnum>()
@@ -27,6 +27,7 @@ class AddToPlaylistViewModel: ViewModel {
     var alertObservable: Observable<AlertModelEnum> { alertRelay.asObservable() }
     let fullScreenLoadingRelay = PublishRelay<Bool>()
     let dataSource = BehaviorRelay<[Section]>(value: [])
+    let subliminalRelay = BehaviorRelay<Subliminal?>(value: nil)
     
     init(dependencies: AddToPlaylistViewModel.Dependencies = .standard) {
         store = dependencies.store
@@ -69,10 +70,16 @@ class AddToPlaylistViewModel: ViewModel {
     }
     
     private func constructDataSource(playlist: [Playlist]) -> [Section] {
+        subliminalRelay.accept(subliminal)
         let cellModels = playlist
+            .filter({ $0.isOwnPlaylist == 1 })
             .map { [weak self] playlist in
                 let subtitle = "\(playlist.subliminals.count) Subliminals"
-                return AddToPlaylistCell.Model(imageUrl: URL(string: playlist.cover), title: playlist.title, subtitle: subtitle, tapHandler: {
+                var image = playlist.cover
+                                if(playlist.subliminals.count != 0){
+                                    image = playlist.subliminals[0].cover
+                                }
+                                return AddToPlaylistCell.Model(imageUrl: URL(string: image), title: playlist.title, subtitle: subtitle, tapHandler: {
                     self?.addSubliminalToPlaylist(playlistId: playlist.playlistID)
                 })
             }
@@ -154,7 +161,7 @@ extension AddToPlaylistViewModel {
         var title: String {
             switch self {
             case .madeByMagus: return "Made By Magus"
-            case .isOwnPlaylist: return "My Playlist"
+            case .isOwnPlaylist: return "Add to Playlist"
             }
         }
     }

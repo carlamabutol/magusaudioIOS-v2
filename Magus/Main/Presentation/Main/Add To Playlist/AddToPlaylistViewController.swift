@@ -59,6 +59,10 @@ class AddToPlaylistViewController: CommonViewController {
         setupDataSource()
     }
     
+    override func viewIsAppearing(_ animated: Bool){
+        viewModel.search()
+    }
+    
     override func setupBinding() {
         super.setupBinding()
         let refreshControl = UIRefreshControl()
@@ -124,10 +128,11 @@ class AddToPlaylistViewController: CommonViewController {
     }
     
     private func pushAddPlaylistVC(playlist: Playlist? = nil) {
+        guard let subliminal = viewModel.subliminalRelay.value else { return }
         let playlistVC = AddPlaylistViewController.instantiate(from: .addPlaylist) as! AddPlaylistViewController
         navigationController?.pushViewController(playlistVC, animated: true)
         playlistVC.loadViewIfNeeded()
-        playlistVC.configure(playlist: playlist)
+        playlistVC.configure(playlist: playlist, subliminal: subliminal)
     }
     
     private func setupDataSource() {

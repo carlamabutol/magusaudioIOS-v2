@@ -340,7 +340,7 @@ class PlayerViewController: BlurCommonViewController {
             let progressContainerView = UIView()
             let progress = CGFloat(info.volume) / 100
             progressContainerView.backgroundColor = .clear
-            let progressView = VerticalProgressBar(minimumProgress: progress)
+            let progressView = VerticalProgressBar(minimumProgress: 0)
             progressView.progress = progress
             progressView.backgroundColor = .white
             progressView.cornerBorderRadius(cornerRadius: 10, borderColor: .black, borderWidth: 0.2)

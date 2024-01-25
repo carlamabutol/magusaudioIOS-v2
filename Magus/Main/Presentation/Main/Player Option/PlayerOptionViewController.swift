@@ -25,7 +25,7 @@ class PlayerOptionViewController: CommonViewController {
     
     @IBOutlet var titleLabel: UILabel! {
         didSet {
-            titleLabel.font = .Montserrat.semibold30
+            titleLabel.font = .Montserrat.semibold24
             titleLabel.numberOfLines = 2
             titleLabel.textColor = .white
         }
@@ -43,7 +43,6 @@ class PlayerOptionViewController: CommonViewController {
     @IBOutlet var likeButton: UIButton! {
         didSet {
             likeButton.titleLabel?.font = .Montserrat.semibold17
-            likeButton.setTitle(LocalisedStrings.Player.favorite, for: .normal)
             likeButton.titleEdgeInsets = .init(top: 0, left: 10, bottom: 0, right: 0)
         }
     }
@@ -156,14 +155,16 @@ class PlayerOptionViewController: CommonViewController {
     
     private func updateFavorite(isLiked: Bool) {
         let image = UIImage(named: isLiked ? .likeActive : .like)
-        let newImage = image?.resizeImage(targetHeight: 34)
+        let newImage = image?.resizeImage(targetHeight: 31)
         likeButton.setImage(newImage, for: .normal)
         likeButton.imageView?.contentMode = .scaleAspectFit
+        likeButton.setTitle(isLiked ? LocalisedStrings.Player.favoriteRemove : LocalisedStrings.Player.favorite, for: .normal)
+
     }
     
     private func updateQueue(inQueue: Bool) {
         let image = UIImage(named: inQueue ? .addToQueueActive : .addToQueue)
-        let newImage = image?.resizeImage(targetHeight: 34)
+        let newImage = image?.resizeImage(targetHeight: 31)
         addToQueueButton.setImage(newImage, for: .normal)
         addToQueueButton.imageView?.contentMode = .scaleAspectFit
         let title = inQueue ? LocalisedStrings.Player.addedToQueue : LocalisedStrings.Player.addToQueue
@@ -172,7 +173,7 @@ class PlayerOptionViewController: CommonViewController {
     
     private func updatePlaylist(isAdded: Bool) {
         let image = UIImage(named: isAdded ? .addToPlaylistActive : .addToPlaylist)
-        let newImage = image?.resizeImage(targetHeight: 34)
+        let newImage = image?.resizeImage(targetHeight: 31)
         let title = LocalisedStrings.Player.addToPlaylist
 //        let title = isAdded ? LocalisedStrings.Player.removeFromPlaylist : LocalisedStrings.Player.addToPlaylist
         addToPlaylistButton.setTitle(title, for: .normal)

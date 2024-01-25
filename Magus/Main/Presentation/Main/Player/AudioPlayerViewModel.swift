@@ -106,6 +106,7 @@ class AudioPlayerViewModel: ViewModel {
     func resetPlayer(playAgain: Bool) {
         playerStatusRelay.accept(.isPlaying)
         audioPlayerManager.playAgainAllAudioPlayers(playAgain: playAgain)
+        timeRelay.accept("00:00")
     }
 
     func playAudio() {
@@ -204,7 +205,8 @@ class AudioPlayerViewModel: ViewModel {
         selectedSubliminalRelay.accept(subliminal)
         self.selectedSubliminal = subliminal
         self.store.appState.selectedSubliminal = subliminal
-        Task {
+        
+        /*Task {
             do {
                 if selectedSubliminal.isLiked == 0 {
                     let _ = try await subliminalUseCase.addToFavorite(id: selectedSubliminal.subliminalID)
@@ -216,7 +218,7 @@ class AudioPlayerViewModel: ViewModel {
             } catch {
                 Logger.info("Failed to update favorite \(error)", topic: .presentation)
             }
-        }
+        }*/
     }
     
     func updateRepat() {

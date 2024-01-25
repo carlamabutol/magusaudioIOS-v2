@@ -143,7 +143,8 @@ struct LocalisedStrings {
     
     enum Player {
         static let favorites = "Favorites"
-        static let favorite = "Favorite"
+        static let favorite = "Add to Favorites"
+        static let favoriteRemove = "Remove from Favorites"
         static let like = "Like"
         static let addToQueue = "Add to Queue"
         static let addedToQueue = "Added to Queue"

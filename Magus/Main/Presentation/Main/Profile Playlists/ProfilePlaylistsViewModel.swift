@@ -90,7 +90,7 @@ class ProfilePlaylistsViewModel: ViewModel {
                 let cellModels = playlist
                     .filter({ $0.isOwnPlaylist == isOwnPlaylist })
                     .map { [weak self] playlist in
-                        PlaylistCell.Model(imageUrl: URL(string: playlist.cover), title: playlist.title, tapHandler: {
+                        PlaylistCell.Model(imageUrl: URL(string: playlist.subliminals.count == 0 ? playlist.cover : playlist.subliminals[0].cover), title: playlist.title, tapHandler: {
                             self?.selectedPlaylist.accept(playlist)
                         }) {
                             self?.editPlaylist.accept(playlist)
