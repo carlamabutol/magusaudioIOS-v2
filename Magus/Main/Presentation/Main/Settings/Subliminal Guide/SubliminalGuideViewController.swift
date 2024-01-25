@@ -7,10 +7,10 @@
 
 import UIKit
 import RxSwift
+import WebKit
 
 class SubliminalGuideViewController: CommonViewController {
-    
-    private let viewModel = SettingsViewModel()
+    private static let guide = URL(string: "https://magusaudio.com/guide")!
     
     @IBOutlet var navigationBar: ProfileNavigationBar! {
         didSet {
@@ -23,49 +23,13 @@ class SubliminalGuideViewController: CommonViewController {
         }
     }
     
-    @IBOutlet var collectionView: UICollectionView! {
+    @IBOutlet weak var webView: WKWebView! {
         didSet {
-            collectionView.register(SubliminalGuideCell.self, forCellWithReuseIdentifier: SubliminalGuideCell.identifier)
-            collectionView.contentInset = .init(top: 0, left: 20, bottom: 0, right: 20)
-            collectionView.backgroundColor = .clear
-            collectionView.dataSource = self
-            collectionView.delegate = self
+            let request = URLRequest(url: Self.guide)
+            webView.backgroundColor = .clear
+            webView.isOpaque = false
+            webView.load(request)
         }
     }
     
-    override func setupBinding() {
-        super.setupBinding()
-        
-        viewModel.guideObservable
-            .observe(on: MainScheduler.asyncInstance)
-            .subscribe { [weak self] _ in
-                self?.collectionView.reloadData()
-            }.disposed(by: disposeBag)
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.getGuide()
-    }
-    
-}
-
-extension SubliminalGuideViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.guideRelay.value.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SubliminalGuideCell.identifier, for: indexPath) as? SubliminalGuideCell else { fatalError() }
-        let model = viewModel.guideRelay.value[indexPath.row]
-        cell.configure(index: indexPath.row, guide: model)
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let model = viewModel.guideRelay.value[indexPath.row]
-        return .init(width: collectionView.frame.width - 40, height: model.potentialHeight == 0 ? 152 : model.potentialHeight)
-    }
 }

@@ -9,7 +9,8 @@ import Foundation
 
 class Configuration {
     static var baseURL: URL {
-        let urlString = "https://dev.v2.magusaudio.com"
+       // let urlString = "https://dev.v2.magusaudio.com"
+        let urlString = "https://prod.v2.magusaudio.com"
         //        guard let urlString = "https://magusaudio.com",
         guard let baseURL = URL(string: urlString)
         else {

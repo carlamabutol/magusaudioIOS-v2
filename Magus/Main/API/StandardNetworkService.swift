@@ -327,7 +327,7 @@ extension StandardNetworkService: NetworkService {
             .appendingPathComponent("filter")
         
         var parameters: [String: String] = [
-            "subscription_id": "1",
+            "subscription_id": String(describing: getSubscriptionID()),
             "search": search
         ]
         
@@ -385,7 +385,7 @@ extension StandardNetworkService: NetworkService {
         let parameters: [String: String] = [
             "user_id": userID,
             "\(api.rawValue)_id": id,
-            "subscription_id": getSubscriptionID().toString()
+            "subscription_id": String(describing: getSubscriptionID())
         ]
         
         let url = baseURL
