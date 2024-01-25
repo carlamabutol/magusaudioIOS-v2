@@ -50,10 +50,16 @@ class SearchViewModel: ViewModel {
             .subscribe { [weak self] (subliminals, playlist) in
                 guard let self else { return }
                 var newSection = self.sections.value
-                if newSection.isEmpty {
-                    newSection.insert(.init(header: SearchSection.subliminal.title, items: subliminals), at: 0)
+                if subliminals.isEmpty {
+                    if let subliminalIndex = newSection.lastIndex(where: { $0.header == SearchSection.subliminal.title }) {
+                    newSection.remove(at: subliminalIndex)
+                }
                 } else {
-                    newSection[0].items = subliminals
+                    if let subliminalIndex = newSection.lastIndex(where: { $0.header == SearchSection.subliminal.title }) {
+                        newSection[subliminalIndex].items = subliminals
+                    } else {
+                        newSection.insert(.init(header: SearchSection.subliminal.title, items: subliminals), at: 0)
+                    }
                 }
                 if playlist.isEmpty {
                     if let playListIndex = newSection.lastIndex(where: { $0.header == SearchSection.playlist.title }) {

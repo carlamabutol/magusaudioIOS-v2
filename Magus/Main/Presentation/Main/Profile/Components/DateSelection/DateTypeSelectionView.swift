@@ -9,9 +9,15 @@ import UIKit
 
 class DateTypeSelectionView: ReusableXibView {
     
+    var now: Date {
+        get {
+            return Date()
+        }
+    }
+    
     @IBOutlet var titleLbl: UILabel! {
         didSet {
-            titleLbl.text = "March 23, 2023"
+            titleLbl.text =  now.getDateFormat(with: "MMMM YYYY")
             titleLbl.font = .Montserrat.bold15
         }
     }

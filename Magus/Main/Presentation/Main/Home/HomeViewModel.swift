@@ -172,7 +172,12 @@ class HomeViewModel: ViewModel {
             title += " \(user.info.firstName),"
         }
         
-        let modelCell = SelectedMoodCell.Model(id: String(currentMood.id), title: title, subTitle: currentMood.greeting, imageAsset: currentMood.status == .positive ? .positive : .negative) { [weak self] in
+        let modelCell = SelectedMoodCell.Model(
+            id: String(currentMood.id),
+            title: title,
+            subTitle: currentMood.greeting,
+            imageUrl: URL(string: currentMood.image!),
+            imageAsset: currentMood.status == .positive ? .positive : .negative) { [weak self] in
             self?.router.selectedRoute = .mood
         }
         return SectionViewModel(

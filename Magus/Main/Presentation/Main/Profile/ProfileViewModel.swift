@@ -130,6 +130,7 @@ struct WeeklyData: Identifiable {
     let day: String
     let dayString: String
     let mood: Mood?
+    let subliminal: Subliminal?
     
     var id: String {
         return day

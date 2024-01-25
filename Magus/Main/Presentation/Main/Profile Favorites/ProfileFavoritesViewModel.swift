@@ -185,6 +185,7 @@ class ProfileFavoritesViewModel: ViewModel {
                 if selectedSubliminal.isLiked == 0 {
                     let _ = try await subliminalUseCase.deleteToFavorite(id: selectedSubliminal.subliminalID)
                     Logger.info("Successfully removed from favorite", topic: .presentation)
+                    getAllSubliminalFavorites()
                 } else {
                     let _ = try await subliminalUseCase.addToFavorite(id: selectedSubliminal.subliminalID)
                     Logger.info("Successfully added to favorite", topic: .presentation)
@@ -201,6 +202,7 @@ class ProfileFavoritesViewModel: ViewModel {
                 if selectedPlaylist.isLiked == 0 {
                     let _ = try await playlistUseCase.addToFavorite(id: selectedPlaylist.playlistID)
                     Logger.info("Successfully added to favorite", topic: .presentation)
+                    getAllPlaylistFavorites()
                 } else {
                     let _ = try await playlistUseCase.deletePlaylist(id: selectedPlaylist.playlistID)
                     Logger.info("Successfully removed from favorite", topic: .presentation)

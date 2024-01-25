@@ -128,6 +128,11 @@ class PlaylistViewController: BlurCommonViewController {
         viewModel.playlistObservable
             .subscribe { [weak self] playlist in
                 self?.addSubButton.isHidden = playlist.isOwnPlaylist == 0
+                if(playlist.isOwnPlaylist == 0){
+                   self?.addSubButton.layer.transform = CATransform3DMakeScale(0, 0, 0);
+                }else{
+                    self?.addSubButton.layer.transform = CATransform3DIdentity
+                }
                 self?.configure(playlist: playlist)
             }
             .disposed(by: disposeBag)

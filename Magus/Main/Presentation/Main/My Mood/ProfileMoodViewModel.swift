@@ -13,7 +13,9 @@ class ProfileMoodViewModel: ViewModel {
     
     private let dateTodayRelay = PublishRelay<Date>()
     private let weeklyDataRelay = PublishRelay<[WeeklyData]>()
+    private let monthlyDataRelay = PublishRelay<[Monthly]>()
     var weeklyDataObservable: Observable<[WeeklyData]> { weeklyDataRelay.asObservable()}
+    var monthlyDataObservable: Observable<[Monthly]> { monthlyDataRelay.asObservable()}
     private let networkService: NetworkService
     private let getUserID: () -> String?
     private let moodUseCase: MoodUseCase
@@ -34,7 +36,7 @@ class ProfileMoodViewModel: ViewModel {
     }
     
     private func getWeeklyDates() {
-        let weeklyDates = getAllDatesInWeek(forDate: now).map { WeeklyData(day: $0.dayToday(with: "EE"), dayString: $0.dayToday(with: "dd"), mood: nil) }
+        let weeklyDates = getAllDatesInWeek(forDate: now).map { WeeklyData(day: $0.dayToday(with: "EE"), dayString: $0.dayToday(with: "dd"), mood: nil, subliminal: nil) }
         Logger.info("WeeklyDates \(weeklyDates)", topic: .presentation)
     }
     
@@ -60,8 +62,10 @@ class ProfileMoodViewModel: ViewModel {
                 let month = now.getDateFormat(with: "yyyy-MM")
                 Logger.info("Selected Month \(month)", topic: .presentation)
                 let calendarResponse = try await moodUseCase.getMoodCalendar(month: month)
-                let weeklyMoods = calendarResponse.weekly.map { WeeklyData(day: $0.day, dayString: $0.week, mood: $0.mood)}
+                let weeklyMoods = calendarResponse.weekly.map { WeeklyData(day: $0.day, dayString: $0.week, mood: $0.mood, subliminal: $0.subliminal)}
+                let monthlyMoods = calendarResponse.monthly.map { Monthly(date: $0.date, id: $0.id, day: $0.day, week: $0.week, mood: $0.mood, subliminal: $0.subliminal)}
                 weeklyDataRelay.accept(weeklyMoods)
+                monthlyDataRelay.accept(monthlyMoods)
             } catch {
                 Logger.error("Calendar ErrorResponse - \(error.localizedDescription)", topic: .presentation)
             }

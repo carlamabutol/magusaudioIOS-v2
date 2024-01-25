@@ -14,6 +14,7 @@ class PlaylistViewModel: ViewModel {
     
     private let store: Store
     private let playlistUseCase: PlaylistUseCase
+    private let subliminalUseCase: SubliminalUseCase
     
     var playlist: Playlist?
     private let playlistRelay = BehaviorRelay<Playlist?>(value: nil)
@@ -28,6 +29,7 @@ class PlaylistViewModel: ViewModel {
     init(dependencies: PlaylistViewModel.Dependencies = .standard) {
         store = dependencies.store
         playlistUseCase = dependencies.playlistUseCase
+        subliminalUseCase = dependencies.subliminalUseCase
         super.init()
         
         let subliminalsObservable = updatedSubliminalRelay.asObservable()
@@ -143,12 +145,14 @@ extension PlaylistViewModel {
         let store: Store
         let user: () -> User?
         let playlistUseCase: PlaylistUseCase
+        let subliminalUseCase: SubliminalUseCase
         
         static var standard: Dependencies {
             return .init(
                 store: SharedDependencies.sharedDependencies.store,
                 user: { SharedDependencies.sharedDependencies.store.appState.user },
-                playlistUseCase: SharedDependencies.sharedDependencies.useCases.playlistUseCase
+                playlistUseCase: SharedDependencies.sharedDependencies.useCases.playlistUseCase,
+                subliminalUseCase: SharedDependencies.sharedDependencies.useCases.subliminalUseCase
             )
         }
     }

@@ -63,13 +63,13 @@ class ProfileFavoritesViewController: BlurCommonViewController {
             .subscribe { [weak self] _ in self?.popViewController() }
             .disposed(by: disposeBag)
         
-        viewModel.firstSubliminalObservable
+        /*viewModel.firstSubliminalObservable
             .distinctUntilChanged()
             .observe(on: MainScheduler.asyncInstance)
             .subscribe (onNext: { [weak self] subliminal in
                 self?.configure(subliminal: subliminal)
             })
-            .disposed(by: disposeBag)
+            .disposed(by: disposeBag)*/
         
         viewModel.selectedPlaylistObservable
             .observe(on: MainScheduler.asyncInstance)

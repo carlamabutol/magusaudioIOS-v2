@@ -56,7 +56,7 @@ class SelectedMoodCell: UICollectionViewCell {
     func configure(model: SelectedMoodCell.Model) {
         titleLabel.text = model.title
         subtitleLabel.text = model.subTitle
-        moodImageView.image = UIImage(named: model.imageAsset)
+        moodImageView.sd_setImage(with: model.imageUrl)
         tapActionHandler = model.tapActionHandler
     }
     
@@ -77,8 +77,8 @@ extension SelectedMoodCell {
         var id: String
         var title: String
         var subTitle: String
-        var imageAsset: ImageAsset
         var imageUrl: URL?
+        var imageAsset: ImageAsset
         var tapActionHandler: CompletionHandler?
     }
 }

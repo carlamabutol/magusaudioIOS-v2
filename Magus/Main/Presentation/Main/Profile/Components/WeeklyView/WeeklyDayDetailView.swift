@@ -23,10 +23,20 @@ class WeeklyDayDetailView: ReusableXibView {
         }
     }
     
-    func configure(url: URL?, mood: String, desc: String) {
-        moodImageView.sd_setImage(with: url)
-        moodLbl.text = mood
-        descriptionLbl.text = desc
+    func configure(url: URL?, mood: String, subliminal: String, desc: String) {
+        if(url != nil){
+            moodImageView.sd_setImage(with: url)
+        }
+        if(subliminal != "-"){
+            descriptionLbl.text = "You mostly listend to " + subliminal
+        }else{
+            descriptionLbl.text = ""
+        }
+        if(url == nil && subliminal == "-"){
+            moodLbl.text = "No data to display"
+        }else{
+            moodLbl.text = mood
+        }
     }
     
 }

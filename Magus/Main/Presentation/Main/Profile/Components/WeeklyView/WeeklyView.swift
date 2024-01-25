@@ -61,7 +61,7 @@ class WeeklyView: ReusableXibView {
             weeklyView.heightAnchor.constraint(equalToConstant: 57).isActive = true
             let desc = data.mood == nil ? "-" : "Sign in: 8:00am"
             weeklyInfoStackView.addArrangedSubview(weeklyView)
-            weeklyView.configure(url: URL(string: data.mood?.image ?? ""), mood: data.mood?.name ?? "-", desc: desc)
+            weeklyView.configure(url: URL(string: data.mood?.image ?? ""), mood: data.mood?.name ?? "-", subliminal: data.subliminal?.title ?? "-", desc: desc)
         }
         
         self.addSubview(lineView)

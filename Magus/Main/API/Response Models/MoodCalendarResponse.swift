@@ -21,6 +21,7 @@ struct MonthlyResponse: EndpointResponse {
     let day: String
     let week: String
     let mood: MoodResponse?
+    let subliminal: SubliminalResponse?
 }
 
 struct MoodCalendarErrorResponse: Decodable {
